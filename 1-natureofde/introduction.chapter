@@ -1,0 +1,434 @@
+%% EDITED AUGUST 11, 2012 to fix misspellings, wordings, coefficient in logistic grown model, added an example of finding a general solution
+
+
+\chapter{The Nature of Differential Equations}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{mixing problem}%
+	A large tank contains 100 gallons of pure water.  Brine solution that contains 50 grams of salt per gallon of water is added to the tank at a rate of 3 gallons per minute.  The liquid in the tank is thoroughly mixed, and it drains from the tank at 3 gallons per minute as well.  How long will it take until there is one kilogram of salt in the tank?  And how much salt will there be in the tank in the long term?
+\end{minipage}
+}
+\end{center}
+
+\medskip
+The problem above describes a quantity (the mass of salt in a tank) which is changing over time.  The description tells us how that rate of change depends on other factors.  Salt is added to the tank as part of a brine solution.  Simultaneously, salt leaves the tank as part of the liquid that drains.  We can use the language of calculus (in particular, derivative notation) to describe this rate of change precisely.
+
+Let $g(t)$ represent the number of grams of salt in the tank after $t$ minutes have elapsed.  If we can find an explicit formula for $g(t)$ we should be able to answer the questions that have been posed.  As an intermediate step, we're going to write down a formula for the derivative of $g$.
+
+The net rate of change of $g$ at any instant is
+\[ \frac{dg}{dt} = \left( \mbox{rate in} \right) - \left( \mbox{rate out} \right),\]
+where ``rate in'' describes how fast salt is entering the tank and ``rate out'' describes how fast salt is leaving it.  The rate at which salt is entering the tank is determined by multiplying the rate at which brine solution enters the tank by the concentration of salt in the brine:
+\[ \mbox{rate in} = \frac{50 \ \mbox{grams}}{1\  \mbox{gallon} } \times \frac{3 \ \mbox{gallons}}{1 \ \mbox{minute}} = 150 \frac{\mbox{grams}}{\mbox{minute}}.\]
+Similarly, we can find the rate out by multiplying the rate at which liquid is leaving the tank by the concentration of salt in that liquid.  But the concentration of salt already in the tank is changing -- it depends on how much salt is in the tank at that instant.  The volume of liquid in the tank remains constant at 100 gallons, and the mass of salt is represented by the function $g$.  Therefore we can write
+\[ \mbox{rate out} = \frac{g \ \mbox{grams}}{100 \ \mbox{gallons}} \times \frac{3 \ \mbox{gallons}}{1 \ \mbox{minute}}
+= \frac{3g}{100} \frac{\mbox{grams}}{\mbox{minute}}.\]
+Therefore the instantaneous rate of change over time for the function $g$ is described by the equation
+\[ \frac{dg}{dt} = 150 - \frac{3g}{100} \ \ \ \ \ \ \frac{\mbox{grams}}{\mbox{minute}}.\]
+This equation is a mathematical description given of how the mass of salt in the tank is changing over time.  There is one other fact given in the problem statement that is necessary to find a solution to this question: because the tank begins with only pure water, the initial mass of salt in the tank is zero grams, so that
+\[ g(0)=0.\]
+These two facts -- the equation describing the rate of change and the initial value of the function -- will allow us to find a formula for $g(t)$.
+
+	\index{separation of variables}%
+The technique we will employ to find a formula for $g(t)$ is called separation of variables.  It is usually taught in a second course on calculus, and a reader who wishes to review this technique will find it in the appendix.
+
+Beginning with the equation $\frac{dg}{dt}=150 - \frac{3g}{100}$, we first rewrite the right side as a single quotient,
+\[ \frac{dg}{dt} = \frac{15000 - 3g}{100},\]
+and then we formally separate the variables $g$ and $t$ as follows:
+\[ \frac{dg}{15000-3g}= \frac{dt}{100}.\]
+The previous step doesn't make sense all by itself -- it is a notational shorthand -- until we anti-differentiate both sides:
+\[ \int \frac{dg}{15000-3g} = \int \frac{dt}{100}.\]
+Completing the integration gives us
+\[ -\frac{1}{3} \ln |15000-3g|=\frac{t}{100}+C.\]
+Using the fact that $g(0)=0$ (that is to say, $g=0$ when $t=0$) to solve for the unknown constant of integration gives us 
+\[-\frac{1}{3} \ln|15000|=C,\]
+and solving for $g$ in terms of $t$ yields
+\[ g = 5000-5000e^{-3t/100}.\]
+
+\begin{exe} 
+Fill in the missing details in the calculation above to solve for $g$.
+\end{exe}
+
+Here's a graph of the solution we calculated above:
+
+\begin{center}
+\includegraphics[width=3in]{1-introduction/example1.eps}
+\end{center}
+
+We can see that the solution appears to attain the value of $g=1000$ grams (1 kilogram) sometime between $t=7$ and $t=8$ seconds.  We can  calculate the exact value using this formula:
+\[1000=5000-5000e^{-3t/100} \]
+and solving for $t$ algebraically gives us:
+\[ t= \frac{-100}{3} \ln \left( \frac{4}{5} \right) \approx 7.4 \ \mbox{minutes}.\]
+
+The other issue we want to address is the 
+	\index{long-term behavior}%
+	{\bf long term behavior} of the function $g$: what happens to the value of $g(t)$ as $t$ continues to increase? A graph of the solution over a longer time interval illustrates this behavior:
+
+\begin{center}
+\includegraphics[width=3in]{1-introduction/example1b.eps}
+\end{center}
+	
+Long-term behavior really means ``what happens in the limit as $t \rightarrow \infty$'', so we calculate:
+\[ \lim_{t \rightarrow \infty} g(t) = \lim_{t \rightarrow \infty} 5000-5000e^{-3t/100} = 5000 \ \mbox{grams}.\]
+That is to say, as time passes the mass of salt in the tank will get closer and closer to 5 kilograms.
+\qed
+
+
+
+We were able to find a precise solution for the problem above because we were able to write down the function $g$ that satisfies the equation $\frac{dg}{dt}= 150 - \frac{3g}{100}$ and the condition $g(0)=0$.  Equations like this one which describe the rate of change of a function are called differential equations.
+
+
+
+
+
+
+
+A 
+	\index{differential equation} %
+{\bf differential equation}
+ is an equation involving an unknown function and its derivatives.  Here are a few examples:
+
+\begin{itemize}
+\item $\frac{du}{dt} = 3u+2t$, where $u(t)$ is the unknown function
+\item $\frac{dy}{dx} = y^2$, where $y(x)$ is the unknown function
+\item $\frac{\partial f}{\partial x} = 2 + \frac{\partial f}{\partial y}$, where $f(x,y)$ is the unknown function
+\item $\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = \frac{\partial f}{\partial t}$, where $f(x,y,t)$ is the unknown function.
+\end{itemize}
+
+The first two examples above are 
+	\index{ordinary differential equation}%
+{\bf ordinary differential equations} because the unknown functions are functions of just one variable, hence the derivatives are ordinary derivatives as studied in single variable calculus; this is in contrast to the last two examples where the unknown is a function of two or more variables so that the derivatives are partial derivatives, as studied in multivariable calculus.  These last two are examples of 
+	\index{partial differential equation}%
+	{\bf partial differential equations}.  Generally speaking, the study of partial differential equations requires more mathematical background and is usually reserved for a second course on differential equations.  The abbreviation ODE is used to mean either an ordinary differential equation or equations (it can be either singular or plural, depending on context).  The abbreviation PDE is used similarly for a partial differential equation or equations.
+
+\begin{exe}
+Classify each of the following as either an ODE or a PDE.
+\begin{enumerate}
+\item $\left(\frac{dy}{dx} \right)^2 = y^2 + \frac{d^2y}{dx^2} $
+\item $u_x=u_y$
+\end{enumerate}
+\end{exe}
+
+
+For the remainder of this text, we will only concern ourselves with ordinary differential equations.
+
+
+
+%% FIX THE PREVIOUS LINE IF WE ADD A CHAPTER ON MODELING WITH PDE!!!!!!!!!!!!!!!!!
+
+
+
+
+A 
+	\index{solution}%
+	{\bf solution} of an ODE is a function, say $y(x)$, such that $y$ and its derivatives satisfy the differential equation for all $x \in I$, where $I$ is an interval in $\R$.  In particular, $y(x)$ must be defined at every point $x \in I$ for us to say that it is a solution on $I$.  We call $x$ the 
+	\index{independent variable}%
+	{\bf independent variable}, and the symbol representing the function, $y$, is called the 
+	\index{dependent variable}%
+	{\bf dependent variable}.
+
+\example Consider the function $y=\frac{1}{2-x}$.  This function is a solution of the differential equation $y'=y^2$ on the interval $I=(-\infty,2)$ because
+\[ y'=\frac{d}{dx}\left[(2-x)^{-1}\right] = -(2-x)^{-2}(-1)=\left(\frac{1}{2-x} \right)^2 = y^2.\]
+It is also a solution on the interval $I=(2,\infty)$, but notice that because of the discontinuity of $y(x)$ at $x=2$, this function is {\it not} a solution in the interval $I=\R$.  The following graph shows the function $y=\frac{1}{2-x}$, which has two components separated by the discontinuity at $x=2$.  Either component can be considered a solution of the differential equation, but not both together, because we only consider a function to be a solution if it is defined throughout an entire connected interval.
+
+\begin{center}
+\includegraphics[width=3in]{1-introduction/example1c.eps}
+\end{center}
+
+\qed
+
+An 
+	\index{initial-value problem}%
+	{\bf initial-value problem} 
+	\index{IVP}%
+	(or IVP) is an ordinary differential equation together with an 
+	\index{initial condition}%
+	{\bf initial condition} of the form $y(x_0)=y_0$, where $x_0$ and $y_0$ are given.  The value of $y_0$ is called the 
+	\index{initial value}%
+	{\bf initial value}.  Here's an example:
+\[ \frac{dy}{dx} = 2y+x^2, \ \ \ y(0)=1.\]
+A 
+	\index{solution}%
+	{\bf solution} of an initial value problem is a solution of the differential equation defined on an interval $I$ in $\R$ that contains $x_0$ and such that the initial condition $y(x_0)=y_0$ holds true.  The largest interval $I$ containing $x_0$ for which the function $y$ is defined is called the 
+	\index{domain of definition}%
+	{\bf domain of definition} for the solution of the IVP.
+
+\begin{exe}
+Consider the initial value problem 
+\[ \frac{dy}{dt}= y^2, \ \ \ y(0)=1.\]
+Prove that the function $y=\frac{1}{2-t}$ {\it is not} a solution of the IVP, but that the function $y=\frac{1}{1-t}$ {\it is}.  
+\end{exe}
+
+The prototype problem that began this chapter allowed us to illustrate how one can sometimes find a solution to an initial value problem using separation of variables.  Here is another example with a different application.
+
+
+
+\example 
+	\index{population growth}%
+	The population of a colony of bacteria grows in such a way that its instantaneous rate of change is proportional to the size of the population at that time.  This is because bacteria have a predictable life cycle, and at any given moment in a large population of bacteria, a certain fraction are ready to reproduce.  If there are 4 million bacteria to start with, and after 20 hours there are 4.2 million, find a function that predicts the size of the bacteria population after $t$ hours.
+
+
+\solution The assumption that the instantaneous growth rate is proportional to the size of the population can be stated in terms of a derivative:
+\[ \frac{dP}{dt}=kP,\]
+where $P(t)$ is the size of the population (let's use units of millions of bacteria) at time $t$ (in hours). The symbol $k$ here represents a constant of proportionality.  We will need to find the appropriate value of $k$ as part of our solution.  Separating variables gives us
+\[ \int \frac{dP}{P}= \int k \ dt,\]
+and anti-differentiating produces the equation
+\[ \ln |P| = kt+C.\]
+(Two anti-derivatives of the same function must differ by a constant, hence the presence of the $C$ in this equation.)  We can exponentiate both sides to obtain
+\[ |P|=e^{kt+C},\]
+and we can remove the absolute value notation if we introduce a plus/minus symbol on the other side:
+\[ P = \pm e^{kt+C}.\]
+Now because $P=P(t)$ is a function, it must have just one output for each input, and therefore we cannot leave the $\pm$ symbol in place.\footnote{We could imagine needing to make a different choice of $\pm$ at each point in the domain for $t$, however because solutions must be continuous functions, the choice will need to be the same for all $t$ in the domain.}  We will need to make a choice whether $P=e^{kt+C}$ or $P=-e^{kt+C}$.  Because $P$ represents population and is thus a positive quantity, and the expression $e^{kt+C}$ is necessarily positive, we can conclude that the former expression is appropriate.  Thus
+\[ P = e^{kt+C} = e^Ce^{kt}.\]
+We have rewritten the equation in this form to point out that we don't really need to solve for $C$, just for $e^C$: insert the initial condition that $P=4$ when $t=0$ to obtain
+\[ 4=e^Ce^0=e^C,\]
+and now we have
+\[ P = 4e^{kt}.\]
+Now we are in a position to determine the appropriate value of $k$ using the initial condition $P(20)=4.2$:
+\[ 2.2  = 4 e^{k(20)}\]
+implies that
+\[ k = \frac{\ln(0.55)}{20}.\]
+Therefore
+\[ P = 4 e^{\ln (0.55)t/20}, \]
+and this can be written in a variety of ways, but the simplest form is probably
+\[ P = 4 (0.55)^{t/20}.\]
+That is to say, after $t$ hours there will be $P(t)=4(0.55)^{t/20}$ million bacteria.
+\qed
+
+
+
+
+
+In the preceding example, the unknown function was $P(t)$, and it was determined by two facts:
+\begin{itemize}
+\item it satisfied the differential equation $\frac{dP}{dt}=kP$ and
+\item it satisfied the initial condition $P(0)=4$.
+\end{itemize}
+
+These two conditions constituted the initial value problem.  Before we used the initial condition $P(0)=4$, we had come up with a formula that could be written as $P=Ae^{kt}$.  Any value we choose for $A$ would give us a solution of the differential equation, and any initial value could be satisfied by selecting an appropriate value for $A$ (for example, to satisfy $y(0)=y_0$, use $A=y_0$ in this formula).  Because we can satisfy {\it any} initial condition by choosing an appropriate value for the parameter $A$, the formula $y=Ae^{kt}$ is called a 
+	\index{general solution}%
+	{\bf general solution} for the differential equation.
+
+\example Find a general solution of $y'=xy^2$, and then solve the initial value problem with $y(0)=0$ and then with $y(0)=4$. 
+
+\solution We start with separation of variables:
+\[ \int \frac{dy}{y^2} = \int x dx.\]
+Integrating gives us
+\[ -\frac{1}{y} = \frac{x^2}{2}+C.\]
+Isolating $y$ gives us 
+\[ y = \frac{-1}{\frac{x^2}{2} + C}.\]
+This is a cumbersome way to write the solution, so let's replace the symbol $C$ with $D=-2C$ so that we can write
+\[ y = \frac{2}{D-x^2}.\]
+Observe that this formula can be used to satisfy any initial condition for $y(x_0)$ {\it except} $y(x_0)=0$.  The constant function $y(x)=0$, however, gives us a solution of the differential equation with zero as an initial value.  Therefore, the general solution can be expressed as
+\[ y = \begin{cases} 0 & \mbox{if } y(x_0)=0 \\ 2(D-x^2)^{-1} & \mbox{otherwise} \end{cases}.\]
+Consequently, the solution of the initial value problem $y'=xy^2, \ y(0)=0$ is the constant function $y(x)=0$.  The solution of the initial value problem $y'=xy^2, y(0)=4$ can be found by using the general formula and solving for $D$:
+\[ 4 = 2(D-(0)^2)^{-1} \implies D = \frac{1}{2},\]
+so $y(x) = \frac{2}{\frac{1}{2}-x^2}$.
+\qed
+
+
+
+\begin{exe}
+{\bf (a)} Find a general solution of the differential equation $\frac{dy}{dx}=x(y^2+1)$.  {\bf (b)} Solve the initial value problem $\frac{dy}{dx}=x(y^2+1), \ y(0)=1$.
+\end{exe}
+
+\begin{exe}
+Use separation of variables to find a function that satisfies the differential equation $\frac{dy}{dx}=xe^xy$ and the initial condition $y(0)=1$.
+\end{exe}
+
+\begin{exe} 
+Find a function $x(t)$ that satisfies the differential equation $\frac{dx}{dt} = x^2-1$ and the initial condition $x(0)=0$.
+\end{exe}
+
+
+
+The last few examples and exercises above all contain 
+	\index{first-order}%
+	{\bf first-order} differential equations, because the first derivative is the highest order of derivative that appears in the equation.  In general, we call a differential equation 
+	\index{order}%
+	{\bf $n^{th}$ order} if the $n^{th}$ derivative is the highest order derivative in the equation.  With this terminology, the equation 
+\[\frac{d^3y}{dx^3} + \left(\frac{dy}{dx} \right)^4=7\]
+is $3^{rd}$ order.
+
+\begin{exe}
+Classify the order of each of the following differential equations:
+\begin{enumerate}
+\item $\frac{dy}{dt}=\left( \frac{d^2y}{dt^2} \right) +y^3$
+\item $\frac{du}{dv} + \left( \frac{du}{dv} \right)^3 = u-v^4$
+\item $\frac{d^4y}{dx^4}=(x+y)^2$
+\end{enumerate}
+\end{exe}
+
+Look back at Example 1.2 again, where we examined the differential equation $\frac{dP}{dt} = kP$.  The solution we obtained using the initial condition was a function $P(t)$, but it included an unknown constant, $k$.   We really don't want to think of $k$ as a variable because it was determined by the physical facts of the situation.  In particular, it was determined by the growth rate of this particular kind of bacteria.  A different species of bacteria might have a different reproductive rate and therefore its population growth would be modeled using a different value for $k$.
+
+To make this kind of distinction clear, we use the term 
+	\index{parameter}%
+	{\bf parameter} to describe an unknown constant in a differential equation.  This terminology distinguishes it from the independent variables -- the differential equation contains derivatives with respect to an independent variable, but not with respect to a parameter.
+
+With ordinary differential equations, we can use various notations to indicate the derivatives, and we usually draw conclusions from context about what symbol represents the independent variable.  For example, the differential equation 
+\[ y'=3yx^4\]
+indicates the presence of 2 variables, $x$ and $y$, and since we have a derivative of $y$ present, $x$ must be the independent variable.  Therefore the unknown here is the function $y(x)$ (and $y$ is the dependent variable).  On the other hand, the equation
+\[ y'=3y\]
+shows us only one variable, $y$, which is clearly a dependent variable because the term $y'$ appears in the equation.  Since no independent variable is named, we are usually free to choose whatever we like.  We might decide to write the function $y$ in terms of a variable $x$, in which case separation of variables would give us solutions of the form $y(x)=Ae^{3x}$.  But we could just as easily decide to call the independent variable something else, say $t$, in which case the solutions would have the form $y(t)=Ae^{3t}$.  If we knew from context that this differential equation describes a quantity changing over time, that would be a strong reason to choose $t$ as the independent variable.
+
+Another way to express a derivative is with 
+	\index{dot notation}%
+	`dot notation', as in the following ODE:
+\[ \dot{y} = 3+t\]
+The dot indicates a first derivative with respect to {\it time}.  This is always the convention with dot notation: the independent variable must represent time.  Otherwise, we should use prime notation like $y'$ or Leibniz notation like $\frac{dy}{dx}$.
+
+Dot notation can be extended to higher derivatives.  The equation 
+\[ \ddot{y}+3\dot{y}+2y=0\]
+involves both first and second derivatives of $y$ with respect to time.
+
+
+The equation $y'=2kx$ has both $x$ and $k$ on the right side, either of which could be the independent variable.  However, they cannot both be independent variables, otherwise $y$ would be a function of two variables, and the notation $y'$ indicates an ordinary derivative, so $y$ can only be a function of one variable.  Therefore at least one of $x$ and $k$ must be a parameter.  It would be reasonable to assume that $x$ is the variable because we so often use it as such.  However, if the equation were written as $y'=kl$, nothing would be so clear: $k$ could be the independent variable, or $l$ could be the independent variable, or both $k$ and $l$ could be constants while the independent variable is something else entirely.  It is therefore a good idea, whenever an equation involves a parameter to state clearly which is which.  Alternatively, one can make the independent variable visible in the derivative: the notation $\frac{dy}{dl}=kl$ would make it clear that $l$ is the independent variable, and therefore $k$ must be a parameter.  The equation $y'(l)=kl$ would provide the same information.  
+
+Note also that the notation $\dot{y}=tm$ shows that $t$ is the variable because dot notation always means derivative with respect to time, so $m$ must be a parameter. (That is, unless the author had made a truly bizarre choice of having $m$ represent time and $t$ represent something else -- don't ever do that!)
+
+\example Solve $\frac{dy}{dx}=n, \ y(1)=4$.
+
+{\bf Solution:} The independent variable is $x$, and therefore the right side of the ODE is just a constant.  We can thus find the general solution by anti-differentiation:
+\[ y = nx+C.\]
+The initial condition implies $C=4-n$, so 
+\[ y = nx + 4-n.\]
+\qed
+
+
+\begin{exe}
+Find a solution of the ODE $\dot{y}=ky$ subject to the initial condition $y(0)=y_0$.  Here, $k$ and $y_0$ are both unknown constants.
+\end{exe}
+
+
+
+Parameters can arise in two different ways: they can be part of the differential equation, in which case each value of the parameter actually corresponds to a {\it different} ODE; or parameters can show up as part of the problem solving process, such as the constant of integration does when we use separation of variables, in which case each value of the parameter gives a different solution of the {\it same} ODE.
+
+
+For example, the general solution of $\dot{y}=yt$ is $y=Ae^{t^2/2}$.  Each value for the parameter $A$ singles out a particular solution of the ODE.  The set of functions $\{ y=Ae^{t^2/2} ; A \in \mathbb{R} \}$ is called a 
+	\index{one-parameter family}%
+	{\bf one-parameter family of solutions} to the ODE because each and every choice of value for the parameter $A$ gives a solution of the same ODE:
+\begin{align*}
+y & = Ae^{t^2/2} \\
+\implies \dot{y} & = A e^{t^2/2} \frac{d}{dt}\left[\frac{t^2}{2}\right] \\
+& = Ae^{t^2/2} t \\
+& = yt \\
+\implies \dot{y} & = yt
+\end{align*}
+  First-order equations usually have a one-parameter family of solutions, but higher order equations typically need more than that.
+
+\begin{exe}
+Verify that every member of the one-parameter family $\{ y=Ae^{-x}+2x-2; A \in \mathbb{R}\}$ is a solution of the ODE $y'=2x-y$.
+\end{exe}
+
+
+\begin{exe} Prove that the members of the 
+	\index{two-parameter family}%
+	{\bf two-parameter family} of functions $\{ y=Ae^t+Be^{2t}; A, B \in \mathbb{R}\}$ all solve the second-order ODE $\ddot{y}-3\dot{y}+2y=0$.  {\it (You do not need to prove that every solution of this ODE is a member of this two-parameter family -- that will be taken up in a later chapter -- you are just being asked to verify that every member of the family is a solution of the ODE.)}
+\end{exe}
+
+
+
+
+\begin{exe}
+Show that all members of the family $\{y=A\cos(t) +B\sin(t); A,B \in \mathbb{R}\}$ are solutions of the ODE $\ddot{y}+y=0$.
+\end{exe}
+
+
+
+
+There is one subtle point of language here about which we have ought to be clear.  We have consistently referred to {\it the} solution of an IVP, rather than saying {\it a} solution.  This suggests that an IVP has one, and only one, solution.  Indeed, such a condition is an important prerequisite for using these methods to solve problems.  For instance, if an IVP for population growth had two different solutions, we might find one of them but not realize that nature would actually behave according to the predictions of the other.  Fortunately, this is usually not the case.  For most ODE of interest, solutions to initial value problems are unique, as stated in the following theorem (which we will studied in Chapter 6):
+
+\bigskip
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+	\index{existence and uniqueness theorem}%
+	Suppose that $f(x,y)$ and $f_y(x,y)$ are defined and continuous on an open set containing $(x_0,y_0)$.  Then there is an open interval $I$ containing $x_0$ such that the initial value problem 
+\[ \frac{dy}{dx}=f(x,y), \ \ \ y(x_0)=y_0\]
+has a unique solution $y(x)$ defined on $I$.
+\end{minipage}
+}
+\end{center}
+
+
+
+\bigskip
+There are other versions of theorems on existence and uniqueness, but this version is enough to get us started.  
+
+%% Cut below here for the book form.
+
+\newpage
+\begin{center} {\LARGE Problems} \end{center}
+
+\setcounter{problem}{1}
+
+
+
+\problem 
+	\index{Newton's Law of Cooling}%
+	If an object sits in surroundings that are a constant temperature $K$, then Newton's Law of Cooling tells us that the rate of change of the object's temperature is proportional to the difference in temperature between the object and its surroundings:
+\[ \frac{dT}{dt} = k(T-A).\]
+Here, $T(t)$ is the object's temperature, $A$ is the ambient temperature of the object's surroundings, and $k$ is a constant of proportionality.  (This constant depends on the material of the object and its surroundings.)
+
+{\bf (a)} Find a general solution of the differential equation above. (You answer will contain three parameters: $A$, $k$, and $C$, where $C$ arises from the process of anti-differentiation.)
+
+{\bf (b)} A hot turkey comes out of the oven and has an initial temperature of $170$ degrees Fahrenheit.  The turkey sits in a room whose temperature is $65$ degree Fahrenheit.  After 10 minutes, the turkey's temperature is $168$ degrees.  How much longer will it take until the turkey's temperature is $140$ degrees Fahrenheit?
+
+\problem 
+	\index{population growth}%
+	The exponential model of population growth asserts that a population will grow at a rate that is proportional to it's size:
+\[ \dot{P}=kP.\]
+However, populations (whether they be people, rabbits or bacteria) usually cannot grow indefinitely because they need resources from the environment to thrive.  When the population gets too large, the resources of the environment will not be enough to support rapid growth.  One mathematical model of population growth that takes this into account is the so-called 
+	\index{logistic growth model}%
+	{\bf logistic growth model}:
+\[ \dot{P} = \frac{k}{M}P(M-P).\]
+The constant $M$ in this differential equation represents a 
+	\index{carrying capacity}%
+	{\bf carrying capacity} -- as the size of the population $P$ approaches the carrying capacity $M$, the rate of growth will slow down because the factor $(M-P)$ will be small.  Notice that when the population $P$ is small, the right side of the differential equation is approximately equal to $kP$, the same as the exponential growth model.
+
+{\bf (a)} Find a general solution of the logistic growth model.  {\it (Hint: When you isolate $P$ algebraically, you will need to do some simplification that employs either rules of exponents or rules of logarithms.)}
+
+{\bf (b)} Imagine a population of bacteria that would, in the absence of resource limitations, double in size every two days.  Find the value of the parameter $k$ that models this population growth in the exponential growth model $\dot{P}=kP$.
+
+{\bf (c)} Using the same value of $k$ you found in part (b), solve the logistic growth model assuming that the initial population is $P=1$ million, and the carrying capacity of the environment is $20$ million.
+
+{\bf (d)} How long does it take for the population in part (c) to reach 99\% of the carrying capacity?
+
+
+\problem 
+	\index{chemical reaction rates}%
+	Certain chemical reactions can be modeled by the differential equation
+\[ \dot{x} = k(a-x)(b-x),\]
+where $a, \ b$ and $k$ are positive constants and $x(t)$ is the mass of a compound produced by the reaction during the time interval $[0,t]$.  Find a formula for $x(t)$ given that $k=0.01$, $a=2$, $b=4$ and $x(0)=1$.  What is the long-term behavior of $x(t)$?
+
+\problem 
+	\index{air resistance}%
+	As an object falls, it encounters two forces: gravity and air resistance.  If we assume that the force of the air resistance is proportional to the object's speed, then the velocity of the falling object would be modeled by
+\[ \dot{v} = g-kv.\]
+Here, a positive velocity indicates {\it downward} motion, $g$ is the acceleration due to gravity, and $k>0$ is a constant of proportionality.  Find a solution of this differential equation subject to the parameters $g=9.8$ and $k=0.04$ and the initial condition $v(0)=0$.  {\it (The units of distance here are meters, time is measured in seconds, the acceleration due to gravity has units of $\frac{meters}{second^2}$, so the constant $k$ must then have units of $\frac{1}{second}$.)}
+
+\problem 
+	\index{air resistance}%
+	Modify the differential equation in the previous problem to represent the assumption that the force of air resistance is proportional to the square of the speed of the falling object.  Then find a solution using the same parameters and initial conditions.
+
+\problem
+	\index{Torricelli's Law}
+	Consider a liquid draining from a hole in the side (or bottom) of a cylindrical tank. Torricelli's Law states that the velocity of water  exiting through the hole
+	\begin{wrapfigure}{r}{2in}
+	\includegraphics[width=1.9in]{1-introduction/torricellislaw.eps}
+	\end{wrapfigure}
+	 is proportional to the square root of the depth of the water in the tank above the hole.  Let's write $v(t)$ for the velocity (in $\frac{m}{s}$) of the water at time $t$ seconds, and let's let $h(t)$ represent the depth (in $m$) of water above the hole.  Then we have
+\[ v= c\sqrt{h}.\]
+If we now let the volume of water in the tank above the hole be written as $V(t)$, we have $V=Ah$, where $A$ is the cross-sectional area of the tank, and
+\[ \frac{dV}{dt} = A \frac{dh}{dt}.\]
+But $\frac{dV}{dt}=kv$, where $k$ is the area of the hole, because the change in volume is just due to water flowing out of the hole.  This gives us
+\[ A \frac{dh}{dt} = \frac{dV}{dt} = kv = kc\sqrt{h}.\]
+Introducing a new constant $C$, we can write
+\[ \frac{dh}{dt} = C \sqrt{h}.\]
+Use this formula to determine how long it will take a full cylindrical tank to completely drain through a hole in the bottom if the tank is $0.25 m$ tall and the water level decreases by $0.05m$ in the first minute.
+

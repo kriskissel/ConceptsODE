@@ -1,0 +1,256 @@
+\chapter{Taylor Solutions}
+
+
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{air resistance}%
+	Consider an object whose shape changes as it falls against air resistance (for example, a raindrop).  The changing shape means the drag coefficient will change as well.  We can model this behavior with the differential equation
+\[ \dot{v} = g-k(v)v^2,\]
+where $k(v)$ denotes the drag coefficient as a function of the object's instantaneous velocity.  For a falling object with a drag coefficient $k(v)=e^{v}$, find an approximate formula for the velocity $t$ seconds after it begins to fall from rest.
+\end{minipage}
+}
+\end{center}
+
+This prototype question is very similar to the one we had to begin Chapter 3 on numerical methods, except that it doesn't specify a particular instant in time.  Instead, we are to come up with a formula the velocity at a arbitrary time $t$.  We will not be able to solve the problem analytically, so we won't be able to find a formula for the exact velocity.  Instead, our goal is to find a formula that gives the approximate velocity, at least for a small period of time.  This may sound rather similar to a topic in calculus -- Taylor approximations and Taylor series.  In fact, that's exactly the set of tools we are going to use.
+
+
+A function $f$ is called 
+	\index{analytic}%
+	{\bf analytic} at $x_0$ if it can be written as a 
+	\index{power series}%
+	{\bf power series} (or a 
+	\index{Taylor series}%
+	{\bf Taylor series}),
+\[ f(x) = \sum_{n=0}^\infty a_n (x-x_0)^n, \]
+for $x$ in an open interval containing $x_0$.  (Recall that the convention with power series is to treat $(x-x_0)^0$ as the constant $1$, so the first term of the power series is just $a_0$.)  For example, the function $f(x)=\frac{1}{1-x}$ is analytic at $0$ because
+\[ \frac{1}{1-x} = \sum_{n=0}^\infty x^n \ \ \ \mbox{for all } x \in (-1,1).\]
+(The reader should recall from calculus that this is the geometric series formula.)  Similarly, the exponential function $exp(x)=e^x$ is analytic at $0$ because 
+\[ exp(x) = \sum_{n=0}^\infty \frac{1}{n!} x^n \ \ \ \mbox{for all } x \in \R.\]
+Representing a function as a power series gives us another method for finding solutions to differential equations.
+
+
+
+\example Solve the initial-value problem $y'-y=x, \ y(0)=4$ using power series.  
+
+Suppose there is a solution that is analytic near $0$ (the x-value of the initial condition).  Let us write the solution as $y = \sum_{n=0}^\infty a_n x^n$.  Then $y' = \sum_{n=0}^\infty n a_n x^{n-1}$.  Insert these into the differential equation to get
+\[ \sum_{n=0}^\infty n a_n x^{n-1} - \sum_{n=0}^\infty a_n x^n = x.\]
+Without the sigma notation, we can write this as 
+\[ (0+1a_1+2a_2x+3a_3x^2+ \cdots) - ( a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots) = x.\]
+Rearranging to combine like terms yields
+\[ (a_1-a_0)+(2a_2-a_1)x+(3a_3-a_2)x^2+(4a_4-a_3)x^3 + \cdots = x.\]
+Equating coefficients gives us the following system of equations:
+\[ \begin{matrix} a_1-a_0=0 \\ 2a_2-a_1 = 1 \\ 3a_3-a_2 = 0 \\ 4a_4 - a_3 = 0 \\ \vdots \end{matrix} .\]
+The initial condition tells us that $y(0)=4$, and if we insert this into the power series representation for $y$ we get
+\[ 4= \sum_{n=0}^\infty a_n (0)^n = a_0.\]
+So $a_0=4$, and the first equation above tells us that $a_1-a_0=0$, so $a_1=4$ also.  The second equation tells us that $2a_2-a_1=1$, so $a_2=\frac{a_1+1}{2} = \frac{5}{2}$.  The third equation tells us that $a_3=\frac{1}{3}a_2=\frac{5}{3\cdot2}$, the next equation tells us that $a_4 = \frac{1}{4} a_3 = \frac{5}{4\cdot3\cdot2}$, and so on. That is to say, for $n \geq 2$, 
+\[ a_n = \frac{5}{n(n-1)\cdots(2)} = \frac{5}{n!}.\]
+So we have
+\[ y = 4 + 4x + \frac{5}{2}x^2 + \frac{5}{6}x^3 + \cdots = 4 + 4x+\sum_{n=2}^\infty \frac{5x^n}{n!}.\]
+\qed
+
+\begin{exe}
+Use the 
+	\index{Ratio test}%
+	Ratio test to verify that the power series $y = 4 + 4x+\sum_{n=2}^\infty \frac{5x^n}{n!}$ converges for $x \in (-1,1)$.  Then verify that this function is a solution by inserting it into the differential equation.
+\end{exe}
+
+\begin{exe}
+Solve the initial-value problem in the previous example using the method of integrating factors.  Then find a power series representation for your solution.  Verify that it is the same as the solution found above.
+\end{exe}
+
+
+
+The process above relies on the assumption that there is an analytic solution of the given initial value problem.  If not, then this process will not find a solution, or it may produce nonsense.  However, it is often a reasonable assumption, since so many of the elementary functions we meet in mathematics are in fact analytic.
+
+
+\example Consider the initial value problem $y'+xy=0, \ y(0)=1$.  Suppose there is a solution that is analytic near 0 (the x-value of the initial condition).  Let us write the solution as $y = \sum_{n=0}^\infty a_n x^n$.  Then $y'=\sum_{n=0}^\infty n a_n x^{n-1}$.  Inserting these representations into the differential equation gives us
+\[ \sum_{n=0}^\infty n a_n x^{n-1} + x \sum_{n=0}^\infty a_n x^n = 0,\]
+or
+\[ \sum_{n=0}^\infty n a_n x^{n-1} = - \sum_{n=0}^\infty a_n x^{n+1}. \]
+If we write this without the sigma notation, we get
+\[ 0 + a_1 + 2a_2x+3a_3x^2+4a_4x^3+ \cdots = - a_0x - a_1 x^2 - a_2x^3-a_3x^4 - \cdots.\]
+Equating coefficients of powers of $x$ gives us the following system of equations:
+\[ \begin{matrix} a_1 = 0 \\ 2a_2 = -a_0 \\ 3 a_3 = -a_1 \\ 4a_4 = -a_2 \\ \vdots \end{matrix} .\]
+The first equation tells us $a_1=0$, and the third equation tells us that $a_3=0$ also.  Furthermore, we can see from the pattern of the equations that $a_n=0$ whenever $n$ is odd.  One way to express this is by writing $a_{2n+1}=0$ for $n=0,1,2,,,,.$
+
+Next, we turn to the even-index coefficients.  The second equation tells us that $a_2=-\frac{1}{2} a_0$.  The fourth equation gives us $a_4 = -\frac{1}{4} a_2$, which combined with the previous formula results in $a_4 = \frac{1}{8} a_0$.  Again, we see a pattern in the equations for the coefficients $a_{2n}$:
+\begin{align*} 
+a_{2n} & = -\frac{1}{2n} a_{2(n-1)} \\
+& = \left( -\frac{1}{2n} \right) \left( - \frac{1}{2(n-1)} \right) a_{2(n-2)} \\
+& = \cdots \\
+& = \left( -\frac{1}{2n} \right) \left( - \frac{1}{2(n-1)} \right) \cdots \left( -\frac{1}{2} \right) a_0 \\
+& = \frac{(-1)^n}{2^n n!} a_0.
+\end{align*}
+That is to say, all the even-index coefficients can be written in terms of $a_0$.  Notice that we have not yet used the initial condition $y(0)=1$.  If we insert this into the power series representation for $y$, we get
+\[ 1 = \sum_{n=0}^\infty a_n (0)^n = a_0.\]
+If we insert this value into the previous formula, we obtain
+\[ a_{2n} = \frac{(-1)^n}{2^n n!}.\]
+Hence
+\[ y = \sum_{n=0}^\infty \frac{(-1)^n}{2^n n!} x^{2n}.\]
+(Notice that our power series omits odd-index powers of $x$; that is because we already identified that all the odd-index coefficients are zero.)  This formula for $y$ gives us a solution of the initial value problem.
+\qed
+
+\begin{exe}
+Use the 
+	\index{Ratio test}%
+	Ratio Test to prove that the series above converges for all $x \in \R$.  Then verify that the given function really is a solution by inserting it into the differential equation.
+\end{exe}
+
+\begin{exe}
+Use power series to solve the initial-value problem $y'-xy=0$, $y(0)=1$.  Compare your result with the solution you obtain by separation of variables or the method of integrating factors.  Are they the same?
+\end{exe}
+
+
+It can be difficult to come up with a nice formula for the coefficients $a_n$, and without such a formula, it is usually not feasible to write out a full series representation for a function.  However, often we don't need the whole infinite series but will be satisfied with the first few terms as an approximation.  One way of expressing a function this way is to use 
+	\index{little-oh}%
+	``little-oh'' notation: we write $f(x)=o(g(x)) \ \mbox{as} \ x \rightarrow a$ whenever
+\[ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} = 0.\]
+This is read out loud as follows: ``$f(x)$ is little-oh of $g(x)$ as x approaches a''. 
+
+For example, if $f(x)=x^3$, then $f(x)=o(x^2)$ as $a \rightarrow 0$ because
+\[ \lim_{x \rightarrow 0} \frac{f(x)}{x} = \lim_{x \rightarrow 0} \frac{x^3}{x^2} = 0.\]
+Similarly, $f(x)=o(x)$ as $x \rightarrow 0$; however, $f(x) \neq o(x^3)$ as $x \rightarrow 0$.
+
+We then extend this notation by writing $f(x)=h(x)+o(g(x))$ as $x \rightarrow a$ if 
+\[ \lim_{x \rightarrow a} \frac{f(x)-h(x)}{g(x)} = 0.\]
+(This is the same as saying that $f(x)-h(x)=o(g(x))$ as $x \rightarrow a$.)
+
+For example, $\sin(x)=x+o(x^2)$ as $x \rightarrow 0$ because L'Hospital's Rule allows us to calculate
+\begin{align*}
+\lim_{x \rightarrow 0} \frac{\sin(x)-x}{x^2}
+& = \lim_{x \rightarrow 0} \frac{\cos(x)-1}{2x} \\
+& =  \lim_{x \rightarrow 0} \frac{-\sin(x)}{2} \\
+& = 0.
+\end{align*}
+
+The purpose of little-oh notation is that it allows us to say things like ``$\sin(x) \approx x$ for small $x$'' more precisely by saying just how good the approximation is.
+
+Here's the connection with power series: Let $N$ be a positive integer, and suppose $f(x)=\sum_{n=0}^\infty a_n (x-x_0)^n$; then
+\[ f(x) = \sum_{n=0}^N a_n (x-x_0)^n + o((x-x_0)^{N}) \mbox{ as } x \rightarrow x_0.\]
+That is to say, we can replace the infinite sum by a finite sum if we append the little-oh notation.  In this setting, the little-oh notation represents the error when you drop the suppressed terms of the series, and it expresses the degree of the error.  If the error is $o((x-x_0)^N)$, that means the missing terms are of degree greater than $N$ (thus they are very small if $x$ is close to $x_0$).  The explicit part of the series, $\sum_{n=0}^N a_n(x-x_0)^n$, is called the 
+	\index{Taylor polynomial}%
+	{\bf $N^{th}$ degree Taylor polynomial of $f$} or the 
+	\index{Taylor approximation}%
+	{\bf $N^{th}$ degree Taylor approximation of $f$}.
+
+\begin{exe}
+Use the power series representation for $e^x$ at $0$ to show that $e^{(x^2)} = 1+x^2+\frac{1}{2}x^4 + o(x^5)$ as $x \rightarrow 0$.
+\end{exe}
+
+\begin{exe}
+Prove that, if $k>l$, then $x^k = o(x^l)$ as $x \rightarrow 0$.
+\end{exe}
+
+
+The next example shows this notation in action.
+
+\example Let's find a $2^{nd}$ degree Taylor approximation for the solution of $yy'=x, \ y(0)=2$.  Write $y(x) = a_0 + a_1x+a_2x^2+a_3x^3 +  o(x^3)$ as $x \rightarrow 0$.  Then $y'(x) = a_1 + 2a_2x+3a_3x^2+o(x^2)$ as $x \rightarrow 0$.  Inserting these into the differential equation gives us
+\[ (a_0 + a_1x+a_2x^2+a_3x^3 +o(x^3))(a_1 + 2a_2x+3a_3x^2+o(x^2))=x.\]
+Let's distribute, but every time we run into a power of $x$ with exponent 3 or greater, we will just `consume' it in the notation $o(x^2)$:
+\[ a_0a_1+2a_0a_2x+3a_0a_3x^2+a_1^2x+2a_1a_2x^2+a_2a_1x^2 + o(x^2) = x.\]
+Combining like terms results in
+\[ (a_0a_1) + (2a_0a_2+a_1^2)x+(3 a_0a_3+3a_1a_2)x^2+o(x^2)=x+o(x^2).\]
+Equating coefficients gives us
+\[ \begin{matrix} a_0a_1=0 \\ 2a_0a_2+a_1^2 = 1 \\ 3 a_0a_3+3a_1a_2=0 \end{matrix} .\]
+The suppressed equations correspond to powers of $x$ that are greater than 2, but since we're seeking a $2^{nd}$ degree Taylor approximation, we don't need to worry about those.  If we needed a $3^{rd}$ degree Taylor approximation, we would need to go a step further with our equations, and we would need to only suppress terms of degree $x^4$ and higher.
+
+The initial condition $y(0)=2$ tells us that $a_0=2$.  Inserting this into the first equation above tells us $a_1=0$.  Then the second equation simplifies to $4a_2=1$, so $a_2=\frac{1}{4}$.  That's all we need!  The last equation would tell us what $a_3$ is, but we don't need it, since we're only seeking a $2^{nd}$ degree Taylor approximation.
+
+Using these coefficients, we have
+\[ y = 2 + \frac{1}{4} x^2 + o(x^2) \ \mbox{as} \ x \rightarrow 0.\]
+\qed
+
+Note that we didn't write ``as $x \rightarrow 0$'' in every single line of the calculation above.  That is acceptable, provided that we make it explicit earlier in the argument and in our final solution.
+
+
+
+\begin{exe} 
+Find a $3^{rd}$ degree Taylor approximation for the solution of $yy'=x, \ y(0)=3$.
+\end{exe}
+
+\begin{exe}
+Find a $2^{nd}$ degree Taylor approximation for the solution of $(y')^2=y, \ y(0)=1$.  {\it (Hint: There are actually two solutions, because you'll have some flexibility in choosing one of the coefficients.)}
+\end{exe}
+
+
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Use power series to solve the following initial value problems.
+\end{instructions}
+
+\smallskip
+\ap $y'=3y, \ y(0)=2$
+
+\ap $y'=xy, \ y(0)=-1$
+
+\ap $y'' = y, \ y(0)=4, \ y'(0)=0$
+
+\ap $y''=xy, \ y(0)=1, y'(0)=0$
+
+\ap $(x+1)y''+y'-xy=0, \ y(0)=0, \ y'(0)=2$
+
+\ap $(x^2+1)y''=xy, \ y(0)=1, y'(0)=2$
+
+\begin{instructions}
+Find Taylor approximations of degree $n$ for the following initial value problems.
+\end{instructions}
+
+\ap $y'=y^2-x, \ y(0)=1, \ n=3$
+
+\ap $y'=y^2+x^2, \ y(0)=-1, n=3$
+
+\ap $y''=y^2, \ y(0)=1, y'(0)=0, n=4$
+
+\ap $y''+sin(x)y=0, \ y(0)=0, y'(0)=1, n=4$ {\it (Hint: Write $\sin(x)$ as a power series.)}
+
+
+
+%%% Cut below here for the book form.
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+\smallskip
+\hrule
+
+
+\smallskip
+\ap Try to find a $2^{nd}$ order Taylor approximation for the solution of $(y')^2=xy, \ y(0)=1$.  You will encounter a contradiction as you try to calculate the values of the coefficients in the power series.  What does this contradiction tell you?
+
+\ap Find an alternative approach to the initial value problem in Exercise 8 that does not use Taylor series or Taylor approximations.  Explain how that approach also gives you two different solutions of the initial value problem.
+
+\ap Suppose that $f(x)=o(x^k)$ as $x \rightarrow 0$ and $h(x)=o(x^l)$ as $x \rightarrow 0$, where $k,l >0$.  {\bf (a)} Prove that $(fh)(x) = o(x^{k+l})$ as $x \rightarrow 0$.  {\bf (b)} Prove that $f(x)+h(x)=o(x^{\min(k,l)})$ as $x \rightarrow 0$.
+
+\ap Solve the prototype question for this chapter using a $2^{nd}$ order Taylor approximation.  {\it (Hint: You'll also want to express the exponential function in the form $e^x = 1 + x + \frac{1}{2}x^2 + o(x^2)$ as $x \rightarrow 0$.)}
+
+\ap The computer software MAPLE can be used to find Taylor solutions for differential equations.  For example, to compute an approximate solution to $ay'(x)+by(x)=g(x)$ with the initial condition $y(0)=c$, type
+\begin{center}
+\begin{minipage}{4.5in}
+\begin{verbatim}
+dsolve({ay'(x)+by(x)=g(x),y(0)=c},
+                      y(x),series)
+\end{verbatim}
+\end{minipage}
+\end{center}
+and press Enter.  Use this command to find a Taylor approximation for the solution of $y'+y^2=1, \ y(0)=0$.  {\it (Note: MAPLE reports the answer using ``big-oh'' notation instead of ``little-oh'' notation.  Big-oh notation indicates the smallest degree of the suppressed terms.  So, for example we could write $e^x=1+x+\frac{1}{2}x^2 +o(x^2)$ as $x \rightarrow 0$, or we could instead write $e^x=1+x+\frac{1}{2}x^2+O(x^3)$ as $x \rightarrow 0$.)}
+
+\ap Use MAPLE to find a Taylor approximation for the solution of the second order equation $y''+\sin(y)=0$ with the initial conditions $y(0)=0.1, \ y'(0)=0$. {\it (This differential equation is related to the motion of an ideal pendulum.  See the Focus on Modeling section that follows this chapter to learn how.)}
+
+
+\end{multicols}

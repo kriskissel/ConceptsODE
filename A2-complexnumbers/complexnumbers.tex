@@ -1,0 +1,120 @@
+\documentclass[12pt,letterpaper,twoside]{amsart}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{ulem}
+\newcounter{example}
+\newcounter{exercise}
+\newcounter{problem}
+\newtheorem{theorem}{Theorem}
+\newcommand{\example}{\bigskip \noindent {\large {\sc Example \arabic{example}:}} \addtocounter{example}{1}}
+\newcommand{\exercise}{\bigskip \noindent {\large {\sc Exercise \arabic{exercise}:}} \addtocounter{exercise}{1}}
+\newcommand{\problem}{\bigskip \noindent {\large {\sc Problem \arabic{problem}:}} \addtocounter{problem}{1}}
+\newcommand{\tech}{\marginpar{\vskip 10mm \begin{center}\includegraphics[width=0.25in]{calculatorimagesmall.eps} \end{center}}}
+\newcommand{\solution}{\medskip \noindent {\bf Solution: }}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+
+\begin{document}
+
+\sffamily
+
+%%%%  switch the commenting on this line and the next \chapter{Introduction}
+\begin{center} {\LARGE Complex Numbers} \end{center}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+When we solve characteristic equations, we are often faced with complex numbers.  For example, the solutions of a quadratic equation $ax^2+bx+c=0$ are given by the quadratic formula
+\[ x = \frac{-b \pm \sqrt{b^2-4ac}}{2a},\]
+and if the discriminant $b^2-4ac$ is negative, then we are looking at square roots of negative numbers, so the roots of the original equation are complex numbers -- these are numbers which can be written in the form
+\[ z = \alpha + \beta i,\]
+where $\alpha$ and $\beta$ are both real, and $i$ satisfies $i^2=-1$.  If $z=\alpha + \beta i$ in this way, then we call $\alpha$ the {\bf real part} of $z$, and we call $\beta$ the {\bf imaginary part}.
+
+We can usually understand the arithmetic operations on complex numbers by writing numbers in terms of their real and imaginary parts.
+
+\example Let $z=1+3i$ and $w=3-2i$.  Then:
+\begin{itemize}
+\item $z+w = (1+3i)+(3-2i)=(1+3)+(3-2)i=4+i$
+\item $zw = (1+3i)(3-2i)=(1)(3)+(3i)(3)+(1)(-2i)+(3i)(-2i)=3-2i+3i-6i^2=3-2i+3i-6(-1)=9+i$
+\end{itemize}
+
+\exercise Let $u=2+4i$ and $v=1-2i$.  Find $2u+3v$ and $2uv$.
+
+The {\bf complex conjugate} of $z=\alpha + \beta i$ is the complex number $\overline{z}=\alpha - \beta i$.  For example, $\overline{1+3i}=1-3i$.  
+
+\exercise prove that for any complex number $z$, the product $z \cdot \overline{z}$ is a real number.
+
+\medskip
+The conjugate is thus useful for simplifying division with complex numbers:
+
+\example Let $z=1+2i$ and $w=2-4i$.  Then
+\begin{align*}
+\frac{z}{w} & = \frac{1+2i}{2-4i} \\
+& = \frac{(1+2i)}{(2-4i)} \frac{(2+4i)}{(2+4i)} \\
+& = \frac{2+4i+4i+8i^2}{4-16i^2} \\
+& = \frac{-6+8i}{20} \\
+& = -\frac{3}{10}+\frac{2}{5}i.
+\end{align*}
+
+\exercise Let $u=2+4i$ and $v=1-i$.  Simplify the expressions $\frac{u}{v}$ and $\frac{v}{u}$.  Write the answers in the form $\alpha + \beta i$.
+
+\medskip
+In the study of ordinary differential equations, we will often see complex numbers arise in exponential functions. Therefore we now turn our attention to finding a better understanding of exponentials.
+
+First of all, we need to say what we mean by $e^z$ when $z$ is complex.  To answer this, we turn to the power series representation of the exponential function:
+\[ e^z = \sum_{n=0}^\infty \frac{z^n}{n!}.\]
+(Here, we use the standard convention when working with power series that $0^0=1$.)  This series has an infinite radius of convergence and therefore converges for all complex numbers $z$.
+
+To work with a complex exponent, we usually write it in terms of its real and imaginary parts, and then use a law of exponents to separate these:
+\[ e^z = e^{\alpha + \beta i} = e^\alpha e^{\beta i}.\]
+Therefore it will be profitable for us if we now focus our attention on expressions of the form $e^{\beta i}$, and that's where the power series representation becomes helpful:
+\begin{align*}
+e^{\beta i} & = \sum_{n=0}^\infty \frac{(\beta i)^n}{n!} \\
+& = \sum_{n=0}^\infty \frac{\beta^n i^n}{n!} \\
+& = \sum_{n=0, \ n \ even}^\infty \frac{\beta^n i^n}{n!} + \sum_{n=0, \ n \ odd}^\infty \frac{\beta^n i^n}{n!} \\
+& = \sum_{n=0}^\infty \frac{\beta^{2n}i^{2n}}{(2n)!}+\sum_{n=0}^\infty \frac{\beta^{2n+1}i^{2n+1}}{(2n+1)!} \\
+& = \sum_{n=0}^\infty \frac{\beta^{2n}(-1)^n}{(2n)!}+\sum_{n=0}^\infty \frac{\beta^{2n+1}i(-1)^n}{(2n+1)!} \\
+& = \cos(\beta)+i\sin(\beta).
+\end{align*}
+Combining this with the previous result gives us:
+\begin{center}
+\fbox{
+\begin{minipage}{2in}
+\[ e^{\alpha + \beta i} = e^\alpha (\cos(\beta)+i\sin(\beta))\]
+\end{minipage}
+}
+\end{center}
+
+Note that in the calculation above, we made use of the power series for sine and cosine:
+\[ \sin(z)=\sum_{n=0}^\infty \frac{z^{2n+1}(-1)^n}{(2n+1)!} \ \ \ \mbox{and} \ \ \ \cos(z) = \sum_{n=0}^\infty \frac{z^{2n} (-1)^n}{(2n)!}\]
+These series also allow us to define sine and cosine for complex arguments, and this will be explored briefly in the problem set.
+
+\exercise Find the values of $e^{\pi i}$, $e^{2\pi i}$ and $e^{2+\pi i/4}$.
+
+
+\bigskip
+
+%% Cut below here for the book form.
+
+\begin{center} {\LARGE Problems} \end{center}
+
+\setcounter{problem}{1}
+
+\problem Prove that, if the solutions of the quadratic equation $ax^2+bx+c=0$ are complex numbers, and if the coefficients $a$, $b$ and $c$ are all real numbers, then the solutions are complex conjugates of one another.
+
+\problem Prove that $\sin(z)=\frac{e^{-iz}-e^{iz}}{2}$.  Use this to evaluate $\sin(i)$.
+
+\problem Find a representation formula for $\cos(z)$ (similar to the one for sine above) and use it to evaluate $\cos(2i)$.
+
+
+
+
+
+\end{document}

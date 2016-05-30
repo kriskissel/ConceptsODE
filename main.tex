@@ -1,0 +1,255 @@
+\documentclass[11pt,letterpaper,twoside]{amsbook}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{ulem}
+\usepackage{appendix}
+\usepackage{wrapfig}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{color}
+\usepackage{enumerate}
+%\usepackage[Glenn]{fncychap}
+
+
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.25in}
+\setlength{\headheight}{26pt}
+\setlength{\headsep}{12pt}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\evensidemargin}{-0.25in}
+
+\newcounter{example}
+\newcounter{exercise}
+\newcounter{problem}
+\newcounter{additionalpractice}
+\setcounter{chapter}{0}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+
+
+
+
+
+
+\renewcommand{\baselinestretch}{1.5} %% this sets line spacing
+
+\usepackage{newcent}
+
+\newenvironment{exe}{\medskip \small \exercise}{\normalsize \medskip}
+\newenvironment{appendixexe}{\medskip \small \appendixexercise}{\normalsize \medskip}
+
+\usepackage{pstricks}
+
+\newpsstyle{profibox}{linewidth=0.85pt,
+fillstyle=solid,
+linecolor=blue,
+fillcolor=blue!5,
+cornersize=absolute,
+linearc=3mm,
+framesep=5mm}
+
+
+
+\newpsstyle{fombox}{linewidth=0.85pt,
+fillstyle=solid,
+linecolor=black,
+fillcolor=green!30,
+cornersize=absolute,
+linearc=3mm,
+framesep=5mm}
+
+\newpsstyle{exercisebox}{linewidth=0pt,
+fillstyle=solid,
+linecolor=yellow!80,
+fillcolor=yellow!80,
+cornersize=absolute,
+linearc=0mm,
+framesep=1mm}
+
+\newpsstyle{examplebox}{linewidth=0pt,
+fillstyle=solid,
+linecolor=blue!30,
+fillcolor=blue!30,
+cornersize=absolute,
+linearc=0mm,
+framesep=1mm}
+
+\newpsstyle{problembox}{linewidth=0pt,
+fillstyle=solid,
+linecolor=green!50,
+fillcolor=green!50,
+cornersize=absolute,
+linearc=0mm,
+framesep=1mm}
+
+\newpsstyle{apbox}{linewidth=0pt,
+fillstyle=solid,
+linecolor=green!50,
+fillcolor=green!50,
+cornersize=absolute,
+linearc=0mm,
+framesep=1mm}
+
+\newpsstyle{formulabox}{linewidth=0.85pt,
+fillstyle=solid,
+linecolor=OliveGreen!70,
+fillcolor=green!10,
+cornersize=absolute,
+linearc=0mm,
+framesep=3mm}
+
+
+\newcommand{\example}{\bigskip \noindent \colorbox{blue!30}{\sc Example \arabic{example}:} \addtocounter{example}{1}}
+\newcommand{\exercise}{\bigskip \noindent \colorbox{yellow!80}{\sc Exercise \arabic{exercise}:} \addtocounter{exercise}{1}}
+%% \newcommand{\appendixexample}{\bigskip \noindent {\sc Example \Alph{chapter}.\arabic{example}:} \addtocounter{example}{1}}
+\newcommand{\appendixexample}{\bigskip \noindent \colorbox{blue!30}{\sc Example \Alph{chapter}.\arabic{example}:} \addtocounter{example}{1}}
+\newcommand{\appendixexercise}{\bigskip \noindent \colorbox{yellow!80}{\sc Exercise \Alph{chapter}.\arabic{exercise}:} \addtocounter{exercise}{1}}
+%% \newcommand{\problem}{\bigskip \noindent {\sc Problem \arabic{chapter}.\arabic{problem}:} \addtocounter{problem}{1}}
+\newcommand{\problem}{\bigskip \noindent \colorbox{green!50}{\sc Problem \arabic{chapter}.\arabic{problem}:} \addtocounter{problem}{1}}
+\newcommand{\ap}{\smallskip \noindent \colorbox{blue!40}{\arabic{exercise}} \addtocounter{exercise}{1}}
+\newcommand{\tech}{\marginpar{\includegraphics[width=0.25in]{CASimagesmall.eps}}}
+\newcommand{\solution}{\medskip \noindent {\bf Solution: }}
+\newcommand{\R}{\mathbb{R}}
+\newenvironment{instructions}{\bigskip \noindent \color{blue}}{\normalcolor}
+
+\newcommand{\I}{\left[ \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right]}
+\newcommand{\startmatrix}{\left[ \begin{matrix}}
+\newcommand{\finishmatrix}{\end{matrix} \right]}
+%\usepackage{ifsym}  DONT NEED THESE WITH AMSBOOK
+%\newcommand{\qed}{\hfill $\square$}
+%\newcommand{\proof}{\noindent {\bf Proof:} \\ }
+
+
+\title{Concepts of Ordinary Differential Equations}
+\author{Kris Kissel}
+
+
+
+%\usepackage{makeidx}
+\makeindex
+
+
+
+
+\begin{document}
+
+
+
+\frontmatter
+\maketitle
+
+\vfill
+\begin{center}
+Edition 1
+
+\smallskip
+\copyright 2016 by Kris Kissel
+
+\smallskip
+The author hereby grants permission to all users to copy and distribute the electronic version of this text in its unaltered form.  The right to create and distribute printed copies is reserved.
+\end{center}
+
+\tableofcontents
+
+\input{preface/preface.chapter}
+
+
+
+
+
+\mainmatter
+
+
+
+
+%% \input{00-exponentialfunction/00-exponentialfunction.chapter.tex} % THE EXPONENTIAL FUNCTION
+
+\part{First Order Equations}
+
+\input{1-natureofde/natureofde.chapter} % THE BASICS
+
+\input{FOM-fallingbodies/FOM-fallingbodies.tex} % FOCUS ON MODELING: FALLING BODIES
+
+\input{2-graphicalmethods/graphicalmethods.chapter} % GRAPHICAL METHODS
+
+\input{3-numericalmethods/numericalmethods.chapter} % NUMERICAL METHODS
+
+\input{4-firstorderlinear/firstorderlinear.chapter} % FIRST-ORDER LINEAR EQUATIONS
+
+\input{5-seriessolutions/taylorsolutions.chapter} % Taylor Series Solutions
+
+\input{FOM-pendulum/FOM-pendulum.tex} % FOCUS ON MODELING: PENDULUM
+
+\input{6-existence-uniqueness/existence-uniqueness.chapter} % EXISTENCE AND UNIQUENESS
+
+\part{Second Order Equations}
+
+\input{7-secondorderlinear/secondorderlinear.chapter} % SECOND ORDER LINEAR HOMOGENEOUS
+
+\input{FOM-springmass/FOM-springmass.tex} % FOCUS ON MODELING: SPRING-MASS SYSTEMS
+
+\input{8-secondordernonhomogeneous/secondorderlinearnonhomogeneous.chapter} % SECOND ORDER NONHOMOGENEOUS
+
+
+\input{9-oscillators/oscillators.chapter} % HARMONIC OSCILLATORS
+
+\part{Laplace Transforms}
+
+\input{10-laplacetransforms/laplacetransforms.chapter} % LAPLACE TRANSFORMS
+
+\input{11-laplaceII/laplaceII.chapter} % LAPLACE DISCONTINUOUS DRIVING FUNCTIONS
+
+\input{12-representationformulas/representationformulas.chapter} % REPRESENTATION FORMULAS AND CONVOLUTIONS 
+
+\part{Systems of ODE}
+
+\input{13-systems/systems.chapter} % INTRO TO SYSTEMS
+
+\input{14-2x2systems/linearsystems.chapter} % INTRO TO SYSTEMS
+
+
+
+
+
+
+%%								APPENDICES
+\appendix
+\setcounter{chapter}{0}
+
+\input{A1-separationofvariables/separationofvariables.chapter} % SEPARATION OF VARIABLES
+
+\appendix
+\setcounter{chapter}{1}
+
+\input{A2-complexnumbers/complexnumbers.chapter} % COMPLEX NUMBERS
+
+\input{A3-reductionoforder/reductionoforder.chapter} % REDUCTION OF ORDER
+
+
+%% WHY DO I HAVE TO FORCE CORRECT NUMBERING OF THE APPEDICES?????????
+
+
+\input{A4-matrixalgebra/matrixalgebra.chapter} % MATRIX ALGEBRA
+
+\input{A5-linearoperators/A5-linearoperators.chapter} % LINEAR OPERATORS
+
+
+
+
+
+
+
+\backmatter
+
+
+\printindex
+
+\bibliography{odebookbibliography}
+\bibliographystyle{plain}
+
+\end{document}

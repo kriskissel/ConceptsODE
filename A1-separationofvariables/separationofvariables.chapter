@@ -1,0 +1,229 @@
+\chapter{Separation of Variables}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+\setcounter{chapter}{1}
+
+Solving ordinary differential equations is usually introduced in integral calculus.  Indeed, finding an anti-derivative is really solving a differential equation of the form $y'=f(x)$.  But one also learns how to solve certain differential equations in which the dependent variable also appears: so-called separable differential equations.
+
+A first order ODE is called 
+	\index{separable}%
+	{\bf separable} if it can be written in the form
+\begin{equation}
+\frac{dy}{dx}= f(x)g(y).\label{separable}
+\end{equation}
+The name comes from the fact that we will try to find solutions of this differential equation by separating the dependent and independent variables to opposite sides of the equation:
+\begin{equation}
+\frac{dy}{g(y)} = f(x) \ dx.\label{separated}
+\end{equation}
+This equation can be given an independent meaning if one studies differentials in a rigorous way, but we will instead think of it as a shorthand for the following.  Assume that (\ref{separable}) holds and that $g(y_0)\neq 0$.  Then dividing both sides of (\ref{separable}) by $g(y)$ gives us
+\[ \frac{1}{g(y)} \frac{dy}{dx} = f(x).\]
+Write $y$ out as $y(x)$ and integrate both sides of the equation from $x_0$ to $x$:
+\[ \int_{x_0}^x \frac{1}{g(y(x))} \frac{dy}{dx} \ dx = \int_{x_0}^x f(x) \ dx.\]
+Make a substitution $u=y(x)$ in the integral on the left side, with $du = \frac{dy}{dx} dx$, to obtain
+\[ \int_{y_0}^y \frac{1}{g(u)} \ du = \int_{x_0}^x f(x)  dx.\]
+Now if $G$ is any anti-derivative of $\frac{1}{g}$, and if $F$ is any anti-derivative of $f$, we have
+\begin{equation} G(y)-G(y_0)=F(x)-F(x_0).\label{rigorousseparation} 
+\end{equation}
+And if $G$ is an invertible function, we can solve for $y$:
+\[ y = G^{-1} \left( F(x)-F(x_0)+G(y_0) \right).\]
+The process above is valid if $f$ and $g$ are both continuous and if $x$ is sufficiently close to $x_0$.  (In fact, continuity and the assumption $g(y_0) \neq 0$ are enough to guarantee that $G$ will be invertible where necessary.)
+
+However, this is not usually how the process is used.  Instead of using definite integrals, we will typically write indefinite integrals.  Beginning with (\ref{separated}), we anti-differentiate both sides to obtain
+\[ \int \frac{1}{g(y)} \ dy = \int f(x) \ dx\]
+which leads to
+\[ G(y)+C_1=F(x)+C_2.\]
+This is equivalent to (\ref{rigorousseparation}) if appropriate values are chosen for $C_1$ and $C_2$.  However, we can also write this in a simpler form if we let $C=C_2-C_1$:
+\[ G(y)=F(x)+C.\]
+The value of $C$ can be obtained from a given initial condition, or it may be treated as a free parameter.  Isolating $y$ gives an explicit formula for $y$ in terms of $x$.  The process of solving an ODE in this manner is called 
+	\index{separation of variables}%
+	{\bf separation of variables}.
+
+\appendixexample Use separation of variables to solve the IVP $y'=\frac{x}{y^2}, \ y(0)=1$.
+
+Separating the variables in $\frac{dy}{dx}=\frac{x}{y^2}$ and integrating produces
+\[ \int y^2 \ dy = \int x \ dx.\]
+Finding the general anti-derivatives on each side, we write
+\[ \frac{y^3}{3}+c_1=\frac{x^2}{2}+c_2.\]
+Isolating $y$ now gives us
+\[ y = \sqrt[3]{\frac{3}{2}x^2+3(c_2-c_1)}.\]
+Because $c_1$ and $c_2$ are both just constants, we can replace the expression $3(c_2-c_1)$ with a single constant, say, $C$:
+\[ y = \sqrt[3]{\frac{3}{2}x^2+C}.\]
+By selecting the appropriate value for $C$, we can now solve the initial value problem.  Inserting $x=0$ and $y=1$ produces
+\[ 1 = \sqrt[3]{\frac{3}{2}(0)^2+C},\]
+and consequently, we see that $C=1$.  Therefore
+\[ y = \sqrt[3]{\frac{3}{2}x^2+1},\]
+and it is easy to verify that this is indeed a solution of the initial value problem.
+\qed
+
+
+It is typical to combine the constants of integration as in the previous example right away without ever writing them separately; when we evaluate the anti-derivatives, we just write one constant of integration on one side of the equation (usually the side with the independent variable).  Also, if the algebra we encounter forces us to mutiply that constant by another constant, we typically consume the constants into a single symbol, and it is common to reuse a symbol from the previous line.  It is understood in this context that a constant such as $C$ may differ in value from line to line, though in each individual line it is known to be a constant.
+
+
+\appendixexample Solve the IVP $y'=xe^xy^4, \ y(0)=2$.
+
+Separating variables gives us
+\[ \int \frac{1}{y^4} \ dy = \int x e^x \ dx.\]
+We integrate both sides, using integration-by-parts on the right:
+\begin{align*}
+\frac{-1}{3y^3} & = x e^x - \int e^x \ dx \\
+& = x e^x - e^x + C.
+\end{align*}
+Multiply both sides by $-3$:
+\[ \frac{1}{y^3} = -3xe^x+3e^x+C.\]
+{\it (Notice that $C$ has changed value from the previous line!)}. Let's find the value of the unknown constant in this line by inserting the initial condition, $y=2$ when $x=0$:
+\[ \frac{1}{8} = 3+C, \ \ \ \mbox{so} \ C=-\frac{23}{8}.\]
+Insert this for $C$, and then isolate $y$ by taking reciprocals and cube roots of both sides:
+\[ y = \frac{1}{\sqrt[3]{-3xe^x+3e^x-\frac{23}{8}}}.\]
+\qed
+
+
+
+As the next example shows, the independent variable need not explicitly appear in the ODE.
+
+\appendixexample Solve $y'=y^3, \ y(0)=3$.
+
+Separating variables produces
+\[ \int \frac{1}{y^3} \ dy = \int 1 \ dx.\]
+Therefore
+\[ \frac{-1}{2y^2}=x+C,\]
+and multiplying both sides by $-2$ produces:
+\[ \frac{1}{y^2}= -2x+C.\]
+{\it (Notice that $C$ here has a different value from the previous line!)}  Taking reciprocals produces
+\[ y^2 = \frac{1}{C-2x},\]
+and trying to isolate $y$ results in the relation
+\[ y = \pm \frac{1}{\sqrt{C-2x}}.\]
+Because the $y$ we seek is a function of $x$, and a continuous one at that, we have to go with either $+$ or $-$ in our solution (if we leave a $\pm$ symbol in place, it suggests two outputs for each input, violating the definition of `function'.)  Because the initial condition $y(0)=3$ gives a positive output, we can settle on the choice of $+$:
+\[ y = \frac{1}{\sqrt{C-2x}}.\]
+Finally, using the initial condition to solve for the unknown constant will give us $C=\frac{1}{9}$, so
+\[ y = \frac{1}{\sqrt{\frac{1}{9}-2x}}.\]
+\qed
+
+
+\begin{appendixexe}
+Solve $y'=\frac{y}{x}, \ y(1)=2$.
+\end{appendixexe}
+
+
+
+\begin{appendixexe}
+Solve $y'=1+y^2, \ y(0)=0$.
+\end{appendixexe}
+
+
+
+
+For an ODE to be separable, we must be able to use only multiplication and division to separate the variables.  This is because we treat $\frac{dy}{dx}$ as if it were a fraction of two quantities, $dy$ and $dx$, and we use multiplication by $dx$ to separate these across the equal sign.  If we try to mix this operation with addition or subtraction, we wil not be able to ``get all of the x's on one side and all of the y's on the other.''
+
+
+\begin{appendixexe}
+Determine which of each of the following equations is separable.
+\begin{enumerate}
+\item $y'=x+y$
+\item $y'=x^2y+xy$
+\item $y'=\ln (xy)$
+\item $y'=e^{x+y}$
+\end{enumerate}
+\end{appendixexe}
+
+Recall that we required $g(y_0)$ be nonzero when we deduced this method.  If $g(y_0)=0$, then this process may or may not produce a solution -- there are no guarantees.  However, when that does happen, the constant function $y(x)=y_0$ for all $x$ {\it is} a solution of $\frac{dy}{dx} = f(x)g(y)$ because both sides of the equation will be zero (the left, because $y$ is a constant function, the right, because $g(y_0)=0$).  Constant solutions of differential equations are called 
+	\index{equilibrium solution}%
+	{\bf equilibrium solutions}.
+
+
+\begin{appendixexe} Solve the IVP $y'=y^2-6y+8, \ y(0)=4$. 
+\end{appendixexe}
+
+
+\appendixexample Find a solution of the initial-value problem $y'=y(1-y)$, $y(0)=y_0$.
+
+We first observe that $y=0$ and $y=1$ are equilibrium solutions.  To find other solutions, we begin by separating variables to obtain
+\[ \int \frac{1}{y(1-y)} \ dy = \int \ dx.\]
+The left side can be rewritten using a partial fractions decomposition: $\frac{1}{y(1-y)}=\frac{A}{y}+\frac{B}{1-u}$ when we select $A=1$ and $B=1$, so
+\[ \int \frac{1}{y} + \frac{1}{1-y} \ dy = \int \ dx.\]
+Anti-differentiation gives us
+\[ \ln|y|-\ln|1-y|=x+C.\]
+The left side can be simplified using the property of logarithms that $\ln a - \ln b = \ln \frac{a}{b}$:
+\[ \ln \left| \frac{y}{1-y} \right| = x+C.\]
+Exponentiate both sides to obtain
+\[ \left| \frac{y}{1-y} \right| = e^{x+C}.\]
+Therefore
+\[ \frac{y}{1-y} = \pm e^Ce^X.\]
+The value of $C$ and the choice of $\pm$ are determined by initial conditions:
+\[ \frac{y_0}{1-y_0} = \pm e^C.\]
+So
+\[ \frac{y}{1-y} = \frac{y_0}{1-y_0} e^x.\]
+Multiplying both sides by $1-y$, expanding, and then isolating $y$ gives us
+\[ y = \frac{\frac{y_0}{1-y_0}e^x}{1+\frac{y_0}{1-y_0}e^x}.\]
+Observe that this formula captures the equilibrium solution $y=0$ because, when $y_0=0$, the whole function will be zero.  On the other hand, this expression is not defined when $y_0=1$.  However, notice that this can be rectified if we multiply the top and bottom of the expression by $1-y_0$:
+\[ y=\frac{y_0e^x}{1-y_0+y_0e^x}.\]
+This formulation gives us a valid solution for all possible values of the initial condition $y_0$.
+\qed
+
+
+The final form of the answer in the last example is what we call a 
+	\index{general solution}%
+	{\bf general solution}.  It represents all possible solutions of the differential equation and can be used to satisfy any initial condition.  
+
+\appendixexample Find a general solution for the differential equation $y'=6xy^2$.
+
+{\bf Solution:} Observe that $y=0$ is an equilibrium solution.  For nonzero initial values, we find solutions by separating variables:
+\[ \int \frac{dy}{y^2} =\int 6x dx \]
+Hence
+\begin{equation} -\frac{1}{y} = 3x^2+C,\label{generalsolution1}
+\end{equation}
+where $C$ can be any real number.  Therefore
+\[ y = -\frac{1}{3x^2+C}.\]
+By selecting an appropriate value of $C$, we can solve any initial value problem of the form $y(x_0)=y_0$ as long as $y_0 \neq 0$.  (There's no value $C$ could take which would produce an output of $0$ from this function.)  Therefore, our general solution is 
+\[ y = \begin{cases} 0 & \mbox{if } y_0=0 \\ -\frac{1}{3x^2+C} & \mbox{otherwise} \end{cases}.\]
+Note that $C$ can be any constant other than $-3x_0^2$ (in order to avoid dividing by zero).  To satisfy $y(x_0)=y_0$, we isolate $C$ in equation (\ref{generalsolution1}) to obtain $C=-\frac{1}{y_0}-3x_0^2$.
+\qed
+
+Notice how we were able to use line (\ref{generalsolution1}) to identify the value of $C$ necessary to satisfy any initial condition.  When we need to find a general solution, it is a good idea to avoid changing the values of unknown constants from line to line, just to make this easier.  On the other hand, sometimes it is easier to display the general solution if we allow ourselves to change the meaning of the parameter, as the next example illustrates.
+
+\appendixexample Find a general solution of $y'=ky$.
+
+{\bf Solution:} The constant function $y=0$ is an equilibrium solution.  Separating variables gives us
+\[ \int \frac{dy}{y} = \int k \ dx,\]
+so that
+\[ \ln |y| = kx + C.\]
+Exponentiate both sides to get
+\[ |y| = e^{kx+C},\]
+and thus
+\[ y = \pm e^C e^{kx}.\]
+$C$ can be any real number, but then $e^C$ will be any {\it positive} number.  The ability to select plus or minus means that the expression $\pm e^C$ can be any {\it nonzero} number.  So a simpler way to display the solution would be to write 
+\[ y = A e^{kx} \ \ \ \mbox{where $A$ is any nonzero number.}\]
+The parameter $A$ would never be zero as a result of how it is derived from separating variables.  So we can express the general solution in the form
+\[ y = \begin{cases} A e^{kx} & \mbox{if } y_0 \neq 0 \\ 0 & \mbox{if } y_0=0 \end{cases}.\]
+However, notice that this can be simplified if we allow $A$ to take the value zero: we can just say the the general solution is
+\[ y = A e^{kx}, \ \ \ \mbox{where $A$ is any real number.}\]
+To satisfy an initial condition of the form $y(x_0)=y_0$, we let $A=y_0e^{-kx_0}$.
+\qed
+
+
+\begin{appendixexe} Find a general solution of $y'=1-y$.  What value should your parameter take in order to satisfy the initial condition $y(x_0)=y_0$?
+\end{appendixexe}
+
+
+\begin{appendixexe} Find a general solution of $y'=e^{x+y}$.  What value should your parameter take in order to satisfy the initial condition $y(x_0)=y_0$?
+\end{appendixexe}
+
+
+
+
+
+
+\begin{appendixexe} Solve the initial value problem $y'=y(3-y), \ y(0)=1$.  
+\end{appendixexe}
+
+\begin{appendixexe} Solve the initial value problem $y'=y^2 + 2y + 2, \ y(0)=1$.  {\it (Hint: After you separate variables, you will need to write the quadratic denominator you find in `vertex form' $(y-h)^2+k$ before you can integrate.)} 
+\end{appendixexe}
+
+
+
+% PUT THE FOLLOWING IN THE INSTRUCTOR RESOURCE MANUAL??????
+
+%\begin{appendixexe} Let $F$ and $G$ be functions satisfying $F'=f$ and $G'=\frac{1}{g}$, and suppose $C$ is any constant.  Use implicit differentiation to prove that any function of the form $y=G^{-1}(F(x)+C)$ satisfies the differential equation $\frac{dy}{dx}= f(x)g(y).$  Assume that all the relevant functions are defined and continuous.  {\it (Hint: Start by applying the function $G$ to both sides of the equation.)}
+%\end{appendixexe}
+

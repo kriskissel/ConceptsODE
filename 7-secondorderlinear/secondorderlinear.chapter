@@ -1,0 +1,531 @@
+%% fixed inconsitency between problem statement and solution in Example 2 on 10-28-12
+%% fixed critical typo (minus sign error) in problem 7.2d
+
+\chapter{Constant-Coefficient Equations}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{spring-mass system}%
+	Consider a mass attached to one end of a spring whose other end is mounted in place, and imagine that this whole system is submerged in a viscous medium that resists a moving mass.  The mass is $0.1 \ \mbox{kg}$, the spring constant is $2 \frac{\mbox{N}}{\mbox{m}}$, and the resistance imparted by the viscous fluid is proportional to the velocity of the mass, with a constant of proportionality of $0.4 \frac{\mbox{N} \cdot \mbox{s}}{\mbox{m}}$.  If we stretch the spring, so that the end holding the mass is displaced from its rest position, and then let go, we can model the displacement $y(t)$ of the free end with the equation
+\[ 0.1 \ddot{y}+0.4\dot{y}+2y=0.\]
+If the initial displacement is $y(0)=0.05 \ \mbox{m}$, and the initial velocity is $\dot{y}(0)=0 \ \frac{\mbox{m}}{\mbox{s}}$, determine how long it will take before the spring's free end first returns to its natural rest position.  Also, how fast will the mass be moving at that instant?
+
+\begin{center}
+\includegraphics[width=2.5in]{7-secondorderlinear/springmassdisplacement.eps}
+\end{center}
+\end{minipage}
+}
+\end{center}
+
+
+
+We would next like to write down solutions for second-order 
+	\index{constant coefficient}%
+	{\bf constant coefficient} linear ODE.  These have the form:
+\[ a y''+by'+cy=f(x).\]
+Here, the coefficients $a$, $b$ and $c$ are constant, and we assume that $a\neq 0$ so that the equation will indeed be second order.  We will first focus on 
+	\index{homogeneous equations}%
+	{\bf homogeneous equations} which are those that have $f(x)=0$ for all $x$:
+\[ ay''+by'+cy=0.\]
+(Note that this is the form of the differential equation in the prototype question; we will return to that in the problem set.)  Let us seek some inspiration for solving this type of ODE by first reviewing the similar problem for first-order equations.
+
+The general solution of the first order homogeneous constant-coefficient linear equation
+\[ ay'+by=0, \ \ \ a \neq 0.\]
+is
+\[ y = Ce^{-bt/a},\]
+which can be verified by the method of integrating factors.  If $b=0$, then the solution is just a constant function $y=C$.  Notice that if $y=Ae^{rt}$ satisfies the ODE $ay'+by=0$, then the constant $r$ satisfies the algebraic equation $ar+b=0$.  This will serve as our starting point for trying to understand second order equations.
+
+\begin{exe}
+Prove that if $y=Ae^{rx}$ (with $A \neq 0$) satisfies the differential equation $ay''+by'+cy=0$, then $r$ is a solution of the algebraic equation $ar^2+br+c=0$.  
+\end{exe}
+
+
+The algebraic equation $ar^2+br+c=0$ is called the 
+	\index{characteristic equation}%
+	{\bf characteristic equation} for the ODE $ay''+by'+cy=0$.  The previous exercise indicates that there is a connection between the solutions of the ODE and the solutions of the corresponding characteristic equation.  The following exercise completes the description of that connection.
+
+\begin{exe}
+Prove that if $r$ is a root of $ar^2+br+c=0$, then for any constant coefficient $A$, the function $y=Ae^{rt}$ satisfies the differential equation $ay''+by'+cy=0$. {\it (Note that $r$ might equal zero.)}
+\end{exe}
+
+\begin{exe}
+Prove that if $y_1$ and $y_2$ are both solutions of the differential equation $ay''+by'+cy=0$, then so is $(y_1+y_2)$.
+\end{exe}
+
+The results of the previous three exercises demonstrate that the following is true:  If $r_1$ and $r_2$ are roots of the characteristic equation $ar^2+br+c=0$, then functions of the form $y=Ae^{r_1t}+Be^{r_2t}$ satisfy the ODE $ay''+by'+c=0$.
+
+We can actually say even more than this: if $r_1$ and $r_2$ are distinct (meaning that $r_1 \neq r_2$), then {\it all} solutions of the differential equation $ay''+by'+c=0$ can be written in the form $y=Ae^{r_1t}+Be^{r_2t}$ for some appropriate choice of coefficients $A$ and $B$!  One way to prove this claim is to observe that, by choosing $A$ and $B$ appropriately, we can satisfy any initial conditions for  $y(t_0)$ and $y'(t_0)$, and then we appeal to a version of the existence and uniqueness theorem to show that there is only one function that satisfies the solution and these initial values, so any solution must therefore agree with one obtained this way.  Another proof which doesn't require as much knowledge of ODE theory is explored in the problem set at the end of this chapter.
+
+This is an appropriate moment to introduce some terminology.  If $y_1,...,y_k$ are functions on a domain $I$, then a
+	\index{linear combination}
+		{\bf linear combination}
+of these functions is any function of the form $c_1y_1+ \cdots c_k y_k$, where $c_1,\cdots, c_k$ are constants.  If the only linear combination of $y_1,\cdots,y_k$ that gives us the constant function $0$ is the linear combination where $c_1=\cdots=c_k=0$, then we say the set $\{y_1,\cdots,y_k\}$ is
+	\index{linearly independent}
+		{\bf linearly independent} on $I$.
+And if every solution of a given differential equation on $I$ can be written as a linear combination of a linearly independent set of solutions $\{y_1,\cdots,y_k\}$, then we call that set a 
+	\index{fundamental set of solutions}
+		{\bf fundamental set of solutions}
+for the differential equation on $I$.
+
+According to this terminology, if $r_1$ and $r_2$ are distinct roots of the characteristic equations for $ay''+by'+cy=0$, then $\{e^{r_1 t},e^{r_2 t}\}$ is a fundamental set of solutions on $\mathbb{R}$.
+
+Whenever we have a fundamental set of solutions, the general solution of the differential equation can be written as linear combination of its members.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Second Order Equations with Distinct Roots \normalcolor}}
+
+If the characteristic equation for 
+\[ ay''+by'+cy=0\]
+has two distinct roots $r_1$ and $r_2$, then the formula 
+\[ y=Ae^{r_1t}+Be^{r_2t}\] 
+provides us with the 
+	\index{general solution}%
+	general solution on $\mathbb{R}$ of this differential equation.
+\end{minipage}
+}
+\end{center}
+
+
+ We still need to investigate what to do if the characteristic equation has a repeated root (that is to say, if it is equivalent to the equation $a(r-r_1)^2=0$).  But first let us explore a few examples involving non-repeated roots.
+
+\example 
+Find the solution of the initial value problem $y''+5y'+6=0$, $y(0)=0$, $y'(0)=2$.
+
+First we identify the characteristic equation for this ODE: $r^2+5r+6=0$.  Solving this algebraic equation gives us the roots $r_1=-2$ and $r_2=-3$.  Therefore, the general solution of the ODE is
+\[ y=Ae^{-2x}+Be^{-3x}.\]
+If we substitute in the given initial conditions, we obtain the system of equations:
+\[ \begin{cases}0=A+B \\ 2 = -2A-3B \end{cases}\]
+Solving this system of equations lead to the values $A=2, B=-2$.  Consequently, the solution of this initial value problem is
+\[ y = 2e^{-2t}-2e^{-3t}.\]
+\qed
+
+
+
+
+\begin{exe}
+Solve the following initial value problems:
+\begin{itemize}
+\item $y''-y'-6y=0, \ \ \ y(0)=2, \ \ \ y'(0)=0$
+\item $2y''-5y'+2y=0, \ \ \ y(0)=1, \ \ \ y'(0)=2$
+\end{itemize}
+\end{exe}
+
+
+The process identified above even works when the solutions of the characteristic equation are complex numbers, though in that case it is often more convenient to write the solutions in a different form.
+
+Recall that if a complex number is written in the form $\alpha + i \beta$, where $\alpha$ and $\beta$ are real, then $e^{\alpha+i\beta}=e^\alpha(\cos(\beta)+i\sin(\beta))$ (this is called Euler's Formula, and it can be found in Appendix 2).  Also, if the characteristic equation has real coefficients but complex roots, then the roots must be complex conjugates of one another.  Therefore the general solution has the form:
+
+\begin{align*} 
+y & = A e^{(\alpha+i\beta)x}+Be^{(\alpha-i\beta)x} \\
+& = Ae^{\alpha x}(\cos(\beta x)+i\sin(\beta x)) + Be^{\alpha x}(\cos(-\beta x)+i\sin(-\beta x) \\
+& = Ae^{\alpha x}(\cos(\beta x)+i\sin(\beta x)) + Be^{\alpha x}(\cos(-\beta x)-i\sin(-\beta x) \\
+& = (A+B)e^{\alpha x}\cos(\beta x)+(A-B)ie^{\alpha x}\sin(\beta x)
+\end{align*}
+
+If we introduce new coefficients $C$ and $D$ satisfying $C=A+B$ and $D=(A-B)i$, then we obtain the form
+\[ y = Ce^{\alpha x}\cos(\beta x)+De^{\alpha x}\sin(\beta x).\]
+
+That is to say, if $\{e^{(\alpha+\beta i)t},e^{(\alpha-\beta i)t}\}$ is a fundamental set of solutions for $ay''+by'+cy=0$, then so is $\{e^{\alpha t}\cos(\beta t),e^{\alpha t} \sin(\beta t)\}$ (and vice versa).
+
+This allows us to write the general solutions without introducing complex numbers into the solutions:
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Second Order Equations with Complex Roots \normalcolor}}
+
+If the characteristic equation $ar^2+br+c=0$ has complex roots of the form $r_1=\alpha+i\beta$ and $r_2=\alpha-i\beta$, then the 
+	\index{general solution}%
+	general solution on $\mathbb{R}$ of the ODE $ay''+by'+cy=0$ can be written in the form
+\[ y=Ce^{\alpha x}\cos(\beta x)+De^{\alpha x}\sin(\beta x).\]
+\end{minipage}
+}
+\end{center}
+
+\example Solve the initial value problem $y''+4y=0, \ y(0)=1, \ y'(0)=4$.
+
+The characteristic equation is $r^2+4=0$, which has complex roots $r_1=0+2i$ and $r_2=0-2i$.  Thus the general solution is 
+\[ y(x)=Ce^{0x}\cos(2x)+De^{0x}\sin(2x) = C\cos(2x)+D\sin(2x).\]
+Inserting the initial condition $y(0)=1$ gives us the equation $1=C$.  The derivative of $y(x)$ is $y'(x)=-2C \sin(2x) + 2D \cos(2x)$, and inserting the initial condition $y'(0)=2$ yields $4=2D$, so that $D=2$.  Therefore the solution of the initial value problem is
+\[ y(x) = \cos(2x) + 2\sin(2x).\]
+\qed
+
+The previous example illustrated the following useful observation: the roots of $r^2+A^2=0$ are $r=\pm Ai$, and therefore the solutions of $y''+A^2 y = 0$ are of the form $y=c_1 \cos (Ax) + c_2 \sin(Ax)$.  That is to say, if the roots of the characteristic equation are {\it purely imaginary}, then the general solution does not require any exponential factors.
+
+
+\begin{exe}
+Solve the following initial value problems.
+\begin{itemize}
+\item $y''+2y'+2y=0, \ \ \ y(0)=1, \ \ \ y'(0)=0$
+\item $y''+25y=0, \ \ \ y(0)=2, \ \ \ y'(0)=5$
+\item $8\ddot{y}+4\dot{y} +y=0, \ \ \ y(0)=2, \ \ \ \dot{y}(0)=0$
+\end{itemize}
+\end{exe}
+
+
+Finally, we need to determine how to find a general solution to $ay''+by'+cy=0$ when the characteristic equation yields only one root, $r_1$.  That is to say, sometimes the characteristic equation might be factored as $a(r-r_1)^2$, in which case we call $r_1$ a 
+	\index{double root}
+	{\bf double root} of the equation.  (It is also sometimes called a ``root of multiplicity two''.)
+
+In this case, we know that the expression $e^{r_1x}$ gives one solution of the ODE which is never zero.  We will use  a technique called `reduction of order' to find the general solution from this one known solution.  Readers who are interested in learning more about this technique will find it in the appendix.
+
+Suppose that $y$ is any solution of the ODE, and let $u = \frac{y}{e^{r_1 x}}$, so that $y=ue^{r_1x}$.  The product rule gives us $y'(x)=u'e^{r_1x}+r_1ue^{r_1x}$ and $y''(x)=u''e^{r_1x} + 2r_1u'e^{r_1x}+r_1^2ue^{r_1x}$.  Now we can substitute $ue^{r_1x}$ for $y(x)$ in the differential equation:
+
+\begin{align*}
+0 & = ay''+by'+cy \\
+& = a(u''e^{r_1x} + 2r_1u'e^{r_1x}+r_1^2ue^{r_1x}) \\
+& \ \ \ \ \ + b(u'e^{r_1x}+r_1ue^{r_1x}) + c(ue^{r_1x}) \\
+& = au''e^{r_1x} + (2ar_1+b)u'e^{r_1x} +(ar_1^2+br_1+c)ue^{r_1x} \\
+& = au''e^{r_1x}.
+\end{align*}
+
+In the last line we used the facts that $ar_1^2+br_1+c=0$, which is true since $r_1$ is a root of the characteristic equation, and we used $2ar_1+b=0$, which follows because $r_1$ is a {\it double root} of the characteristic equation:
+\[ ar^2+br+c=a(r-r_1)^2,\]
+and expanding the right side yields
+\[ ar^2+br+c=ar^2-2ar_1r+ar_1^2;\]
+so that equating coefficients gives us
+\[ b=-2ar_1 \ \ \ \mbox{and} \ \ \ c=ar_1^2.\]
+
+
+Now we have the differential equation $au''e^{r_1x}=0$, or just $u''=0$, and therefore $u(x) =Ax+B$ for some constants $A$ and $B$.  Consequently, $y=(Ax+B)e^{r_1x}$, and this is the general solution when the characteristic equation has a double root.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Second Order Equations with Repeated Roots \normalcolor}}
+
+If the characteristic equation $ar^2+br+c=0$ has a double root $r_1$, then the 
+	\index{general solution}%
+	general solution on $\mathbb{R}$ of the ODE $ay''+by'+cy=0$ can be written in the form
+\[ y=Axe^{r_1x}+Be^{r_1x}.\]
+\end{minipage}
+}
+\end{center}
+
+This result can also be stated as follows: if $r$ is a double root of the characteristic equation for $ay''+by'+cy=0$, then $\{e^{rx},xe^{rx}\}$ is a fundamental set of solutions for this differential equation.
+
+\example Find the general solution of the ODE $\ddot{y}+4\dot{y}+4y=0$.
+
+The characteristic equation is $r^2+4r+4=0$, or $(r+2)^2=0$, so $r=-2$ is a double root.  Therefore the general solution of this ODE is
+\[ y(t) = Ate^{-2t}+Be^{-2t}.\]
+\qed
+
+\begin{exe}
+Solve the following initial value problems.
+\begin{itemize}
+\item $y''-2y'+y=0, \ \ \ y(0)=1, \ \ \ y'(0)=4$
+\item $3\ddot{y}+18\dot{y} +27y=0, \ \ \ y(0)=2, \ \ \ \dot{y}(0)=3$.
+\end{itemize}
+\end{exe}
+
+
+\begin{exe}
+Solve the following initial value problems.
+\begin{itemize}
+\item $y''+9y=0, \ y(0)=2, \ y'(0)=-2$
+\item $\frac{d^2y}{dv^2}+y=0, \ y(0)=0, \ y'(0)=3$
+\item $\ddot{w}-3\dot{w}-4w = 0, \ w(1)=0, \ w'(1)=2$
+\item $4y''-4y'+y=0, \ y(0)=0, \ y'(0)=0$
+\item $\ddot{v}-4\dot{v}+4v=0, \ v(0)=1, \ \dot{v}(0)=2$
+\item $y''+4y'+5y=0, \ y(0)=0, \ y'(0)=3$
+\end{itemize}
+\end{exe}
+
+
+\bigskip
+\noindent
+{\sc Higher Order Equations}
+
+Higher-order constant coefficient linear ordinary differential equations can be treated similarly.
+
+\example Consider the initial-value problem $\dddot{y} - \dot{y}=0$, $y(0)=1$, $\dot{y}(0)=4$, $\ddot{y}(0)=0$.  The characteristic equation is $r^3-r=0$, which has roots $r=0, 1, -1$.  Therefore the general solution of the ODE is
+\[ y(t) = A + Be^t + C e^{-t}.\]
+(The first term on the right side is the same as $Ae^{0t}$.)  Its derivatives are $\dot{y}(0)=Be^{t}-Ce^{-t}$ and $\ddot{y}(t)=Be^t+Ce^{-t}$.   Inserting the initial conditions gives us the equations
+\[ \begin{cases} A+B+C=1 \\ B-C = 4 \\ B+C=0 \end{cases}.\]
+The solution of this system of equations is $A=1$, $B=2$, $C=-2$, so the solution of the initial value problem is
+\[ y(t)=1+2e^{t}-2e^{-t}.\]
+\qed
+
+
+For a root $r$ of a polynomial $a_n x^n + a_{n-1} x^{n-1} + \cdots a_1 x + a_0$, we say that $r$ has \index{multiplicity}{\bf multiplicity} $m$ if $(x-r)^m$ is a factor.  For example, the polynomial $x^3 - x^2$ can be factored as $x^2(x-1)$, from which we see that it has roots $x=0$ and $x=1$; the root $x=0$ has multiplicity 2, and the root $x-1$ has multiplicity 1.
+
+\begin{exe}
+Find the roots and the multiplicities of the following polynomials.
+\begin{enumerate}
+\item $x^4 - x^2$
+\item $x^3 + 3x^2+3x+1$
+\item $x^5 - 3x^4 + 3x^3 -x^2$
+\end{enumerate}
+\end{exe}
+
+In order to describe complicated or abstract products, it is useful to use $\Pi$ notation, which is similar to the $\Sigma$ notation used for sums:
+\[ \Pi_{k=1}^K a_k = a_1 a_2 a_3 \cdots a_K.\]
+
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Repeated Roots of Multiplicity Three or More \normalcolor}}
+
+If the characteristic equation for a constant coefficient linear homogeneous ordinary differential equation is
+\[ a \Pi_{k=1}^K (r-r_k)^{m_k},\]
+(that is to say, if the roots are $r_1, r_2, ..., r_K$ with corresponding multiplicities $m_1, m_2, ... m_K$), then the general solution on $\mathbb{R}$ of the ODE is
+\[ y = \sum_{k=1}^K \sum_{l=1}^{m_k} x^{l-1} e^{(r_k x)}.\]
+\end{minipage}
+}
+\end{center}
+
+\example
+If the characteristic equation for a constant coefficient homogeneous ODE is $r^2(r-3)^2(r+1)^3$, then the general solution is
+\[ y = A_0 + A_1 t + B_0 e^{3t} + B_1 t e^{3t} + B_2 t^2 e^{3t} + C_0 e^{-t} + C_1 t e^{-t}.\]
+\qed
+
+
+
+\begin{exe}
+Find a general solution for the differential equation $y'''+3y''+3y'+y=0$.
+\end{exe}
+
+\begin{exe}
+Solve the initial value problem $y^{(4)}-5y^{(2)}+4y=0, \ y(0)=4, y'(0)=4, y''(0)=10, y^{(3)}(0)=16$.
+\end{exe}
+
+
+\bigskip
+\noindent
+	\index{hyperbolic trigonometric functions} %
+	{\large {\sc Hyperbolic Trigonometric Functions}}
+
+\medskip
+When the characteristic equation for a second-order ODE has roots $r = \pm a$, the general solution has the form $y=A e^{ax} + B e^{-ax}$.  It is often useful to write these solutions in a slightly different way using the following notation.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Hyperbolic Trigonometric Functions \normalcolor}}
+
+The {\bf hyperbolic sine} function is
+\[\sinh(x) = \frac{e^x-e^{-x}}{2},\]
+and the {\bf hyperbolic cosine} function is
+\[ \cosh(x) = \frac{e^x+e^{-x}}{2}.\]
+\end{minipage}
+}
+\end{center}
+
+\begin{exe}
+Prove that $\frac{d}{dx} \left[ \sinh(x) \right] = \cosh(x)$ and $\frac{d}{dx} \left[ \cosh(x) \right] = \sinh(x)$.  Also verify that $\sinh(0)=0$ and $\cosh(0)=1$.
+\end{exe}
+
+Here's how these can be used profitably to express solutions of ODE.  If the characteristic equation has roots $r= \pm a$, then the general solution is
+\begin{align*}
+y & = A e^{ax}+Be^{-ax} \\
+& = \frac{A+B}{2} e^{ax} + \frac{A-B}{2} e^{ax}+\frac{A+B}{2}e^{-ax}-\frac{A-B}{2}e^{-ax} \\
+& = (A+B)\left(\frac{e^{ax}+e^{-ax}}{2}\right) + (A-B) \left( \frac{e^{ax}-e^{-ax}}{2} \right) \\
+& = C \cosh(ax) + D \sinh(ax) \ \ \ \mbox{(with } C=A+B \mbox{ and } D = A-B \mbox{)}.
+\end{align*}
+That is, we can write the general solution as $y = C \cosh(ax)+D\sinh(ax)$.  Furthermore, accoring to the content of the next exercise, this form of writing the solution makes it particularly easy to write down the solution of initial value problems when the initial conditions are given at $x=0$.
+
+\begin{exe}
+For the function $y=C \cosh(ax)+D \sinh(ax)$, verify that $y(0)=C$ and $y'(0)=aD$.
+\end{exe}
+
+These facts can save us the trouble of having to solve a system of linear equations to find the right coefficients from the initial conditions.
+
+\example Solve the initial value problem $\ddot{y}-5y=0, \ y(0)=3, \ \dot{y}(0)=2$.
+
+The characteristic equation is $r^2-5=0$, which has roots $r= \pm \sqrt{5}$.  The general solution of this equation can be written in the form $y=C \cosh\left( \sqrt{5} t \right) + D \sinh \left( \sqrt{5} t \right)$.  The initial conditions tell us that $C = 3$ and $D = \frac{2}{\sqrt{5}}$.  Therefore
+\[ y = 3 \cosh \left( \sqrt{5} t \right) + \frac{2}{\sqrt{5}} \sinh \left( \sqrt{5} t \right).\]
+\qed
+
+\begin{exe}
+Use hyperbolic trigonometric functions to solve the following initial value problems:
+\begin{itemize}
+\item $y''-2y=0, \ y(0)=2, \ y'(0)=2$
+\item $y''-4y=0, \ y(0)=0, \ y'(0)=8$
+\item $y''-3y=0, \ y(0)=1, \ y'(0)=2$
+\end{itemize}
+\end{exe}
+
+
+\bigskip
+\noindent
+	\index{boundary value problems} %
+	{\large {\sc Boundary Value Problems}}
+	
+	
+In each the examples done so far, we found a general solution and then used a given value of the solution and its derivative at some point to specify a unique solution.  Because there are two unknown parameters in the general solutions, we needed two such pieces of information to specify their values.  However, there are other ways to specify the values of the parameters by giving other information.  For example, we could specify the value of the solution at two different points (instead of the solution and its derivative at a single point), as the following example illustrates.  Such descriptions are called {\bf boundary value problems}.
+
+\example Solve the following boundary-value problem $y''-y = 0, \  y(0)=1, \ y(1) = e.$
+
+The characteristic equation is $r^2-1=0$, and this has roots $r=\pm 1$.  So the general solutions is 
+\[ y=Ae^x + Be^{-x}.\]
+The condition $y(0)=1$ implies $1=A+B$, and the condition $y(1)=e$ implies $e=Ae-Be$.  The solution of this pair of equations for $A$ and $B$ is $A=1, \ B=0$.  Thus the solution of this boundary value problem is $y=e^x$.
+
+\begin{exe}
+Solve the following boundary value problems:
+\begin{itemize}
+\item $\ddot{y}+4\dot{y}+4y = 0, \ y(0)=3, \  y(1)=5$
+\item $4\ddot{y}+y  = 0, \ y(0)=1, \ y(\pi)=0$
+\end{itemize}
+\end{exe}
+
+In contrast to initial value problems, boundary value problems don't always have solutions, and when they do, they may not be unique.  This is explored in exercises 7.55-7.56.
+
+
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Find the root(s) of the characteristic equation for each of the following differential equations.  Simplify your answers, and identify any repeated roots as such.  (You may need to rewrite the differential equation in standard form before you begin.)
+\end{instructions}
+
+\smallskip
+\ap $y''-6y'+8y=0$
+
+\ap $2y''+6y'-8u=0$
+
+\ap  $3y''+8y'+5y=0$
+
+\ap  $4\theta''+2\theta=0$
+
+\ap  $\ddot{x}-\dot{x}+x=0$
+
+\ap  $\ddot{y}=4y$
+
+\ap  $4\ddot{v} =\dot{v}$
+
+\ap  $\frac{d^2 y}{dx^2} +25 y = 10 \frac{dy}{dx}$
+
+\begin{instructions}
+Find a general solution for each of the following differential equations.
+\end{instructions}
+
+\ap  $y''+3y'+2y=0$
+
+\ap $y''-6y'+9y=0$
+
+\ap $w''-2w'+5y=0$ 
+
+\ap $4\ddot{u}+4\dot{u}=3$
+
+\ap $\ddot{\theta} + 16\theta=0$
+
+\ap $2x''+10x=6x'$
+
+\ap $2\ddot{v}+4\dot{v}+2v=0$
+
+\ap $\frac{d^2 x}{dt^2} =9x$
+
+
+
+
+
+
+\begin{instructions}
+Find the solution of each of the following initial value problems.
+\end{instructions}
+
+
+\ap $y''+12y'+36y=0, \ y(0)=0, \ y'(0)=2$
+
+\ap $\ddot{x}-3\dot{x}-4x=0, \ x(0)=1, \ x'(0)=2$ 
+
+\ap $w''=w, \ w(0)=-2, \ w'(0)=1$
+
+\ap $\ddot{y}-4\dot{y}=-4y, \ y(0)=1, \ y'(0)=-1$ 
+
+\ap $\frac{d^2v}{dz^2} +8v = 4 \frac{dv}{dz}, \ v(0)=1, \ \frac{dv}{dz}(0)=0$
+
+\ap $\omega''+4\omega'+8\omega=0, \ \omega(0)=2, \ \omega'(0)=0$
+
+\ap $20\ddot{z}+5z=0, \ z(0)=1, \ \dot{z}(0)=-1$
+
+\ap $y''=-3y', \ y(0)=1, \ y'(0)=1$
+
+\begin{instructions}
+Find a differential equation whose general solution is the two-parameter family of functions given.
+\end{instructions}
+
+\ap $y=c_1 e^{2x}+c_2 e^{-5x}$
+
+\ap $u = c_1 e^{-x} + c_2 x e^{-x}$
+
+\ap $\theta = A \cos(2t) + B \sin(2t)$
+
+\ap $y=c_1 e^{3t}\cos(t) + c_2 e^{3t} \sin(t)$
+
+\ap $w=A \sinh(2t) + B \cosh(2t)$
+
+\ap $x=At+B$
+
+
+\begin{instructions}
+Solve the following boundary value problems.
+\end{instructions}
+
+\ap $y''-y=0, \ y(0)=1, \ y(1)=2$
+
+\ap $y''+y'-2y = 0, \ y(0)=0, \ y(1)=1$
+
+\ap $y''+4y=0, \ y(0)=1, \ y(\pi/2)=2$
+
+\ap $\ddot{y}-4\dot{y}+4y = 0, \ y(0)=1, \ y(1)=3e$
+
+%\end{multicols}
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+\smallskip
+\hrule
+
+\smallskip
+\ap Suppose $y(t)$ is the solution of the initial value problem $\ddot{y}+4\dot{y}+4y=0$, $y(0)=2$, $\dot{y}(0)=1$.  Find the absolute maximum value of $y$ on the interval $[0,\infty)$.
+
+\ap Solve the Prototype Question from the beginning of this chapter.
+
+\ap Find a value of $\alpha$ so that the solution of the initial value problem $y''+y'-2y=0$, $y(0)=\alpha$, $y'(0)=2$ satisfies $\lim_{t \rightarrow \infty} y(t)=0$.
+
+\ap Let $y(t)$ be the solution of the initial value problem $\ddot{y}+2\dot{y}+\gamma y=0, \ y(0)=1, \ \dot{y}(0)=0$, where $\gamma$ is a real constant.  Find $\lim_{t \rightarrow \infty} y(t)$.  Does the answer depend on the value of $\gamma$?  {\it (Hint: You will need to separate the solution of this initial value problem into several cases, depending on the value of $\gamma$, and then find the limit for each one.)}
+
+
+\ap {\it In this problem, you will verify that our formula for the case when the characteristic equation has two distinct coefficients is in fact the general solution -- that is to say , that any solution of the ODE can be written in this form.}
+
+Suppose that $ay''+by'+cy=0$ has a characteristic equation $ar^2+br+c$ with two distinct roots, $r_1$ and $r_2$ (which implies $a \neq 0$).  {\bf (a)} Verify directly that $y_1=e^{r_1 x}$ is a solution of the ODE.  {\bf (b)} Let $y$ be an arbitrary solution of the ODE, and write $y(x)=u(x)e^{r_1 x}$.  Use reduction-of-order to prove that $u''+\left(2r_1+\frac{b}{a}\right)u'=0$. {\it (Review Appendix C if needed.)} {\bf (c)} Use the substitution $v=u'$ and the method of integrating factors to deduce that the general solution for $u$ is $u(x)=Ce^{-(2r_1+b/a)x}+D$.  {\bf (d)} Conclude that $y=Ce^{-(r_1+b/a)x}+De^{r_1x}$.  {\bf (e)} Because $r_1$ and $r_2$ are both solutions of the characteristic equation, it must be true that $ar^2+br+c=a(r-r_1)(r-r_2)$.  Equate coefficients here to prove that $r_2=-(r_1+b/a)$.  {\bf (f)} Conclude that $y(x)=Ce^{r_2x}+De^{r_1x}$.
+
+
+
+\ap The motion of an ideal pendulum is governed by the differential equation $\ddot{\theta}+\frac{g}{L} \sin(\theta)=0$, where $\theta$ is the angle that the pendulum arm makes with the vertical, $L$ is the length of the (massless) pendulum arm and $g$ is the acceleration due to gravity acting on a mass at the end of the rod.  If the angle $\theta$ is measured in radians and is sufficiently small, then $\sin(\theta) \approx \theta$, so the motion of the pendulum can be approximately modeled by the differential equation $\ddot{\theta} + \frac{g}{L} \theta=0$.  Use this equation to find the (approximate) period of a pendulum with arm length $L \ meters$ near the Earth's surface with a small initial displacement $\theta_0>0$ an initial velocity of $\dot{\theta}=0$.  (Notice that the period does not depend on the initial displacement!  It will also not depend on a sufficiently small initial velocity.)
+
+
+
+
+
+\ap Not every boundary-value problem has a solution.  Verify that there is no solution to 
+\[ \begin{cases} \ddot{y}+y = 0 \\ y(0)=4 \\ y(\pi) = 0 \end{cases}.\]
+
+\ap Some boundary-value problems have solutions, but the solutions are not unique.  Verify that there are infinitely many solutions to
+\[ \begin{cases} \ddot{y}+y = 0 \\ y(0)=0 \\ y(\pi)=0 \end{cases} .\]
+
+\ap Find all solutions of the boundary value problem
+\[ \begin{cases} \ddot{y}+4y = 0 \\ \dot{y}(0)=0 \\ \dot{y}(\pi)=0 \end{cases}.\]
+
+\ap Find all real values of $\lambda$ such that the boundary value problem 
+\[ \begin{cases} \ddot{y}+\lambda y = 0 \\ y(0)=0 \\ y(1)=0 \end{cases}\]
+has infinitely many solutions.  What are the solutions?  {\it (This is an example of an 
+	\index{eigenvalue problem}
+	{\bf eigenvalue problem}.)}
+
+\ap Use power series for $e^x$, $\sin(x)$ and $\cos(x)$ to prove that $\cos(ix)=\cosh(x)$ and $\sin(ix)=i \sinh(x)$, where $i$ is a complex number satisfying $i^2=-1$.
+
+\ap Prove that $\{e^{rx},e^{-rx}\}$ is a fundamental set of solutions if and only if $\{\cosh(rx),\sinh(rx)\}$ is a fundamental set of solutions for the same differential equation.
+
+\end{multicols}

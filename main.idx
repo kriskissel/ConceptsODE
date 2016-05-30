@@ -1,0 +1,232 @@
+\indexentry{mixing problem}{3}
+\indexentry{separation of variables}{4}
+\indexentry{differential equation}{6}
+\indexentry{ordinary differential equation}{6}
+\indexentry{partial differential equation}{6}
+\indexentry{solution}{7}
+\indexentry{independent variable}{7}
+\indexentry{dependent variable}{7}
+\indexentry{initial-value problem}{8}
+\indexentry{IVP}{8}
+\indexentry{initial condition}{8}
+\indexentry{initial value}{8}
+\indexentry{solution}{8}
+\indexentry{domain of definition}{8}
+\indexentry{interval of definition}{8}
+\indexentry{long-term behavior}{8}
+\indexentry{population growth}{9}
+\indexentry{general solution}{10}
+\indexentry{first-order}{12}
+\indexentry{order}{12}
+\indexentry{parameter}{12}
+\indexentry{dot notation}{13}
+\indexentry{one-parameter family}{14}
+\indexentry{two-parameter family}{15}
+\indexentry{existence and uniqueness theorem}{15}
+\indexentry{relative growth rate}{16}
+\indexentry{continuous growth rate}{17}
+\indexentry{half-life}{17}
+\indexentry{Newton's Law of Cooling}{17}
+\indexentry{population growth}{18}
+\indexentry{logistic growth model}{18}
+\indexentry{carrying capacity}{18}
+\indexentry{chemical reaction rates}{18}
+\indexentry{air resistance}{19}
+\indexentry{air resistance}{19}
+\indexentry{Torricelli's Law}{19}
+\indexentry{air resistance}{21}
+\indexentry{inertial drag}{21}
+\indexentry{viscous drag}{22}
+\indexentry{chemical reaction rates}{23}
+\indexentry{analytically}{23}
+\indexentry{equilibrium solution}{24}
+\indexentry{slope field}{25}
+\indexentry{direction field}{25}
+\indexentry{autonomous}{30}
+\indexentry{phase line}{33}
+\indexentry{terminal velocity}{34}
+\indexentry{stable}{35}
+\indexentry{unstable}{35}
+\indexentry{half-stable}{36}
+\indexentry{air resistance}{39}
+\indexentry{inertial drag}{39}
+\indexentry{logistic growth model}{39}
+\indexentry{air resistance}{41}
+\indexentry{tangent-line approximation}{42}
+\indexentry{step size}{44}
+\indexentry{Euler's method}{45}
+\indexentry{Runge-Kutta method}{47}
+\indexentry{improved Euler formula}{47}
+\indexentry{improved Euler formula}{51}
+\indexentry{modified Euler formula}{51}
+\indexentry{sensitive dependence on initial conditions}{52}
+\indexentry{mixing problem}{53}
+\indexentry{linear}{54}
+\indexentry{standard form}{54}
+\indexentry{integrating factor}{55}
+\indexentry{method of integrating factors}{55}
+\indexentry{substitution}{57}
+\indexentry{Bernoulli equations}{58}
+\indexentry{mixing problem}{60}
+\indexentry{mixing problem}{61}
+\indexentry{viscous drag}{61}
+\indexentry{viscous drag}{61}
+\indexentry{logistic differential equation}{62}
+\indexentry{substitution}{62}
+\indexentry{substitution}{62}
+\indexentry{singular points}{62}
+\indexentry{air resistance}{63}
+\indexentry{analytic}{63}
+\indexentry{power series}{63}
+\indexentry{Taylor series}{63}
+\indexentry{Ratio test}{65}
+\indexentry{Ratio test}{67}
+\indexentry{little-oh}{67}
+\indexentry{Taylor polynomial}{68}
+\indexentry{Taylor approximation}{68}
+\indexentry{existence and uniqueness theorem}{75}
+\indexentry{unique solution}{75}
+\indexentry{Picard iterate}{76}
+\indexentry{integral equation}{76}
+\indexentry{uniform norm}{77}
+\indexentry{norm}{77}
+\indexentry{index statement}{78}
+\indexentry{uniqueness}{78}
+\indexentry{Lipschitz condition}{78}
+\indexentry{Existence Theorem with Lipschitz Condition}{82}
+\indexentry{Lipschitz condition}{82}
+\indexentry{existence}{82}
+\indexentry{Picard iterate}{83}
+\indexentry{open rectangle}{83}
+\indexentry{existence and uniqueness, non-autonomous}{83}
+\indexentry{derivative of a vector-valued function}{84}
+\indexentry{existence and uniqueness, systems}{85}
+\indexentry{spring-mass system}{91}
+\indexentry{constant coefficient}{91}
+\indexentry{homogeneous equations}{92}
+\indexentry{characteristic equation}{92}
+\indexentry{linear combination}{93}
+\indexentry{linearly independent}{93}
+\indexentry{fundamental set of solutions}{93}
+\indexentry{general solution}{93}
+\indexentry{general solution}{95}
+\indexentry{double root}{96}
+\indexentry{general solution}{97}
+\indexentry{multiplicity}{98}
+\indexentry{hyperbolic trigonometric functions}{99}
+\indexentry{boundary value problems}{101}
+\indexentry{eigenvalue problem}{104}
+\indexentry{spring-mass system}{106}
+\indexentry{rest position}{106}
+\indexentry{RLC circuit}{109}
+\indexentry{non-homogeneous equations}{109}
+\indexentry{driving function}{109}
+\indexentry{particular solution}{111}
+\indexentry{method of undetermined coefficients}{111}
+\indexentry{rest initial conditions}{112}
+\indexentry{RLC circuit}{118}
+\indexentry{spring-mass system}{121}
+\indexentry{RLC circuit}{121}
+\indexentry{no damping}{123}
+\indexentry{underdamping}{123}
+\indexentry{overdamping}{123}
+\indexentry{critical damping}{123}
+\indexentry{no damping}{124}
+\indexentry{underdamping}{124}
+\indexentry{critical damping}{124}
+\indexentry{overdamping}{124}
+\indexentry{equilibrium position}{125}
+\indexentry{transient solution}{127}
+\indexentry{steady-state solution}{127}
+\indexentry{steady-state response}{127}
+\indexentry{phase-amplitude form}{129}
+\indexentry{phase of oscillations}{129}
+\indexentry{amplitude}{129}
+\indexentry{resonance}{132}
+\indexentry{natural frequency}{132}
+\indexentry{resonant frequency}{132}
+\indexentry{resonant frequency}{133}
+\indexentry{RLC circuit}{141}
+\indexentry{Laplace Transform}{142}
+\indexentry{existence of Laplace transform}{143}
+\indexentry{Laplace transform, existence}{143}
+\indexentry{exponential order}{143}
+\indexentry{Inverse Laplace Transform}{144}
+\indexentry{table of Laplace Transforms}{145}
+\indexentry{completing the square}{148}
+\indexentry{spring-mass system}{153}
+\indexentry{unit step function}{153}
+\indexentry{characteristic function}{155}
+\indexentry{indicator function}{155}
+\indexentry{shift-and-cutoff operator}{158}
+\indexentry{Laplace Transform of a shifted-and-cutoff function}{158}
+\indexentry{Inverse Laplace Transform with shifted-and-cutoff function}{159}
+\indexentry{delta function}{163}
+\indexentry{impulse}{165}
+\indexentry{impulse function}{165}
+\indexentry{Laplace Transform of a delta function}{166}
+\indexentry{convolution}{171}
+\indexentry{convolution, Laplace transform of}{173}
+\indexentry{systems of ordinary differential equations}{179}
+\indexentry{coupled}{179}
+\indexentry{first-order systems}{179}
+\indexentry{standard form}{179}
+\indexentry{autonomous system}{180}
+\indexentry{solution}{180}
+\indexentry{slope field}{181}
+\indexentry{direction field}{181}
+\indexentry{solution curve}{182}
+\indexentry{solution trajectory}{182}
+\indexentry{trajectory}{182}
+\indexentry{autonomous system}{185}
+\indexentry{non-autonomous system}{186}
+\indexentry{existence and uniqueness, systems}{188}
+\indexentry{linear, constant-coefficient, homogeneous}{193}
+\indexentry{non-homogeneous system}{193}
+\indexentry{straight line solutions}{194}
+\indexentry{uncoupled}{202}
+\indexentry{generalized eigenvector}{202}
+\indexentry{separable}{207}
+\indexentry{separation of variables}{208}
+\indexentry{equilibrium solution}{211}
+\indexentry{general solution}{212}
+\indexentry{real part}{215}
+\indexentry{imaginary part}{215}
+\indexentry{complex conjugate}{215}
+\indexentry{Euler's formula}{218}
+\indexentry{reduction of order}{222}
+\indexentry{matrices}{225}
+\indexentry{matrix}{225}
+\indexentry{index}{225}
+\indexentry{indices}{225}
+\indexentry{entry}{225}
+\indexentry{rows}{225}
+\indexentry{columns}{225}
+\indexentry{dimension}{226}
+\indexentry{equal matrices}{226}
+\indexentry{vector}{226}
+\indexentry{column vector}{226}
+\indexentry{row vector}{226}
+\indexentry{addition of matrices}{226}
+\indexentry{sum of matrices}{226}
+\indexentry{subtraction of matrices}{226}
+\indexentry{difference of matrices}{226}
+\indexentry{scalar}{226}
+\indexentry{scalar-multiplication of matrices}{226}
+\indexentry{multiplication of matrices}{227}
+\indexentry{product of matrices}{227}
+\indexentry{coefficient matrix}{228}
+\indexentry{identity matrix}{229}
+\indexentry{main diagonal}{229}
+\indexentry{square matrix}{229}
+\indexentry{determinant}{231}
+\indexentry{eigenvalue}{232}
+\indexentry{eigenvector}{232}
+\indexentry{characteristic equation}{232}
+\indexentry{linear function}{235}
+\indexentry{affine function}{235}
+\indexentry{operator}{235}
+\indexentry{differentiation operator}{235}
+\indexentry{linear operator}{236}
+\indexentry{rest initial conditions}{238}
+\indexentry{linear differential equation}{238}

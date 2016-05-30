@@ -1,0 +1,284 @@
+\chapter{Systems of Differential Equations}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+Model the size of two interacting populations -- a predator species and its prey.
+\end{minipage}
+}
+\end{center}
+
+Up to this point, we have considered ODE in which there is one dependent variable, such as $y$ in the equation $\dot{y}=f(t,y)$.  We will now turn our attention to 
+	\index{systems of ordinary differential equations}%
+	{\bf systems of ordinary differential equations} in which there are two or more dependent variables (the unknown functions for which we hope to solve).  Here's one example of such a system:
+\[ \begin{cases} \dot{x} = 2x-3y \\ \dot{y} = x-y \end{cases},\]
+where $x(t)$ and $y(t)$are both unknown functions of the independent variable $t$.  This is a system of two ordinary differential equations, and the system is 
+	\index{coupled}%
+	{\bf coupled} because we can't just solve for one variable and then the other -- solving the differential equation for $x(t)$ would require us to know what $y(t)$ is, and solving the differential equation for $y(t)$ would require us to know what $x(t)$ is.  It seems that, if we are going to be able to find solutions, we will have to find a way to solve for both $x$ and $y$ at the same time.  Indeed, there is a way to do exactly that for this and many other problems.  But let's begin by discussing some graphical and numerical method for understanding systems before we try to solve any of them analytically.
+
+In this chapter, we will deal exclusively with 
+	\index{first-order systems}%
+	{\bf first-order systems} of ODE, meaning the differential equations involve only first derivatives of the dependent variables.  For a system with two unknown functions, the system is in 
+	\index{standard form}%
+	{\bf standard form} if it is written as:
+\[ \begin{cases} \dot{x} = f(x,y,t) \\ \dot{y} = g(x,y,t) \end{cases}.\]
+Although we will emphasize systems of two equations, much of what we do will also apply to systems of three or more equations in the same number of unknowns.  The standard form for a system of $n$ equations in $n$ dependent variables is
+\[ \begin{cases} \dot{y}_1 = f_1(y_1,y_2,...,y_n,t) \\ \dot{y}_2 = f_2(y_1,y_2,...,y_n,t) \\ \vdots \\ \dot{y}_n = f_n(y_1,y_2,...,y_n,t) \end{cases} .\]
+Fortunately, we will be able to develop the central ideas of this topic by sticking mostly to systems of two equations in two unknowns.  Furthermore, we will also be able to focus on 
+	\index{autonomous system}%
+	{\bf autonomous systems} in which the independent variable does not appear in the differential equations:
+\begin{equation} 
+\begin{cases} \dot{x} = f(x,y) \\ \dot{y} = g(x,y) \end{cases} \label{2x2}.
+\end{equation}
+(As we will see later, restricting our attention to autonomous systems actually does not require us to give anything up.  It turns out that every system of ODE is equivalent to an autonomous system!)
+
+
+
+A 
+	\index{solution}%
+	{\bf solution} to the ODE system in equation \ref{2x2} above would be a pair of functions $x(t), \ y(t)$, and we can think of these functions as parameterizing a curve in $\R^2$.  In that case, the tangent vector to the curve at the point $(x(t),y(t))$ for any fixed value of $t$ would be the vector $(\dot{x}(t),\dot{y}(t))$.  (Note: It will not be necessary for us to use different notations to distinguish between points and vectors.  In fact, it would be cumbersome for us to try to do so, as we will tend to think of these as two different points of view for the same objects.  Every vector in $\R^n$ corresponds to a point in $\R^n$ in an obvious way, and vice versa.)
+
+\begin{center}
+\includegraphics[width=2.5in]{13-systems/curveandtangent.eps}
+\end{center}
+
+It turns out that we don't need the solutions in order to plot these tangent vectors, because the differential equation itself tells us everything we need.
+
+\example Consider the following system of ordinary differential equations:
+\[ \begin{cases} \dot{x} = 2x+3y \\ \dot{y} = x-y \end{cases}.\]
+If a solution to this system is a curve in $\R^2$ passing through the point $(x,y)$, then the tangent vector at that point is $( 2x+3y,x-y )$.  At the point $(2,0)$, this would be the vector $( 4,2 )$.  At the point $(2,1)$, this would be the vector $( 7,1 )$.  Doing this for a lattice of points in the $xy$-plane and graphing the resulting vectors gives us a picture like the following:
+
+\begin{center}
+\includegraphics[width=2.5in]{13-systems/systemsfield1.eps}
+\end{center}
+
+This picture is a 
+	\index{slope field}%
+	{\bf slope field} (or 
+	\index{direction field}%
+	{\bf direction field}) for the ODE system.  It shows us the paths that solution curves follow.  For example, if $x(t), \ y(t)$ is a pair of functions satisfying the ODE system and the initial condition $x(0)=2, \ y(0)=0$, then the curve parameterized by $(x(t),y(t))$ should pass through the point $(2,0)$ and remain tangent to the direction vectors; the graph below shows such a solution sketched on top of the direction field:
+
+\begin{center}
+\includegraphics[width=2.5in]{13-systems/systemsfield2.eps}
+\end{center}
+
+We will refer to the graph of $(x(t),y(t))$ as a 
+	\index{solution curve}%
+	{\bf solution curve} or a 
+	\index{solution trajectory}%
+	\index{trajectory}%
+	{\bf solution trajectory}.
+
+\example Imagine a population of rabbits which, unchecked, would grow exponentially, but whose growth is controlled by a predator species - foxes.  Let's write down a system of differential equations that will model the population growth of each of these interacting species.
+
+We'll use our ``rate-in minus rate-out'' approach to come up with appropriate models, and we'll need to make some assumptions about how those rates are affected.  Let $R$ denote the size of the rabbit population and $F$ the size of the fox population.  We've already assumed that the rabbit population would grow exponentially if there were no foxes, so the ``rate-in'' component for $\dot{R}$ should be $aR$, where $a$ is some positive constant.  The ``rate-out'' should depend on how fast rabbits are being killed by foxes.  Let's assume that this rate is jointly proportional to both population sizes, so an increase in either the number of rabbits or the number of foxes should result in more rabbit-fox contacts and, consequently, more rabbit deaths.  Thus the ``rate-out' component could be modeled by the term $bRF$, where $b$ is another positive constant.  This gives us
+\[ \dot{R} = aR-bRF\]
+for the rabbit population.  As for the foxes, let's assume that the growth of the fox population is proportional to the number of rabbit-fox contacts again (imagining that the growth of the fox population depends on the amount of food it obtains), so the ``rate-in'' would be $cRF$.  Further, because foxes will tend to die off at a rate proportional to the size of the population, the ``rate-out'' will be $dF$. Again, $c$ and $d$ are positive constants.  Therefore 
+\[ \dot{F}=cRF-dF\]
+for the fox population.
+
+Here's a slope field for the above system of equations using the values $a=2,\  b=1, \ c=1, \ d=0.5$.
+
+\begin{center}
+\includegraphics[width=2.5in]{13-systems/rabbitsandfoxes.eps}
+\end{center}
+\qed
+
+\begin{exe} On top of the slope field above, sketch a solution curve.  Describe the physical interpretations of the curve you see -- what does it means in terms of the population sizes of the two species?  {\it (Hint for sketching: Every trajectory for this system should be a closed loop.)}
+\end{exe}
+
+Next, let's turn our attention to numerical methods.  For a system written in standard form, it turns out that we can apply a version of Euler's method to find approximate values of solutions.  Recall that for Euler's Method, we considered a differential equation of the form $y'=f(t,y)$ with an initial condition $y(t_0)=y_0$.  We selected a step size, $h$, we let $t_j=t_0+jh$, and then used the recursive formula $y_{j+1}=y_j+f(t_j, y_j)h$ to obtain a sequence of $y$-values.
+
+Almost exactly the same process can be used for a system.  Let $h>0$ be a fixed step size and let $t_j=t_0+hj$ as before.  For an initial-value problem such as 
+\begin{equation}
+ \begin{cases} \dot{x}=f(t,x,y) \\ \dot{y} = g(t,x,y) \\ x(t_0)=x_0 \\ y(t_0)=y_0 \end{cases} \label{general2x2}
+ \end{equation}
+we will use two recursive formulas:
+\[ x_{j+1}=x_j+f(t_j,x_j,y_j) \ \ \ \mbox{and} \ \ \ y_{j+1}=y_j+g(t_j,x_j,y_j).\]
+
+\example Consider the initial-value problem
+\[ \begin{cases} \dot{x}=x+y \\ \dot{y} = y-x \\ x(0)=1 \\ y(0)=0 \end{cases} \]
+Let's approximate the value of $(x(1),y(1))$ using Euler's Method with a step size of $h=0.5$.  We'll organize our calculations in a table to make them easier to follow:
+
+\smallskip
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+$t_j$ & $x_j$ & $y_j$ & $x_{j+1}=x_j+(x_j+y_j)(0.5)$ & $y_{j+1} = y_j+(y_j-x_j)(0.5)$ \\ \hline
+0 & 1 & 0 & 1.5 & -0.5 \\ 
+0.5 & 1.5 & -0.5 & 2 & -1.5 \\
+\end{tabular}
+\end{center}
+
+\smallskip
+This tells us that $x(1)\approx 2$ and $y(1) \approx -1.5$.
+\qed
+
+\begin{exe} Redo Example 13.3 above with a step size of $h=0.25$.
+\end{exe}
+
+\begin{exe} Use Euler's Method with a step size of $h=0.5$ to find approximate values of $x(2)$ and $y(2)$ where $x$ and $y$ satisfy
+\[ \begin{cases} \dot{x} = 2x+y \\ \dot{y} = -xy \\ x(1)=3 \\ y(1)=2 \end{cases}.\]
+\end{exe}
+
+The following is an extremely important fact about systems of ODE: any $n^{th}$-order ODE written in standard form 
+\[ y^{(n)} = f(t,y,y',y'',...,y^{(n-1})\]
+can be written as an equivalent system of $n$ first-order equations by making the substitutions $u_j=y^{(j-1)}$:
+\[ \begin{cases} u_1'=u_2 \\ u_2'=u_3 \\ \vdots \\ u_{n-1}'=u_n \\ u_n' = f(t,u_1,u_2,...,u_n) \end{cases} .\]
+
+\example Consider the second-order initial-value problem
+\[ y''=y^2+y', \ \ \ y(0)=1, \ \ \ y'(0)=0.\]
+Suppose we wish to know the (approximate) value of $y(0.75)$.  This is not a linear system, so we cannot solve it analytically using methods previously discussed.  But we can convert it to a first-order system and then apply Euler's Method.  Let $u_{j}=y^{(j-1)}$.  Then we have
+\[ \begin{cases} u_1' = u_2 \\ u_2' = u_1^2+u_2 \\ u_1(0)=1 \\ u_2(0)=0 \end{cases} .\]
+We apply Euler's method with a step size of $h=0.25$:
+
+\smallskip
+\noindent
+\begin{tabular}{c|c|c|c|c}
+$t_j$ & $(u_1)_j$ & $(u_2)_j$ & $(u_1)_{j+1} = (u_1)_j+(u_2)_j(0.25)$ & $(u_2)_{j+1} = (u_2)_j+((u_1)_j^2 +(u_2)_j)(0.25)$ \\ \hline
+0 & 1 & 0 & 1 & 0.25 \\
+0.25 & 1 & 0.25 & 1.0625 & 0.5625 \\
+0.5 & 1.0625 & 0.5625 & 1.22 & 0.9853515625 \\
+\end{tabular}
+
+\smallskip
+The last line tells us that $u_1(0.75)\approx 1.22$, and therefore $y(0.75) \approx 1.22$.
+\qed
+
+\begin{exe} Consider the second-order initial-value problem $y''=y^2, \ y(0)=1, \ y'(0)=0$.  Convert this to an equivalent first-order system, and then use Euler's Method with a step size of $h=0.5$ to approximate the value of $y(1)$.
+\end{exe}
+
+Another application of the same idea is to change a non-autonomous ODE into an autonomous system.  We say that a system such as in line (\ref{general2x2}) is 
+	\index{autonomous system}%
+	{\bf autonomous} if the right side functions do not depend explicitly on the independent variable, in which case the system of ODE can be written as
+\[ \begin{cases} \dot{x} = f(x,y) \\ \dot{y} = g(x,y) \end{cases}.\]
+Otherwise, if $f$ and or $g$ depends on $t$, then the system is 
+	\index{non-autonomous system}%
+	{\bf non-autonomous}, as in
+\[ \begin{cases} \dot{x} = f(t,x,y) \\ \dot{y} = g(t,x,y) \end{cases}.\]
+Let's introduce another independent variable, say $\tau$, which satisfies the differential equation $\dot{\tau}=1$ and the initial condition $\tau(t_0)=t_0$.  The solution of this simple initial-value problem is $\tau=t$.  Let's now augment our non-autonomous system by adding this differential equation:
+\[ \begin{cases} \dot{x} = f(t,x,y) \\ \dot{y} = g(t,x,y) \\ \dot{\tau}=1 \end{cases},\]
+and then let's replace every occurrence of $t$ with $\tau$ on the right sides:
+\[ \begin{cases} \dot{x} = f(\tau,x,y) \\ \dot{y} = g(\tau,x,y) \\ \dot{\tau}=1 \end{cases}.\]
+This is an autonomous system of three ordinary differential equations - the independent variable, $t$, does not appear anywhere on the right sides of the equations.
+
+\example Consider the non-autonomous initial-value problem
+\[ \frac{du}{dv} = u+v, \ \ \ u(0)=1.\]
+Here, $v$ is the independent variable. Let's introduce a new variable, $w$, which satisfies $w=v$ and therefore $\frac{dw}{dv} = 1$.  Replacing the occurrence of $v$ on the right side of our original ODE with $w$, we obtain the following autonomous initial-value problem for a system of two unknowns functions:
+\[ \begin{cases} \frac{du}{dv} = u + w \\ \frac{dw}{dv} = 1 \\ u(0)=1 \\ w(0)=0 \end{cases} .\]
+\qed
+
+
+
+To end this chapter, let's address existence and uniqueness for systems.  To do so, it will be useful to introduce more efficient notation.  Let $Y= \left[ \begin{matrix} x(t) \\ y(t) \end{matrix} \right]$ be a vector-valued function of $t$, so that $Y' = \left[ \begin{matrix} x'(t) \\ y'(t) \end{matrix} \right]$, and let $F$ be a vector-valued function with a vector-valued input: 
+\[ F \left( \left[ \begin{matrix} x \\ y \end{matrix} \right] \right) = \left[ \begin{matrix} f(x,y) \\ g(x,y) \end{matrix} \right].\]
+With this notation, a system such as 
+\[ \begin{cases} x'=f(x,y) \\ y'=g(x,y) \end{cases} \]
+ can be written as 
+\[ Y' = F(Y),\]
+and we see that adopting vector notation allows us to write the system in a form that closely parallels the form for a single ordinary differential equation.  If we further define $Y_0=\left[ \begin{matrix} x_0 \\ y_0 \end{matrix} \right]$, then the initial conditions $x(t_0)=x_0, \ y(t_0)=y_0$ can be written as
+\[ Y(t_0)=Y_0.\]
+Similar constructions can be made for systems of 3 or more differential equations.  
+
+An existence and uniqueness theorem can now be stated succinctly:
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence and Uniqueness for Systems \normalcolor}}
+\index{existence and uniqueness, systems}
+
+Suppose that $F(Y)$ and $F'(Y)$ are defined and continuous on an open set containing $Y_0$.  Then there is an open interval $I$ containing $t_0$ such that the initial value problem 
+\[ Y'=F(Y), \ \ \ Y(t_0)=Y_0\]
+has a unique solution $Y(t)$ defined on $I$.
+\end{minipage}
+}
+\end{center}
+
+
+
+
+Because $F$ is a vector-valued function of several variables, the notation $F'$ actually represents a matrix of partial derivatives:
+\[ F' \left( \left[ \begin{matrix} x \\ y \end{matrix} \right] \right) = \left[ \begin{matrix} f_x(x,y) & f_y(x,y) \\ g_x(x,y) & g_y(x,y) \end{matrix} \right].\]
+
+\begin{exe} Suppose that $F \left( \left[ \begin{matrix} x \\ y \end{matrix} \right] \right) = \left[ \begin{matrix} xy \\ x^2+y^2 \end{matrix} \right]$.  Write down $F'$.
+\end{exe}
+
+
+
+
+
+%%% Cut below here for the book form.
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Use Euler's method with a step size of $\Delta t = 0.5$ to approximate the value of $(x(1),y(1))$, where $(x(t),y(t))$ satisfies the given initial value problem.
+\end{instructions}
+
+\smallskip
+\ap $\begin{cases} \dot{x} = x+y \\ \dot{y} = x-2y \\ x(0)=1 \\ y(0)=0 \end{cases}$
+
+\ap $\begin{cases} \dot{x} = xy \\ \dot{y} = y-x \\ x(0)=2 \\ y(0)=1 \end{cases}$
+
+
+
+
+\smallskip
+\hrule
+
+
+\smallskip
+\ap The \begin{minipage}{1in} \begin{verbatim} dfieldplot \end{verbatim} \end{minipage} command in Maple can be used to generate a slope field for a system of two autonomous first-order differential equations. Load the package for this algorithm into Maple by executing the command \begin{minipage}{1.2in} \begin{verbatim} with(DEtools) \end{verbatim} \end{minipage} .  The command to generate the plot in Example 13.1 is:
+\begin{center}
+\begin{minipage}{4in}
+\begin{verbatim}
+dfieldplot([x'(t)=2x(t)+3y(t),
+            y'(t)=x(t)-y(t)],
+              [x(t),y(t)],t=0..1,
+              x=-5..5,y=-5..5)
+\end{verbatim}
+\end{minipage}
+\end{center}
+(Note that Maple requires a range for the independent variable $t$ to be specified, even though it has no effect on the graph.  Therefore, the range specified here is really arbitrary.)  Modify this command to generate a direction field for the system $\dot{x}=-y, \ \dot{y}=x$ on the domain $-2 \leq x \leq 2, \ -2 \leq y \leq 2$, and discuss the behavior of a trajectory satisfying the initial condition $x(0)=0, \ y(0)=3$.  
+
+\ap Consider the second-order initial-value problem 
+\[ \ddot{y}+y=1, \ \ \ y(0)=1, \ \ \ \dot{y}(0)=0.\]
+Convert this into an equivalent first-order system by introducing $u=\dot{y}$.  Then use a slope-field to analyze the qualitative behavior of the solution $y(t)$.  Compare this with the analytic solution which can be found explicitly using techniques from earlier chapters.
+
+\ap Convert the non-autonomous initial-value problem $y'=x-y^2, \ y(0)=0$ into an autonomous system in two unknown functions.  Generate a slope field to analyze the behavior of the solution $y(x)$.
+
+\ap Consider the system $\dot{x}=-y, \ \dot{y}=x$ on the region $-2 \leq x \leq 2$ and $-2 \leq y \leq 2$.  A slope field for this system (see Problem 1 above) suggests that the trajectories appear to be circles centered at the origin.  Prove this as follows.  {\bf (a)} Introduce two new variables, $r = \sqrt{x^2+y^2}$ and $\theta = \tan^{-1} \left( \frac{y}{x} \right)$.  (These are just polar coordinates!)  Differentiate these formulas to verify that $\dot{r} = \frac{x \dot{x} + y \dot{y}}{\sqrt{x^2+y^2}}$ and $\dot{\theta} = \frac{x \dot{y} - y \dot {x}}{x^2+y^2}$.  {\bf (b)} Replace $\dot{x}$ with $-y$ and replace $\dot{y}$ with $x$ to simplify these equations for $\dot{r}$ and $\dot{\theta}$ as much as possible.  {\bf (c)} Convert the initial conditions $x(0)=x_0, \ y(0)=y_0$ to corresponding initial conditions for $r$ and $\theta$ (in terms of $x_0$ and $y_0$).  Then solve the differential equations for $r$ and $\theta$ subject to those initial conditions.  {\bf (d)} Use the formulas you find for $r(t)$ and $\theta(t)$ to write down formulas for $x(t)$ and $y(t)$.  Verify directly that these functions satisfy the given system of differential equations.  What shapes do these functions parametrize in $\mathbb{R}^2$?  {\it (Keep in mind that $x_0$ and $y_0$ are constants.)}
+
+\ap Here is an alternative approach to solving the differential equations in the previous problem.  Thanks to the particular structure of the system in Exercise 11, we can convert it into a single, second-order ODE.  Differentiating $\dot{x}=-y$ gives us $\ddot{x} = -\dot{y}$, and then substituting $\dot{y}=x$ gives us $\ddot{x}=-x$, or $\ddot{x}+x=0$.  Solve this second-order equation subject to the initial conditions $x(0)=x_0$ and $\dot{x}(0)=-y_0$.  Then use the result to find a formula for $y(t)$.  Compare with the conclusions in Exercise 11.
+
+\ap Let $R(t)$ represent Romeo's affection for Juliet at time $t$, and let $J(t)$ represent Juliet's affection for Romeo at time $t$.  Positive values of $R$ and $J$ represent love, and negative values represent hate.  (Let's call the units of these quantities `cupids'.)  Juliet becomes more  attracted to Romeo when he doesn't like her, and she becomes more repulsed by him when he does like her.  Romeo, on the other hand, becomes more attracted to Juliet when she is attracted to him.  Therefore their feelings for one another are modeled by the system of equations:
+\begin{align*}
+\dot{R} & = aJ \\ \dot{J} & = -bR,
+\end{align*}
+where $a$ and $b$ are positive constants.  Determine the behavior of $R$ and $J$ over time.  Will Romeo and Juliet find happiness together?  Explain.  Draw some trajectories on direction fields to illustrate.
+
+
+\ap Juliet, from the previous question, undergoes a sudden change in personality and ends up more like Romeo -- when he is attracted to her, she grows more attracted to him, and when he is repulsed by her, she grows more repulsed by him.  Write down a system of equations to model this new behavior and analyze it.  What happens to their long-term attraction for each other?  What does it depend upon?
+
+
+\ap Consider two interconnected tanks used to mix saltwater.  Both tanks begin with 100 liters of pure water.  A mixture of 50 grams of salt per liter of water is pumped into the first tank at a rate of 10 liters per minute.  Also, liquid from the second tank is pumped into the first tank at a rate of 5 liters per minute.  Liquid in the first tank is thoroughly mixed and pumped into the second tank at a rate of 15 liters per minute.  Liquid in the second tank is kept thoroughly mixed and drains out 10 liters per minute.  (Therefore, the total volume of liquid in both tanks remains constant.)  Set up an initial-value problem for two functions which described the rate of change of the masses of salt in each tank over time.
+\begin{center}
+\includegraphics[width=2.5in]{13-systems/connectedtanks.eps}
+\end{center}
+
+
+\end{multicols}

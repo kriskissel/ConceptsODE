@@ -1,0 +1,355 @@
+\chapter{Systems of Two Linear Equations}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+Find an explicit solution of the following initial-value problem::
+\[ \begin{cases} \dot{x} = -x+5y \\ \dot{y} = 5x-y \\ x(0)= 2 \\ y(0)=4 \end{cases} .\]
+\end{minipage}
+}
+\end{center}
+
+In this chapter we will study systems of the form
+\begin{equation} \begin {cases} \dot{x}  = ax+by \\ \dot{y}  = cx+dy \end{cases} \label{2x2linear},\end{equation}
+where $a, \ b, \ c$ and $d$ are constants.  These are 
+	\index{linear, constant-coefficient, homogeneous}%
+	{\bf linear, constant coefficient, homogeneous} systems of two ordinary differential equations.  If we add a driving term to the right side of one of the equations (e.g. $\dot{x} = ax + by + f(t)$), we would have a 
+	\index{non-homogeneous system}%
+	{\bf non-homogeneous} system.
+	
+We will focus now on finding explicit solutions for homogeneous systems, and to do so we will rely on some basic techniques from linear algebra.  Readers may wish to examine Appendix D before reading this chapter.
+
+Let's look at a slope field for the system in our prototype question:
+\begin{center}
+\includegraphics[width=2.5in]{14-2x2systems/prototype.eps}
+\end{center}
+This graph was drawn with all vectors having the same length, so that it would be easier to see their directions.  Notice how there appear to be some straight-line trajectories -- two pointing directly toward the origin, and two pointing directly away.  
+
+Let's assume for the moment that this interpretation of the graph is correct and see if we can use that to discover what explicit solutions of the ODE system might look like.  If a trajectory of (\ref{2x2linear}) follows a straight line through the origin, then the $x$ and $y$ coordinates must satisfy an equation for such a line: $\alpha x + \beta y =0$ for some constants $\alpha, \beta \in \R$, not both equal to zero.  If $\beta \neq 0$, then we can write $y = -\frac{\alpha}{\beta} x$ and insert this into the first equation of the prototype question to get $\dot{x} = \left(a-\frac{b\alpha}{\beta} \right)x$, any solution of which is some exponential function, $x(t) = C_1 e^{\lambda t}$, and plugging this into the identity $y=-\frac{\alpha}{\beta} x$ gives us another exponential function, $y(t)=C_2 e^{\lambda t}$.  (If instead we assumed that $\alpha \neq 0$, we would end up with the same result.)  This reasoning leads us to the following important conclusion:
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Straight Line Solutions of Linear Systems \normalcolor}}
+\index{straight line solutions}
+
+Any trajectory $(x(t),y(t))$ that satisfies 
+\[ \begin{cases} \dot{x}=a x + b y \\ \dot{y} = cx + dy \end{cases}\]
+and that follows a straight line through the origin can be written in the form
+\[ \left[ \begin{matrix} x(t) \\ y(t) \end{matrix} \right] = e^{\lambda t} \left[ \begin{matrix} C_1 \\ C_2 \end{matrix} \right] \]
+for some constants $\lambda, \ C_1, \ C_2$.
+\end{minipage}
+}
+\end{center}
+
+
+
+Before we use this fact, notice first that the system of equations can be written as a single matrix equation:
+\[ \startmatrix \dot{x} \\ \dot{y} \finishmatrix = \startmatrix ax+by \\ cx+dy \finishmatrix.\]
+Furthermore we can write the right side of this equation as a product of matrices:
+\[ \startmatrix \dot{x} \\ \dot{y} \finishmatrix = \startmatrix a & b \\ c & d \finishmatrix \startmatrix x \\ y \finishmatrix .\]
+If we now write $X = \startmatrix x \\ y \finishmatrix$ and $A = \startmatrix a & b \\ c & d \finishmatrix$, it follows that $\dot{X} = \startmatrix \dot{x} \\ \dot{y} \finishmatrix$, and the matrix equation above can be expressed as
+\[ \dot{X} = AX.\]
+In this form, the vector-valued function $X(t)$ is the unknown, and $A$ is a constant coefficient matrix.  
+
+In this form, our lemma tells us that any straight-line solution can be written in the form
+\[ X(t) = e^{\lambda t} \startmatrix C_1 \\ C_2 \finishmatrix.\]
+
+
+\example Consider the system in our prototype question, 
+\begin{equation} \begin{cases} \dot{x} = -x+5y \\ \dot{y}=5x-y \end{cases}. \label{prototypesystemequations} \end{equation}
+Using matrix notation, we can write this as
+\begin{equation} \dot{X}= \startmatrix -1 & 5 \\ 5 & -1 \finishmatrix X.\label{prototypesystem} \end{equation}
+The lemma tells us that any straight-line solution must be of the form $X=e^{\lambda t} \startmatrix C_1 \\ C_2 \finishmatrix$, and therefore $\dot{X}=\lambda e^{\lambda t} \startmatrix C_1 \\ C_2 \finishmatrix$.  Inserting these into (\ref{prototypesystem}) gives us
+\[ \lambda e^{\lambda t} \startmatrix C_1 \\ C_2 \finishmatrix = e^{\lambda t} \startmatrix -1 & 5 \\ 5 & -1 \finishmatrix \startmatrix C_1 \\ C_2 \finishmatrix.\]
+Divide both sides by the non-zero scalar function $e^{\lambda t}$ to obtain
+\[ \lambda  \startmatrix C_1 \\ C_2 \finishmatrix =  \startmatrix -1 & 5 \\ 5 & -1 \finishmatrix \startmatrix C_1 \\ C_2 \finishmatrix.\]
+This is precisely the statement that $\lambda$ is an eigenvalue of $\startmatrix -1 & 5 \\ 5 & -1 \finishmatrix$ and that $\startmatrix C_1 \\ C_2 \finishmatrix$ is a corresponding eigenvector.  The eigenvalues of $\startmatrix -1 & 5 \\ 5 & -1 \finishmatrix$ are $\lambda_1=4$ and $\lambda_2=-6$.  Eigenvectors corresponding to $\lambda_1$ are nonzero multiples of $\startmatrix 1 \\ 1 \finishmatrix$, and eigenvectors corresponding to $\lambda_2$ are nonzero multiples of $\startmatrix 1 \\ -1 \finishmatrix$.  In the first case, we get
+\[ X(t) = C e^{4t} \startmatrix 1 \\ 1 \finishmatrix,\]
+and in the second case,
+\[ X(t) = C e^{-6t} \startmatrix 1 \\ -1 \finishmatrix.\]
+That is to say, straight-line solutions of this system of ordinary differential equations have one of two possible forms:
+\[ \begin{cases} x(t) = C e^{4t} \\ y(t) = Ce^{4t} \end{cases} \ \ \ \ \ \ \ \ \ \ \mbox{or} \ \ \ \ \ \ \ \ \ \ \begin{cases} x(t) = C e^{4t} \\ y(t) = -Ce^{4t} \end{cases}.\]
+(In each case, the value of $C$ is the same in both lines.)
+\qed
+
+\begin{exe} For the system of equations in line (\ref{prototypesystemequations}): {\bf (a)} find a straight-line solution satisfying $x(0)=2, \ y(0)=2$; {\bf (b)} find a straight-line solution satisfying $x(0)=3, y(0)=-3$; is there a straight-line solution satisfying $x(0)=2, \ y(0)=4$?  Explain.
+\end{exe}
+
+\begin{exe} Fill in the details of finding the eigenvalues and eigenvectors in the previous example.  {\it (There is a review of the relevant linear algebra in the appendix.)}
+\end{exe}
+
+
+
+The reasoning in the last example can be applied to any constant-coefficient, linear, homogeneous system.  Remarkably, knowing how to find straight-line solutions will actually help us to find {\it all} solutions, thanks to the fact that our systems are linear.  The following exercises will provide us with the main ingredients we need for constructing more general solutions.
+
+\begin{exe} 
+Suppose $X(t) = e^{\lambda t} \xi$, where $\lambda$ is an eigenvalue of $A$ and $\xi$ is an associated eigenvector.  Prove that $X(t)$ satisfies $\dot{X} = AX$.
+\end{exe}
+
+\begin{exe}
+Suppose that $X_1(t)$ and $X_2(t)$ both satisfy the system of differential equations represented by $\dot{X} = AX$.  Prove that for any constant scalar coefficients $c_1$ and $c_2$ the function $X=c_1X_1+c_2X_2$ is also a solution.
+\end{exe}
+
+It is proven in linear algebra that if a $2 \times 2$ matrix $A$ has two distinct eigenvalues $\lambda_1$ and $\lambda_2$ (the word `distinct' meaning that $\lambda_1 \neq \lambda_2$), then any eigenvectors $\xi_1$ and $\xi_2$ associated to $\lambda_1$ and $\lambda_2$ must be linearly independent.  According to the two previous exercises, the function 
+\[ X(t) = c_2 e^{\lambda_1 t} \xi_1 + c_2 e^{\lambda_2 t} \xi_2 \]
+is a solution of $\dot{X}=AX$.  Notice that $X(0)= c_1\xi_1+c_2\xi_2$, and because the eigenvectors are linearly independent, it follows that any initial value of $X(0)$ can be satisfied by an appropriate choice of $c_1$ and $c_2$.  The existence and uniqueness theorem tells us that solutions of a linear system are unique for $t$ close to $t_0$ (actually, it turns out that they are unique {\it for all $t \in \R$}).  We can now state the following formula for finding general solutions of matrix differential equations.
+
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Solutions of Homogeneous Linear Systems with Distinct Eigenvalues \normalcolor}}
+
+Suppose that $A$ is a $2 \times 2$ matrix with distinct eigenvalues $\lambda_1$ and $\lambda_2$, and suppose that $\xi_1$ and $\xi_2$ are corresponding eigenvectors.  Then the general solution of $\dot{X} = AX$ is given by 
+\[ X(t) = c_1 e^{\lambda_1 t} \xi_1 + c_2 e^{\lambda_2 t} \xi_2.\]
+\end{minipage}
+}
+\end{center}
+
+
+
+We will also give a complete description of the general solution when the coefficient matrix $A$ has only one eigenvalue.  However, we will postpone that until we explore a few examples of this first result.
+
+\example Consider the initial-value problem in the prototype question for this chapter.  The general solution of this system is obtained from linear combinations of the straight-line solutions:
+\[ X(t) = c_1 e^{4t} \startmatrix 1 \\ 1 \finishmatrix + c_2 e^{-6t} \startmatrix 1 \\ -1 \finishmatrix,\]
+or
+\[ \begin{cases} x(t) = c_1 e^{4t}+c_2e^{-6t} \\ y(t) = c_1 e^{4t} - c_2 e^{-6t} \end{cases}.\]
+Inserting $t=0$ and the initial conditions for $x$ and $y$ gives us
+\[  2 = c+1+c_2 \ \ \ \mbox{and} \ \ \ 4 = c_1-c_2.\]
+Thus solution of this algebraic system of equations is $c_1=3, \ c_2=-1$.  Therefore
+\[ \begin{cases} x(t) = 3e^{4t}-e^{-6t} \\ y(t) = 3e^{4t}+e^{6t} \end{cases}.\]
+\qed
+
+
+
+
+\example Solve the initial-value problem:
+\[ \left\{ \begin{matrix} \dot{x} = x+y \\ \dot{y} = 3x-y \\ x(0)=1 \\ y(0)=2 \end{matrix} \right. \]
+
+If we write this as a matrix differential equation $\dot{X}=AX$, the coefficient matrix is $A = \startmatrix 1 & 1 \\ 3 & -1 \finishmatrix$.  The eigenvalues of $A$ are $\lambda_1=2$ and $\lambda_2=-2$.  An eigenvector corresponding to $\lambda_1=2$ is $\xi_1= \startmatrix 1 \\ 1 \finishmatrix$, and an eigenvector corresponding to $\lambda_2=-2$ is $\xi_2 = \startmatrix 1 \\ -3 \finishmatrix$.  Therefore the general solution is given by
+\[ X(t) = c_1 e^{2t} \startmatrix 1 \\ 1 \finishmatrix + c_2 e^{-2t} \startmatrix 1 \\ -3 \finishmatrix.\]
+Combining the right side into a single vector and writing the matrix $X$ in terms of its component functions yields
+\[ \startmatrix x(t) \\ y(t) \finishmatrix = \startmatrix c_1 e^{2t} + c_2 e^{-2t} \\ c_1 e^{2t} -3c_2 e^{-2t} \finishmatrix.\]
+This gives us general solutions for the scalar functions: $x(t) = c_1e^{2t}+c_2 e^{-2t}$ and $y(t) = c_1 e^{2t} -3c_2 e^{-2t}$.  Inserting the initial conditions $x(0)=1$ and $y(0)=2$ gives us a system of equations we can use to solve for the coefficients $c_1$ and $c_2$:
+\[ \left\{ \begin{matrix} 1 = c_1+c_2 \\ 2 = c_1 - 3c_2 \end{matrix} \right. \implies c_1=\frac{5}{4} \ \ \mbox{and} \ \ c_2=-\frac{1}{4} .\]
+Now we have 
+\[ x(t) = \frac{5}{4}e^{2t} - \frac{1}{4}e^{-2t} \ \ \ \mbox{and} \ \ \ y(t) = \frac{5}{4}e^{2t} + \frac{3}{4}e^{-2t}.\]
+\qed
+
+\begin{exe} 
+Verify directly that the functions $x$ and $y$ found in the previous example satisfy the system of differential equations there.
+\end{exe}
+
+\begin{exe}
+Solve the initial-value problem
+\[ \left\{ \begin{matrix} \dot{x} = 2x+y \\ \dot{y} = 4x+3y \\ x(0)=0 \\ y(0)=4 \end{matrix} \right.\]
+\end{exe}
+
+
+\example Consider the initial-value problem
+\[ \left\{ \begin{matrix} \dot{x} = 2x-2y \\ \dot{y} = x \\ x(0)=0 \\ y(0)=1 \end{matrix} \right.\]
+Written as $\dot{X}=AX$, the coefficient matrix will be $A=\startmatrix 2 & -2 \\ 1 & 0 \finishmatrix$.  The characteristic equation is $\lambda^2-2\lambda + 2=0$, and this has complex roots: $\lambda_1=1+i$ and $\lambda_2=1-i$.   Inserting the first eigenvalue into the equation $(A-\lambda I)\xi_1=0$ gives us
+\[ \startmatrix 2-(1+i) & -2 \\ 1 & -(1+i) \finishmatrix \startmatrix a \\ b \finishmatrix = \startmatrix 0 \\ 0 \finishmatrix,\]
+where $\xi_1 = \startmatrix a \\ b \finishmatrix$.  Hence
+\[ \startmatrix 1-i & -2 \\ 1 & -1-i \finishmatrix \startmatrix a \\ b \finishmatrix = \startmatrix 0 \\ 0 \finishmatrix.\]
+The first row of this matrix equation is equivalent to the scalar equation
+\[ (1-i)a-2b=0,\]
+from which we can conclude $b=\frac{(i-1)a}{2}$.  A simple choice for the eigenvector would be $\xi_1= \startmatrix 1 \\ \frac{i-1}{2} \finishmatrix$.  A similar analysis wil lead us to the eigenvector $\xi_2 = \startmatrix 1 \\ \frac{-i-1}{2} \finishmatrix$ corresponding to $\lambda_2=1-i$.  Now we can write the general solution as
+\[ X(t) = c_1 e^{(1+i)t} \startmatrix 1 \\ \frac{i-1}{2} \finishmatrix + c_2 e^{(1-i)t} \startmatrix 1 \\ \frac{-i-1}{2} \finishmatrix.\]
+We write the matrix in component form to obtain
+\begin{align*}
+x(t) & = c_1 e^{(1+i)t} + c_2 e^{(1-i)t} \\
+y(t) & = c_1\frac{(i-1)}{2} e^{(1+i)t} + c_2 \frac{-i-1}{2} e^{(1-i)t}.
+\end{align*}
+The initial conditions imply 
+\begin{align*}
+0 &= c_1+c_2 \\
+1 &= c_1 \frac{(i-1)}{2}+c_2 \frac{(-i-1)}{2},
+\end{align*}
+which has solutions $c_1=-i$ and $c_2=i$.  We insert these values and use Euler's identity to simplify the formulas for $x(t)$ and $y(t)$:
+\begin{align*}
+x(t) & = -i e^{(1+i)t} + i e^{(1-i)t} \\
+& = -ie^t \left( \cos(t)+i\sin(t) \right) + i e^{t} \left( \cos(t)-i\sin(t) \right) \\
+& = 2 e^t \sin(t)
+\end{align*}
+and
+\begin{align*}
+y(t) & = -i \frac{i-1}{2}e^{(1+i)t} + i \frac{-i-1}{2} e^{(1-i)t} \\
+& = \frac{1+i}{2}e^t \left( \cos(t)+i\sin(t) \right) + \frac{1-i}{2}e^t \left( cos(t) - i \sin(t) \right) \\
+& = e^t \cos(t) - e^t \sin(t).
+\end{align*}
+\qed
+
+The solution in the the previous example seems to `spiral outward' from the origin as $t$ increases.  A direction field for this system will help us to visualize why:
+
+\begin{center}
+\includegraphics[width=2.5in]{14-2x2systems/outwardspiral.eps}
+\end{center}
+
+
+\begin{exe}
+Solve the initial value problem:
+\[ \left\{ \begin{matrix} \dot{x} = y \\ \dot{y} = -x \\ x(0)=1 \\ y(0)=2 \end{matrix} \right. \]
+\end{exe}
+
+
+We need to explore what to do if there is only one eigenvalue for the coefficient matrix $A$.  There are really two cases here: either it is possible to find two linearly independent eigenvectors for the same eigenvalue $\lambda$, or it is not.  The first case turns out to be uninteresting, because if a $2 \times 2$ matrix $A$ has two linearly independent eigenvectors for the eigenvalue $\lambda$, then $A$ is a multiple of the identity matrix $A=\lambda I$.  The reason this is uninteresting is that it implies that the corresponding system of differential equations is
+\[ \left\{ \begin{matrix} \dot{x} = \lambda x \\ \dot{y} = \lambda y \end{matrix} \right. ,\]
+and this system is 
+	\index{uncoupled}%
+	{\bf uncoupled}, meaning that the equations for $x$ and $y$ can each be solved separately.  Nothing besides separation of variables or the method of integrating factors is necessary for each equation.  Thus we will focus our attention on the case when all the eigenvectors for $A$ are scalar multiples of a single eigenvector $\xi$.
+
+To this end, we introduce another idea from linear algebra.  If $\lambda$ is an eigenvector for $A$ and $\xi$ is an associated eigenvector, then a 
+	\index{generalized eigenvector}%
+	{\bf generalized eigenvector} $\eta$ is a vector that solves the matrix equation
+\[ (A-\lambda I) \eta = \xi.\]
+(Note the similarity of this with the matrix equation that defines an eigenvector, $(A-\lambda I)\xi = 0$.)  
+
+\example Let $A = \startmatrix 1 & 1 \\ 0 & 1 \finishmatrix$.  The characteristic equation is $(\lambda-1)^2=0$, so the only eigenvalue is $\lambda=1$.  A corresponding eigenvector is $\xi= \startmatrix 1 \\ 0 \finishmatrix$.  We want to find a generalized eigenvector $\eta$, so we need to solve the matrix equation $(A-I)\eta = \xi$:
+\[ \startmatrix 0 & 1 \\ 0 & 0 \finishmatrix \startmatrix k \\ l \finishmatrix = \startmatrix 1 \\ 0 \finishmatrix.\]
+The first row of this matrix equation implies $l=1$; meanwhile $k$ can be anything.  Therefore, any generalized eigenvector can be written as $\startmatrix k \\ 1 \finishmatrix$, and a simple choice would be $\eta = \startmatrix 0 \\ 1 \finishmatrix$.
+\qed
+
+\begin{exe}
+The matrix $A = \startmatrix 1 & 1 \\ -4 & 5 \finishmatrix$ has only one eigenvalue, $\lambda = 3$, and $\xi = \startmatrix 1 \\ 2 \finishmatrix$ is a corresponding eigenvector.  Verify these statements, and then find a generalized eigenvector.
+\end{exe}
+
+With generalized eigenvectors at our disposal, we can now state the necessary formula for a general solution.
+
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Solutions of Homogeneous Linear Systems with Repeated Eigenvalues \normalcolor}}
+
+Suppose that $A$ is a $2 \times 2$ matrix with only one eigenvalue, $\lambda$.  Suppose also that $A$ is not a scalar multiple of the identity matrix.  Let $\xi$ be an eigenvector of $A$ and let $\eta$ be a generalized eigenvector.  Then the general solution of $\dot{X} = AX$ is
+\[ X(t) = c_1 e^{\lambda t} \xi + c_2 \left( te^{\lambda t} \xi + e^{\lambda t} \eta \right).\]
+\end{minipage}
+}
+\end{center}
+
+
+
+We already know that the function $X_1(t)=e^{\lambda t} \xi$ satisfies the differential equation, and we know that linear combinations of solutions are solutions, so we need to prove that the function $X_2(t)=te^{\lambda t} \xi + e^{\lambda t} \eta$ is a solution of $\dot{X}=AX$.  Observe that
+\[ \dot{X}_2 = e^{\lambda t} \xi + \lambda t e^{\lambda t} \xi + e^{\lambda t} \eta \]
+by the product rule, and then
+\begin{align*}
+A X_2 & = A \left( te^{\lambda t} \xi + e^{\lambda t} \eta \right) \\
+& = te^{\lambda t} A \xi + e^{\lambda t} A \eta \\
+& = te^{\lambda t} \lambda \xi + e^{\lambda t} \left( \xi + \lambda \eta \right) \\
+& = \dot{X}_2,
+\end{align*}
+as desired.  In the second to last line above, we used the facts that eigenvectors satisfy $A \xi = \lambda \xi$ and that generalized eigenvectors satisfy $A \eta = \lambda \eta + \xi$.  That last fact also implies that $\eta$ cannot be an eigenvector, since $\xi \neq 0$, and consequently $\eta$ is not a scalar multiple of $\xi$.  Therefore the collection $\{ \xi,\ \eta\}$ is linearly independent.  That tells us that an appropriate selection of $c_1$ and $c_2$ in the general formula will allow us to satisfy any initial condition for $X(0)$.  
+
+\example Consider the initial value problem
+\[ \left\{ \begin{matrix} \dot{x} = 2x+3y \\ \dot{y}=-3x+8y \\x(0)=1 \\ y(0)=0 \end{matrix} \right. \]
+The characteristic equation is $(\lambda-5)^2=0 $, so $\lambda=5$ is the only eigenvalue.  An eigenvector to go with this eigenvalue is $\xi = \startmatrix 1 \\ 1 \finishmatrix$.  The coefficient matrix is not a mulitple of the identity matrix, so we next seek a generalized eigenvector $\eta$ satisfying $(A-5I)\eta=\xi$:
+\[ \startmatrix -3 & 3 \\ -3 & 3 \finishmatrix \startmatrix a \\ b \finishmatrix = \startmatrix 1 \\ 1 \finishmatrix,\]
+which implies $-3a+3b=1$, and we can select the solution $a=1, \ b= \frac{4}{3}$, so that $\eta = \startmatrix 1 \\ \frac{4}{3} \finishmatrix$.  Now we can write down the general solution of the matrix differential equation,
+\[ X(t) = c_1 e^{5t} \startmatrix 1 \\ 1 \finishmatrix + c_2 \left( te^{5t} \startmatrix 1 \\ 1 \finishmatrix + e^{5t} \startmatrix 1 \\ \frac{4}{3} \finishmatrix \right) .\]
+The component functions are therefore
+\begin{align*} x(t) & = (c_1+c_2) e^{5t}+c_2 te^{5t} \\  y(t) & = (c_1 + \frac{4}{3}c_2) e^{5t} + c_1 t e^{5t} \end{align*}
+Inserting the initial conditions gives us
+\begin{align*} 1 & = c_1 + c_2 \\ 0 & = c_1 + \frac{4}{3}c_2, \end{align*}
+and this algebraic system has solutions $c_1=4, \ c_2=-3$.  Therefore the solutions we need are
+\begin{align*} x(t) & = e^{5t}-3 te^{5t} \\  y(t) & = 4 t e^{5t} \end{align*}
+\qed
+
+
+\begin{exe}
+Solve the initial value problem:
+\[ \left\{ \begin{matrix} \dot{x} = 2x+4y \\ \dot{y}=-x+6y \\x(0)=0 \\ y(0)=2 \end{matrix} \right. \]
+\end{exe}
+
+
+
+
+
+%%% Cut below here for the book form.
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Find all straight-line solutions of the given system of differential equations.
+\end{instructions}
+
+\smallskip
+\ap $\begin{cases} \dot{x} = 2x+4y \\ \dot{y} = 8x+6y \end{cases}$
+
+\ap $\begin{cases} \dot{x} = x+2y \\ \dot{y} = 3x+2y \end{cases}$
+
+
+\begin{instructions}
+Find the general solution of the system of differential equations.
+\end{instructions}
+
+\smallskip
+\ap $\begin{cases} \dot{x} = 3x+y \\ \dot{y} = 2x+y \end{cases}$
+
+\ap $\begin{cases} \dot{x} = 2x+3y \\ \dot{y} = 2x+y \end{cases}$
+
+\ap $\begin{cases} \dot{x} = -y \\ \dot{y} = x \end{cases}$
+
+\ap $\begin{cases} \dot{x} = x+y \\ \dot{y} = -x+y \end{cases}$
+
+\ap $\begin{cases} \dot{x} = 4x-y \\ \dot{y} = 8x-2y \end{cases}$
+
+\ap $\begin{cases} \dot{x} = -9x + 2y \\ \dot{y} = -18x + 3y \end{cases}$
+
+\begin{instructions} Solve the initial value problem.
+\end{instructions}
+
+\smallskip
+\ap $\begin{cases} \dot{x} = 6x+2y \\ \dot{y} = 4x+2y \\ x(0)=1 \\ y(0)=2 \end{cases}$
+
+\ap $\begin{cases} \dot{x} = 2x+3y \\ \dot{y} = 2x+y \\ x(0)=0 \\ y(0)=1 \end{cases}$
+
+\ap $\begin{cases} \dot{x} = y \\ \dot{y} = -x \\ x(0)=3 \\ y(0)=4\end{cases}$
+
+\ap $\begin{cases} \dot{x} = x+y \\ \dot{y} = -x+y \\ x(0)=1 \\ y(0)=-1 \end{cases}$
+
+\ap $\begin{cases} \dot{x} = 4x-y \\ \dot{y} = 8x-2y \\ x(0)=1 \\ y(0)=2 \end{cases}$
+
+\ap $\begin{cases} \dot{x} = -9x + 2y \\ \dot{y} = -18x + 3y \\ x(0)=0 \\ y(0)=1 \end{cases}$
+
+\smallskip
+\hrule
+
+
+
+\smallskip
+\ap Consider the second order equation $\ddot{u} +2\dot{u}-3u=0$.  If we introduce a function $v$ satisfying $\dot{u}=v$, then it also follows that $\dot{v}=\ddot{u}=3u-2\dot{u}=3u-2v$.  Now for these functions $u$ and $v$ we have a first order system of equations:
+\[ \begin{cases} \dot{u} =  v \\ \dot{v} = 3u-2v \end{cases} .\]
+Find the general solution for this system.  In particular, verify that it gives the same general solution for $u$ that is obtained using other means.
+
+\ap Following the approach illustrated in Exercise 24, find the general solution of $\ddot{x}+2\dot{x}+x=0$ by letting $y=\dot{x}$ and then solving a first order linear system of differential equations for $(x(t),y(t))$.  Verify that the solution you obtain for $x(t)$ is the same you as you would find by solving the second order equation for $x$ using other means.
+
+\ap Find general solutions for the following systems of ODE:
+\[ \begin{cases} \dot{R} = aJ \\ \dot{J} = bR \end{cases} \ \ \ \ \ \mbox{and} \ \ \ \ \ \begin{cases} \dot{R} = aJ \\ \dot{J} = -bR \end{cases}.\]
+Compare your results with your answers for Problems 13.6 and 13.7.
+
+\ap Solve the initial-value problem 
+\[ \begin{cases} \dot{x} = -y \\ \dot{y} = x \\ x(0)=x_0 \\ y(0)=y_0 \end{cases} \]
+using the techniques from this chapter.  Compare your results with those of Exercises 13.11 and 13.12.  Are they equivalent?
+
+
+
+\end{multicols}
+
+
+
+

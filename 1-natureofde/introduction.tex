@@ -1,0 +1,179 @@
+\documentclass[12pt,letterpaper,twoside]{amsart}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{ulem}
+\newcounter{example}
+\newcounter{exercise}
+\newcounter{problem}
+\newcommand{\example}{\bigskip \noindent {\large {\sc Example \arabic{example}:}} \addtocounter{example}{1}}
+\newcommand{\exercise}{\bigskip \noindent {\large {\sc Exercise \arabic{exercise}:}} \addtocounter{exercise}{1}}
+\newcommand{\problem}{\bigskip \noindent {\large {\sc Problem \arabic{problem}:}} \addtocounter{problem}{1}}
+\newcommand{\tech}{\marginpar{\vskip 10mm \begin{center}\includegraphics[width=0.25in]{calculatorimagesmall.eps} \end{center}}}
+\newcommand{\solution}{\medskip \noindent {\bf Solution: }}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+
+\begin{document}
+
+\sffamily
+
+%%%%  switch the commenting on this line and the next \chapter{Introduction}
+\begin{center} {\LARGE Introduction} \end{center}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+A {\bf differential equation} is an equation involving an unknown function and its derivatives.  Here are a few examples:
+
+\begin{itemize}
+\item $\frac{du}{dt} = 3u+2t$, where $u(t)$ is the unknown function
+\item $\frac{dy}{dx} = y^2$, where $y(x)$ is the unknown function
+\item $\frac{\partial f}{\partial x} = 2 + \frac{\partial f}{\partial y}$, where $f(x,y)$ is the unknown function
+\item $\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = \frac{\partial f}{\partial t}$, where $f(x,y,t)$ is the unknown function.
+\end{itemize}
+
+The first two examples above are {\bf ordinary differential equations} because the unknown functions are functions of just one variable, hence the derivatives are ordinary derivatives as studied in single variable calculus; this is in contrast to the last two examples where the unknown is a function of two or more variables so that the derivatives are partial derivatives, as studied in multivariable calculus.  These last two are examples of {\bf partial differential equations}.  Generally speaking, the study of partial differential equations requires more mathematical background and is usually reserved for a second course on differential equations.  The abbreviation ODE is used to mean either an ordinary differential equations or equations (it can be either singular or plural, depending on context).  The abbreviation PDE is used similarly for a partial differential equation or equations.
+
+\exercise Classify each of the following as either an ODE or a PDE.
+\begin{enumerate}
+\item $\left(\frac{dy}{dx} \right)^2 = y^2 + \frac{d^2y}{dx^2} $
+\item $u_x=u_y$
+\end{enumerate}
+
+\bigskip
+For the remainder of this text, we will only concern ourselves with ordinary differential equations.
+
+A {\bf solution} of an ODE is a function, say $y(x)$, such that $y$ and its derivatives satisfy the differential equation for all $x \in I$, where $I$ is an interval in $\R$.  In particular, $y(x)$ must be defined at every point $x \in I$ for us to say that it is a solution on $I$.
+
+\example Consider the function $y=\frac{1}{2-x}$.  This function is a solution of the differential equation $y'=y^2$ on the interval $I=(-\infty,2)$ because
+\[ y'=\frac{d}{dx}\left[(2-x)^{-1}\right] = -(2-x)^{-2}(-1)=\left(\frac{1}{2-x} \right)^2 = y^2.\]
+It is also a solution on the interval $I=(2,\infty)$, but notice that because of the discontinuity of $y$ at $x=2$, this function is {\bf not} a solution in the interval $I=\R$.
+\qed
+
+An {\bf initial value problem} (or IVP) is an ordinary differential equation together with an {\bf initial condition} of the form $y(x_0)=y_0$, where $x_0$ and $y_0$ are given.  Here's an example:
+\[ \frac{dy}{dx} = 2y+x^2, \ \ \ y(0)=1.\]
+A {\bf solution} of an initial value problem is a solution of the differential equation defined on an interval $I \subset R$ that contains $x_0$ and such that the initial condition $y(x_0)=y_0$ holds true.  The largest interval $I$ containing $x_0$ for which the function $y$ is defined is called the {\bf domain of definition} for the solution of the IVP.
+
+\exercise Consider the initial value problem 
+\[ \frac{dy}{dx}= y^2, \ \ \ y(0)=1.\]
+Prove that the function $y=\frac{1}{2-t}$ {\it is not} a solution of the IVP, but that the function $y=\frac{1}{1-t}$ {\it is}.  
+
+\bigskip
+Let us now start to look at how one might find a solution to an initial value problem.
+
+The following example illustrates a mathematical process that is typically taught in integral calculus for solving certain differential equations.  The technique is called {\bf separation of variables}.
+
+\example A tank containing 100 liters of saltwater solution (3 grams of salt per liter of water) leaks at a rate of 4 liters per minute.  The level of liquid in the tank is kept constant by adding 4 liters per minute of pure water.  The solution is kept thoroughly mixed.  How much salt will there be in the tank after 30 minutes?
+
+\solution Let $y(t)$ denote the number of grams of salt in the tank after $t$ minutes. Then the initial mass of salt is $y(0)=(100 \mbox{liters})\left(\frac{3 \ \mbox{grams}}{\mbox{liter}}\right) = 300 \mbox{grams}$.  But because the concentration of salt in the tank is changing over time, the rate at which salt is leaving the tank is also changing; it is given by
+\[ \frac{dy}{dt}=-\left( 4 \frac{\mbox{liters}}{\mbox{minute}} \right) \left( \frac{y \ \mbox{grams}}{100 \mbox{liters}} \right) = -\frac{y}{25}   \frac{\mbox{grams}}{\mbox{minute}}.\]
+That is to say, the rate at which salt leaves the tank is proportional to how much salt is in the tank at that instant.  We will solve the equation $\frac{dy}{dt}= -\frac{y}{25}$ by separating the variables in the following manner.  We move all the y's to one side of the equation algebraically and we move all of the t's (including the dt) to the other side:
+\[ \frac{dy}{y}=-\frac{1}{25}dt\]
+Then we anti-differentiate both sides:
+\[ \int \frac{dy}{y}=\int -\frac{1}{25} dt \]
+so that
+\[ \ln |y| + c_1 = -\frac{t}{25} + c_2.\]
+Since $c_1$ and $c_2$ are both constants, we can combine them into a single constant $c=c_2-c_1$ to write
+\[ \ln |y| = -\frac{t}{25}+c\]
+Exponentiate both sides to obtain
+\[ |y| = e^{-\frac{t}{25}+c},\]
+and remove the absolute value signs by writing the relationship as
+\[ y = \pm e^{-\frac{t}{25}+c}.\]
+Note that we can also write this in the form
+\[ y = \pm e^c e^{-\frac{t}{25}},\]
+and the advantage of this is that we can combine the entire expression $\pm e^c$ into a single coefficient, which we will denote by $A$:
+\[ y=Ae^{-\frac{t}{25}}\]
+We claim that functions of this form solve the differential equation $\frac{dy}{dt}=-\frac{y}{25}$.  This can be readily verified by calculating the derivative:
+\[ \frac{d}{dt} \left[ Ae^{-\frac{t}{25}} \right] = -\frac{1}{25}Ae^{-\frac{t}{25}} = -\frac{y}{25}.\]
+We can also determine what the coefficient $A$ must be in this model because we have the knowledge that the initial mass is 300 grams, so that $y(0)=300$.  Plugging in $y=300$ and $t=0$ gives us the value $A=300$.  Therefore 
+\[ y(t) = 300e^{-\frac{t}{25}} \ \ \ \mbox{grams}\]
+Thus the mass of salt in the tank after 30 minutes have passed will be
+\[ y(30)=300e^{-\frac{30}{25}} \approx 90.4 \ \ \ \mbox{grams}.\]
+\qed
+
+In the preceeding example, the unknown function was $y(t)$, and it was determined by two facts:
+\begin{itemize}
+\item it satisfied the differential equation $\frac{dy}{dt}=-\frac{y}{25}$ and
+\item it satisfied the initial condition $y(0)=300$.
+\end{itemize}
+
+These two conditions constituted the initial value problem.  Before we used the initial condition $y(0)=300$, we had come up with the formula $y=Ae^{-\frac{t}{25}}$.  Any value we choose for $A$ would give us a solution of the differential equation -- we only had to decide which value for $A$ would allow us to satisfy the initial condition.  Because we can solve {\it any} initial value problem by choosing an appropriate value for the parameter $A$, the formula $y=Ae^{-\frac{t}{25}}$ is called a {\bf general solution} for the differential equation.
+
+\exercise {\bf (a)} Find a general solution of the differential equation $\frac{dy}{dx}=\frac{x}{y^2}$.  {\bf (b)} Solve the initial value problem $\frac{dy}{dx}=\frac{x}{y^2}, \ y(0)=2$.
+
+\exercise Use separation of variables to find a function that satisfies the differential equation $\frac{dy}{dx}=xy^2$ and the initial condition $y(0)=1$.
+
+\exercise Find a function that satisfies the differential equation $\frac{dx}{dt} = x^2+1$ and the initial condition $x(0)=0$.
+
+\bigskip
+Example 2 and Exercises 2 through 5 above all contain {\bf first-order} differential equations, because the first derivative is the highest order of derivative that appears in the equation.  In general, we call a differential equation {\bf $n^{th}$ order} if the $n^{th}$ derivative is the highest order derivative in the equation.  With this terminology, the equation $\frac{d^3y}{dx^3} + \left(\frac{dy}{dx} \right)^4=3$ is third order.
+
+\exercise Classify the order of the following differential equations:
+\begin{enumerate}
+\item $\frac{dy}{dt}=\left( \frac{d^2y}{dt^2} \right) +y^3$
+\item $\frac{du}{dv} + \left( \frac{du}{dv} \right)^3 = u-v^4$
+\item $\frac{d^4y}{dx^4}=(x+y)^2$
+\end{enumerate}
+
+\bigskip
+With ordinary differential equations, we can use other notations to indicate the derivatives, and we usually draw conclusions from context about what symbol represents the independent variable.  For example, the differential equation 
+\[ y'=3yx^4\]
+indicates the presence of 2 variables, $x$ and $y$, and since we have a derivative of $y$ present, $x$ must be the independent variable.  Therefore the unknown here is the function $y(x)$.  On the other hand, the equation
+\[ y'=3y\]
+shows us only one variable, $y$, which is clearly a dependent variable because the term $y'$ appears in the equation.  Since no independent variable is named, we are usually free to choose whatever we like.  We might decide to write the function $y$ in terms of a variable $x$, in which case separation of variables would give us solutions of the form $y(x)=Ae^{3x}$.  But we could just as easily decide to call the independent variable something else, say $t$, in which case the solutions would have the form $y(t)=Ae^{3t}$.  If we knew from context that this equation describes a quantity changing over time, that would be a strong reason to choose $t$ as the independent variable.
+
+Another way to express a derivative is with `dot notation', as in the following ODE:
+\[ \dot{y} = 3+t\]
+The dot indicates a first derivative with respect to {\it time}.  This is always the convention with dot notation: the independent variable must represent time.  Otherwise, we should use prime notation like $y'$.  
+
+Dot notation can be extended to higher derivatives.  The equation 
+\[ \ddot{y}+3\dot{y}+2y=0\]
+involves both first and second derivatives of $y$ with respect to time.
+
+\exercise Find a solution of the ODE $\dot{y}=ky$ subject to the initial condition $y(0)=y_0$.  Here, $k$ and $y_0$ are both unknown constants.
+
+\exercise Verify that the function $y=3\cos(t) -2\sin(t)$ is a solution of the ODE $\ddot{y}+y=0$.
+
+
+
+%% Cut below here for the book form.
+
+\begin{center} {\LARGE Problems} \end{center}
+
+\setcounter{problem}{1}
+
+\problem Separation of variables can be applied to ODE of the form
+\[ \frac{dy}{dx} = \frac{f(x)}{g(y)}.\]
+Let $F$ and $G$ be functions satisfying $F'=f$ and $G'=g$.  For simplicity, assume that the function $G$ is invertible, and that both $F$ and $G$ are defined for all real numbers.
+
+{\bf (a)} Use separation of variables on the equation $\frac{dy}{dx} = \frac{f(x)}{g(y)}$ to derive the following formula for a solution: $y=G^{-1}(F(x)+C)$, where $C$ is an arbitrary constant.
+
+{\bf (b)} Use implicit differentiation to prove that a function of the form $y=G^{-1}(F(x)+C)$ solves the ODE $\frac{dy}{dx}= \frac{f(x)}{g(y)}.$
+
+\problem If an object sits in surroundings that are a constant temperature $K$, then Newton's Law of Cooling tells us that the rate of change of the object's temperature is proportional to the difference in temperature between the object and its surroundings:
+\[ \frac{dT}{dt} = k(T-A).\]
+Here, $T(t)$ is the object's temperature, $A$ is the ambient temperature of the object's surroundings, and $k$ is a constant of proportionality.  (This constant depends on the material of the object and its surroundings.)
+
+{\bf (a)} Find a general solution of the differential equation above. (You answer will contain three parameters: $A$, $k$, and $C$, where $C$ arises from the process of anti-differentiation.)
+
+{\bf (b)} A hot turkey comes out of the oven and has an initial temperature of $170$ degrees Fahrenheit.  The turkey sits in a room whose temperature is $65$ degree Fahrenheit.  After 10 minutes, the turkey's temperature is $168$ degrees.  How much longer will it take until the turkey's temperature is $140$ degrees Fahrenheit?
+
+%%\problem The exponential model of population growth asserts that a population wil grow at a rate that is proportional to it's size:
+%%\[ \dot{y}=ky.\]
+%%However, populations (whether they be people, rabbits or bacteria( usually cannnot grow indefinitely because they need resources from the environment to thrive.  When the population gets too large, the resources of the nevironlmet will not be enough to support such rapid growth.  One mathematical model of polulation gorowth that takes this into account is the so-called {\bf logistic growth model}:
+%%\[ \dot{y} = ky(M-y).\]
+%%The constant $M$ in this differential equation represents a {\bf carrying capacity} -- as the size of the population $y$ approaches the carrying capacity $M$, the rate of growth will slow down.  
+%%
+%%{\bf (a)} Find a general solution of the logistic growth model.
+%%
+%%{\bf (b)} Imagine a population of bacteria that would, in the absence of resource limitations, double in size every two days.  ??????????????????????
+
+
+\end{document}

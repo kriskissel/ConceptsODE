@@ -1,0 +1,280 @@
+\chapter{Matrix Algebra}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+In this appendix we introduce some basic terminology and notation used in linear algebra.
+
+
+Our first goal here is to develop an efficient means of representing a system of $m$ linear algebraic equations in $n$ unknowns, $x_1,x_2,...,x_n$:
+\begin{equation} 
+\begin{matrix} a_{11}x_1 + a_{12}x_2+ \cdots a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2+ \cdots a_{2n}x_n = b_2 \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2+ \cdots a_{mn}x_n = b_m \end{matrix} .\label{systemoflinearequations} \end{equation}
+
+
+
+\bigskip
+\noindent
+{\sc Matrices}
+
+To achieve this end, our main objects of discussion will be 
+	\index{matrices}%
+	{\bf matrices} (which is the plural form of the word 
+	\index{matrix}%
+	{\it matrix}).  A {\bf matrix} is a collection of numbers $a_{ij}$, where $i$ and $j$ are independent {\bf indices}: $i=1,2,...,m$ and $j=1,2,...,n$; the symbol $i$ here is an 
+	\index{index}%
+	{\bf index}, as is the symbol $j$ 
+	\index{indices}%
+	({\it indices} is the plural form of {\it index}).  Each number $a_{ij}$ is called an 
+	\index{entry}%
+	{\bf entry} of the matrix.  We often display a matrix as a rectangular array in the form 
+\begin{equation} \startmatrix a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \cdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \finishmatrix, \label{matrix} \end{equation}
+and we can use a single symbol, such as $A$, to denote the entire matrix.  It is common to denote a matrix by a capital letter, such as $B$, and its entries by the corresponding lower-case letter with indices, such as $b_{ij}$.  Alternatively, we can indicate the entries of $B$ by using the functions $ent_{ij}$, which `extract' the entries: $ent_{ij}(B)=b_{ij}$.
+
+\appendixexample For the matrix $B=\startmatrix 2 & 1 \\ 3 & -1 \finishmatrix$, we have $b_{22}=-1$ and $ent_{21}(B)=3$. \qed
+
+Horizontal subsets of (\ref{matrix}) are called 
+	\index{rows}%
+	{\bf rows}, and vertical subsets are called 
+	\index{columns}%
+	{\bf columns}.  Therefore the matrix in (\ref{matrix}) has $m$ rows, and it has $n$ columns.  These numbers are the 
+	\index{dimension}%
+	{\bf dimensions} of the matrix; we can also say the the {\bf dimension} of the matrix is $m \times n$.  (This is read aloud as `` m by n''.)  If the entries of the matrix $A$ are real numbers, we abbreviate all this by writing $A \in \mathbb{R}^{m \times n}$ {\it (`A is in the set of $m \times n$ real matrices')}.  But we can also consider matrices with complex-valued entries, in which case we would write $A \in \mathbb{C}^{m \times n}$ {\it (`A is in the set of $m \times n$ complex matrices')}.  We say that two matrices are 
+	\index{equal matrices}%
+	{\bf equal} if their corresponding coefficients are equal: $A=B$ if and only if $a_{ij}=b_{ij}$ for all indices $i,j$.  Two matrices can only be equal if they have they have the same dimension.
+
+\appendixexample Consider the matrix
+\[ C = \startmatrix 2 & -1 & 3 \\ 4 & -1 & 3 \finishmatrix.\]
+The matrix $C$ has 2 rows and 3 columns, so the dimension of this matrix is $2 \times 3$.  All the entries are real numbers, so $C \in \mathbb{R}^{2 \times 3}$.  The entries of the matrix are
+\[ c_{11}=2, \ c_{12}=-1, \ c_{13}=3, \ c_{21}=4, \ c_{22}=-1, \ c_{23}=3.\]
+\qed
+
+Note from the previous example that, even though the second and third columns are identical, we still say that the matrix has 3 columns.
+
+\begin{appendixexe} Consider the matrix
+\[ D = \startmatrix 3 & 5 \\ 2 & -1 \\ -3 & 0 \\ 0 & 1 \finishmatrix.\]
+Identify the dimension of $D$, and list all of its entries.
+\end{appendixexe}
+
+If a matrix has only one row or one column, we refer to it as a 
+	\index{vector}%
+	{\bf vector}.  An $m\times 1$ matrix is called a 
+	\index{column vector}%$
+	{\bf column vector}, and a $1 \times n$ matrix is called a 
+	\index{row vector}%
+	{\bf row vector}.  
+
+%When we display a vector with unknown entries, we only need to use one index, e.g.
+%\[ Y = \startmatrix y_1 & y_2 & \cdots&  y_{11} \finishmatrix \]
+%is a row vector with 11 entries (that is, with 11 columns), and 
+%\[ X = \startmatrix x_1 \\ x_2 \\ \vdots \\ x_n \finishmatrix \]
+%is a column vector with $n$ entries (i.e., with $n$ rows).  When it is clear from context whether a vector $V$ is a row vector or a column vector (or, when this distinction seems unimportant), we can just write $V \in \mathbb{R}^k$ to mean  either that $V \in \mathbb{R}^{1 \times k}$ or $V \in \mathbb{R}^{k \times 1}$ (and similar conventions apply when we write $V \in \mathbb{C}^k$).
+
+%% DO I REALLY NEED THIS DIVERSION ABOUT R^k???????
+
+
+
+Now let us start defining algebraic operations on matrices.  When two matrices have the same dimension, we can define 
+	\index{addition of matrices}%
+	{\bf addition} of the matrices by just adding corresponding entries in the same positions.  That is, the 
+	\index{sum of matrices}%
+	{\bf sum} of $A$ and $B$ is denoted by $A+B$, and it's entries are $ent_{ij}(A+B)=ent_{ij}(A) + ent_{ij}(B)$.  
+	\index{subtraction of matrices}%
+	{\bf Subtraction} of matrices is performed similarly, with the 
+	\index{difference of matrices}%
+	{\bf difference} $A-B$ defined by $ent_{ij}(A-B) = ent_{ij}(A)-ent_{ij}(B)$.  Any matrix can be multiplied by a 
+	\index{scalar}%
+	\index{scalar-multiplication of matrices}%
+	{\bf scalar}, meaning a real-or complex number, according to the rule $ent_{ij}(sA)=sent_{ij}(A)$. We follow the conventional order or operations for real and complex numbers; so, for example, $2A+3B$ requires that both scalar multiplications be performed before the addition.
+
+\appendixexample Let $A = \startmatrix 2 & 3 \\ -1 & -1 \finishmatrix$ and $B = \startmatrix -1 & 1 \\ 0 & 2 \finishmatrix$.  Then
+\[ A+B = \startmatrix 1 & 4 \\ -1 & 1 \finishmatrix, \ \ \ B-A = \startmatrix -3 & -2 \\ 1 & 3 \finishmatrix, \ \ \ 3A= \startmatrix 6 & 9 \\ -3 & -3 \finishmatrix \ \ \ \mbox{and} \ \ \ 3A+B=\startmatrix 5 & 10 \\ -3 & -1 \finishmatrix. \]
+\qed
+
+All this suggests the following natural question: can we multiply two matrices together?  Of course, we could try to define multiplication of matrices in a similar way -- by multiplying corresponding entries -- but that turns out not to be very useful for our purposes.  Instead, we define matrix 
+	\index{multiplication of matrices}%
+	{\bf multiplication} as follows: if $A$ is $m \times n$ and $B$ is $n \times l$, then the 
+	\index{product of matrices}%
+	{\bf product} $AB$ is defined by $ent_{ij}(AB)=\sum_{k=1}^n ent_{ik}(A) ent_{kj}(B)$.  This definition may not seem intuitive at first, but we will see shortly how useful it is.  It is important to note that we do not require the matrices to have the same dimensions for multiplication; instead, we can only compute the product $AB$ if {\it the number of columns of $A$ is equal to the number of rows of $B$}.  The result is a matrix $AB$ with the same number of rows as $A$ and the same number of columns as $B$.
+
+\appendixexample Let $A = \startmatrix 2 & 3 & -1 \\ -1 & 0 & 1 \finishmatrix$ and $B = \startmatrix 1 & -1 & 2 & 0 \\ -2 & 0 & 1 & 1 \\ 3 & 0 & 1 & 2 \finishmatrix$.  Then $A$ is $2 \times 3$ and $B$ is $3 \times 4$.  Therefore $AB$ is defined and is a $2 \times 4$ matrix. (But note that $BA$ is not defined!)  The first entry of the product matrix $AB$ is
+\[ ent_{11} (AB) = \sum_{k=1}^3 a_{1k}b_{k1} = a_{11}b_{11}+a_{12}b_{21}+a_{13}b_{31} = (2)(1) + (3)(-2) + (-1)(3) = -7.\]
+Doing this for all the entries of $AB$ gives us
+\[ AB = \startmatrix -7 & -2 & 6 & 1 \\ 2 & 1 & -1 & 2 \finishmatrix \]
+\qed
+
+\begin{appendixexe} Let $A = \startmatrix 1 & 2 \\ 0 & 1 \finishmatrix$ and $B = \startmatrix 2 & 1 \\ -1 & 0 \finishmatrix$.  Compute both $AB$ and $BA$.
+\end{appendixexe}
+
+The previous examples shows that {\it matrix multiplication is not commutative}: even when both products are defined, and even when both products have the same dimensions, $AB$ and $BA$ may not be equal.
+
+Now we are ready explain why this is a useful way to define matrix multiplication.  Consider the matrices
+\[ A = \startmatrix a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \cdots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \finishmatrix, \ \ \ X = \startmatrix x_1 \\ x_2 \\ \vdots \\ x_n \finishmatrix \ \ \ \mbox{and} \ \ \ B = \startmatrix b_1 \\ b_2 \\ \vdots \\ b_m \finishmatrix.\]
+
+Then $AX$ is an $m \times 1$ matrix (the same a $B$):
+\[ AX = \left[ \begin{matrix} a_{11}x_1 + a_{12}x_2+ \cdots a_{1n}x_n  \\
+a_{21}x_1 + a_{22}x_2+ \cdots a_{2n}x_n  \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2+ \cdots a_{mn}x_n  \end{matrix} \right].\]
+Thus the statement $AX=B$ {\it is equivalent to} the system of linear equations in (\ref{systemoflinearequations}).  It is a compact, efficient way of expressing the same information: a system of linear equations can be written as a single matrix equation.  The matrix $A$ is called the 
+	\index{coefficient matrix}%
+	{\bf coefficient matrix} for the system, as it contains the coefficients of the unknowns $x_j$ in the corresponding system.
+
+\appendixexample The system of algebraic equations
+\[ \begin{matrix} 2x+3y = 7 \\ x - 3y = 0 \end{matrix} \]
+is equivalent to the matrix equation
+\[ \startmatrix 2 & 3 \\ 1 & -3 \finishmatrix \startmatrix x \\ y \finishmatrix = \startmatrix 7 \\ 0 \finishmatrix.\]
+\qed
+
+\begin{appendixexe} Express the system of equations
+\[ \begin{matrix} 2x+4y-z=0 \\ x+y+z=1 \\ 4z-2x=2 \end{matrix} \]
+as a matrix equation. {\it (Hint: Rewrite the last equation in the system so that the terms line up better with the lines above, and remember that there is a hidden $0y$ there.)}
+\end{appendixexe}
+
+One very important matrix in linear algebra is the $n \times n$ 
+	\index{identity matrix}%
+	{\bf identity matrix} defined by
+\[ ent_{ij}(I)= \begin{cases} 1 & \mbox{if } i = j \\ 0 & \mbox{if } i \neq j \end{cases}.\]
+In full display, the identity matrix is
+\[ I = \startmatrix 1 & 0 & 0 & \cdots & 0 \\ 0 & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \cdots & \vdots \\ 0 & 0 & 0 & \cdots & 1 \finishmatrix.\]
+It is probably easiest to remember the description of $I$ in words: $I$ has 1's along the 
+	\index{main diagonal}%
+	{\bf main diagonal} which goes from the top left to the bottom right of the matrix, and all the other entries of $I$ are 0.
+
+In matrix multiplication, the identity matrix plays the same role as the number 1 does in the multiplication of numbers:
+for any matrix $A$, 
+\begin{equation} AI=IA=A. \label{multiplybyidentity} \end{equation} 
+$I$ is always assumed to have the necessary dimensions to make any matrix multiplications valid, even if this varies from one occurrence to the next.  Therefore, if $A$ is $m \times n$, then the first $I$ in (\ref{multiplybyidentity}) is $n \times n$ and the second $I$ is $m \times m$.  If it is ever important to specify that the identity matrix has a certain size, that can be done with subscripts: the $n \times n$ identity matrix can be written as $I_{n \times n}$, or even just $I_n$.
+
+\begin{appendixexe} Verify equation (\ref{multiplybyidentity}) for $A = \startmatrix 2 & 1 & 0 \\ 1 & -1 & 3 \finishmatrix$.
+\end{appendixexe}
+
+
+\noindent
+{\sc Determinants}
+
+A system of linear equations with the same number of equations as unknowns would be represented using a 
+	\index{square matrix}%
+	{\bf square} coefficient matrix $A$, meaning it would have the same number of rows as columns.  (Every identity matrix is a square matrix.) Such a system could have either no solution, one solution, or infinitely many solutions, depending in part on the right sides of the equations.  But when a certain condition is satisfied by a square coefficient matrix $A$, we can be guaranteed that there will always be exactly one solution $X$ of the matrix equation $AX=B$, {\it regardless of what $B$ is}.  We will state this condition presently.
+
+First, to gain some insight, let's restrict our attention to the situation with two equations in two unknowns:
+\begin{equation} \begin{matrix} a x + by = u \\ c x + dy = v \end{matrix}.\label{2x2algebrasystem} \end{equation}
+This can be represented by the matrix equation 
+\[ \startmatrix a & b \\ c & d \finishmatrix \startmatrix x \\ y \finishmatrix = \startmatrix u \\ v \finishmatrix.\]
+We can also visualize it geometrically as a pair of lines in the $xy$-plane, with a solution of the equations corresponding to the coordinates of the point of intersection, if there is one.  The figure below shows a possible graph of this pair of lines.
+\begin{center}
+\includegraphics[width=2.5in]{A4-matrixalgebra/intersectionoftwolines.eps}
+\end{center}
+We'll know for sure that these lines will have a unique intersection of the lines are {\it not parallel}, which is the case if they have {\it different slopes}.  If the two lines do have the same slope, then either (a) they have no intersection (in which case the system in (\ref{2x2algebrasystem}) has no solution), or (b) the two equations both represent the same line (in which case (\ref{2x2algebrasystem}) actually has infinitely many solutions).  
+
+\begin{appendixexe}
+Consider the pair of lines defined by the equations in (\ref{2x2algebrasystem}).  {\bf (a)} Prove that, if both lines are vertical, then $ad-bc=0$.  {\bf (b)} Prove that, if the lines are not vertical but are still parallel, then $ad-bc=0$.  {\bf (c)} Prove that, if $ad-bc=0$, then the lines are parallel.
+\end{appendixexe}
+
+We define the 
+	\index{determinant}%
+	{\bf determinant} of a $2 \times 2$ matrix $A = \startmatrix a & b \\ c & d \finishmatrix$ to be
+\[ det(A) = ad-bc.\]
+The determinant function can also be defined for larger square matrices (see any textbook on linear algebra, for example, \cite{strang:linearalgebra}.).
+The solution of the previous exercise proves the following important theorem when $n=2$.
+
+\begin{theorem}
+Suppose $A$ is a square $n \times n$ matrix and $X, \ B$ are $n\times 1$ vectors.  Then:
+\begin{enumerate}
+\item if $det(A)\neq0$, the $AX=B$ has a unique solution $X$ for every given $B$;
+\item if $det(A)=0$, then $AX=B$ has either infinitely many solutions $X$ or no solutions, depending on $B$.
+\end{enumerate}
+\end{theorem}
+
+\appendixexample The system of equations 
+\[ \begin{matrix} 2099 x - y = u \\ 1010 x + 2y = v \end{matrix}\]
+has a unique solution for each choice of $u, \ v$ because the determinant of the coefficient matrix is not zero:
+\[ det \startmatrix 2099 & -1 \\ 1010 & 2 \finishmatrix = (2099)(2)-(-1)(1010) =5208 \neq 0.\]
+On the other hand, if there is a solution $(x,y)$ to the system
+\[ \begin{matrix} 44x-99y=u \\ -12x+27y=v \end{matrix},\]
+then there must be infinitely many solutions because the determinant of the coefficient matrix is zero:
+\[ det \startmatrix 44 & -99 \\ -12 & 27 \finishmatrix = (44)(27)-(-99)(-12) = 0.\]
+\qed
+
+When $det(A)=0$, it can still be hard to determine whether there are infinitely many solutions or no solutions at all, because that usually depends on what the right-side vector is.  However, there is one situation for which we can always give a complete description.
+
+\begin{theorem} If $det(A)\neq 0$, then the only solution of $AX=0$ is $X=0$.  If $det(A)=0$, then the matrix equation $AX=0$ has infinitely many solution vectors $X$. \label{AX=0theorem}
+\end{theorem}
+
+In the matrix equation $AX=0$, it is understood that $0$ does not represent a scalar -- instead, $0$ represents a vector whose entries are all zeros and whose dimension matches that of $AX$.
+
+
+
+\bigskip
+\noindent
+{\sc Eigenvalues and Eigenvectors}
+
+An common matrix equation we need to solve is $AX=\lambda X$.  Here, $A$ is a given square matrix and both $X$ and $\lambda$ are unknowns: $X$ is a vector, and $\lambda$ is a scalar.  Finding solutions of this equation means finding vectors $X$ for which $AX$ is just a scalar multiple of $X$.
+
+\begin{appendixexe} Let $A= \startmatrix 2 & 1 \\ 0 & 2 \finishmatrix$.  {\bf (a)} Verify that if $X = \startmatrix 4 \\ 0 \finishmatrix$, then $AX$ is a scalar multiple of $X$.  What is the scalar?  {\bf (b)} Show that if $X = \startmatrix 1 \\ 2 \finishmatrix$, then $AX$ {\it is not} a multiple of $X$.
+\end{appendixexe}
+
+Observe that if $X=0$, then the equation $AX=\lambda X$ is always true, for any $A$ and for any $\lambda$.  This is not very interesting or useful.  We will only be concerned with non-zero vectors $X$ which satisfy the equation (though it is perfectly permissible for $\lambda$ to be the zero scalar, because that is not a trivial case).  When there is a non-zero vector $X$ and a scalar $\lambda$ satsifying $AX=\lambda X$, we call $\lambda$ an 
+	\index{eigenvalue}%
+	{\bf eigenvalue} of $A$, and we call $X$ a corresponding 
+	\index{eigenvector}%
+	{\bf eigenvector} of $A$.
+
+There is a straightforward method of finding eigenvalues and eigenvectors for square matrices $A$ (and it is fairly efficient, provided the matrix $A$ is not too big).  Notice that $\lambda X$ is the same as $\lambda I X$, and that $AX=\lambda IX$ if and only if $\lambda I X - AX = 0$ (a matrix whose entries are all zeros).  Factoring out $X$ allows us to write $(\lambda I - A)X=0$.  According to Theorem (\ref{AX=0theorem}), this system has infinitely many solutions (and therefore non-zero solutions) $X$ precisely when $det(\lambda I-A)=0$.  This is the key insight we will use to find eigenvalues.  What makes it useful is the fact that $\det(\lambda I - A)=0$ is a scalar equation which we can always solve (if the dimension of $A$ is not too large).  We call this equation the 
+	\index{characteristic equation}%
+	{\bf characteristic equation} of the matrix $A$.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Finding Eigenvalues of a Matrix \normalcolor}}
+
+The eigenvalues of a square matrix $A$ are precisely the solutions of the characteristic equation
+\[ \det(\lambda I - A ) = 0.\]
+\end{minipage}
+}
+\end{center}
+
+
+
+Once we know the eigenvalues, we can insert them into the equation $(\lambda I - A)X=0$ to find corresponding eigenvectors.
+
+\appendixexample Find the eigenvalues and corresponding eigenvectors of $A = \startmatrix -8 & 10 \\ -5 & 7 \finishmatrix$.
+
+The characteristic equation is
+\[ 0 = det \startmatrix \lambda + 8 & -10 \\ 5 & \lambda -7 \finishmatrix = (\lambda+8)(\lambda-7)-(-10)(5) = \lambda^2 + \lambda -6,\]
+or $0 = (\lambda+3)(\lambda-2)$, which has solutions $\lambda=-3$ and $\lambda=2$.  These are the eigenvalues of $A$.
+
+For the eigenvalue $\lambda = 2$, we get the equation $(2I-A)X=0$, which would be written out as
+\[ \startmatrix 10 & -10 \\ 5 & -5 \finishmatrix \startmatrix x_{1} \\ x_{2} \finishmatrix = \startmatrix 0 \\ 0 \finishmatrix.\]
+This is equivalent to the system of equations
+\[ \begin{matrix} 10 x_{1} - 10 x_{2} = 0 \\ 5 x_{1} - 5 x_{2} = 0 \end{matrix}.\]
+Notice that these equations are algebraically equivalent, so any solution of one is also a solution of the other.  We can see that the solutions must satisfy $x_{1}=x_{2}$; therefore any scalar multiple of $\startmatrix 1 \\ 1 \finishmatrix$ is a solution of the equation $(2I-A)X=0$.  In particular, any {\it non-zero} scalar multiple of $\startmatrix 1 \\ 1 \finishmatrix$ is an eigenvector of $A$ corresponding to the eigenvalue $\lambda = 2$.
+
+Similarly, inserting $\lambda =-3$ into $(\lambda I - A)X=0$ gives us
+\[ \startmatrix 5 & -10 \\ 5 & -10 \finishmatrix \startmatrix x_{1} \\ x_{2} \finishmatrix = \startmatrix 0 \\ 0 \finishmatrix,\]
+and the solutions of this satisfy $x_{1}=2x_{2}$.  Thus {\it non-zero} multiples of $\startmatrix 2 \\ 1 \finishmatrix$ are eigenvectors of $A$ corresponding to the eigenvalue $\lambda = -3$.
+\qed
+
+It will always be the case that, if $X$ is an eigenvector of $A$, then so is any non-zero scalar multiple of $X$, because $AX=\lambda X$ implies that, for any scalar $s$, $A(sX) = sAX = s\lambda X = \lambda (sX)$.
+
+\begin{appendixexe} Find the eigenvalues and corresponding eigenvectors of $A = \startmatrix -2 & \frac{3}{4} \\ 0 & 1 \finishmatrix$.
+\end{appendixexe}
+
+
+\begin{appendixexe} Find the eigenvalues and corresponding eigenvectors of $A = \startmatrix 0 & 1 \\ -1 & 0 \finishmatrix$.
+\end{appendixexe}
+
+
+\begin{appendixexe} Find the eigenvalues and corresponding eigenvectors of $4I$, where $I$ is the $2 \times 2$ identity matrix.
+\end{appendixexe}
+
+\begin{appendixexe} Find the eigenvalues and corresponding eigenvectors of $A = \startmatrix 3 & 1 \\ 0 & 3 \finishmatrix$.
+\end{appendixexe}
+
+The last two exercises illustrate what can happen when a $2 \times 2$ matrix $A$ has only one eigenvalue:  either $A$ is a scalar multiple of the identity matrix, or the set of eigenvectors of $A$ is merely the set of non-zero scalar multiples of a single vector $X$.
+
+
+

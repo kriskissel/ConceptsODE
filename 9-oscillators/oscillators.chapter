@@ -1,0 +1,475 @@
+\chapter{Vibrations}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{spring-mass system}%
+	\index{RLC circuit}%
+	How do the mass, restoring force and damping coefficient determine the long-term behavior of a spring-mass system?  How do the ratings of the resistor, inductor and capacitor in a RLC electrical circuit determine its long-term behavior?
+\end{minipage}
+}
+\end{center}
+
+
+In this chapter we study in depth a classic application of second-order constant coefficient systems: simple harmonic oscillators.  This class of mathematical objects includes both the spring-mass systems and the RLC electrical circuits which have already been introduced.  
+%(To better understand how these models arise, see the two {\it Focus on Modeling} highlights at the ends of each of the
+%previous two chapters.)
+
+We will usually not show all the steps involved in solving each initial value problem in this chapter.  The reader is strongly encouraged to keep a pencil and paper handy in order to fill in all the missing steps.  For particularly ugly calculations, the reader may do well to use a computer algebra system.
+
+The model we use for a spring-mass system is the ODE
+\[ m\ddot{y}+\gamma \dot{y} + k y = f(t),\]
+where $y$ is the position (or displacement) of the mass at the end of the spring from its natural position.  Compare this with the model for the current $i$ in a circuit with a resistor, inductor and capacitor in series, together with a voltage source $v(t)$:
+\[ R\ddot{i}+L \dot{i} + \frac{1}{C} i = v(t).\]
+The obvious similarity between these mathematical models becomes even more pronounced when we observe that, for both systems, all of the coefficients must be positive numbers.
+
+
+Our goal in this chapter is to explore the various possible behaviors of solutions to these equations.  Because most readers will likely find the physical model of the spring-mass system offers more intuition than the electrical circuits, we will emphasize that point of view in our discussion, but it is worth remembering that our analysis can be applied to {\it any} constant-coefficient second order ODE with positive coefficients.
+
+\bigskip
+\noindent
+{\large {\sc Damped Vibrations}}
+
+\medskip
+Before reading further in this chapter, it is probably a good idea to review the section ``Focus on Modeling: Spring-Mass Systems'' that follows Chapter 7.
+
+\begin{exe}
+A mass $m \ kg$ is attached to the free end of a spring with spring constant $k \frac{N}{m}$, and the system is subject to a damping coefficient $\gamma \frac{N s}{m}$.  The spring is stretched $0.5$ meters from its natural length and released.  Using the model $m \ddot{y} + \gamma \dot{y} + k y = 0$, determine how long it will take for the spring to first return to its natural length for each of the following sets of conditions.  (There are no outside forces, such as gravity, acting on the mass.)
+
+{\bf (a)} $m=3, \ \gamma=0, \ k=15$
+
+{\bf (b)} $m=3, \ \gamma=6, \ k=30$
+
+{\bf (c)} $m = 3, \ \gamma=9, \ k=6$
+
+{\bf (d)} $m=3, \ \gamma=6 , \ k=3 $
+\end{exe}
+
+
+The following graphs illustrate the various solutions $y(t)$ from the previous example and the previous exercise.
+
+\begin{center}
+\includegraphics[width=2.5in]{9-oscillators/nodamping.eps}
+\hspace{0.25in}
+\includegraphics[width=2.5in]{9-oscillators/underdamping.eps}
+
+\includegraphics[width=2.5in]{9-oscillators/overdamping.eps}
+\hspace{0.25in}
+\includegraphics[width=2.5in]{9-oscillators/criticaldamping.eps}
+\end{center}
+
+The captions for these graphs also include terminology which we will explain now.  The term in the first graph, 
+	\index{no damping}%
+	{\bf no damping}, means the damping coefficient (that is to say, the coefficient in front of $\dot{y}$, which represents resistance to the spring's motion) is equal to zero.  Notice that the mass oscillates infinitely many times, always returning to the same maximum displacement as on the previous cycle.
+
+The term describing the second graph, 
+	\index{underdamping}%
+	{\bf underdamping}, indicates that even though the magnitude of the oscillations decreases, the damping coefficient is too small (relative to the other parameters) to stop the solution from oscillating forever -- regardless of the initial conditions.  That is to say, no matter how small the initial displacement, or whether there is any initial velocity imparted, the solution will always oscillate through the rest position infinitely many times.  This is because the general solution has the form $y=A e^{-t} \cos(3t)+B e^{-t} \sin(3t)$, and any initial condition (other than the trivial one $y(0)=\dot{y}(0)=0$) will result in infinitely many such oscillations.
+
+This stands in stark contrast to the third situation, which is described as 
+	\index{overdamping}%
+	{\bf overdamping}.  In this setting, the damping coefficient is so large that {\it no initial displacement or velocity} can cause more than one oscillation!  We can see this by analyzing the form of the general solution: $y(t) = A e^{-t}+Be^{-2t}$.  If we factor out $e^{-2t}$, we can write this as $y(t)=e^{-2t}(Ae^t+B)$, which will only be zero when $t=\ln \left(\frac{-B}{A} \right)$.  Depending on the choice of initial conditions, this value of $t$ may or may not exist (depending on whether $\frac{-B}{A}$ is positive or not), and even if it does exist, $\ln \left( \frac{-B}{A} \right)$ may not be positive, in which case that $t$ value would not be relevant to our model of the situation (since we typically assume the motion ``starts'' at $t=0$).
+
+The last graph looks very similar to the naked eye, but we have given it a different name: 
+	\index{critical damping}%
+	{\bf critical damping}.  That is because this is the borderline case -- if the damping coefficient is reduced by any positive amount whatsoever, no matter how small, the situation will switch to underdamping.  Also, the form of the general solution is slightly different, as the double root of the characteristic equation produces $y(t)=Ae^{-t}+Bte^{-t}$.  For this kind of function, the equation $y(t)=0$ definitely has a solution -- when $t=\frac{-A}{B}$ -- though this may still be a negative value and thus irrelevant to the model.
+
+These differences in behavior depend on the general solution of the equation $m\ddot{y}+\gamma \dot{y} + ky =0$, which in turn is determined by the characteristic equation.  We can therefore use the characteristic equation to classify the type of damping in any setup.  To obtain infinitely many oscillations, our general solution must contain sinusoidal functions, and those occur when the characteristic equation has complex roots with non-zero imaginary parts; there will be no sinusoidal behavior if the roots are real.  The borderline situation of critical damping is precisely the case of a double root.  If we solve the characteristic equation using the quadratic formula, 
+\[ r = \frac{-\gamma \pm \sqrt{\gamma^2-4mk}}{2m},\]
+then we can detect the types of solutions by looking directly at the discriminant (the expression inside the square root), as there will be real roots when the discriminant is positive (or zero) and complex roots when the discriminant is negative.  A zero discriminant is the borderline case.
+
+
+\smallskip
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Classifying Simple Harmonic Oscillators \normalcolor}}
+
+An oscillating system modeled by the ODE
+\[ a\ddot{y}+b\dot{y}+cy=f(t)\]
+with $a,c>0$ and $b \geq 0$ exhibits:
+
+\hspace{0.5in}
+\index{no damping}%
+{\bf No damping} if $b=0$
+
+\hspace{0.5in}
+\index{underdamping}%
+{\bf Underdamping} if $b^2-4ac<0$
+
+\hspace{0.5in}
+\index{critical damping}%
+{\bf Critical Damping} if $b^2-4ac=0$
+
+\hspace{0.5in}
+\index{overdamping}%
+{\bf Overdamping} if $b^2-4ac>0$
+\end{minipage}
+}
+\end{center}
+
+\smallskip
+In the case of a spring-mass system modeled by the equation $m\ddot{y}+\gamma \dot{y}+ky=f(t)$, the quantity $b^2-4ac$ described in the classification above becomes $\gamma^2-4mk$.
+
+\begin{exe}
+Classify the type of damping for each of the following spring-mass situations.
+\begin{enumerate}
+\item $m=2, \ \gamma=12, \ k=16$
+\item $m=2, \ \gamma=12, \ k=18$
+\item $m=3, \ \gamma=12, \ k=18$
+\item $m=2, \ \gamma=8, \ k=16$
+\end{enumerate}
+\end{exe}
+
+
+\begin{exe}
+Suppose a mass of $4 \ kg$ is attached to the free end of a spring whose spring constant is $k=10 \frac{N}{m}$.  Find the exact value of the damping coefficient $\gamma$ that will result in critical damping.
+\end{exe}
+
+\newpage
+\noindent
+{\large {\sc Forced Vibrations}}
+
+\medskip
+Next we turn our attention to what happens when we introduce an external driving force to the oscillating system.
+
+\noindent
+\begin{minipage}{5in}
+\example A mass of $2 \ kg$ is hung from a spring whose constant is $34 \frac{N}{m}$.  The other end of the spring is anchored to the ceiling.  The system is subject to viscous damping with coefficient $\gamma=4\frac{N\cdot s}{m}$.  Gravity acts on the mass and, if not for the spring holding it, would accelerate the mass at $9.8 \frac{m}{s^2}$.  The mass is pushed up so that the spring is compressed 0.03 meters from its natural length.  Then the mass is released.  Determine the long-term behavior of the position of the mass (i.e., if the position over time is $y(t)$, find $\lim_{t \rightarrow \infty} y(t)$).
+\end{minipage}
+\hspace{0.25in}
+\begin{minipage}{1in}
+\includegraphics[width=1in]{9-oscillators/springmass1smallest.eps}
+\end{minipage}
+
+\smallskip
+The external driving force due to gravity acts downward on the mass, so its effect is to lengthen the spring.  The magnitude of this force is $F_e = mg = (2 \ kg) \left(9.8 \frac{m}{s^2} \right) = 19.6 \ N$.  Our initial value problem is thus:
+\[ 2 \ddot{y} + 4 \dot{y} +34 y = 19.6, \ \ \ y(0)=-0.03, \ \ \ \dot{y}(0)=0.\]
+(Note that since we are treating the downward force of gravity as being in the positive direction, the initial displacement of the compressed spring must therefore be negative.)
+
+The solution of this IVP is
+\[ y(t)= \frac{49}{85} - \frac{1031}{1700}e^{-t} \cos(4t) - \frac{1031}{6800}e^{-t} \sin(4t).\]
+From this, we see that
+\[ \lim_{t \rightarrow \infty} y(t) = \frac{49}{85}.\]
+That is to say, in the long term the mass settles toward a position that is $\frac{49}{85}\approx 0.58 \ m$ below the spring's natural rest position.
+\qed
+
+The position that the the mass (i.e. the free end of the spring) tends toward in the previous example is called the 
+	\index{equilibrium position}%
+	{\bf equilibrium position} because that is the position where the force due to gravity and the internal restoring force of the spring are in equilibrium with one another -- the downward force due to gravity is equal in magnitude to the upward force of the spring.  The reader should verify that the constant function $y(t)=\frac{49}{85}$ is an equilibrium solution of the differential equation in that example.
+
+\begin{exe} 
+The equilibrium position of a hanging spring-mass system is $0.12$ meters below the spring's natural rest position when a mass of $4 \ kg$ is attached to the spring.  Determine the spring constant.
+\end{exe}
+
+\example The spring-mass system in Example 1 begins at rest in the equilibrium position, where spring and gravitational forces are balanced.  An earthquake then begins to shake the building up and down, imparting a force on the system that is transferred to the mass.  If this force is modeled by the function $f(t)=0.2 \sin(0.4t) \ N$, find formula for $y(t)$, and graph the solution over the time interval $0 \leq t \leq 300$.
+
+From what we obtained in Example 1, we see that we need to solve the initial value problem
+\[ 2 \ddot{y} + 4\dot{y} + 34 y = 19.6 + 0.2 \sin(0.4 t), \ \ \ y(0)=\frac{49}{85}, \ \ \ \dot{y}(0)=0\]
+The solution of this is
+\[ y(t) = \frac{49}{85} - \frac{50}{177641} \cos(0.04t)+ \frac{2105}{355282} \sin(0.04t)+ \frac{181891}{15099485} e^{-t}\cos(4t)+ \frac{73053}{30198970} e^{-t}\sin(4t).\]
+This is a graph of the solution:
+
+\begin{center}
+\includegraphics[width=2in]{9-oscillators/sinusoidaldriving.eps}
+\end{center}
+\qed
+
+
+Notice that in each of the examples we've explored so far in this chapter, we have encountered solutions of the form
+\[ y(t) = y_S(t) + y_T(t),\]
+where $y_S$ is periodic and $y_T(t) \rightarrow 0$ as $t \rightarrow \infty$.  Thus the long-term behavior of $y$ matches whatever the long-term behavior is of $y_S$, while $y_T$ becomes negligible.  (We can see this in the previous example, where the graph shows a function whose behavior appears to approach a simple sinusoidal oscillation after the first few seconds pass.)  For this reason, the term $y_T$ is called a 
+	\index{transient solution}%
+	{\bf transient solution} of the IVP, while $y_S$ is called the 
+	\index{steady-state solution}%
+	{\bf steady-state solution}, or the
+	\index{steady-state response}%
+	{\bf steady-state response}.  For example, the solution of the IVP
+\[ \ddot{y} + 2 \dot{y} + y = \cos(t), \ \ \ y(0)=0, \ \ \ y'(0)=0\]
+is the function $y(t)=\frac{1}{2}\sin(t)-\frac{1}{2}te^{-t}.$
+The transient solution is $y_T=-\frac{1}{2}te^{-t}$, and the steady-state solution is $y_S=\frac{1}{2}\sin(t)$.  The following graph of $y$ and $y_S$ indicates the increasing similarity between these function as $t$ increases.
+
+\begin{center}
+\includegraphics[width=2in]{9-oscillators/steadystatecomparison.eps}
+\end{center}
+
+\begin{exe} 
+Suppose that a mass of $6 \ kg$ is attached to the free end of a spring whose spring constant is $12 \frac{N}{m}$, and the mass when moving experiences viscous damping with a coefficient of $6 \frac{N s}{m}$.  The spring is stretched $0.05$ meters from its rest position and released.  The system also experiences forced vibrations of $0.5 \cos(2t) \ N$.  Find the steady-state and transient solutions for this system.
+\end{exe}
+
+
+\bigskip
+\noindent
+{\large {\sc Phase-Amplitude Form}}
+
+\bigskip
+\noindent
+\begin{minipage}{4in}
+Pick any real values of $a$, $b$ (not both 0) and any positive value of $\omega$, and then graph $y=a \cos(\omega t) + b \sin (\omega t)$.  What you see will look just like a sinusoidal function, possibly with a horizontal shift.  That is to say, it seems like we ought to be able to write the function in the form $y=A\cos(\omega t-\delta)$ for some coefficients $A$ and $\delta$.  The graph at right shows one example, but the reader should verify this by trying a few of his or her own values for $a$ and $b$.
+\end{minipage}
+\hspace{0.25in}
+\begin{minipage}{2in}
+\includegraphics[width=2in]{9-oscillators/phase-amplitude0.eps}
+\end{minipage}
+
+\smallskip
+In fact, we can do exactly that.  Recall the difference-of-angles formula for the cosine function:
+\[ \cos(\alpha-\beta) = \cos(\alpha)\cos(\beta)+\sin(\alpha)\sin(\beta).\]
+If we apply this identity with $\alpha=\omega t$ and $\beta=\delta$, we obtain
+\[ \cos(\omega t - \delta) = \cos(\omega t) \cos(\delta) + \sin(\omega t) \sin(\delta).\]
+Thus trying to obtain values of $A$ and $\delta$ such that $A\cos(\omega t - \delta) = a \cos(\omega t) + b \sin (\omega t)$ amounts to finding values such that
+\[ A \left(\cos(\omega t) \cos(\delta) + \sin(\omega t) \sin(\delta) \right) = a \cos(\omega t) + b \sin (\omega t).\]
+Equation coefficients of $\cos(\omega t)$ and $\sin(\omega t)$ gives us
+\begin{equation} 
+A\cos(\delta) =a \ \ \ \mbox{and} \ \ \ A \sin(\delta) = b. \label{phase-amplitude1} 
+\end{equation}
+Squaring each side of each of these equations and adding them gives us
+\[ A^2 \cos^2 (\delta) + A^2 \sin^2(\delta) = a^2+b^2,\]
+and therefore $A^2 = a^2+b^2$.  Let's take $A=\sqrt{a^2+b^2}$. Now if $a=0$, then $A=|b|$, so we can satisfy the system of equations (\ref{phase-amplitude1}) above by taking either $\delta=\frac{\pi}{2}$ (if $b>0$) or $\delta = \frac{3\pi}{2}$ (if $b<0$).  On the other hand, if $a$ is not zero, then we can divide the second equation in (\ref{phase-amplitude1}) by the first equation to obtain
+\[ \tan(\delta) = \frac{b}{a},\]
+and we now see that we can satisfy the system (\ref{phase-amplitude1}) by taking either $\delta = \arctan \left(\frac{b}{a} \right)$ (if $a>0$) or $\delta = \pi + \arctan \left( \frac{b}{a} \right)$ (if $a<0$).
+If we wish to ensure that $\delta$ is positive, then we can use $\delta = 2\pi + \arctan \left( \frac{b}{a} \right)$ when $a>0$ and $b<0$.
+
+The algebraic manipulations we've been performing here have really just been an effort to find a polar-coordinate representation of the point with Cartesian coordinates $(a,b)$.  The apparent complexity occurs only because the range of the inverse tangent function is $\left(-\frac{\pi}{2},\frac{\pi}{2} \right)$, so that it always wants to produce an angle pointing into the first or fourth quadrant, and the addition of $\pi$ in certain instances in necessary to correct for this, as illustrated in the following figures.
+
+\begin{center}
+\includegraphics[width=2.75in]{9-oscillators/phase-amplitude1.eps}
+\hspace{0.25in}
+\includegraphics[width=2.75in]{9-oscillators/phase-amplitude2.eps}
+\end{center}
+
+\begin{exe}
+Find values of $A$ and $\delta$ such that $A \cos(3t-\delta) = 4\cos(3t)+5\sin(3t)$.
+\end{exe}
+
+
+We can also use these observations to write solutions $y=ae^{\alpha t} \cos(\omega t) +be^{\alpha t} \sin(\omega t)$ in the 
+	\index{phase-amplitude form}%
+	{\bf phase-amplitude form} $y = A e^{\alpha t} \cos(\omega t - \delta)$.  The dimensionless parameter $\delta$ is called the 
+	\index{phase of oscillations}%
+	{\bf phase} of the oscillations; if $\alpha =0$ (meaning the solution does not decay, which occurs when there is no damping), then the coefficient $A$ is the
+	\index{amplitude}%
+	{\bf amplitude} of the oscillations. 
+	
+\example Suppose a mass of $0.01 kg$ is attached to the free end of a spring whose spring constant is $2 \frac{N}{m}$, and there is viscous damping described by the coefficient $\gamma = 0.2 \frac{N\cdot s}{m}$.  The mas is stretched $0.01 m$ from the natural position and released.  Write a formula for the displacement of the mass from the natural position in the phase-amplitude form.
+
+The initial value problem we need to solve here is 
+\[ 0.01 \ddot{y} + 0.2 \dot{y} + 2 y = 0, \ y(0)=0.01, \ \dot{y}(0) = 0.\]
+
+Using the standard approach, we obtain the solution
+\[ y(t) = 0.01 e^{-10t}\cos(10t) + 0.01 e^{-10t} \sin(10t).\]
+
+Factor out the exponential $e^{-10t}$ to obtain
+\[ y(t) = e^{-10t} \left( 0.01 \cos(10t) + 0.01 \sin(10t) \right).\]
+Let $A= \sqrt{(0.01)^2+(0.01)^2}=\sqrt{0.0002}$ and $\delta = \arctan \left( \frac{0.01}{0.01} \right) = \arctan(1) = \frac{\pi}{4}$.  Now we can write
+\[ y(t) = \sqrt{0.0002}e^{-10t}\cos \left( 10t-\frac{\pi}{4} \right).\]
+
+\begin{exe} 
+Rework Example 9.3 assuming that the spring is initially compressed (instead of being stretched).
+\end{exe}
+
+\begin{exe}
+Rework Example 9.3 assuming that, in addition to being stretched $0.01m$, the mass is also given in initial velocity of $1 \frac{m}{s}$ in the direction of further stretching the spring.
+\end{exe}
+
+\example A simple electrical circuit contains a 0.2 henry inductor and a 0.05 farad capacitor connected in series.  The charge on the capacitor at time $t=0$ is 2.5 coulombs, and the initial current in the circuit is $I(0)=\dot{Q}(0) = 0.2$ amperes.  Determine the first time $t$ when the charge $Q(t)$ will reach 1.5 coulombs.
+
+{\bf Solution:} Since the reciprocal of the capacitance is $\frac{1}{C} = \frac{1}{0.005} = 200$, the charge $Q$ satisfies the initial value problem
+\[ 0.2 \ddot{Q} + 20 Q = 0, \ \ \ Q(0) = 2.5, \ \dot{Q}(0) = 0.\]
+The solution is given by 
+\[ Q(t) = 2.5 \cos(10t)+0.02 \sin(10t).\]
+Writing this in phase-amplitude form, we obtain
+\[ Q(t) = \sqrt{6.2504} \cos \left( 10t-\tan^{-1}(0.008) \right).\]
+This form makes it easier to isolate $t$ when we solve the equation $Q(t)=1.5$:
+\[ \sqrt{6.2504} \cos \left( 10t-\tan^{-1}(0.008) \right) = 1.5,\]
+so 
+\[ t = \frac{1}{10} \left( \cos^{-1} \left( \frac{1.5}{\sqrt{6.2504}} \right) + k \pi + \tan^{-1}(0.008) \right)\]
+Plugging in a few consecutive values for $k$, we can see that the smallest positive solution occurs when $k=0$, and in that case
+\[ \frac{1}{10} \left( \cos^{-1} \left( \frac{1.5}{\sqrt{6.2504}} \right) + \tan^{-1}(0.008) \right) \approx 0.092 \ s.\]
+\qed
+
+
+
+\bigskip
+\noindent
+{\large {\sc Resonance}}
+
+
+It may seem obvious to some that modifying the amplitude $F_0$ of a driving function $F_0 \cos(\omega t)$ can have a direct effect on the amplitude of the steady-state response.  What is likely less obvious is that modifying the {\it frequency} $\omega$ of the driving function can also affect the amplitude of the response, often in very dramatic ways.  We will explore this phenomenon through two examples before stating the general results.  We will begin with the simplified example of an undamped oscillator.
+
+\example Suppose a spring-mass system is modeled by the initial value problem
+\[ \ddot{y} + y = \cos(\omega t), \ y(0)=0, y'(0)=0.\]
+Explore the consequences of various values of the driving frequency $\omega>0$ on the solutions of this initial value problem.
+
+The characteristic equation is $r^2+1=0$, which has roots $r=\pm i$.  Therefore the solution of the related homogeneous equation is 
+\[ y_h (t) = A \cos(t) + B \sin(t).\]
+We will need to be careful when we guess the form of a particular solution to non-homogeneous equation, because the form of our guess depends upon the value of $\omega$.
+
+First, if $\omega \neq 1$, then we guess $y_p(t)=C \sin(\omega t) + D \cos(\omega t)$, and the method of undetermined coefficients leads us to the solution
+\[ y_p(t) = \frac{1}{1-\omega^2} \cos\left( \omega t \right). \]
+Therefore the general solution of the non-homogeneous problem is
+\[ y(t) = \frac{1}{1-\omega^2} \cos \left( \omega t \right) + A \sin(t) + B \cos(t),\]
+and the initial conditions $y(0)=\dot{y}(0)=0$ imply $A=0$ and $B=-\frac{1}{1-\omega^2}$.  Consequently we have
+\[ y(t) = \frac{1}{1-\omega^2} \cos \left( \omega t \right) + - \frac{1}{1-\omega^2} \cos(t).\]
+
+
+Notice that the amplitude coefficients here all become larger as $\omega$ gets closer to $1$.  The following three graphs show the solutions corresponding to the driving frequencies $\omega=0.5, \ 0.9$ and $0.99$:
+
+\begin{center}
+\includegraphics[width=1.75in]{9-oscillators/responseamplitude3.eps}
+\hspace{0.125in}
+\includegraphics[width=1.75in]{9-oscillators/responseamplitude4.eps}
+\hspace{0.125in}
+\includegraphics[width=1.75in]{9-oscillators/responseamplitude5.eps}
+\end{center}
+
+Notice how the magnitude of the vibrations have changed even though the amplitude of the driving function has not changed, only its frequency has been adjusted.
+
+
+To complete this analysis, observe that if we start out with $\omega = 1$, then the initial guess for a particular solution of the non-homogeneous equation will have the form $y_p(t) = C t \cos(t) + D t \sin(t)$, and the reader should verify that this together with the initial conditions eventually leads us to the complete solution
+\[ y(t) = \frac{1}{2} t \sin (t).\]
+In this case, as time progresses, the magnitude of the oscillations increases without bound:
+
+\begin{center}
+\includegraphics[width=2.75in]{9-oscillators/responseamplitude6.eps}
+\end{center}
+
+\qed
+
+The phenomenon explored in the last example is called 
+	\index{resonance}%
+	{\bf resonance}.  The idea is that the spring-mass system (or other oscillator) has a 
+	\index{natural frequency}%
+	{\bf natural frequency} (or 
+	\index{resonant frequency}%
+	{\bf resonant frequency}) at which it wants to oscillate, namely, the frequency\footnote{Here, we are calling $\omega$ the `frequency', but a more precise name would be `angular frequency'.  Calling it that would distinguish it from the so-called `temporal frequency' $f$ that is a measurement of oscillations per second.  The relationship between angular frequency and temporal frequency is $\omega = 2 \pi f$.} of the solutions to the corresponding homogeneous differential equation.  If the driving force oscillates at close to this frequency, the resulting oscillations in the system will be larger in amplitude than they would be if the frequencies were not close (assuming the amplitude of the driving force is not changed).  If the driving force is applied to an undamped oscillator at exactly the resonant frequency, then the oscillations will grow in magnitude instead of tending to a steady-state (i.e. periodic) behavior.  In Example 9.4, we observed resonance when the frequency was $\omega =1$, which corresponded to a driving function of $\sin(t)$.  When there is no damping in a spring-mass system, the resonant frequency is $\omega_0$ defined by $\omega_0^2 = \frac{k}{m}$.
+	
+\begin{exe} Find the resonant frequency of a spring-mass system with mass $2 \ kg$, a spring constant of $\frac{1}{2} \frac{N}{m}$ and no damping.
+\end{exe}
+	
+
+	
+The example above used to illustrate this behavior assumed a damping coefficient of $\gamma=0$ to make this phenomenon stand out dramatically.  If $\gamma>0$, then the homogeneous solutions will include decaying exponential factors so that they will, over time, tend to 0.  However, if $\gamma$ is very small, then resonance behavior can can still be observed.  When damping is present, we won't observe vibrations growing unbounded as $t \rightarrow 0$ -- that can only happen in the undamped setting.  Instead, the resonant frequency for a damped system is the frequency at which the steady-state response has the greatest amplitude.  If the damping coefficient is small, then the amplitude of vibrations forced at the resonant frequency can be quite large.  
+
+\smallskip
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Resonant Frequency \normalcolor}}
+
+For a driven oscillating system $m \ddot{y} + \gamma \dot{y} + ky = F_0 \cos(\omega t)$, the 
+	\index{resonant frequency}%
+	{\bf resonant frequency} $\omega_{max}$ is given by
+\[ \omega_{max}^2 = \frac{k}{m} - \frac{\gamma^2}{2m^2}.\]
+\end{minipage}
+}
+\end{center}
+
+
+The derivation of this formula is outlined in the problem set at the end of this chapter.  The following graph illustrates the resonance phenomenon for a driven, damped oscillator modeled by the differential equation $\ddot{y}+4\dot{y}+44y=\cos(\omega t)$; the graph illustrates the amplitude of the steady-state response to this equation as a function of $\omega$.  (A formula for the amplitude of the steady-state response is also covered in the problem set at this chapter's end.)
+
+\begin{center}
+\includegraphics[width=3in]{9-oscillators/responseamplitude1.eps}
+\end{center}
+
+Notice that the amplitude of the steady-state response peaks when the frequency of the driving function is $\omega=6$, which is exactly the value predicted for the resonant frequency.  The possibility of a large amplitude in the steady state response becomes even more dramatic if we use a small coefficient of viscous resistance (say, $\gamma=0.04$):
+
+\begin{center}
+\includegraphics[width=3in]{9-oscillators/responseamplitude2.eps}
+\end{center}
+
+In this case, the resonant frequency is $\sqrt{\frac{k}{m} - \frac{\gamma^2}{2m^2}} = \sqrt{(1)(44)-\frac{(0.04)^2}{2(1)^2}}\approx 6.633.$
+
+
+
+\begin{exe} 
+Find the resonant frequency of a spring-mass system with mass $2 \ kg$, a spring constant of $200 \frac{N}{m}$ and viscous damping whose coefficient is $24 \frac{Ns}{m}$.
+\end{exe}
+
+Resonance phenomena must be taken seriously in the design of building structures which could shake themselves apart if they were to resonate at the same frequency as, say, an earthquake.  Engineers can also take advantage of resonance to build devices that amplify the driving oscillations, such as seismographs and electronic signal amplifiers.
+
+
+
+
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Classify the type of damping for each the following combination of mass $m \ kg$, viscous damping coefficient $\gamma \frac{Ns}{m}$ and spring constant $k \frac{N}{m}$.
+\end{instructions}
+
+\smallskip
+\ap $m=4, \ \gamma = 4, \ k = 2$
+
+\ap $m=4, \ \gamma = 4, \ k = 1$
+
+\ap $m=2, \ \gamma = 4, \ k=2$
+
+\ap $m=3, \ \gamma = 5, \ k= 2$
+
+\ap $m=2, \ \gamma = 0, \ k=10$
+
+\ap $m = 4, \ \gamma = 1, \ k = 0.1$
+
+\begin{instructions}
+Determine the resonant frequency for a spring-mass system with the following combination of mass $m \ kg$, viscous damping coefficient $\gamma \frac{Ns}{m}$ and spring constant $k \frac{N}{m}$.
+\end{instructions}
+
+\smallskip
+\ap $m=0.5, \ \gamma = 4, \ k = 10$
+
+\ap $m = 4, \ \gamma = 3, \ k = 20$
+
+\ap $m = 3, \ \gamma=0, \ k=120$
+
+\ap $m = 0.2, \ \gamma = 20, \ k = 90$
+
+\begin{instructions}
+Find the steady state solution $y_S$ for the given initial value problem.
+\end{instructions}
+
+\smallskip
+\ap $2\ddot{y}+8y=\cos(t), \ y(0)=0, \dot{y}(0)=0$
+
+\ap $3\ddot{y} + y = \sin(2t), \ y(0)=1, \dot{y} = 0$
+
+
+\begin{instructions} Express the solution of the given initial value problem in phase-amplitude form.
+\end{instructions}
+
+\smallskip
+\ap $\ddot{y} + y = 0, \ y(0)=8, \ \dot{y}(0)=6$
+
+\ap $\ddot{y}+4y = 0, \ y(0)=1, \ dot{y}(0)=-4$
+
+\ap $\ddot{y} + 2 \dot{y} + 5y = 0, \ y(0)=0, \ \dot{y}(0)=1$
+
+\ap $\ddot{y} + 4\dot{y} + 5y = 0, \ y(0)=1, \ \dot{y} = 0$
+
+\ap Prove that, if there is no external driving force and any damping at all (i.e. $b>0$) for a spring-mass system, then $\lim_{t \rightarrow \infty} y(t)=0$.
+
+\ap Prove that, if there is no damping and no external driving force, a spring mass system will oscillate with period $\frac{2\pi}{\omega_0}$, where $\omega_0^2=\frac{k}{m}$.
+
+\ap Consider a critically damped spring-mass system subject to the following parameters: $m=2, \ b=8, \ k=8$.  If the initial displacement is $y(0)=1$ and the initial velocity is $\dot{y}=v_0$, find a condition on $v_0$ that determines whether or not the spring will ever pass through its natural length during the time interval $t>0$.
+
+\ap Repeat the previous problem for the overdamped spring-mass system: $m=2, \ b=10, \ k=8$.
+
+\ap {\it This problem outlines a derivation of the resonant frequency in the simplified case of no damping.}  Consider an undamped spring-mass system with forced vibrations described by the differential equation $m \ddot{y} + ky = F_0 \cos(\omega t)$ (where $F_0 > 0$ is the amplitude of the driving vibrations). {\bf (a)} Verify that the solutions of this differential equation are unbounded when $\omega^2 = \frac{k}{m}$.  {\bf (b)} Find a formula for the amplitude of the steady-state solution as a function of $F_0$ and $\omega$, when $\omega^2 \neq \frac{k}{m}$.  {\bf (c)} Verify that the amplitude of the solutions in part (b) approach $\infty$ as $\omega \rightarrow \frac{k}{m}$.
+
+\ap  {\it This problem outlines the derivation of the resonant frequency for a damped oscillator.}  Consider a damped spring-mass system with forced vibrations described by the differential equation $m \ddot{y} + \gamma \dot{y} + k y = F_0 \cos(\omega t)$ (where $F_0>0$ is the amplitude of the driving vibrations).  {\bf (a)} Verify, using the method of undetermined coefficients, that the steady-state solution is $y_S=A \cos(\omega t) + B \sin(\omega t)$, where $A = \frac{F_0 (k-m\omega^2)}{(k-m \omega^2)^2 + \omega^2 \gamma^2}$ and $B = \frac{F_0 \omega \gamma}{(k-m \omega^2)^2 + \omega^2 \gamma^2}$.
+ {\bf (b)} Verify that the amplitude of the steady-state solution is $F_0/\sqrt{\left( k - m \omega^2 \right)^2+\gamma^2 \omega^2}$.  {\bf (c)} Regard the amplitude from part (b) as a function of $\omega$.  Use differential calculus to verify that this function has a maximum value when $\omega^2 = \frac{k}{m} - \frac{\gamma^2}{2 m^2}$.
+
+\ap You wish to build a damped oscillator that whose resonant frequency will be $\omega_{max}=5.00$.  You also want the amplitude of the steady state response at the resonant frequency to be twice as large as the amplitude of the driving vibrations.  Your oscillator will sit in a medium that exerts viscous damping given by the coefficient $\gamma = 0.300 \frac{Ns}{m}$.  Determine the appropriate mass $m$ and spring constant $k$ to use in the oscillator's construction.  Report your answers to three significant figures.  {\it (Note: There will be two solutions.  Refer to Problem 9.6 for the necessary formulas.)}
+
+\end{multicols}

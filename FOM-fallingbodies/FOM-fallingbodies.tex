@@ -1,0 +1,73 @@
+\newpage
+\thispagestyle{empty}
+
+\color{white}
+\section*{Focus on Modeling: Air Resistance}
+\normalcolor
+\vspace{-24pt}
+\begin{center}
+\psframebox[style=fombox]{\begin{minipage}{6in}
+\begin{center}
+FOCUS ON MODELING
+
+{\huge Air Resistance}
+\end{center}
+
+\hspace{0.125in}
+	\index{air resistance}%
+	A typical example of a physical process we can model with first-order differential equations is that of a falling body.  For example, one might consider a skydiver in free fall after jumping out of an airplane, or particle of dust or pollen falling through the air.  In order to keep things simple, we will assume that the motion occurs in only one dimension, the vertical one.  
+
+\hspace{0.125in}
+However, it turns out that these two falling objects -- the skydiver and the dust particle -- require different mathematical models in order to accurately describe their motions, and the nature of the difference will probably surprise you.
+
+\hspace{0.125in}
+Let's begin with the skydiver.  Let $v(t)$ denote the velocity of the skydiver at time $t$.  If the skydiver has mass $m$, then Newton's second law tells us that the acceleration of the skydiver, $\dot{v}$, satisfies $m\dot{v}=F$, where $F$ is the sum of the forces acting on the object.  One of those forces is gravity, which has a magnitude of $\left| F_{gravity} \right| = mg$.  (Here, $g$ is the acceleration of an object close to the Earth's surface due to gravity.)
+
+\hspace{0.125in}
+The other force we wish to take into account in this model is air resistance, or 
+	\index{inertial drag}%
+	{\bf inertial drag}.  Drag is actually a very complicated phenomenon, but we can try to build a reasonable model by thinking about how the air interacts with the falling skydiver.  As he falls through the air, he impacts molecules of air, and the total force of these impacts will depend on their relative speed (which is the same as his own speed relative to the ground) {\it and} the frequency of these impacts, which is also proportional to the speed.  Therefore the total force of these impacts with air molecules is proportional to the square of the velocity: $\left|F_{inertial-drag}\right|=cv^2$.  (Note that we assumed here that the skydiver remains in the same physical orientation during most of his fall (perhaps in the spread eagle, belly-towards-the-ground position; if that is not the case, then his orientation will also play a role in determining the frequency of impact with molecules of air.)
+
+\hspace{0.125in}
+This force acts in the upward direction, because it is acting in the {\it opposite} direction of the skydiver's fall.  The force due to gravity acts downward.  If we choose coordinates so that a falling object has positive velocity, then Newton's second law gives us
+\[ m\dot{v} = F_{gravity}+F_{inertial-drag} = mg-cv^2.\]
+
+
+\end{minipage}
+}
+\end{center}
+
+
+
+
+
+\newpage
+\thispagestyle{empty}
+\vspace{-24pt}
+\begin{center}
+\psframebox[style=fombox]{\begin{minipage}{6in}
+Dividing through by $m$ and introducing $k = \frac{c}{m}$ gives us
+\[ \dot{v} = g-kv^2.\]
+This should match the mathematical model developed in Problem 1.5.  However, this model is incomplete!  There is also a friction-like force, called 
+	\index{viscous drag}%
+	{\bf viscous drag}, which impedes the motion of an object moving through a fluid (like air or water) by acting on the object laterally as it moves though the fluid.  You can experience this force by trying to drag a long piece of paper through a swimming pool edge-on; even though there is a very small cross-sectional area where the paper's edge impacts water molecules, the sides of the paper experience viscous drag as the water moves laterally across them. 
+
+\hspace{0.125in}
+Like friction, this viscous force is proportional to the speed of the object: $\left| F_{viscous-drag} \right| = b|v|$, where $b$ is a positive constant.  This force always acts in the opposite direction of the object's motion, so we can write it is $F_{viscous-drag}=-bv$ (in our chosen coordinates, $v$ will be positive).  The coefficient $b$ depends on the viscosity of the fluid through which the object moves.  If we were to use this type of drag in our model instead of inertial drag, we would obtain an ODE of the form
+\[ \dot{v} = g-bv.\]
+One might try to combine both of these drag effects into a single differential equation, but that isn't always necessary.  It turns out that when objects move very fast, or when the viscosity of the fluid through which they move is comparatively small, then the inertial drag is the dominant effect and viscous drag can often be ignored. On the other hand, when the velocity is very low, or when the viscosity of the fluid is comparatively high, then viscous drag is dominant and inertial drag may be ignored.
+
+\hspace{0.125in}
+For a skydiver, the large velocities at hand can be accurately modeled by the inertial-drag equation above, wherein air resistance is proportional to the square of the velocity.  For the relatively low terminal velocities of dust particles, viscous drag remain the dominant force and better predictions are made by the viscous-drag equation in which air-resistance varies in proportion to the velocity.
+
+\hspace{0.125in}
+To learn more about these different models, read \cite{velocityprimer}.
+
+\hspace{0.125in}
+A detailed treatment of these ideas belong to a course in fluid mechanics and derives from a system of partial differential equations known as the `Navier-Stokes equations'.  This is far beyond the scope of this text.  In fact, we still don't have a complete understanding of the solutions of Navier-Stokes equations: even though these equations were introduced nearly two centuries ago, many open questions remain.  
+
+
+\end{minipage}
+}
+\end{center}
+

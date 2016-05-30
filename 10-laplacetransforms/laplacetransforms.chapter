@@ -1,0 +1,420 @@
+\chapter{Laplace Transforms}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{RLC circuit}%
+	A simple electrical circuit component contains a 2 ohm resistor, a 3 henry inductor and a 4 farad capacitor connected in series.  If there is a voltage source connected that supplies $f(t)$ volts at time $t$, where
+\[ f(t) = \begin{cases} 2 & \mbox{if} \ \pi \leq t \leq 2\pi \\ 0 & \mbox{otherwise} \end{cases} \]
+then the charge  $q(t)$ on the capacitor can be modeled by the differential equation 
+\[ 3 \ddot{q} + 2 \dot{q} + \frac{1}{4} q = f(t).\]
+Here, $q$ is measured in coulombs, and time is measured in seconds.  The current initially satisfies $q(0)=0$ and $\dot{q}(0)=0$.  Graph the current $q(t)$ on the time interval $0 \leq t \leq 4 \pi$ seconds.
+\end{minipage}
+}
+\end{center}
+
+
+
+In this chapter we will introduce the idea of a transform method.  The basic idea is this: we begin with an initial value problem for a differential equation, and we transform this equation into an algebraic equation; once we solve for the unknown in the algebraic equation, we then transform back to find a corresponding solution of the IVP.
+
+We will see how this transform can be used to solve second order constant coefficient ODE.  We already know how to solve some of these equations using the method of undetermined coefficients, so one might wonder at first why we need a new method.  The point is that our new approach will make it much easier to solve problems with discontinuous driving functions (such as we see in the prototype question above).  In fact, this is the preferred method in many electrical engineering problems where discontinuous driving functions are extremely common.
+
+The tool we will use for this is the 
+	\index{Laplace Transform}%
+	{\bf Laplace Transform} of a function, defined by
+\[ L[f]=\int_0^\infty f(t)e^{-st} \ dt.\]
+Here, $f$ is a function defined on $[0,\infty)$ and $L[f]$ is a function of $s$ defined for whatever values of $s$ lead to a convergent integral.
+
+\example The Laplace Transform of $e^{t}$ is
+\begin{align*}
+L[e^t]& =\int_0^\infty e^t e^{-st} \ dt \\
+& = \lim_{T \rightarrow \infty} \int_0^T e^{(1-s)t} \ dt \\
+& = \lim_{T \rightarrow \infty} \left. \frac{e^{(1-s)t}}{1-s} \right|_0^T \\
+& = \lim_{T \rightarrow \infty} \frac{e^{(1-s)T}}{1-s} - \frac{1}{1-s} \\
+& = \frac{1}{s-1} \ \ \ \mbox{for} \ s >1.
+\end{align*}
+\qed
+
+
+
+
+
+\begin{exe}
+Calculate the Laplace Transform of the functions $t^2$, $\sin(t)$ and $e^{at}$ (where $a$ is a constant).
+\end{exe}
+
+
+\begin{exe}
+Prove that the Laplace Transform is linear: for any functions $f$ and $g$ and for any constant coefficients $a$ and $b$, $L[af+bg]=aL[f]+bL[g]$.  {\it (Equality only needs to hold on the set of $s$-values for which $L[f]$ and $L[g]$ are both defined.)}
+\end{exe}
+
+
+
+It is typical to denote a transform of a function with a capital letter.  For example, when it is useful to display the variable, we will often denote the Laplace Transform of a function $f(t)$ by $F(s)$; otherwise we will write it as $L[f]$.  We usually do not care what the exact domain is for $F(s)$ -- it will be enough to know that there is some interval for $s$ on which the integral defining the transform converges.  The next theorem provides such a guarantee.
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence of the Laplace Transform \normalcolor}}
+\index{existence of Laplace transform}
+\index{Laplace transform, existence}
+
+Suppose there exists $M\geq 0$ and any real number $N$ such that $|f(t)| \leq Me^{Nt}$ for all $t \geq 0$.  Then the integral defining the Laplace Transform converges for all $s > N$.
+\end{minipage}
+}
+\end{center}
+
+
+
+A function that satisfies the hypothesis of this theorem is said to be of 
+	\index{exponential order}%
+	{\bf exponential order}, because it does not grow any faster than exponential functions can grow.
+
+\bigskip
+\proof
+
+Observe that for $s>N$ we have
+\begin{align*}
+\int_0^\infty | f(t) e^{-st} | \ dt & = \int_0^\infty | f(t)| e^{-st} \ dt \\
+& \leq \int_0^\infty Me^{Nt} e^{-st} \ dt \\
+& =  \int_0^\infty M e^{(N-s)t} \ dt \\
+& = \frac{M}{s-N} \\
+& < \infty.
+\end{align*}
+This proves that the integral defining $L[f]$ converges absolutely for all $s > N$.
+\qed
+
+
+
+\bigskip
+Next, we introduce the key fact which allows us to use Laplace Transforms for solving initial value problems.  There is a close relationship between the Laplace transform of a function and that of its derivative:
+{\it 
+If $L[f]$ exists for $s>a$, where $f$ is a differentiable function, and if $\lim_{t \rightarrow \infty} f(t)e^{-st}=0$ for $s > a$, then $L[f']$ also exists for $s>a$, and $L[f']=sL[f]-f(0)$.
+}
+
+Notice that any function of exponential order satisfies both hypotheses of this theorem. 
+We call this a reduction formula for the Laplace Transform because it allows us to ``reduce''  $L[f']$ to an expression involving $L[f]$.  The following box highlights this result.
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Reduction Formula: Laplace Transform of a Derivative \normalcolor}}
+
+\[ L[f'] = sL[f]-f(0)\]
+\end{minipage}
+}
+\end{center}
+
+
+
+\bigskip
+\proof We use integration by parts, integrating $f'(t)$ and differentiating $e^{-st}$:
+\begin{align*}
+L[f'] & = \int_0^\infty f'(t) e^{-st} \ dt \\
+& = \lim_{T \rightarrow \infty} \int_0^T f'(t) e^{-st} \ dt \\
+& = \lim_{T \rightarrow \infty} \left[ e^{-st} f(t) - \int -se^{-st} f(t) \ dt \right]_0^T \\
+& = \lim_{T \rightarrow \infty} e^{-sT}f(T) - e^{0t} f(0) + s \int_0^T f(t) e^{-st} \ dt \\
+& = -f(0) + s \int_0^\infty f(t) e^{-st} \ dt \\
+& = -f(0)+sL[f].
+\end{align*} 
+\qed 
+
+In practice, when faced with an unknown function we will always assume that it is of exponential order and therefore satisfies hypotheses of these two theorems.  Of course, in theory such an assumption could lead to erroneous results, but in practical applications this rarely happens.  And because the process we illustrate in the next few examples furnishes us with a concrete function, we can always check it to make sure it satisfies the differential equation at hand.
+
+To make use of the Laplace Transform to solve an initial value problem, we need to make use of one more fact which we will not prove:
+{\it
+If $f$ and $g$ are continuous functions on $[0,\infty)$ and $L[f]=L[g]$, then $f=g$ on $[0,\infty)$.
+}  Thus the Laplace Transform is invertible.  We denote the 
+	\index{Inverse Laplace Transform}%
+	{\bf Inverse Laplace Transform} by $L^{-1}$.  Because $L$ is linear, so is $L^{-1}$: 
+\[ L^{-1}[aF(s)+bG(s)] = aL^{-1} [F(s)] + b L^{-1}[G(s)]\]
+
+\example Since $L[e^{2t}]=\frac{1}{s-2}$, it follows that $L^{-1} \left[ \frac{1}{s-2} \right] = e^{2t}.$
+\qed
+
+
+\begin{exe}
+Find $L^{-1} \left[ \frac{1}{s^3} \right]$.  {\it (Hint: Refer to Exercise 1.)}
+\end{exe}
+
+
+We now have enough machinery to use the Laplace Transform for solving an initial value problem.
+
+\example Solve $y'+2y=0, \ y(0)=3$ using Laplace Transforms.
+
+
+{\bf Solution:} Suppose $y$ is a solution of $y'+2y=0, \ y(0)=3$ on the domain $[0,\infty)$.  We take the Laplace Transform of both sides of the ODE:
+\[ L[y'+2y] = L[0].\]
+Then we use the facts that $L$ is linear and $L[0]=0$:
+\[ L[y']+2L[y]=0.\]
+Next we apply the formula for the Laplace Transform of a derivative:
+\[ sL[y]-y(0)+2L[y]=0.\]
+Insert the initial condition $y(0)=3$ and collect like terms:
+\[ (s+2)L[y]-3=0.\]
+Isolate $L[y]$:
+\[ L[y] = \frac{3}{s+2}.\]
+Finally, isolate $y$ by taking the inverse Laplace Transform of both sides:
+\begin{align*}
+y & = L^{-1} \left[ \frac{3}{s+2} \right] \\
+& = 3 L^{-1} \left[ \frac{1}{s-(-2)} \right] \\
+& = 3 e^{-2t}.
+\end{align*}
+This is the solution of the initial value problem above.
+\qed
+
+Clearly it will be useful to have a list of functions and their corresponding Laplace Transforms.  Here is a short list of such correspondences.
+
+	\index{table of Laplace Transforms}%
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Brief Table of Laplace Transforms \normalcolor}}
+
+\begin{center}
+\begin{tabular}{c|c}
+$f(t)$ & $F(s)$ \\ \hline
+$t^n$ & $\frac{n!}{s^{n+1}}$ \\
+$e^{at}$ & $\frac{1}{s-a}$ \\
+$\sin(kt)$ & $\frac{k}{s^2+k^2}$ \\
+$\cos(kt)$ & $\frac{s}{s^2+k^2}$ \\
+$\sinh(kt)$ & $\frac{k}{s^2-k^2}$ \\
+$\cosh(kt)$ & $\frac{s}{s^2-k^2}$ \\
+$e^{at}\sin(bt)$ & $\frac{b}{(s-a)^2+b^2}$ \\
+$e^{at}\cos(bt)$ & $\frac{s-a}{(s-a)^2+b^2}$\\
+$ t^n e^{at}$ & $\frac{n!}{(s-a)^{n+1}}$
+\end{tabular}
+\end{center}
+\end{minipage}
+}
+\end{center}
+
+
+\begin{exe}
+Use Laplace Transforms to solve the initial value problem $y'+4y=6, \ y(0)=2$.    
+\end{exe} 
+
+
+Higher-order ODE can be solved in the same way.  When we transform $y''$, we just use the reduction formula twice:
+\[ L[y'']=sL[y']-y'(0)=s(sL[y]-y(0))-y'(0)=s^2L[y]-sy(0)-y'(0).\]
+The reader may choose to memorize this formula as well, or just to use the first-order formula repeatedly when required.
+
+\example Solve the IVP $y''+9y=2, \ y(0)=1, \ y'(0)=0$.
+
+{\bf Solution:} Transform both sides of the equation, rewrite all the Laplace Transforms in terms of $L[y]$, and then isolate $L[y]$:
+
+\begin{align*}
+L[y''+9y]&=L[2] \\
+L[y'']+9L[y]&=\frac{2}{s} \\
+sL[y']-y'(0)+9L[y]&=\frac{2}{s} \\
+s(sL[y]-y(0))-y'(0)+9L[y]&=\frac{2}{s} \\
+(s^2+9)L[y]-s-0&=\frac{2}{s}\\
+(s^2+9)L[y]&=s+\frac{2}{s} \\
+L[y]&=\frac{s}{s^2+9}+\frac{2}{s(s^2+9)}
+\end{align*}
+
+Use a partial fractions decomposition to rewrite the right side of the equation:
+\begin{align*} 
+L[y]& =\frac{s}{s^2+9}+\frac{(2/9)}{s}+\frac{(-2/9)s}{s^2+9} \\
+& = \frac{(7/9)s}{s^2+9}+\frac{(2/9)}{s}
+\end{align*}
+Then isolate $y$ using the inverse transform:
+\begin{align*}
+y & = L^{-1} \left[ \frac{(7/9)s}{s^2+9}+\frac{(2/9)}{s} \right] \\
+& = \frac{7}{9} L^{-1} \left[ \frac{s}{s^2+9} \right] + \frac{2}{9} L^{-1} \left[ \frac{1}{s} \right] \\
+& = \frac{7}{9} \cos(3t) +\frac{2}{9}
+\end{align*}
+\qed
+
+
+\example Solve the IVP $y''+4y' + 13y=0, \ y(0)=1, \ y'(0)=1$.
+
+{\bf Solution:} Transform both sides of the equation, rewrite all the Laplace Transforms in terms of $L[y]$, and then isolate $L[y]$:
+
+\begin{align*}
+L[y''+4y'+13y] & = L[0]  \\
+sL[y']-y'(0)+4(sL[y]-y(0))+13L[y] & = 0 \\
+s(sL[y]-y(0))-y'(0)+4(sL[y]-y(0))+13L[y] & = 0 \\
+(s^2+43+13)L[y] -sy(0)-y'(0)-y(0)=0 \\
+(s^2+4s+13)L[y] - s-2 & = 0 \\
+L[y] & = \frac{s+2}{s^2+4s+13}
+\end{align*}
+
+Notice that the denominator does not factor over the real numbers, so we don't want to try to use a partial fraction decomposition.  Instead, will will use the algebraic technique of
+	\index{completing the square}
+	{\bf completing the square}
+to rewrite the expression.  Completing the square on a quadratic expression such as $x^2+bx+d$ means rewriting it in the form $(x+h)^2+d$.  In this case, that would be
+\[ s^2+4s+13=s^2+4s+4+9=(s+2)^2+9.\]
+So now we have
+\[ L[y] = \frac{s+2}{(s+2)^2+9},\]
+which we can now identify from our table:
+\[ y = e^{(-2t)} \cos(3t).\]
+\qed 
+
+
+
+\begin{exe}
+Use Laplace Transforms to solve the following initial value problems:
+
+{\bf (a)} $y''+25y=t, \ y(0)=0, \ y'(0)=3$.
+
+{\bf (b)} $y''+4y'=6, \ y(0)=0, \ y'(0)=1$.    
+
+{\bf (c)} $y''-6y'+8y=6, \ y(0)=2, y'(0)=0$.   
+
+{\bf (d)} $y''+5y'+4y=\sin(t), \ y(0)=0, y'(0)=0$.
+
+{\bf (e)} $y''+4y'+8y=0, \ y(0)=1, \ y'(0)=0$.
+
+{\bf (f)} $y''-4y=t, \ y(0)=0, \ y'(0)=2$.
+\end{exe}
+
+
+We end this chapter with one more useful fact about Laplace Transforms which will allow use to easily compute many of them:
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Derivative of a Laplace Transform \normalcolor}}
+
+\[ L[tf(t)] = -F'(s), \ \mbox{where } F(s) = L[f(t)]\]
+\end{minipage}
+}
+\end{center}
+
+This equality assumes that all of the necessary integrals are convergent.  The following calculation contains the essence of the proof.
+\begin{align*}
+F'(s) & = \frac{d}{ds} \left[ \int_0^\infty f(t) e^{-st} \ dt \right] \\
+& = \int_0^\infty \frac{\partial}{\partial s} \left[ f(t) e^{-st} \right] \ dt \\
+& = \int_0^\infty f(t)(-te^{-st}) \ dt \\
+& = - \int_0^\infty (tf(t))e^{-st} \ dt \\
+& = -L[tf(t)].
+\end{align*}
+To call this a proof, we would need to justify the act of ``differentiating under the integral sign'', for {\it it is not always true} that $\frac{d}{dy} \int_a^b f(x,y) \ dx = \int_a^b f_y(x,y) \ dy$.  However, if $f$ is of exponential order, then it is possible to justify this step by using a powerful theorem from the subject of Real Analysis called the Lebesgue Dominated Convergence Theorem (see \cite{royden:realanalysis}).  However, the details of this are outside the scope of this course.
+
+Let's use this result to calculate some Laplace Transforms of functions.
+
+\example The Laplace Transform of $e^{at}$ is $F(s)=\frac{1}{s-a}$; therefore 
+\begin{align*} 
+L[te^{at}] & = - \frac{d}{ds} \left[ \frac{1}{s-a} \right] \\
+& = \frac{1}{(s-a)^2}.
+\end{align*}
+\qed
+
+\begin{exe} Find the Laplace Transforms of $t\sin(bt)$ and $t \cos(bt)$. \end{exe}
+
+\begin{exe} Find the Laplace Transform of $t^k e^{t}$, where $k$ is a positive integer. \end{exe}
+
+
+%%% Cut below here for the book form.
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Use the definition of the Laplace Transform to calculate the following.
+\end{instructions}
+
+\smallskip
+\ap $L[e^{3t}]$
+
+\ap $L[4t]$
+
+\ap $L[6t^2]$
+
+\ap $L[\cosh(t)]$
+
+\ap $L[te^t]$
+
+\ap $L[t^2 e^t]$
+
+
+\begin{instructions}
+Use the brief table of Laplace Transforms to find the following.
+\end{instructions}
+
+\smallskip
+\ap $L[e^{-10t}]$
+
+\ap $L[t^2-t^3]$
+
+\ap $L[sin(4t)]$
+
+\ap $L[3\sinh(2t)]$
+
+\ap $L[te^{-t}]$
+
+\ap $L[4e^{-3t}\cos(2t)]$
+
+
+
+\begin{instructions} Find the Inverse Laplace Transform $L^{-1}[F(s)]$ for the given function $F(s)$.
+\end{instructions}
+
+\smallskip
+\ap $F(s)= \frac{1}{s^4}$
+
+\ap $F(s) = \frac{1}{4s}$
+
+\ap $F(s) = \frac{s}{s^2+4}$
+
+\ap $F(s) = \frac{s+2}{s^2+9}$
+
+\ap $F(s) = \frac{1}{s^2+2s+1}$
+
+\ap $F(s) = \frac{1}{s^2+4s+20}$
+
+\begin{instructions} Solve the initial value problem using that Laplace Transform.
+\end{instructions}
+
+\smallskip
+\ap $\dot{y} + y = 0, \ y(0)=3$
+
+\ap $2\dot{y} - y = 1, \ y(0)=0$
+
+\ap $3 \ddot{y} + \dot{y} = 2, \ y(0)=1, \ dot{y}(0)=1$
+
+\ap $\ddot{y} +y = \sin \left( \sqrt{2} t \right), \ y(0)=4, \ \dot{y}(0)=0$
+
+
+\smallskip
+\hrule
+
+\smallskip
+\ap Prove the formula $L \left[ t^n \right] = \frac{n!}{s^{n+1}}$ three different ways: {\bf (a)} directly from the definition of Laplace Transform, {\bf (b)} by using the reduction formula for the Laplace Transform of a derivative, and {\bf (c)} by taking advantage of the formula for the derivative of a Laplace Transform.
+
+\ap Prove the following Laplace Transform formulas: {\bf (a)} $L[e^{at}] = \frac{1}{s-a}$, {\bf (b)} $L[\sinh(kt)] = \frac{k}{s^2-k^2}$, {\bf (c)} $L[\cosh(kt)] = \frac{s}{s^2-k^2}$. {\it (Hint: Use part (a) to help with parts (b) and (c).)}
+
+\ap {\bf (a)} Prove $L[\sin(kt)] = \frac{k}{s^2+k^2}$ using the definition of the Laplace Transform.   {\bf (b)} Prove $L[\cos(kt)] = \frac{s}{s^2+k^2}$ by taking advantage of the result in part (a) and the reduction formula for the Laplace Transform of a derivative. {\it (Hint: For part (a), you'll need to use a ``double integration by parts''.)}
+
+\ap Suppose $f$ and $g$ are continuous functions on $[0,\infty)$ with $L[f]=F(s)$, and $L[g]=F(s-a)$ (that is to say, the Laplace Transform of $g$ is a translation of the Laplace Transform of $f$).  Prove that $g(t)=e^{at}f(t)$.
+
+\ap Prove the following Laplace Transform formulas by taking advantage of the result of Problem 2 above: , {\bf (a)} $L[e^{at}\sin(bt)] = \frac{b}{(s-a)^2+b^2}$, {\bf (b)} $L[e^{at} \cos(bt)] = \frac{(s-a)}{(s-a)^2+b^2}$, {\bf (c)} $L[t^n e^{at}] = \frac{n!}{(s-a)^{n+1}}$.
+
+\ap Another useful transform in the study of differential equations is the Fourier Transform which can be defined for a function $f(t)$ by the formula 
+\[ F[f] = \int_{-\infty}^\infty f(t) e^{-2\pi i \xi t} \ dt.\]  
+(Here, the transform is a function of $\xi$.)  Verify the following reduction formula for differentiable functions $f$ that satisfy $\lim_{t \rightarrow \pm \infty}f(t)=0$:
+\[ F[f'] = 2 \pi i \xi F[f].\]
+
+\ap Prove that $f(t)=e^{(t^2)}$ {\it is not} of exponential order.
+
+\ap If $L[f(t)]=F(s)$, it can be proved (but you are not being asked to prove) that $L \left[ \frac{f(t)}{t} \right] = \int_s^\infty F(\sigma) \ d\sigma$, provided that $\lim_{t \rightarrow 0^+} \frac{f(t)}{t}$ exists and is finite. Verify that this condition holds for $\frac{\sin(t)}{t}$, and then use this formula to find $L \left[ \frac{\sin(t)}{t} \right]$.
+
+\ap The Gamma function $\Gamma(x)$ is defined for $x>0$ by
+\[ \Gamma(x) = \int_0^\infty e^{-t} t^{x-1} \ dt.\]
+Verify that $\Gamma(1)=1$.  Use integration by parts to verify that $\Gamma(x+1)=(x+1)\Gamma(x)$.  What other mathematical operation do these two properties remind you of?
+
+\ap Use the definition of the Laplace Transform and integrate by substitution to prove 
+\[ L\left[ t^a \right] = \frac{\Gamma(a+1)}{s^{a+1}} \]
+for all $a >0$.
+
+
+\end{multicols}
+

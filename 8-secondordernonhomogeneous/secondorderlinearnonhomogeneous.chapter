@@ -1,0 +1,408 @@
+\chapter{Non-homogeneous Equations}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{RLC circuit}%
+	A simple electrical circuit component contains a 2 ohm resistor, a 3 henry inductor and a 4 farad capacitor connected in series.  If there is an oscillating voltage source connected that supplies $12 \sin(4t)$ volts at time $t$, then the charge on the capacitor $q(t)$ can be modeled by the differential equation 
+\[ 3 \ddot{q} + 2 \dot{q} + \frac{1}{4} q = 12 \sin(4t).\]
+Here, $q$ is measured in amperes, and time is measured in seconds.  The current initially satisfies $q(0)=0$ and $\dot{q}(0)=0$.  Graph the current $q(t)$ on the time interval $0 \leq t \leq \pi$ seconds.
+\end{minipage}
+}
+\end{center}
+
+
+
+
+Now that we can solve ODE of the form 
+\[ a\ddot{y}+b\dot{y}+cy=0,\]
+we would like to be able to solve the 
+	\index{non-homogeneous equations}%
+	{\bf non-homogeneous} equations:
+\[ a\ddot{y}+b\dot{y}+cy=f(t).\]
+It is possible to write down general representation formulas for any continuous 
+	\index{driving function}%
+	{\bf driving function} $f(t)$, but we will mostly be interested in the special cases when $f(t)$ is a polynomial, exponential or trigonometric function.
+
+We will develop the idea of our technique in the following example.  Later examples will illustrate the streamlined version of this process.
+
+\example
+Consider the differential equation 
+\[y''+2y'+y=x^2.\]
+We would like to find a general solution of this differential equation.  We will start by trying to find {\it one} solution.
+
+What kinds of functions might satisfy the equation?  The driving function is a power function, and in order that a function, its derivative and second derivative might simplify on the left side of the ODE to just $x^2$, it would be a reasonable guess that some polynomial function might work as $y(x)$.  We will therefore try to find a function of the form $y_p=Ax^2+Bx+C$ that satisfies the ODE.  (We call the function $y_p$ because it is a {\it particular} solution of the nonhomogeneous diferential equation, not a general solution.)  Notice that we don't want to try a polynomial of degree 3 or higher because there would be no way for the higher degree terms to cancel out and leave just $x^2$.  Substitute this into the ODE to obtain
+\begin{align*}
+x^2 & = y_p''+2y_p'+y_p \\
+& = (2A)+2(2Ax+B)+(Ax^2+Bx+C) \\
+& = Ax^2 + (4A+B)x+(2A+2B+C)
+\end{align*}
+Equating the polynomial coefficients on both sides of the equation gives
+\[ A=1, \ \ \ 4A+B=0, \ \ \ 2A+2B+C=0.\]
+Consequently $A=1$, $B=-4$ and $C=6$.  This gives us the function
+\[ y_p (x) = x^2-4x+6\]
+as one solution of the ODE.  
+
+Next, suppose that $y(x)$ is any solution of the equation, and define $y_h=y-y_p$.  Inserting this into the differential equation, we see that
+\begin{align*}
+x^2 & = y''+2y'+y \\
+& = (y_h+y_p)''+2(y_h+y_p)'+(y_h+y_p) \\
+& = y_h''+2y_h'+y_h + y_p''+2y_p'+y_p \\
+& = y_h''+2y_h'+y_h + x^2
+\end{align*}
+Subtracting $x^2$ from both sides, we see that
+\[ 0 = y_h''+2y_h'+y_h,\]
+and we know how to find the general solution of this equation:
+\[ y_h(x)=Ae^{-x}+Bxe^{-x}.\]
+(There was a bit of foresight here in calling the difference $y-y_p$ by the name $y_h$, as the above calculation shows that $y_h$ is a solution of the corresponding {\it homogeneous} differential equation that has the same coefficients as our nonhomogeneous equation does.)  Consequently,
+\[ y(x)=y_p(x)+y_h(x) =x^2-4x+6+Ae^{-x}+Bxe^{-x}.\]
+All solutions of the ODE can be written in this form, so this is the general solution of the differential equation.
+\qed
+
+In the previous example, we took advantage of the following important idea:
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Second Order Non-homogeneous Equations \normalcolor}}
+
+If $y_p$ satisfies the non-homogeneous ordinary differential equation
+\[ ay''+by'+cy=f(x)\]
+and if $y_h$ is the general solution of the corresponding homogeneous equation
+\[ ay''+by'+cy=0,\]
+then $y=y_p+y_h$ is the general solution of the non-homogeneous ODE.
+\end{minipage}
+}
+\end{center}
+
+Based on this fact, we can try to find general solutions of non-homogeneous equations by finding just one solution (which we call a 
+	\index{particular solution}%
+	{\bf particular solution)} and then adding to it the general solution of the related homogeneous equation.
+
+Our method for finding a particular solution was to guess a form of a particular solution (such as the polynomial $Ax^2+Bx+C$ we tried in the first example), and then by substituting it into the ODE we find the appropriate values for the unknown coefficients.  This approach is called the 
+	\index{method of undetermined coefficients}%
+	{\bf method of undetermined coefficients}.
+
+It is usually a good idea to solve the related homogeneous equation first, because the form of that general solution might affect our guess for a particular solution of the non-homogeneous ODE, as we'll see in Example 4.
+
+\example Solve the initial-value problem $y''+y'-6y=3x+4$, $y(0)=1$, $y'(0)=0$.}
+
+The related homogeneous equation $y''+y'-6y=0$ has characteristic equation $r^2+r-6=0$, and the roots of this are $r=-3,2$.  Thus the homogeneous equation has the general solution $y_h=Ae^{-3x}+Be^{2x}$.  We guess that there might be a particular solution of the non-homogeneous equation of the form $y_p=Cx+D$.  Inserting this into the non-homogeneous equation yields
+\[ 3x+4 = (0)+(C)-6(Cx+D) = -6Cx+(C-6D).\]
+Equating coefficients tells us $C=-\frac{1}{2}$ and then $D=-\frac{3}{4}$.  This gives us $y_p=-\frac{1}{2}x-\frac{3}{4}$, and adding this to the general solution of the related homogeneous equation yields the general solution of the non-homogeneous equation:
+\[ y=-\frac{1}{2}x-\frac{3}{4}+Ae^{-3x}+Be^{2x}.\]
+The initial conditions allow us to solve for $A$ and $B$:
+\[ y(0)=1 \implies -\frac{3}{4} +A+B=1 \]
+\[ y'(0)=0 \implies -\frac{1}{2}-3A+2B=0 \]
+The solution of this system of algebraic equations is $A=\frac{3}{5}$ and $B=\frac{23}{20}$.  This gives us the solution of the IVP:
+\[ y=-\frac{1}{2}x -\frac{3}{4}+\frac{3}{5}e^{-3x}+\frac{23}{20}e^{2x}.\]
+\qed
+
+{\bf WARNING:} Don't try to find coefficients for the homogeneous equation that satisfy the initial conditions -- wait until you add in the particular solution for the non-homogeneous equation.  Doing otherwise will usually produce the wrong answer because it will not take into account the initial values of the particular solution.
+
+
+\begin{exe}
+Solve the initial value problem $y''-5y'+6y=x$, $y(0)=0$, $y'(0)=0$.
+\end{exe}
+
+The previous exercise asks for a solution satisfying the initial conditions $y(0)=0$ and $y'(0)=0$.  We often refer to such initial values as 
+	\index{rest initial conditions}
+	{\bf rest initial conditions},
+particularly when the differential equation is describing physical behavior, such as that of a spring-and-mass system.
+
+
+\example Find the general solution of $y''+2y'+y=e^{2x}$.
+
+The characteristic equation is $r^2+2r+1=0$, which has a repeated root $r=-1$.  Thus the general solution of the related homogeneous equation is $y_h=Ae^{-x}+Bxe^{-x}$.  Next we guess that a particular solution of the non-homogeneous equation will have the form $y_p=Ce^{2x}$:
+\[ e^{2x}=(4e^{2x})+2(2e^{2x})+(e^{2x}) = 9e^{2x},\]
+so that $C=\frac{1}{9}$.  Therefore the general solution of the non-homogeneous equation is
+\[ y=\frac{1}{9}e^{2x}+Ae^{-x}+Bxe^{-x}.\]
+\qed
+
+\begin{exe} Solve the initial value problem $\ddot{y}-y=e^{2t}, \ y(0)=1, \dot{y}(0)=1$.  {\it (Hint: Guess that this ODE has a particular solution of the form $y_p=Ce^{2t}$.  Convince yourself that this is a reasonable thing to guess.)}
+\end{exe}
+
+
+\begin{exe}
+Try to find a particular solution to $y''+6y'=x$ of the form $y_p=Cx+D$.  End up proving that no such solution exists.
+\end{exe}
+
+
+The last exercise shows us how we might need to be more clever when guessing the form of our particular solution.  If {\it any term} in the driving function is a solution of the related homogeneous equation, we will need to modify the form of our guess.  For the differential equation in the last exercise, the correct form of the guess is actually a degree-two polynomial.
+
+\example Consider the ODE $y''+6y'=x$.  Let us seek a solution of the form $y_p=Cx^2+Dx$.  Inserting this into the differential equation produces
+\[ x=(2C)+6(2Cx+D)=12Cx+(2C+6D).\]
+Equating coefficients gives us $C=\frac{1}{12}$ and then $D=-\frac{1}{36}$.  Now we see that the function $y_p=\frac{1}{12}x^2-\frac{1}{36}x$ is a solution.
+\qed
+
+The general principle we follow is this: if the driving term of the non-homogeneous equation is a polynomial (or a monomial) of degree $N$, then our guess for the form of a particular solution is 
+\[ y_p=x^S q(x),\]
+where $q(x)$ is a polynomial of degree $N$, and where $S \geq 0$ is the smallest non-negative integer such that no term in the polynomial $x^S q(x)$ is a solution of the related homogeneous equation.  
+
+
+This is why it is a good practice to find the general solution of the related homogeneous equation first, so that we can compare our guess for a particular solution of the non-homogeneous equation with solutions of the related homogeneous equation.
+
+\begin{exe}
+Find the general solution of $y''+2y'=x^2$.
+\end{exe}
+
+
+
+
+\example Find the general solution of $y''+2y'+y=e^{-x}$.
+
+The general solution of the related homogeneous equation is $y_h=Ae^{-x}+Bxe^{-x}$.  Therefore no multiple of $e^{-x}$ can be a solution of the non-homogeneous equations.  Neither can any multiple of $xe^{-x}$.  However, we can find a solution by looking for a multiple of $x^2e^{-x}$.  Let $y_p=Cx^2e^{-x}$.  Then $y_p'=C(2x-x^2)e^{-x}$ and $y_p''=C(2-4x+x^2)e^{-x}$.  Insert these into the ODE:
+\begin{align*} e^{-x}& =\left(C(2-4x+x^2)e^{-x}\right)+2\left(C(2x-x^2)e^{-x}\right) +\left(Cx^2e^{-x}\right) \\
+& = 2Ce^{-x}
+\end{align*}
+Thus $C=\frac{1}{2}$.  So $y_p=\frac{1}{2}x^2e^{-x}$ is a particular solution, and therefore the general solution is
+\[ y=\frac{1}{2}x^2 e^{-x} +Ae^{-x}+Bxe^{-x}.\]
+\qed
+
+As in Example 3, when we recognized that the natural guess would be a solution of the homogeneous equation, we modified it by multiplying by the smallest (integer) power of $x$ such that the product would not be a homogeneous solution.  This same approach can applied when the driving terms is a sine or cosine function.  In general, if the driving term is $\sin(mx)$ or $\cos(mx)$, our guess will be a function of the form $y_p=A\sin(mx)+B\cos(mx)$, unless we need to multiply by a power of $x$ to ensure that no term in our guess is a homogeneous solution.
+
+\example Find a general solution of $y''-y=\sin(2x)$.
+
+The characteristic equation is $r^2-1=0$, which has solutions $r=\pm 1$; thus the solution of the homogeneous equation is $y_h=Ae^x+Be^{-x}$.  Next we guess that a solution of the non-homogeneous equation might have the form $y_p=C\sin(2x)+D\cos(2x)$.  Inserting this into the ODE yields
+\begin{align*}
+\sin(2x) & = \left(-4C\sin(2x)-4D\cos(2x)\right)-\left(C\sin(2x)+D\cos(2x) \right) \\
+& = -5C\sin(2x)-5D\cos(2x).
+\end{align*}
+Equating coefficients gives us $C=-\frac{1}{5}$ and  $D=0$, so $y_p=-\frac{1}{5}\sin(2x)$.  The general solution is thus
+\[ y=-\frac{1}{5}\sin(2x)+Ae^x+Be^{-x}.\]
+\qed
+
+\example Find a general solution of $y''+y=\sin(2x)$.
+
+The characteristic equation is $r^2+1=0$, which has solutions $r=\pm i$.  We thus write the general solution of the homogeneous equation as $y_h=A\sin(x)+B\cos(x)$.  Suppose a particular solution is $y_p=C\sin(2x)+D\cos(2x)$.  Then
+\begin{align*}
+\sin(2x)&=\left(-4C\sin(2x)-4D\cos(2x) \right) + \left(C\sin(2x)+D \cos(2x) \right) \\
+& = -3C\sin(2x)-3D\cos(2x).
+\end{align*}
+So $C=-\frac{1}{3}$ and $D=0$.  Thus $y_p=-\frac{1}{3}\sin(2x)$ and
+\[ y = -\frac{1}{3}\sin(2x)+A\sin(x)+B\cos(x).\]
+\qed
+
+\example Find a general solution of $y''+y=\sin(x)$.
+
+As in the previous example, $y_h=A\sin(x)+B\cos(x)$.  But because the driving function $\sin(x)$ is a solution of the homogeneous equation, we use the guess $y_p=Cx\sin(x)+Dx\cos(x)$:
+\begin{align*}
+\sin(x) & = \left(2C \cos(x)-Cx\sin(x)-2D\sin(x)-D\sin(x)\right) \\
+& \ \ \ \ \ \ \ \ \ \ +\left(Cx\sin(x)+Dx\cos(x) \right) \\
+& = 2C\cos(x)-2D\sin(x).
+\end{align*}
+Therefore $C=0$ and $D=-\frac{1}{2}$, $y_p=-\frac{1}{2}x\cos(x)$ and 
+\[ y = -\frac{1}{2}x\cos(x)+A\sin(x)+B\cos(x).\]
+\qed
+
+The following table summarizes some of the most common forms of guesses for particular solutions when we employ this technique.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{6in}
+{\bf {\color{OliveGreen} Standard Guesses for the Method of Undetermined Coefficients \normalcolor}}
+
+For $ay''+by'+cy=f(x)$, we guess that a particular solution has the form $y_p(x)$ as follows:
+
+\smallskip
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+$f(x)$ & $y_p(x)$ \\ \hline
+$A_n x^n + \cdots + A_1 x + A_0$ & $B_n x^n+ \cdots + B_1 x + B_0$ \\ \hline
+$e^{Ax}$ & $Be^{Ax}$ \\ \hline
+$x^n e^{Ax}$ & $\left( B_n x^n+ \cdots + B_1 x + B_0 \right)e^{Ax}$ \\ \hline
+$A_1 \cos(\alpha x + \beta) + A_2 \sin(\alpha x + \beta)$ & $B_1 \cos(\alpha x + \beta) + B_2 \sin(\alpha x + \beta)$ \\ \hline
+$A_1 x^n \cos(\alpha x + \beta)$ & $\left( B_n x^n+ \cdots + B_1 x + B_0 \right) \left( \cos(\alpha x + \beta) \right)$ \\
+\ \ \ \ \  $+ A_2 x^n \sin(\alpha x + \beta)$ & $ \ \ \ \ \ + \left( C_n x^n+ \cdots + C_1 x + C_0 \right) \left( \sin(\alpha x + \beta) \right)$ \\ \hline
+$A_1 e^{Ax} \cos(\alpha x + \beta) + A_2 e^{Ax} \sin(\alpha x + \beta)$ & $B_1 e^{Ax} \left( \cos(\alpha x + \beta) \right) +B_2 e^{Ax} \left( \sin(\alpha x + \beta) \right) $ \\ \hline
+$A_1 x^n e^{Ax} \cos(\alpha x + \beta)$ & $e^{Ax} \left( B_n x^n+ \cdots + B_1 x + B_0 \right) \left( \cos(\alpha x + \beta) \right)$ \\
+\ \ \ \ \  $+ A_2 x^n e^{Ax} \sin(\alpha x + \beta)$ & $ \ \ \ \ \ + e^{Ax} \left( C_n x^n+ \cdots + C_1 x + C_0 \right) \left( \sin(\alpha x + \beta) \right)$ \\ \hline
+\end{tabular}
+\end{center}
+
+\smallskip
+Whenever necessary, multiply the recommended guess for $y_p(x)$ by $x^s$, where $s$ is the smallest positive integer such that the guess does not contain terms that satisfy the related homogeneous equation $ay''+by'+cy=0$.
+\end{minipage}
+}
+\end{center}
+
+
+\begin{exe}
+Use the method of undetermined coefficients to find one solution for each of the following differential equations.
+
+\medskip
+\hspace{0.25in}\begin{minipage}{3in}
+\begin{enumerate}[(a)]
+\item $y''-3y'+4y=x^2+1$
+\item $\ddot{y}+2\dot{y}+y=\sin(2t)$
+\item $y''+9y=\cos(x)$
+\item $y''+9y=\cos(3x)$
+\item $v''+v'=\sin(x)$
+\item $v''+v' = x^2$
+\item $\ddot{w}-\dot{w}-3w=e^{t}$
+\item $y''-5y'+6y=e^{2x}$
+\item $\ddot{y}-4\dot{y}+4y = 2e^{2x}$
+\item $\ddot{y}-4\dot{y}+4y = 2x e^{2x}$
+\end{enumerate}
+\end{minipage}
+\end{exe}
+
+
+\begin{exe}
+Solve the following initial value problems.
+
+\medskip
+\hspace{0.25in}\begin{minipage}{3in}
+\begin{enumerate}[(a)]
+\item $y''-y=\sin(x), \ y(0)=1, \ y'(0)=0$
+\item $y''-y=e^x, \ y(0)=1, \ y'(0)=0$
+\item $\ddot{u}+3\dot{u}+2u=2e^t, \ u(0)=0, \ \dot{u}(0)=0$
+\item $\ddot{u}-3\dot{u}+2u=2e^t, \ u(0)=0, \ \dot{u}(0)=0$
+\item $v''+4v=\cos(x), \ v(0)=0, \ v'(0)=0$
+\item $v''+4v=\cos(2x), \ v(0)=0, \ v'(0)=0$
+\end{enumerate}
+\end{minipage}
+\end{exe}
+
+
+
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Use the method of undetermined coefficients to find a particular solution of the differential equation.
+\end{instructions}
+
+\smallskip
+\ap $y''-5y'+6y=x^2+2x+3$
+
+\ap $2y''+6y'-8y=2\sin(x)$
+
+\ap $3y''+8y'+5y=e^{-x}$
+
+\ap $\ddot{\theta}+4\theta=\cos(2t)$
+
+\ap $\ddot{x}-\dot{x}+x=2e^{2t}$
+
+\ap $\ddot{y}=9y+e^{3t}$
+
+\ap $\ddot{v} =\dot{v}+2t$
+
+\ap $\frac{d^2 y}{dx^2} +25 y = 10 \frac{dy}{dx}+e^{4t}-e^{5t}$
+
+\begin{instructions}
+Find a general solution for each of the following differential equations.
+\end{instructions}
+
+\ap $y''-3y'+2y=\sin(2x)$
+
+\ap $y''-6y'+9y=e^x+e^{3x}$
+
+\ap $w''-2w'+5y=t^2-4$ 
+
+\ap $4\ddot{u}+4\dot{u}=3+t+e^{-t}$
+
+\ap $\ddot{\theta} + 4\theta=\sin(t)+\cos(2t)$
+
+\ap $2x''+10x=6x'-2t-1$
+
+\ap $2\ddot{v}+4\dot{v}+2v=4e^{-t}$
+
+\ap $\frac{d^2 x}{dt^2} =4x+\cos(2t)$
+
+
+
+
+\begin{instructions}
+Find the solution of each of the following initial value problems.
+\end{instructions}
+
+
+\ap $y''+12y'+36y=t, \ y(0)=0, \ y'(0)=0$
+
+\ap $\ddot{x}-3\dot{x}-4x=e^{-t}, \ x(0)=1, \ x'(0)=0$ 
+
+\ap $w''=w+2\sin(x), \ w(0)=0, \ w'(0)=1$
+
+\ap $\ddot{y}-6\dot{y}=e^{3t}-9y, \ y(0)=1, \ y'(0)=0$ 
+
+\ap $\frac{d^2v}{dz^2} +8v = 4 \frac{dv}{dz}+e^{2t}, \ v(0)=0, \ v'(0)=0$
+
+\ap $\omega''+2\omega'+8\omega=2\cos(x), \ \omega(0)=1, \ \omega'(0)=0$
+
+\ap $4\ddot{z}+z=e^{t}+4, \ z(0)=1, \ \dot{z}(0)=-1$
+
+\ap $y''=x+e^{3x}+e^{-3x}-3y', \ y(0)=0, \ y'(0)=0$
+
+%\begin{instructions}
+%Use variation of parameters to find a particular solution to each of the following differential equations.
+%\end{instructions}
+%
+%\ap $y=c_1 e^{2x}+c_2 e^{-5x}$
+%
+%\ap $u = c_1 e^{-x} + c_2 x e^{-x}$
+%
+%\ap $\theta = A \cos(2t) + B \sin(2t)$
+%
+%\ap $y=c_1 e^{3t}\cos(t) + c_2 e^{3t} \sin(t)$
+%
+%\ap $w=A \sinh(2t) + B \cosh(2t)$
+%
+%\ap $x=At+B$
+
+
+%\end{multicols}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+
+%\setcounter{problem}{1}
+
+\smallskip
+\hrule
+
+\smallskip
+\ap Solve the initial value problem described in the prototype question at the beginning of this chapter.  Then graph the function on the time interval $0 \leq t \leq \pi$.
+
+\ap Consider the differential equation
+\[ 2 \ddot{q} + \dot{q} + \frac{1}{8} q = f(t),\]
+where $f$ is the function
+\[ f(t) = \begin{cases} 0 & \mbox{if } t < 1 \\ 12 & \mbox{if } t>1  \end{cases}.\]
+This models a 
+	\index{RLC circuit}%
+	circuit with a 2 ohm resistor, a 1 henry inductor and an 8 farad capacitor connected to a voltage source which is only `switched on' starting at time $t=1$.  (The circuit remains closed the whole time, but the voltage source is not constant.)
+Find a formula for a continuous function $q$ defined on $(-\infty,\infty)$ that satisfies this equation subject to the initial conditions $q(0)=1$ and $\dot{q}(0)=0$.  (Note that we don't care what the derivatives of $q$ do when $t=1$, since $f$ isn't defined at that instant.)  Your answer will be a piecewise defined function.  You'll need to solve this problem in two stages.  First, solve the initial value problem with the equation $ 2 \ddot{q} + \dot{q} + \frac{1}{8} q =0$ to get a solution on the interval $t\leq 1$.  Then, use the values of $q(1)$ and $\dot{q}(1)$ determined by this function as initial conditions on the interval $t \geq 1$, where the differential equation is $ 2 \ddot{q} + \dot{q} + \frac{1}{8} q =12$.  Summarize the results in a single, piecewise formula.
+
+%\problem 
+%	\index{spring-mass system}%
+%	Consider a system with a 2 kilogram mass attached to the free end of a spring with spring constant $202 \frac{N}{m}$ and viscous damping coefficient of $4 \frac{N\cdot s}{m}$.  This spring starts at rest in its natural position, but external vibrations act on this system.  Assume that the external force acting on the mass can be modeled by the function $\sin(2t)$.  Find the displacement of the mass as a function of time by solving the initial value problem
+%\[ 2 \ddot{y}+4\dot{y}+202y = \sin(2t), \ y(0)=0, \ \dot{y}(0)=0\]
+%and graph the resulting function.  (You may wish to use several graphs on different windows to show all the relevant features.)  Describe the long-term behavior of the system.
+
+
+\ap Solve the following non-homogeneous boundary-value problem by first finding a general solution of the non-homogeneous differential equation:
+\[ \begin{cases} \ddot{x}+x = t^2 \\ x(0)=1 \\ x(\pi)=0 \end{cases} .\]
+
+\ap The function $y(t)=t+e^{-2t}+2te^{-2t}$ is a solution of an initial-value problem for a second-order, non-homogeneous, constant-coefficient linear differential equation, with all non-zero coefficients.  Find it.
+
+\ap Suppose that $y_p$ is a solution of $a(x)y''+b(x)y'+c(x)y=f(x)$ on an interval $(x_1,x_2) \subset \mathbb{R}$.  Show that any other solution $y$ of this same differential equation on this interval can be written as $y=y_p+y_h$, where $y_h$ is some solution of the corresponding homogeneous differential equation $a(x)y''+b(x)y'+c(x)y=0$, provided that solutions exist for all initial conditions. {\it (This extends the theory developed in this chapter to second-order ODE with non-constant coefficient functions $a(x), \ b(x)$ and $c(x)$.)}
+
+\end{multicols}

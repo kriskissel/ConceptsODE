@@ -1,0 +1,440 @@
+%% EDITED August 11, 2012 to fix layout, wording, grammar
+
+\chapter{Graphical Methods}
+
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{chemical reaction rates}%
+	Certain chemical reactions can be modeled by the differential equation
+\[ \dot{x} = k(a-x)(b-x),\]
+where $a, \ b$ and $k$ are positive constants and $x(t)$ is the total mass of a compound produced by the reaction during the time interval $[0,t]$.  Assume that that $k=0.01$, $a=2$, $b=4$ and $x(0)=1$.  What is the long-term behavior of $x(t)$?
+\end{minipage}
+}
+\end{center}
+
+The initial value problem in the question above can be solved 
+	\index{analytically}%
+	{\bf analytically}, which means that it is possible to find an explicit formula for the solution (see Problem 1.3).  However, the algebra involved is somewhat complicated, and once you have a solution written down, there is still some work in determining the limit.  The point of this chapter is to introduce techniques that make it possible to answer some questions about the qualitative behavior of solutions without the necessity of finding an explicit formula for the solution.  This is especially useful when it is difficult or impossible to find such a formula.
+
+Let's begin our discussion by considering a simpler example, such as the ODE $y'=\frac{1}{10}y$.  We can separate variables and show that the general solution of this equation is $y=Ae^{x/10}$, for $A \in \R$.  Here's a graph of several of the solution curves to this equation, for various values of $A$.
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/plotofsolutioncurves1.eps}
+\end{center}
+
+Of course, there are infinitely many such curves -- one for each value of the parameter $A$ -- including $A=0$, as the constant function $y=0$ is also a solution of the differential equation.  Whenever a constant function solves an ODE, we call it an 
+	\index{equilibrium solution}%
+	{\bf equilibrium solution}.
+
+Now let's sketch small segments of tangent lines to each of these curves on the same coordinate plane:
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/plotofsolutioncurvesandtangents.eps}
+\end{center}
+
+And then let's remove the graphs of the solution curves, leaving just the little line segments:
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/plotoftangents.eps}
+\end{center}
+
+Notice how this graph carries with it all the necessary information for us to visualize the solution curves.  This kind of graph is called a 
+	\index{slope field}%
+	{\bf slope field} (or 
+	\index{direction field}%
+	{\bf direction field}), and using it we could sketch a solution curve by following the little line segments.  For example, if we want to see what the solution looks like which satisfies the condition $y(0)=2$, we can start at the point $(0,2)$ and draw a curve that remains tangent to each little line segment it touches:
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/plotoftangentsandonecurve.eps}
+\end{center}
+
+A big reason why a slope field is a useful tool is that {\it we don't need to know the solutions of the ODE in order to draw it!}  All we need is a first order ODE written in the form $\frac{dy}{dx} = f(x,y)$.  Then we can evaluate the right side at a bunch of points $(x,y)$ and use those values as the slopes when we draw the little segments of tangent lines.
+
+We can also see some qualitative information about the solutions from the slope field, even without a formula for the solution.  For example, we can see in the slope field above that the solutions will either be positive and increasing or negative and decreasing.  Furthermore, for any solution $y(x)$ of $\frac{dy}{dx} = \frac{y}{10}$, we can see that $\lim_{x \rightarrow -\infty} y(x)=0$, because the solutions will approach the $x$-axis asymptotically as $x \rightarrow -\infty$.  The positive solutions will satisfy $\lim_{x \rightarrow \infty} y(x) = \infty$, and the negative solutions will satisfy $\lim_{x \rightarrow \infty} y(x) = -\infty$.
+
+\example Consider the ODE $y'=3y+x$.  The following plot is a computer-generated slope field for this differential equation.
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/slopefield1-B.eps}
+\end{center}
+
+(This graph was generated using the {\it dfieldplot} command on Maple.  This particular software program draws little vectors instead of line segments, but that won't bother us.)
+
+If a solution $y(x)$ of this ODE satisfies the condition $y(0)=1$, then its graph passes through the point $(0,1)$, and therefore the slope of that curve at that point will be $3$ because the differential equation $y'=3y+x$ tells us that $y'=3(1)+(0)=3$.  Therefore the direction field shows a tiny vector of slope 3 at the point $(0,1)$.  The software does the same thing at a bunch of other points, and the result is a slope field.
+
+In Chapter 4, we will discuss an analytic technique for solving the initial-value problem $y'=3x+y$, $y(0)=1$ to get the function $y=-\frac{1}{9} -\frac{x}{3} +\frac{10}{9} e^{3x}$, and the following plot shows the graph of this function superimposed on the slope field.
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/slopefield2-B.eps} 
+\end{center}
+
+As you can see, the solution curves in such as way as to follow the slopes of the little vectors tangentially.  Knowing this, we can actually sketch the solution curve {\it without having an explicit formula for the solution}.  All we have to do is sketch a curve by following the direction of the little vectors or line segments.
+
+For example, we could see from the slope field above that if a solution passes through the point $(0,1)$, then $y$ will be increasing near $x=0$.  So we draw a little upward curve from there until we get near another direction vector, which tells us in which direction to draw the next segment.  We can also trace the direction field going to the left from $(0,1)$  Doing this, we can draw a complete curve a little bit at a time, and we'll get (roughly) the same picture as above.
+
+Next, imagine a solution of the initial-value problem $y'=3y+x, \ y(0)=-1$ is graphed on top of the same slope field.  Then the solution $y$ will be decreasing as $x$ increases. The plot below shows a curve that passes through $(0,-1)$ and whose tangent lines at each point are parallel to the slope field at each point.  The curve represents a solution of the initial value problem.
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/slopefield3-B.eps}
+\end{center}
+
+
+\begin{exe}
+Use the computer-generated slope field below for $y'=3y+x$ to sketch a solution curve that passes through the point $(0,0)$.  (The result will be a sketch of the solution to the initial-value problem $y'=3y+x, \ y(0)=0$.)
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/slopefield1-B.eps}
+\end{center}
+\end{exe}
+
+
+
+Slope fields also provide us with some general intuition regarding the behavior of solutions.  In particular, they tell us that two solutions curves for an ODE $\frac{dy}{dx} = f(x,y)$  cannot cross one another transversely (i.e. at an angle).  That's because, if they did, there would be two different slopes at the points where they cross (imagine the two little tangent vectors crossing), but there can only be one slope because the function $f(x,y)$ gives us a single output for each input.
+
+The easiest slope fields to plot, if we need to do so by hand, are the ones where the right side of the differential equation depends on only the dependent variable (so that $\frac{dy}{dx}=f(y)$), because all the direction vectors along a horizontal line have the same slope, as illustrated in the following example.  
+
+
+\example Let us manually sketch a slope field for the ODE $\frac{dy}{dx}=1-y$.  We start by evaluating the right side of the differential equation at several points along the $y$-axis:
+
+\begin{center}
+\begin{tabular}{c|c}
+$(x,y)$ & $y'=1-y$ \\ \hline
+$(0,3)$ & $-2$ \\
+$(0,2)$ & $-1$ \\ 
+$(0,1)$ & $0$ \\
+$(0,0)$ & $1$ \\
+$(0,-1)$ & $2$ \\
+\end{tabular}
+\end{center}
+
+Let's now plot small line segments (there's no need for arrowheads) with these slopes at the indicated points on an $xy$-plane:
+
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/manualslopefield1.eps}
+\end{center}
+
+We can fill in more of this slope field without computing the values of $y'$ at any more points because the structure of the differential equation shows that the slope does not depend on $x$, only on $y$, and thus the slopes will be the same when we shift our attention left or right.  Thus we can just copy horizontal translations of the line segments we have already drawn:
+
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/manualslopefield2.eps}
+\end{center}
+
+Finally, with a slope field in hand, we can try to analyze the behavior of solutions.  For example, if we wanted to know the long-term behavior of a solution to the IVP $y'=1-y$, $y(1)=2$, we can sketch a curve that passes through the point $(1,2)$ and that remains tangent to the slope field at each point:
+
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/manualslopefield+curve.eps}
+\end{center}
+
+Based on this, we would guess that the solution of this IVP has the long-term behavior $\lim_{x \rightarrow \infty} y(x)=1$.
+\qed
+
+Differential equations like this last one have a special name: we say that an ODE of the form $y'=f(y)$ is 
+	\index{autonomous}%
+	{\bf autonomous} (that is to say, the function $f$ on the right side of the equation only depends on the dependent variable, $y$, not the independent variable $x$).  In addition to it being easier to plot a slope field for autonomous ODE, they are always separable (thus autonomous ODE are prime candidates for separation of variables, provided it is feasible to calculate all the anti-derivatives involved).
+
+Incidentally, equations of the form $y'=g(x)$ (where the right side depends only on the independent variable, $x$) also have slope fields which are easy to plot, since the direction vectors along any vertical line have the same slope; however, these equations are not of as much interest to us in this course since they were studied extensively in calculus -- a solution of $y'=g(x)$ is just an anti-derivative of the function $g$.
+
+The last example illustrated how slope fields can be generated by hand, but it is usually much more efficient to use a computer program to generate them.  The reader should try to generate one or two slope fields by hand for the sake of experience, but after that it will be a more efficient use of time to employ a computer.
+
+\begin{exe}
+Generate a slope field for $y'=y(y-2)$.  Then sketch several solution curves on the plot, one for each of the following initial conditions: $y(0)=-1$, $y(0)=0$, $y(0)=1$, and $y(0)=2$.  In each case, use the behavior you see on the slope field to predict the value of $\lim_{x \rightarrow \infty} y(x)$. 
+\end{exe}
+
+
+\begin{exe} Use a slope field to predict the behavior of $\lim_{x \rightarrow \infty} y(x)$, where $y$ is a solution of $y'=y+4$.  Explain how this limit depends on the initial value $y(0)$.
+\end{exe}
+
+
+\begin{exe}
+Use a slope field to predict the behavior of $\lim_{x \rightarrow \infty} y(t)$ where $y$ is a solution of $\dot{y}=y-t$, $y(0)=0$.
+\end{exe}
+
+\begin{exe}
+Use a slope field to predict the behavior of solutions to $y'=y^2$.  Then confirm your prediction by finding a formula for the solution of the initial value problem $y'=y^2, \ y(0)=y_0$.  
+\end{exe}
+
+
+Slope fields can give us enormous insight into the behavior of solutions without having to explicitly solve the differential equation first.  In fact, they can give us one very general insight that applies to all solutions of ordinary differential equations: {\it two solutions of the same ODE $y=f(x,y)$ cannot have graphs that cross one another at a non-zero angle.}  To see this, suppose that there were two solutions that did cross, as shown in the figure below:
+
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/transversalintersection.eps}
+\end{center}
+
+At the point of intersection, these two graphs have different slopes: but that cannot be, because the differential equation determines the slope based on the coordinates of the point -- the slope would need to be the same for both solutions at that point (if the point is $(x_0,y_0)$, then the slope would be $f(x_0,y_0)$).  
+
+On the other hand, it is still possible for solutions to cross, as long as they are tangent to one another at the point of intersection:
+
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/nontransversalintersection.eps}
+\end{center}
+
+It is sometimes possible to also rule out such intersections, but to do so, we need to know a more about the function $f(x,y)$.  For more about this topic, see Chapter 6.
+
+
+
+\bigskip
+\noindent
+{\sc Phase Lines}
+
+\medskip
+Next, we turn our attention to another graphical approach for understanding solutions of differential equations that is specifically applicable to autonomous equations.
+
+\example Suppose the velocity $v(t)$ (in meters per second) of a falling object that encounters air resistance is modeled by the differential equation
+\[ \dot{v} = 9.8-Kv\]
+where $K>0$ is a constant.  The assumption here is that air resistance is a force that is proportional to the speed of the object, and so the constant of proportionality K depends on both the speed and the mass of the falling object; the quantity $9.8$ accounts for the acceleration due to gravity, and by selecting a positive acceleration here, we have implicitly selected the convention that positive velocities correspond to {\it downward} motion.  
+
+Let us graph $\dot{v}$ as a function of $v$ as expressed by the equation $\dot{v} = 9.8-Kv$:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline1.eps}
+\end{center}
+
+The line intersects the $v$-axis at $v=\frac{9.8}{K}$.  According to this graph, whenever the velocity is less than $\frac{9.8}{K}$, $\dot{v}$ will be positive, and therefore the object will continue to increase its velocity.  Similarly, if the velocity $v$ were to start out greater than $\frac{9.8}{K}$, then $\dot{v}$ will be negative, and therefore the velocity will decrease.  In both cases, the velocity will tend toward the value $v=\frac{9.8}{K} \frac{m}{s}$.  And if the initial velocity is exactly $\frac{9.8}{K} \ \frac{m}{s}$, then $\dot{v}=0$, so the velocity will remain constant. We use arrows on a number line to illustrate the behavior of the solution as follows:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline2.eps}
+\end{center}
+
+This figure is called the 
+	\index{phase line}%
+	{\bf phase line} for the differential equation: it indicates the equilibrium (i.e. constant) solutions of the differential equation with dots (in this case, $v=\frac{9.8}{K}$ is the only equilibrium solution), and arrows indicate the behavior  of solutions with other initial conditions (right-pointing arrows indicate that a solution is increasing while left-pointing arrows indicate that a solution is decreasing).  In this example, if a solution starts out with a value that is greater than $\frac{9.8}{K}$, then the left-pointing arrows indicates that the velocity will decrease and approach $\frac{9.8}{K}$.  (The reader can verify this by calculating the explicit solutions of the ODE.)
+
+In this context of a falling object, the constant solution is called the 
+	\index{terminal velocity}%
+	{\bf terminal velocity} of the falling object -- it is the limiting value of the velocity as $t$ increases:
+\[ \lim_{t \rightarrow \infty} v(t) = \frac{9.8}{K} \ \frac{m}{s}.\]
+\qed
+
+To draw a phase line for an autonomous ODE $y'=f(y)$, we usually start by graphing the relationship described by this equation on $y-y'$ coordinate plane.  For example, if the ODE is $y'=y^3-y$, the graph would look like this:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline4.eps}
+\end{center}
+
+Each $y$-intercept of this graph corresponds to a value of $y$ for which $y'=0$, and this means that a constant function with this $y$-value will be a solution to the IVP.  These are the equilibrium solutions, and we highlight these values on the $y$-axis by drawing circles there:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline4b.eps}
+\end{center}
+
+These circles divide the $y$-axis into several intervals, and in each interval we draw arrows to indicate whether solutions that start with $y$-values in those intervals will be increasing or decreasing.  If the graph of $y'$ against $y$ is above the $y$-axis for an interval, then $y'$ is positive, thus $y$ is increasing, and we denote this with right-pointing arrows.  On the other hand, if the graph is below the $y$-axis, then $y'$ is negative, so $y$ is decreasing, and we indicate that behavior using left-pointing arrows.  Also, to avoid any confusion, we should remove any arrowheads on the coordinate axes at this time.
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline4c.eps}
+\end{center}
+
+Now we can remove the $y'$-axis and the graph of the relationship between $y$ and $y'$, and we indicate the $y$-values along the phase line where we have drawn circles for equilibrium solutions:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline4d.eps}
+\end{center}
+
+
+Finally, it is convention to add detail to the circles that indicate equilibrium solutions.  An equilibrium solution is called 
+	\index{stable}%
+	{\bf stable} if solutions to the ODE with nearby initial values tend towards that equilibrium value, as is the case for the equilibrium solution $y=0$ of $y'=y^3-y$.  We indicate this by shading in the circle.  An equilibrium solution is called 
+	\index{unstable}%
+	{\bf unstable} if solutions that start with nearby initial values tend away from the equilibrium value, as is the case here for $y=-1$ and $y=1$; these are indicated by leaving the circles hollow:
+
+\begin{center}
+\includegraphics[width=4in]{2-graphicalmethods/phaseline4e.eps}
+\end{center}
+
+This is a complete phase line for the ODE $y'=y^3-y$.  It tells us that:
+
+\begin{enumerate}
+\item The constant functions $y=-1$, $y=0$ and $y=1$ are all equilibrium solutions.
+\item If $y(0)<-1$, then $y$ will be a decreasing function of $t$, and it will decrease toward $- \infty$
+\item If $-1<y(0)<0$ then $y$ will be an increasing function of $t$, and $\lim_{t \rightarrow \infty} y(t)=0$
+\item If $0<y(0)<1$ then $y$ will be a decreasing function of $t$, and $\lim_{t \rightarrow \infty} y(t)=0$
+\item If $y(t)>1$, then $y$ will be an increasing function of $t$, and it will increase toward $\infty$.
+\end{enumerate}
+
+That's a lot of qualitative information, and we didn't need to calculate an explicit general solution of the ODE in order to obtain it!
+
+\begin{exe}
+Create a slope field and sketch some solution curves for $y'=y^3-y$ to confirm the conclusions above.
+\end{exe}
+
+It is also possible for an equilibrium solution to be 
+	\index{half-stable}%
+	{\bf half-stable}, meaning that nearby solutions tend toward the equilibrium value on one side but away on the other.  This is usually indicated on the phase line by drawing a half-shaded circle.  The icon \includegraphics[width=0.125in]{2-graphicalmethods/half-stable-right.eps} would be used for an equilibrium value for which solutions that begin with slightly greater initial values tend toward the equilibrium value but solutions that begin with slightly lesser initial values tend away from it.  The reverse situation would be indicated by \includegraphics[width=0.125in]{2-graphicalmethods/half-stable-left.eps}.
+
+
+\begin{exe}
+Interpret the following phase line:
+
+\medskip
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/phaselineexercise2.7.eps}
+\end{center}
+\end{exe}
+
+
+\begin{exe} 
+A tank contains a changing mixture of pure water and brine (salt water solution).  The differential equation that models the quantity of salt in the tank after $t$ minutes have passed is
+\[ \dot{S} = 8-\frac{4S}{25} \ \frac{\mbox{grams}}{\mbox{min}}\]
+where $S(t)$ is measured in grams.  Use a phase line analysis to determine the long-term behavior, $\lim_{t \rightarrow \infty} S(t)$.  {\it (Note: Because $S$ represents mass, which cannot be negative, it makes sense in this context to restrict our attention to a positive $S$-axis for the phase line.)}
+\end{exe}
+
+
+
+
+Let's finish this chapter by answering the prototype question that began it.  Consider the differential equation $\dot{x}=k(a-x)(b-x)$ where $a$, $b$ and $k$ are positive constants.  Assume that $a$ is less than $b$, just so that we can draw a graph (if $b$ is less than $a$, then the graph will be the same but with the labels switched).  Then the graph of the relationship between $\dot{x}$ and $x$ which we obtain is:
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/phaseline6.eps}
+\end{center}
+
+This leads to the phase line
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/phaseline6b.eps}
+\end{center}
+
+In the prototype question, we had $a=2$ and $b=4$, giving us
+
+\begin{center}
+\includegraphics[width=3in]{2-graphicalmethods/phaseline6c.eps}
+\end{center}
+
+We also have $x(0)=1$, which means the $x$-value begins to the left of the stable equilibrium shown on the phase line.  Therefore, a solution of the differential equation with the initial condition $x(0)=1$ will increase and have the property that $\lim_{t \rightarrow \infty} x(t) = 2$.
+
+A reader who takes the time to compare this analysis with the work necessary to find an explicit solution of the IVP and then compute the limit will certainly come to appreciate the usefulness of this graphical approach.
+
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Sketch a slope field for the following differential equations on the domain $-5 \leq x \leq 5$ and $-5 \leq y \leq 5$.
+\end{instructions}
+
+\smallskip
+\ap $y'=2-y$
+
+\ap $y' = y+3$
+
+\ap $y'=x-y$
+
+\ap $y'=2x+4y$
+
+\ap $y' = y(y-3)$
+
+\ap $y' = y^2(y+2)$
+
+
+\begin{instructions}
+Write down a differential equation that is (approximately) consistent with the following slope fields.
+\end{instructions}
+
+\ap \includegraphics[width=2in]{2-graphicalmethods/chapter2supplementalfigure1.eps}
+
+\ap \includegraphics[width=2in]{2-graphicalmethods/chapter2supplementalfigure2.eps}
+ 
+
+
+\columnbreak
+\begin{instructions}
+Use the phase lines below to determine the long term behavior of $y(t)$ for the initial conditions {\bf (a)} $y_0=-1$, {\bf (b)} $y_0=1$ and {\bf (c)} $y_0=3$.
+\end{instructions}
+
+\ap \includegraphics[width=2.5in]{2-graphicalmethods/chapter2supplementalfigure5.eps}
+
+\ap \includegraphics[width=2.5in]{2-graphicalmethods/chapter2supplementalfigure6.eps}
+
+\ap \includegraphics[width=2.5in]{2-graphicalmethods/chapter2supplementalfigure7.eps}
+
+\begin{instructions}
+Sketch a phase line for each of the following differential equations.
+\end{instructions}
+
+\ap $\dot{y}=y(2-y)$
+
+\ap $\dot{y}=y^2+1$
+
+\ap $\dot{y}=y^2(y+2)$
+
+\ap $\dot{y}=4y^4-y^2$
+
+
+\begin{instructions}
+Sketch a phase line that is consistent with the following slope fields.
+\end{instructions}
+
+\ap \includegraphics[width=2in]{2-graphicalmethods/chapter2supplementalfigure3.eps}
+
+\ap \includegraphics[width=2in]{2-graphicalmethods/chapter2supplementalfigure4.eps}
+
+
+%\end{multicols}
+%
+%
+%
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+\bigskip
+\hrule
+
+\bigskip
+\ap 
+	\index{air resistance}%
+	\index{inertial drag}%
+	Consider a falling body that experiences inertial drag and whose velocity (in meters per second) is modeled by the ODE $\dot{v} = 9.8-Kv^2$.  Draw a phase line for $v \geq 0$.  Use the phase line analysis to determine the equilibrium solution of the ODE.  If the object's terminal velocity is measured as $v = 94. \frac{m}{s}$, what is the value of the parameter $K$?  Round your answer to two significant figures, and include units.
+
+
+\ap Use a phase-line analysis to determine the long-term behavior of solutions to the differential equation 
+\[ \dot{y} = \sin(y).\]
+How does the behavior depend on the initial value $y(0)$?  Give a complete answer for any possible initial value.
+
+\ap Perform a phase-line analysis for the 
+	\index{logistic growth model}%
+	logistic growth model, 
+\[ \dot{P}=\frac{k}{M}P(M-P).\]
+The parameters $k$ and $M$ are positive constants.
+
+\ap Find a differential equation $\dot{y}=f(y)$ which is consistent with the phase line shown below (there is more than one correct answer):
+
+\medskip
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/phaseline3.eps}
+\end{center} 
+
+\ap Find a differential equation $\dot{y}=f(y)$ which is consistent with the phase line shown below (there is more than one correct answer):
+
+\medskip
+\begin{center}
+\includegraphics[width=2.5in]{2-graphicalmethods/phaseline5.eps}
+\end{center} 
+
+\ap This problem illustrates a weakness of relying on graphical approaches alone  -- namely, that we may not be able to determine the domains of {\it unbounded} solutions without using an analytical method.  Suppose that $u(t)$ is the solution of $\dot{u} = |u|$, $u(0)=1$, and suppose that $v(t)$ is the solution of 
+$\dot{v}=v^2$, $v(0)=1$.  Illustrate that the differential equations for $u$ and $v$ give identical phase lines and similar slope fields.  In particular, notice that the solutions of both initial value problems will be increasing functions of $t$ that approach $\infty$.  Then solve the initial value problems analytically to prove that the intervals of definition for these two solutions are not the same.  Thus while it makes sense to discuss $\lim_{t \rightarrow \infty} u(t)$, it does not make sense to discuss the same limit of $v(t)$.  What limit for $v(t)$ should be considered instead as the long-term behavior?  {\it (Hint: Since the solution $u$ is a positive function, you can drop the absolute value sign when you use separation of variables to solve for $u(t)$.  Verify directly that the formula you end up with for $u$ is indeed a solution of the initial value problem.)}
+
+\ap The command \begin{minipage}{1in} \begin{verbatim} dfieldplot \end{verbatim} \end{minipage} can be used to generate a slope field using the computer algebra software Maple.  First, call up the necessary subroutines by executing the command \begin{minipage}{1.25in} \begin{verbatim} with(DEtools) \end{verbatim} \end{minipage} .  Here's the command to generate the slope field in Example 2.1:
+\begin{center}
+\begin{minipage}{4in}
+\begin{verbatim}
+dfieldplot(y'(x)=3y(x)+x, y(x), 
+               x=-3..3, y=-3..3)
+\end{verbatim}
+\end{minipage}
+\end{center}
+Modify this command to generate a slope field for $y'=\sin(y)$ on the domain $0 \leq x \leq 6$, $-4 \leq y \leq 4$.  Use the resulting graph to describe the long-term behavior of a solution satisfying the initial condition $y(0)=1$.  Compare with your answer to Exercise 27.
+
+
+\end{multicols}

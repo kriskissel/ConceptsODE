@@ -1,0 +1,326 @@
+%% EDITED August 11, 2012 for wording, typos
+
+\chapter{Numerical Methods}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} 
+	\index{air resistance}%
+	Consider an object whose shape changes as it falls against air resistance (for example, a raindrop).  The changing shape means the drag coefficient will change as well.  Assume we can model this behavior with the differential equation
+\[ \dot{v} = g-k(v)v^2,\]
+where $k(v)$ denotes the drag coefficient as a function of the object's instantaneous velocity.  For a falling object with a drag coefficient $k(v)=e^{v}$, find the velocity 3 seconds after it begins to fall from rest.
+\end{minipage}
+}
+\end{center}
+
+\medskip
+The prototype question asks us find the value of $v(3)$ for the solution of the initial-value problem $\dot{v} = 9.8-e^{v}v^2, \ v(0)=0$.  Although this looks like a number of problems we have solved already, it is different in that {\it we cannot find an explicit solution to this differential equation}.  The reader can attempt to use separation of variables to find a solution but will get stuck at the step of calculating $\int \frac{1}{9.8-e^{v}v^2} \ dv$. 
+
+We will not discuss any method in this textbook for finding an explicit general solution of $\dot{v} = 9.8-e^{v}v^2$.  (In fact, the author is unaware of any technique that could accomplish this.)  We could do a graphical analysis of this ODE to try to discern the long-term behavior, but those methods are not terribly useful for estimating the value at a specific input.
+
+Instead, we will explore a method for finding approximate values of solutions to ODE even when it is not possible to find formulas for solutions analytically.  That is to say, we will find an approximate value of $v(3)$, even though we will not be able to find an explicit formula for $v(t)$.
+
+The discussion below will illustrate the basic idea of our approach, and the example afterward will demonstrate the fully developed idea with a more efficient organization of the calculations.
+
+Consider the initial value problem
+\[ \left\{ \begin{matrix} y'=y^2-x \\ y(0)=1 \end{matrix} \right. .\]
+Suppose we want to know the value of $y(1)$, but we are unable to calculate an exact solution for the ODE.  We can find an approximate solution as follows.
+
+If $y(x)$ is the solution, then the initial condition implies that $y(0)=1$, and if we insert $x=0$ and $y=1$ into the differential equation, we see that $y'(0)=(y(0))^2-(0)=(1)^2-0=1$.  Therefore the 
+	\index{tangent-line approximation}%
+	tangent-line approximation to $y(x)$ at the point $(0,1)$ is 
+\[ y(x) \approx x+1.\]
+(This is the line through $(0,1)$ with slope $y'(0)=1$.)  
+
+\begin{exe} 
+Suppose that $y(t)$ satisfies the initial value problem $y'=y^3+3x, \ y(1)=2$.  Without solving the differential equation, find $y'(1)$, and find the equation of the tangent line to the graph of $y(x)$ at the point $(1,2)$.
+\end{exe}
+
+We can use the tangent line approximation $y(x) \approx x+1$ to calculate that $y(1)\approx 2$.  This picture illustrates the solution curve and the tangent line we just calculated:
+\begin{center}
+\includegraphics[width=3in]{3-numericalmethods/example1.eps}
+\end{center}
+
+\begin{exe} 
+Suppose that $y(t)$ satisfies the initial value problem $y'=y^3+3x, \ y(1)=2$.  Use the tangent line approximation to estimate the value of $y(1.5)$.
+\end{exe}
+
+
+The idea was that, because we know the slope of the solution curve at the initial point $(0,1)$, we can use that to project what happens as $x$ increases.  However, it is not hard to see that the linear approximation is only good for small values of $x$ -- the actual solution curve grows quickly as $x$ increases, and the difference between the curve and the tangent line will only worsen away from the initial point.  The tangent line approximation will only give a good approximation if $\Delta x$ is small.
+
+We can work around that limitation by using the tangent line approximation for a small interval, say, for $0 \leq x \leq 0.5$, and then creating another tangent line approximation at the new point where we find ourselves.
+According to the first tangent line approximation, when $x=0.5$, we get $y \approx 1.5$; inserting this into the differential equation gives us $y' \approx (1.5)^2-(0.5)=1.75.$  This becomes the slope for the second tangent line approximation, the segment from $x=0.5$ to $x=1$:
+\begin{center}
+\includegraphics[width=3in]{3-numericalmethods/example2.eps}
+\end{center}
+Note that our second tangent line is not tangent to the actual solution satisfying $y(0)=1$, rather it is tangent to another solution of the differential equation, say $y_2(x)$, which satisfies $y_2(0.5)=1.5$.  But if $(0.5,1.5)$ is sufficiently close to the first solution curve we drew, then it should give us a good approximation for $y(1)$ anyway.  Based on this, we calculate that $y(1) \approx 1.5+0.5((1.5)^2-0.5))=2.375$.  
+
+Now our approach for finding an approximate solution has taken shape: by using a finer subdivision of intervals, we can obtain a better approximation for the value of $y(1)$.  The following graph shows how dividing the interval $[0,1]$ into 4 subintervals gives an even better approximation:
+
+
+\bigskip
+\begin{center}
+\includegraphics[width=3in]{3-numericalmethods/example3.eps}
+\end{center}
+
+
+And here we use 10 subintervals:
+
+\bigskip
+\begin{center}
+\includegraphics[width=3in]{3-numericalmethods/example4.eps}
+\end{center}
+
+
+
+
+\bigskip
+Intuitively, we expect that as we increase the number of subintervals, the piecewise-defined function will bear an ever increasing resemblance to the actual solution curve.  Indeed, it is possible to make a rigorous statement out of this (using limits) and to prove it for functions that satisfy the hypotheses of the Existence and Uniqueness Theorem.
+
+
+We don't need the graphs in order to apply this method.  All we need to do is to keep track of what happens to the $y$-value each time we increment the $x$-value.  We start by fixing a value of $\Delta x$, which is called the 
+	\index{step size}%
+	{\bf step size}.  Let $(x_0,y_0)$ represent the initial condition.  Let $m_i$ represent the slope of a tangent line approximation to a solution curve at $(x_i,y_i)$, which we find by plugging $(x_i,y_i)$ into the differential equation.  Then let $x_{i+1}=x_i+\Delta x$, and $y_{i+1}=y_i+m_i\Delta x$.  We can keep track of all this information in a table.  Here's such a table for the ODE $y'=y^2-x$ with the initial condition $(0,1)$ and step size $\Delta x = 0.1$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline
+$x_i$ & $y_i$ & $m_i=y_i^2-x_i$ & $y_{i+1}=y_i+m_i \Delta x$ \\ \hline
+0 & 1 & 1 & 1.1 \\ \hline
+0.1 & 1.1 & 1.11 & 1.211 \\ \hline
+0.2 & 1.211 & 1.2665 & 1.3377 \\ \hline
+0.3 & 1.3377 & 1.4893 & 1.4866 \\ \hline
+0.4 & 1.4866 & 1.8099 & 1.6676 \\ \hline
+0.5 & 1.6676 & 2.2808 & 1.8957 \\ \hline
+0.6 & 1.8957 & 2.9935 & 2.1950 \\ \hline
+0.7 & 2.1950 & 4.1180 & 2.6068 \\ \hline
+0.8 & 2.6068 & 5.9955 & 3.2064 \\ \hline
+0.9 & 3.2064 & 9.3808 & 4.144 \\ \hline
+\end{tabular}
+\end{center}
+
+Notice that the entry for $y_{i+1}$ is also the entry for $y_i$ in the next row, because it represents the $y$-value that goes with the next $x$-value.  The very last entry in the table is the $y$-value that goes with $x=1$.  Based on this information, we estimate that $y(1) \approx 4.144$.
+\qed
+
+The approach described here is known as 
+	\index{Euler's method}%
+	{\bf Euler's method}.  It is not a highly efficient algorithm, but it is the basic foundation upon which methods in the numerical analysis of differential equations are built.
+
+Our final estimate in the last example was an underestimate.  We could have improved it by reapplying the algorithm with a smaller step size $\Delta x$.  For example, using $\Delta x = 0.01$ leads to the approximation $y(1)\approx 7.8$.  Using $\Delta x = 0.001$ gives us $y(1) \approx 9.16$. Using $\Delta x = 0.0001$ gives us $y(1) \approx 9.35$, which is the same value (to two decimal places) which we get when we use $\Delta x = 0.000001$. The spreadsheet used to obtain this last result had 1 million lines of calculations. Clearly there is a trade-off between accuracy and how computationally-intensive the method will be to implement as one considers various choices of $\Delta x$.  There are variations on this method which will converge faster, meaning they give similar accuracy with a larger increment $\Delta x$, and they can therefore be calculated more quickly.  The computational cost of a numerical method is an important area of study in applied mathematics.  Many other algorithms have been discovered which are more efficient than Euler's method, even if they are just refinements of the same idea.  Several refinements are discussed in the problem set for this chapter.  Learning Euler's method is preparation to begin study of the more advanced techniques.
+
+Before proceeding to another example, we should take a moment to notice that there is another, more symbolic way of understanding of Euler's method.  If $y$ satisfies the IVP $y'=f(x,y)$ and $y(x_0)=y_0$, then integrating both sides of the differential equation from $x_0$ to $x_1=x_0+\Delta x$ gives us
+\[ y(x_1)-y(x_0)=\int_{x_0}^{x_1} f(x,y(x)) \ dx,\]
+or
+\[ y(x_1) = y_0 + \int_{x_0}^{x_1} f(x,y(x)) \ dx.\]
+If $\Delta x$ is small and $f$ is continuous, then the integrand is approximately constant on the domain of integration, which has length $\Delta x$, and therefore
+\[ y(x_1) \approx y_0+f(x_0,y_0) \Delta x.\]
+Similarly,
+\[ y_{i+1} \approx y_{i} + f(x_i,y_i) \Delta x,\]
+and this is exactly the recursion we used to find approximate values of $y$.
+
+\example Use Euler's method with a step size of $\Delta t = 0.25$ to estimate $y(1)$, where $y$ is the solution of the IVP $\dot{y} = \sin(y), \ y(0)=2$.  Maintain 6 decimal places of accuracy at each step of the calculation, and report the final answer rounded to 2 decimal places.
+
+{\bf Solution:} We construct a table of values for $t_i=0+0.25(i-1)$ and the corresponding values of $y_i$, $m_i$ and $y_{i+1}$:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|} \hline
+$t_i$ & $y_i$ & $m_i=\sin(y_i)$ & $y_{i+1}=y_i+m_i \Delta t$ \\ \hline
+0 & 2 & 0.909297 & 2.227324 \\ \hline
+0.25 & 2.227324 & 0.792116 & 2.425353 \\ \hline
+0.5 & 2.425353 & 0.656553 & 2.589492 \\ \hline
+0.75 & 2.589492 & 0.524477 & 2.720611 \\ \hline
+\end{tabular}
+\end{center}
+
+Therefore $y(1) \approx 2.72$.
+\qed
+
+\begin{exe}
+Use Euler's method with a step size of $\Delta x = 0.5$ to estimate $y(1.5)$, where $y$ satisfies $y'=y^2, \ y(0)=2$.  Do all the calculations by hand.  Draw a slope field to try to predict whether your approximate answer is an overestimate or an underestimate of the true solution value.
+\end{exe}
+
+\begin{exe}
+Use Euler's method with a step size of $\Delta x = 0.25$ to estimate $y(1)$, where $y$ satisfies $y'=x^2+y^2$ and $y(0)=0$.  Use a slope field to try to determine whether your solution is an overestimate or an underestimate of the true solution value.
+\end{exe}
+
+
+
+\bigskip
+\noindent
+{\large {\sc Runge-Kutta}}
+
+\medskip
+A very popular numerical method for finding approximate values of solutions to initial value problems is the Runge-Kutta method described below.  The formula for computing the values of $y_i$ appears to be much more complicated that the formula for Euler's method.  However, in exchange for this complexity, we obtain an algorithm that is much more efficient in that it gives better approximations with fewer arithmetic computations.
+
+Let's begin by looking at the formula itself.  
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} The Runge-Kutta Method \normalcolor}}
+\index{Runge-Kutta method}
+
+For an initial value problem $y'=f(x,y), \ y(x_0)=y_0$ and a stepsize $\Delta x>0$, define $x_n=x_0+n\Delta x$ and
+\[ y_{n+1} = y_n + \Delta x \left( \frac{k_{n1} + 2 k_{n2} + 2 k_{n3} + k_{n4}}{6} \right)\]
+where 
+\begin{align*} 
+k_{n1} & = f(x_n,y_n) \\ 
+k_{n2} & = f \left( x_n + \frac{1}{2} \Delta x, y_n + \frac{1}{2} \Delta x k_{n1} \right) \\ 
+k_{n3} & = f \left( x_n + \frac{1}{2} \Delta x, y_n + \frac{1}{2} \Delta x k_{n2} \right) \\
+k_{n4} & = f \left( x_n + \Delta x, y_n + \frac{1}{2} \Delta x k_{n3} \right)
+\end{align*}
+\end{minipage}
+}
+\end{center}
+
+This formula can be thought of as an attempt to improve on estimating the value of $\int_{x_n}^{x_n+\Delta x} f(x,y(x)) \ dx$.  Euler's Method approximates this integral using the left endpoint approximation, since $f(x_n,y_n)$ is just the value of the integrand at the left endpoint.  As you can find in the problem set for this chapter, there is a refinement of this idea (called the 
+	\index{improved Euler formula}%
+	{\bf improved Euler formula})
+that attempts to use a Trapezoid Rule approximation to estimate the integral; but since we don't know the value of $f(x,y(x))$ at the right endpoint, we approximate it first using Euler's Method, then plug that approximation back in to estimate the integral. Recall then the the trapezoid rule basically averages the values at the left and right endpoints of the interval (and multiplies this average by the length of the interval) to approximate the integral.  So the improved Euler formula gives us 
+\[y_{n+1} = y_n + \Delta x \left( \frac{f(x_n,y_n)+f(x_n+\Delta x,y_n+\Delta x f(x_n,y_n)}{2} \right).\]
+The Runge-Kutta method is in turn a refinement of this idea.  It uses a weighted average of the value of $f(x,y)$ approximated at several points throughout the interval.  Notice that if $f(x,y)$ didn't depend on $y$, then the weighted average in the Runge-Kutta formula would simplify to
+\[ \frac{\Delta x}{6} \left( f(x_n) + 4 f \left(x_n + \frac{1}{2} \Delta X \right) + f(x_n + \Delta x) \right),\]
+which is precisely Simpson's Rule for approximating the integral.
+
+\example Use the Runge-Kutta method to find an approximate value of $y(0.4)$ for the solution of $y'=2y-x, \ y(0)=0$ using two subintervals.  Carry 5 decimal places throughout the calculations.  Round the final answer to three decimal places.
+
+{\bf Solution:} Dividing the interval $[0,0.4]$ into two subintervals gives us a step size of $\Delta x = 0.2$.  We begin with $x_0=0$ and $y_0=0$.  Using $f(x,y)=2y-x$ gives us
+\begin{align*}
+k_{01} & = f(0,0)=0 \\
+k_{02} & = f(0+\frac{1}{2}(0.2),0+\frac{1}{2}(0.2)(0)) = -0.1 \\
+k_{03} & = f(0+\frac{1}{2}(0.2),0+\frac{1}{2}(0.2)(-0.1)) = -0.12 \\
+k_{04} & = f(0+0.2,0+(0.2)(-0.12)) = -0.248
+\end{align*}
+Thus
+\[ y_1 = 0+(0.2) \left( \frac{(0)+2(-0.1)+2(-0.12) + (-0.248)}{6} \right) = -0.02293\]
+Repeating this process gives us
+\begin{align*}
+k_{11} & = f(0.2,-0.02293) = -0.24586 \\
+k_{12} & = f(0.2 + \frac{1}{2}(0.2),-0.02293+\frac{1}{2} (0.2) (-0.24586)) = -0.34760 \\
+k_{13} & = f(0.2+\frac{1}{2}(0.2),-0.02293+\frac{1}{2}(0.2) (-0.34760)) = -0.41538 \\
+k_{14} & = f(0.2+0.2,-0.02293+(0.2)(-0.41538)) = -0.61201
+\end{align*}
+and
+\[ y_2 = -0.02293+(0.2) \left( \frac{(-0.24586)+2(-0.34760)+2(-0.41538)+(-0.61201)}{6} \right) = -0.10239.\] 
+That is, $y(0.4) \approx -0.10239.$
+\qed
+
+\begin{exe}
+Redo Example 3.2 using just a single subinterval.
+\end{exe}
+
+The approximate solution found in Example 3.2 is within 3.8\% of the correct value of $y(0.4)$.  To obtain similar accuracy, Newton's method would require at least 44 subintervals!  As a rough estimate of the computational cost of these algorithms, observe that 44 steps in Newton's method would require 44 evaluations of $f(x,y)$, whereas the Runge-Kutta calculation required only 8 (plus 2 more calculations to obtain the weighted average).  The difference in computational cost can grow quickly as the length of the interval increases, especially when $f(x,y)$ is nonlinear.  Thus the Runge-Kutta method can obtain similar results more efficiently than Newton's method, or, it can be used to obtain more accurate results for the same computational investment.  
+
+This kind of computational efficiency is especially important in applications that must compute solutions in ``real time'', such as in graphics-intensive video games and automated piloting systems.  Much work is invested in industry to develop and implement efficient algorithms, as that is often less expensive than attempting to construct computers that would need to be orders of magnitude faster to implement the less efficient algorithms.
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Use Euler's method to find an approximate value of $y(0.2)$ using a step size of {\bf (a)} $\Delta x=0.1$, and {\bf (b)} $\Delta x=0.05$.  {\bf (c)} Then solve the initial value problem using separation of variables and find the exact value of $y(0.2)$.  Compare your results.
+\end{instructions}
+
+\smallskip
+\ap $y'=xy, \ y(0)=1$
+
+\ap $y' = \frac{x}{y}, \ y(0)=2$
+
+\ap $\dot{y}=ty+t, \ y(0)=0$
+
+\ap $4\dot{y} +e^{t+y}=0, \ y(0)=0$
+
+\vfill
+
+
+\begin{instructions}
+Use Euler's method to find an approximate value of $y(0.4)$ using a step size of {\bf (a)} $\Delta x =0.4$, {\bf (b)} $\Delta x=0.2$ and {\bf (c)} $\Delta x =0.1$.
+\end{instructions}
+
+\ap $y'=2-\sqrt{y}, \ y(0)=0$
+
+\ap $y' = x+y, \ y(0)=0$
+
+\ap $2 y'=x+y, \ y(0)=1$
+
+\ap $y' = xy + y^3, \ y(0)=1$ 
+
+\bigskip
+\begin{instructions}
+Use the Runge-Kutta method to find an approximate value of $y(0.2)$ using a step size of $\Delta x = 0.1$.
+\end{instructions}
+
+\ap $y' = x+y, \ y(0)=0$
+
+\ap $y' = y^2, \ y(0)=1$
+
+%\end{multicols}
+%
+%
+%
+%
+%
+%
+%
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%
+%\setcounter{problem}{1}
+
+
+\bigskip
+\hrule
+
+\bigskip
+\ap Set up a calculation on a spreadsheet, or write a short computer program in a high-level language (such as C++, Java or Python) to approximate $y(2)$ where $y'=\sin(y)+x$ and $y(0)=1$, using Euler's method with a step size of $0.001$.
+
+
+\ap Consider the following initial value problem: $y'=y, \ y(0)=y_0$.  {\bf (a)} Use Euler's method to find an approximate value for $y(x)$ by dividing the interval $[0,x]$ into $N$ subintervals of equal width.  (That is to say, you will use $\Delta x = \frac{x}{N})$.  {\it (Hint: First prove that $y_i=y_0(1+\Delta x)^i$.)}  {\bf (b)} Take a limit of the result in (a) as $N \rightarrow \infty$ to get the exact value of $y(x)$.
+
+
+
+\ap It was noted in the text that Euler's method can be thought of as calculating
+\[ y_{i+1} = y_i+\int_{x_i}^{x_{i+1}} f(x,y(x)) \ dx\]
+by approximating the integrand $f(x,y(x))$ with its value at the left endpoint:
+\[ y_{i+1} \approx y_i + f(x_i,y_i)\Delta x.\]
+We can usually get a better approximation for the integral, however, if we approximate the integrand by the average of its values at the left and right endpoints:
+\[ y_{i+1} \approx y_i + \frac{f(x_i,y_i)+f(x_{i+1},y_{i+1})}{2} \Delta x.\]
+This is equivalent to using the Trapezoid Rule to approximate the integral, as illustrated at below.
+
+\includegraphics[width=2.5in]{3-numericalmethods/improvedEuler.eps}
+
+ The difficulty with using this directly is that we would need to already have the value of $y_{i+1}$ to evaluate the quotient in the last term.  However, we can approximate the y-value at the right endpoint by using the value that Euler's method would give us, namely $y_i+f(x_i,y_i) \Delta x$:
+
+
+
+
+\begin{align*} y_{i+1} & \approx y_i  \\ & + \frac{f(x_i,y_i)+f(x_{i+1},y_i+f(x_i,y_i)\Delta x)}{2} \Delta x. \end{align*}
+
+This formula is known as the 
+	\index{improved Euler formula}%
+	{\bf improved Euler formula}, as it usually produces better accuracy then the regular Euler's method when using the same step size.
+
+Use the improved Euler formula to approximate $y(1)$ for the function satisfying $y'=y^2$, $y(0)=1$ using a step size of $0.25$.  Also calculate the approximate value obtained by the regular Euler's method, and find the exact value by solving the IVP with separation of variables.  Compare the results.
+
+
+\ap Find a formula for approximating $y_{i+1}=y_i+\int_{x_i}^{x_{i+1}} f(x,y(x)) \ dx$ by approximating the integral with the Midpoint Rule from calculus, using the tangent line approximation at the left endpoint to obtain an approximate value of $y$ at the interval's midpoint (illustrated in the figure below).  (This is called the 
+	\index{modified Euler formula}%
+	{\bf modified Euler formula}.)  Use it to estimate $y(0.5)$ for the function $y'=\sqrt{y}+x$ and $y(0)=1$ with a step size $\Delta x = 0.25$.
+
+\medskip
+\includegraphics[width=2.5in]{3-numericalmethods/modifiedEuler.eps}
+
+
+\ap Answer the prototype question from the beginning of the chapter.  Experiment with step sizes until you are satisfied with the results.  Feel free to use Euler's method, Runge-Kutta or either of the modifications of that method described in the previous problems.  Implement your calculations by using a spreadsheet or by writing a simple computer program in a high-level language.
+
+
+\ap This question illustrates the idea of 
+	\index{sensitive dependence on initial conditions}%
+	{\bf sensitive dependence on initial conditions}.  Consider the initial-value problem $y'=\sin(y), \ y(0)=\pi$.  {\bf (a)} Use a numerical method (or a numerical `solver' on a computer) to estimate the value of $y(1)$ using the initial value $y(0)=3.1416$.  {\bf (b)} Redo part (a) with the initial value $y(0)=3.14159$.  {\bf (c)} Explain the discrepancy between the results in (a) and (b).  Use a slope field or a phase line analysis to illustrate.  {\bf (d)} What is the actual value of $y(1)$ when the initial condition is exactly $y(0)=\pi$?
+
+
+\end{multicols}

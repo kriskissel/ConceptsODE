@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{velocityprimer}
+Lyle~N. Long and Howard Weiss.
+\newblock The velocity dependence of aerodynamic drag: A primer for
+  mathematicians.
+\newblock {\em American Mathematical Monthly}, 1999.
+
+\bibitem{royden:realanalysis}
+H.L. Royden.
+\newblock {\em Real Analysis}.
+\newblock Prentice Hall, 1988.
+
+\bibitem{rudin:pma}
+Walter Rudin.
+\newblock {\em Principles of Mathematical Analysis}.
+\newblock McGraw Hill Companies, The, 3 edition, 1976.
+
+\bibitem{rudin:realandcomplexanalysis}
+Walter Rudin.
+\newblock {\em Real And Complex Analysis}.
+\newblock McGraw-Hill Companies, The, 3 edition, 1986.
+
+\bibitem{strang:linearalgebra}
+Gilbert Strang.
+\newblock {\em Linear Algebra and Its Applications}.
+\newblock Cengage Learning, 4 edition, 2005.
+
+\end{thebibliography}

@@ -1,0 +1,170 @@
+\chapter{Linear Operators}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+In advanced mathematics, we say that a real-valued function defined on $\mathbb{R}^n$ is 
+	\index{linear function}
+	{\bf linear} if it satisfies the following two properties:
+\begin{enumerate}
+\item $f(x+y) = f(x)+f(y)$ for all $x,y \in \mathbb{R}^n$; and
+\item $f(cx) = cf(x)$ for all $c \in \mathbb{R}$ and $x \in \mathbb{R}^n$.
+\end{enumerate}
+This definition {\it is not} consistent with what most students are taught in beginning algebra -- at that level, we call a function defined on $\mathbb{R}$ linear if its graph is a straight line; however, the properties listed above imply that $f(0)=0$, which means, according to this definition, a function on $\mathbb{R}$ is linear only if {\it its graph is a straight line through the origin.}  Functions whose graphs are straight lines but do not pass through the origin are instead called
+	\index{affine function}
+	{\bf affine}.
+
+\begin{appendixexe} Prove that if $f$ is a linear function on $\mathbb{R}^n$, then $f(0)=0$.  (Here, $0$ indicates the origin of $\mathbb{R}^n$ when it appears as the input of the function, and it represents the real number zero when it appears as the output of the function.)
+\end{appendixexe}
+
+We can extend the definition of linear to other mathematical objects as well.  For example, the same definition works equally well when applied to functions defined on $\mathbb{C}^n$.  We will be interested in using the idea of linearity in the context of operators.
+
+A function $F$ whose input and output are both functions defined on the same domain is called an 
+	\index{operator}
+	{\bf operator}.
+For example, let $D$ represent the
+	\index{differentiation operator}
+	{\bf differentiation operator} defined on the set of differentiable functions on $\mathbb{R}$, so that
+\[ Df = f'.\]
+Observe that
+\[ D(f+g)=(f+g)'=f'+g'=Df+Dg \]
+and, for any constant $c$,
+\[ D(cf)=(cf)'=cf'=cDf.\]
+These are the same properties listed at the beginning of this section for linear functions; we therefore say that $D$ is an example of a 
+	\index{linear operator}
+	{\bf linear operator}.
+We use the notation $D^2$ to denote the second-derivative operator, defined by $D^2f=f''$. The symbol $D^3$ denotes the third derivative operator satisfying $D^3f=f^{(3)}$, and so on.  These are all linear operators.
+
+\appendixexample Consider the operator $L=D^2+3$, defined by $Lf=(D^2+3)f=f''+3f$.  Then $L$ is linear because, for any twice-differentiable functions $f$ and $g$ we have
+\begin{align*} 
+L(f+g)&=(D^2+3)(f+g) \\
+& = (f+g)''+3(f+g) \\
+& = f''+g''+3f+3g \\
+& = f''+3f + g''+3g \\
+& = (D^2+3)f+(D^2+3)g \\
+& = Lf+Lg,
+\end{align*}
+and, if $c$ is any scalar,
+\begin{align*}
+L(cf) & = (D^2+3)(cf) \\
+& = (cf)''+3(cf) \\
+& = cf''+c3f \\
+& = c(f''+3f) \\
+& = c(D^2+3)f \\
+& = cLf.
+\end{align*}.
+\qed
+
+Notice from the previous example that we usually don't use parentheses to surround the input of an operator; instead, we just write the symbol for the operator to the left of the function on which it acts.  This should not lead us to confuse the operation with multiplication, since it wouldn't make any sense to multiply a function and an operator together.
+
+
+Suppose that $p(x)$ is a polynomial, $p(x)=a_0+a_1x+a_2x^2+\cdots+a_kx^k$; we use the notation $p(D)$ to denote the linear operator
+\[ p(D)=a_0+a_1D+a_2D^2+ \cdots +a_kD^k.\]
+
+
+
+
+\appendixexample Let $p(x)=x^2+1$, and suppose $f(x)=e^{2x}+x$  Then
+\begin{align*}
+P(D)f(x) & = (D^2+1)f(x) \\
+& = D^2f(x)+f(x) \\
+& = f''(x)+f(x) \\
+& = 4e^{2x}+e^{2x}+x \\
+& = 5e^{2x}+x.
+\end{align*}
+
+\begin{appendixexe}
+Prove that, for any polynomial $p(x)$, the operator $p(D)$ is linear.
+\end{appendixexe}
+
+With this notation, we can efficiently summarize the key idea of Chapter 7 and extend it to higher-order differential equations.  The notation $\Pi_{n=1}^k a_k = a_1*a_2*\cdots*a_k$ is used to denote products (similar to how $\Sigma$ notation is used to denote sums).  The following result is a consequence of the observation that, for a differential equation $p(D)y=0$, the corresponding characteristic equation is $p(r)=0$.
+
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} General Solutions of $p(D)y=0$ \normalcolor}}
+
+Suppose
+\[ p(x) = \Pi_{k=1}^n a_k(x-r_k)^{m_k}\]
+is a polynomial.  Here, each $r_k \in \mathbb{C}$ is a distinct root of the polynomial, and $m_k$ is the multiplicity  of the root $r_k$.  Then the general solution of the differential equation
+\[ p(D)y=0\]
+is
+\[ y(t) = \sum_{k=1}^n \sum_{l=1}^{m_k} c_{k,l} t^{l-1}e^{r_k t},\]
+where the $c_{k,l}$ are arbitrary coefficients.
+\end{minipage}
+}
+\end{center}
+
+
+
+
+\appendixexample
+Consider the differential equation $y^{(4)}+2y^{(3)}+y''+2y'+y=0$.  This can be written as $p(D)y=0$, where 
+\begin{align*}
+p(x) & = x^4+2x^3+x^2+2x+1 \\
+& = (x+1)^2(x-i)(x+i).
+\end{align*}
+The roots are $x_1=-1$ (with multiplicity 2) and $x_2=i$, $x_3=-i$ (each with multiplicity 1).  Therefore, the general solution of this differential equation is
+\[ y(t) = c_{1,1}e^{-t}+c_{1,2}te^{-t} + c_{2,1}e^{it}+c_{3,1}e^{-it},\]
+where $c_{1,1}, \ c_{1,2}, \ c_{2,1}$ and $c_{3,1}$ are arbitrary constants.
+\qed
+
+
+We can also use this notation to simplify parts of the method of Laplace Transforms.
+
+Consider a differential equation of the form $a\ddot{y}+b\dot{y}+cy=f(t)$, with rest initial conditions $y(0)=0, \ \dot{y}(0)=0$.  Taking the Laplace Transform of both sides gives us
+\[ aL[\ddot{y}]+bL[\dot{y}]+cL[y]=L[f],\]
+and the reduction formula implies
+\[ a(s(sL[y]-y(0))-\dot{y}(0))+b(sL[y]-y(0))+cL[y]=L[f].\]
+We can simplify this using the rest initial conditions to obtain
+\[ (as^2+bs+c)L[y] = L[f],\]
+or
+\[ L[y] = \frac{L[f]}{as^2+bs+c}.\]
+This analysis applies in general to higher-order, constant-coefficient linear differential equations.  For an $n^{th}$ order equation, we would use the phrase
+	\index{rest initial conditions}
+	{\bf rest initial conditions}
+to specify the $n$ initial values $y(0)=y'(0)=\cdots=y^{(n-1)}(0)=0$.
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Laplace Transform of $p(D)y=f$ with Rest Initial Conditions\normalcolor}}
+
+If $p(x)$ is a polynomial (not the zero function) and $p(D)y=f$, where $y$ satisfies rest initial conditions, then
+\[ L[y] = \frac{L[f]}{p(s)}.\]
+\end{minipage}
+}
+\end{center}
+
+
+
+Let's end this section by explaining the origin of the term `linear differential equation'.  In general, an $n^{th}$ order differential equation can be written in the form
+\[ f(x,y,y',\cdots,y^{(n)})=g(x),\]
+where $y(x)$ is the unknown function.  The function $f$ has $n+2$ inputs.  We say that the differential equation is
+	\index{linear differential equation}
+	{\bf linear} if $f$ is a linear function of the vector $(y, y', \cdots, y^{(n)})$.
+
+This will be easier to understand if we begin by concentrating on first-order equations, which have the form
+\[ f(x,y,y')=g(x).\]
+If $f$ is linear in the vector $(y,y')$, then it satisfies conditions (1) and (2) at the beginning of this section in the following way: for any $(y,y')$ and $(z,z')$ in $\mathbb{R}^2$,
+\[ f(x,y+z,y'+z')=f(x,y,y')+f(x,z,z')\]
+and, for any scalar $c$,
+\[ f(x,cy,cy')=cf(x,y,y').\]
+Using these two conditions with the vectors $(y,0)$ and $(0,y')$, we can write
+\begin{align*}
+f(x,y,y') & = f(x,0+y,y'+0) \\
+& = f(x,0,y')+f(x,y,0) \\
+& = f(x,y'*0,y'*1)+f(x,y*1,y*0) \\
+& = y'f(x,0,1)+yf(x,1,0).
+\end{align*}
+Therefore the differential equation can be written as
+\[ y'f(x,0,1)+yf(x,1,0)=g(x).\]
+If we let $a(x)=f(x,0,1)$ and $b(x)=f(x,1,0)$, we then have
+\[ a(x)y'+b(x)y=g(x),\]
+which is exactly how we defined first-order linear equations in Chapter 4.  At the time, the reason for describing an equation of the form $a(x)y'+b(x)y=g(x)$ as linear may not have been obvious, but we see now that the term comes from the fact that the differential equation itself involves a linear function of the unknown $y$ and its derivative.  Similar results can be obtained for higher order differential equations.  If the coefficient functions $a(x), b(x)$ (etc.) are constant, then the equation can be written in the form $p(D)y=g$ for some polynomial $p(x)$.
+
+
+
+
+
+

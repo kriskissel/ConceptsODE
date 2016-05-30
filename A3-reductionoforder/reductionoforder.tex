@@ -1,0 +1,116 @@
+\documentclass[12pt,letterpaper,twoside]{amsart}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{ulem}
+\newcounter{example}
+\newcounter{exercise}
+\newcounter{problem}
+\newcommand{\example}{\bigskip \noindent {\large {\sc Example \arabic{example}:}} \addtocounter{example}{1}}
+\newcommand{\exercise}{\bigskip \noindent {\large {\sc Exercise \arabic{exercise}:}} \addtocounter{exercise}{1}}
+\newcommand{\problem}{\bigskip \noindent {\large {\sc Problem \arabic{problem}:}} \addtocounter{problem}{1}}
+\newcommand{\tech}{\marginpar{\vskip 10mm \begin{center}\includegraphics[width=0.25in]{calculatorimagesmall.eps} \end{center}}}
+\newcommand{\solution}{\medskip \noindent {\bf Solution: }}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+
+\begin{document}
+
+\sffamily
+
+%%%%  switch the commenting on this line and the next \chapter{Introduction}
+\begin{center} {\LARGE Reduction of Order} \end{center}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+With this chapter we begin our study of second order ODE.  Sometimes it is easy to find one solution of a differential equation, and reduction of order con sometimes provide us with a way of using that one solution to find a formula for the general solution.
+
+\example Consider the second order differential equation $\ddot{y}-y=0$.  We observe that the function $y_1(t)=e^t$ is a solution on the interval $\mathbb{R}$, and that this solution is non-zero for all $t \in \mathbb{R}$.  If $y(t)$ is {\it any} solution of the ODE, let $u(t)$ be defined by $u(t)=\frac{y(t)}{y_1(t)}$, or $y=uy_1$.  We substitute this into the ODE to see that
+\begin{align*}
+0 & = \ddot{y}-y \\
+& = \frac{d^2}{dt^2}\left[ ue^t \right] - (ue^t)\\
+& = (\ddot{u}e^t + 2\dot{u}e^t + ue^t)-(ue^t) \\
+& = \ddot{u}e^t+2\dot{u}e^t.
+\end{align*}
+Dividing by $e^t$, which is never zero, gives us the following differential equation for $u$:
+\[ \ddot{u}+2\dot{u}=0.\]
+Make the substitution $v=\dot{u}$ to obtain
+\[ \dot{v}+2v=0.\]
+This equation can be solved using the method of integrating factors (the integrating factor is $e^{2t}$):
+\begin{align*}
+\frac{d}{dt} \left[ e^{2t} v \right] & = 0 \\
+e^{2t} v & = C \\
+v & = Ce^{-2t}
+\end{align*}
+Integrating this shows that $u=Ce^{-2t}+D$, and inserting this into the equation $y=uy_1$ we see that
+\[ y(t)=(Ce^{-2t}+D)e^t = Ce^{-t}+De^{t}\]
+is the general solution of the ODE.
+\qed
+
+The general process is:
+\begin{itemize}
+\item Find a solution $y_1$ of the ODE;
+\item set $y=uy_1$, and apply this substitution for $y$ in the ODE;
+\item simplify to find a differential equation for $u$;
+\item find a general solution for $u$;
+\item the product $y=uy_1$ gives the general solution for the ODE on the set where $y_1 \neq 0$.
+\end{itemize}
+
+The last point is am important one: because we define $u$ by $u=\frac{y}{y_1}$, this process is only guaranteed to give a formula for a general solution on the set where $y_1 \neq 0$.  One might get lucky and obtain a general solution on a larger domain, but there is no guarantee that will happen in general.
+
+\exercise Verify that $y_1(x)=e^{-x}$ is a solution of the differential equation $y''+3y'+2y=0$.  Then use reduction of order to find a general solution of this ODE defined on $\mathbb{R}$.
+
+\exercise Verify that $y_1(x)=e^{2x}$ is a solution of $y''-2y'=0$.  The use reduction of order to find a general solution on $\mathbb{R}$.
+
+\exercise Verify that $y_1(t)=t$ is a solution of the ODE $t^2 \ddot{y} +2t \dot{y} -2y=0$.  Then use reduction of order to find the general solution of this ODE defined on the interval $(0,\infty)$.
+
+\exercise Verify that $y_1(t)=\sin(2t)$ is a solution of the ode $\ddot{y}+4y=0$.  Then use reduction of order to find a general solution on $\mathbb{R}$.  {\it (Note: Because $y_1(t)=0$ for $t=\frac{k\pi}{2}$, the method only guarantees a solution on an interval of the form $\left( \frac{k\pi}{2},\frac{(k+1)\pi}{2}\right)$; therefore you will need to verify directly that the formula you obtain is a solution on $\mathbb{R}$.)}
+
+Now we will explore the theory of this method -- that is to say, we will discuss why it works.
+
+Begin with an ODE of the form
+\[ a(x)y''+b(x)y'+c(x)y=0,\]
+and a function $y_1(x)$ which is a solution of this equation.  Let $I$ be an open interval where $y_1 \neq 0$.  Then if $y(x)$ is {\it any} solution of this ODE on $I$, we can define $u=\frac{y}{y_1}$ on $I$; thus $y=uy_1$.  The product rule gives us $y'=u'y_1 +uy_1'$ and $y''=u''y_1 + 2u'y_1'+uy_1''$.  Inserting these into the ODE yields
+\begin{align*}
+0 = &  a(x)y''+b(x)y'+c(x)y \\
+& = a(x)\left(u''y_1 + 2u'y_1'+uy_1''\right)+b(x)\left(u'y_1 +uy_1'\right)+c(x)(uy_1) \\
+& = a(x) y_1 u'' + (2a(x)y_1'+b(x)y_1)u'+(a(x)y_1''+b(x)y_1'+c(x)y_1)u,
+\end{align*}
+and the last term in the last line is zero on $I$ since $y_1$ solve the ODE there.  we are thus left with
+\[ a(x)y_1u''+(2a(x)y_1'+b(x)y_1)u'=0.\]
+If we make the subsitution $v=u'$, we get
+\[ a(x) y_1(x)v'+(2a(x)y_1'(x)+b(x)y_1(x)v=0.\]
+This is a first order equation that can typically be solved to find a general formula for $v$, and integrating that solution gives us a general formula for $u$; inserting that formula for $u$ into the equation $y=uy_1$ gives us a general formula for $y$ on $I$.
+
+It is because of the fact we always obtain an equation of the form $\tilde{a}(x)u''+\tilde{b}(x)u'=0$, which can be reduced to a first order equation via the substitution $v=u'$, that this method gets it name.
+
+
+
+%% Cut below here for the book form.
+
+\begin{center} {\LARGE Problems} \end{center}
+
+\setcounter{problem}{1}
+
+\problem Verify that the function $y_1(t) = e^t$ is a solution of the third order ODE $y'''-y=0$.  Then let $y$ be any other solution of the ODE, and use reduction of order to show that $y=ue^x$, where $u$ is a solution of the ODE $u'''+3u''+3u'=0$.  {\it (Do not try to solve this ODE.)}
+
+\problem Find a power function $y_1(x)=x^n$ that solves the differential equation $x^2y''-3xy'+4y=0$.  Then use reduction of order to find a general solution on the interval $(0,\infty)$.
+
+\problem Find a power function $y_1(x)=x^n$ that solves the differential equation $x^2y''-7xy'-6y=0$.  Then use reduction of order to find a general solution on the interval $(0,\infty)$.
+
+\problem Consider the ODE  $y''-2\alpha y'+a^2 y=0$, where $\alpha$ is a constant.  {\bf (a)} Find a value of $r$ such that $y_1(x)=e^{rx}$ is a solution of this ODE.  {\it (Hint: Do this by substituting $e^{rx}$ for $y$ and solving for $r$.)} {\bf (b)} Use the solution you found in part (a) and reduction of order to find a general solution of the ODE.
+
+\problem Consider the ODE $y''-(\alpha+\beta)y'+\alpha \beta y=0$, where $\alpha, \ \beta$ are constants and $\alpha \neq \beta$.  {\bf (a)} Prove that the only values of $r$ such that $y_1(x)=e^{rx}$ solves the ODE are $r=\alpha$ and $r=\beta$.  {\bf (b)} Use the solution $y_1(x)=e^{\alpha x}$ and reduction of order to find the general solution of the ODE. Simplify your solution.
+
+
+
+
+
+\end{document}

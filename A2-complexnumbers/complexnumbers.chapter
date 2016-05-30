@@ -1,0 +1,107 @@
+\chapter{Complex Numbers}
+
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+When we solve characteristic equations, we are often faced with complex numbers.  For example, the solutions of a quadratic equation $ax^2+bx+c=0$ are given by the quadratic formula
+\[ x = \frac{-b \pm \sqrt{b^2-4ac}}{2a},\]
+and if the discriminant $b^2-4ac$ is negative, then we are looking at square roots of negative numbers, so the roots of the original equation are complex numbers.  These can be written in the form
+\[ z = \alpha + \beta i,\]
+where $\alpha$ and $\beta$ are both real, and $i$ satisfies $i^2=-1$.  If $z=\alpha + \beta i$ in this way, then we call $\alpha$ the 
+	\index{real part}%
+	{\bf real part} of $z$, and we call $\beta$ the 
+	\index{imaginary part}%
+	{\bf imaginary part}.  A complex-valued function $f(x)$ can also be written in the form $f(x)=u(x)+iv(x)$, where $u$ and $v$ are real-valued functions.  In this case, $u$ is the real part of $f$ and $v$ is the imaginary part of $f$.
+
+We can usually understand the arithmetic operations on complex numbers by writing numbers in terms of their real and imaginary parts.
+
+\appendixexample Let $z=1+3i$ and $w=3-2i$.  Then:
+\begin{itemize}
+\item $z+w = (1+3i)+(3-2i)=(1+3)+(3-2)i=4+i$
+\item $zw = (1+3i)(3-2i)=(1)(3)+(3i)(3)+(1)(-2i)+(3i)(-2i)=3-2i+3i-6i^2=3-2i+3i-6(-1)=9+i$
+\end{itemize}
+
+\begin{appendixexe} Let $u=2+4i$ and $v=1-2i$.  Find $2u+3v$ and $2uv$.
+\end{appendixexe}
+
+The 
+	\index{complex conjugate}%
+	{\bf complex conjugate} of $z=\alpha + \beta i$ is the complex number $\overline{z}=\alpha - \beta i$.  For example, $\overline{1+3i}=1-3i$.  
+
+\begin{appendixexe} Prove that for any complex numbers $z$ and $w$, $\overline{z+w} = \overline{z}+\overline{w}$ and $\overline{zw}=(\overline{z}) (\overline{w})$.
+\end{appendixexe}
+
+
+\begin{appendixexe} Prove that for any complex number $z$, the product $z \cdot \overline{z}$ is a real number.  {\it (Hint: Start by writing $z=\alpha+\beta i$.)}  Can you say anything more about the value of $z \overline{z}$?
+\end{appendixexe}
+
+
+The conjugate is especially useful for simplifying division with complex numbers.  For any complex numbers $z$ and $w$, with $w\neq0$, we see that $\frac{z}{w}=\frac{zw}{w\overline{w}}$, and the latter denominator is a real number.
+
+\appendixexample Let $z=1+2i$ and $w=2-4i$.  Then
+\begin{align*}
+\frac{z}{w} & = \frac{1+2i}{2-4i} \\
+& = \frac{(1+2i)}{(2-4i)} \frac{(2+4i)}{(2+4i)} \\
+& = \frac{2+4i+4i+8i^2}{4-16i^2} \\
+& = \frac{-6+8i}{20} \\
+& = -\frac{3}{10}+\frac{2}{5}i.
+\end{align*}
+
+\begin{appendixexe} Let $u=2+4i$ and $v=1-i$.  Simplify the expressions $\frac{u}{v}$ and $\frac{v}{u}$.  Write the answers in the form $\alpha + \beta i$.
+\end{appendixexe}
+
+Real numbers are usually visualized as points on a line.  Complex numbers can be visualized similarly as points in a plane.  We let the horizontal axis represent the real numbers, and the vertical axis the imaginary numbers.  Then the coordinates of a point in the plane represent the real and imaginary parts of the corresponding complex number:
+\begin{center}
+\includegraphics[width=2.5in]{A2-complexnumbers/complexplane.eps}
+\end{center}
+In the study of ordinary differential equations, we will often see complex numbers arise in exponential functions. Therefore we now turn our attention to finding a better understanding of exponentials.
+
+First of all, we need to say what we mean by $e^z$ when $z$ is complex.  To answer this, we turn to the power series representation of the exponential function:
+\[ e^z = \sum_{n=0}^\infty \frac{z^n}{n!}.\]
+(Here, we use the standard convention when working with power series that $z^0=1$, even when $z=0$.)  This series has an infinite radius of convergence and therefore converges for all complex numbers $z$.
+
+To work with a complex exponent, we usually write it in terms of its real and imaginary parts, and then use a law of exponents\footnote{The law $e^{x+y}=e^x e^y$ is true for real as well as for complex exponents.  The proof uses the series representation for $e^z$ and rearranges terms in the sum.  It involves a careful use of the Binomial Theorem.  See \cite{rudin:realandcomplexanalysis}.} to separate these:
+\[ e^z = e^{\alpha + \beta i} = e^\alpha e^{\beta i}.\]
+Therefore it will be profitable for us if we now focus our attention on expressions of the form $e^{\beta i}$, and that's where the power series representation becomes helpful:
+\begin{align*}
+e^{\beta i} & = \sum_{n=0}^\infty \frac{(\beta i)^n}{n!} \\
+& = \sum_{n=0}^\infty \frac{\beta^n i^n}{n!} \\
+& = \sum_{n=0, \ n \ even}^\infty \frac{\beta^n i^n}{n!} + \sum_{n=0, \ n \ odd}^\infty \frac{\beta^n i^n}{n!} \\
+& = \sum_{n=0}^\infty \frac{\beta^{2n}i^{2n}}{(2n)!}+\sum_{n=0}^\infty \frac{\beta^{2n+1}i^{2n+1}}{(2n+1)!} \\
+& = \sum_{n=0}^\infty \frac{\beta^{2n}(-1)^n}{(2n)!}+\sum_{n=0}^\infty \frac{\beta^{2n+1}i(-1)^n}{(2n+1)!} \\
+& = \cos(\beta)+i\sin(\beta).
+\end{align*}
+Combining this with the previous result gives us 
+	\index{Euler's formula}%
+	{\bf Euler's formula}:
+	
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Euler's Formula \normalcolor}}
+
+\[ e^{\alpha + \beta i} = e^\alpha (\cos(\beta)+i\sin(\beta))\]
+\end{minipage}
+}
+\end{center}	
+
+
+Note that in the calculation above, we made use of the power series for sine and cosine:
+\[ \sin(z)=\sum_{n=0}^\infty \frac{z^{2n+1}(-1)^n}{(2n+1)!} \ \ \ \mbox{and} \ \ \ \cos(z) = \sum_{n=0}^\infty \frac{z^{2n} (-1)^n}{(2n)!}\]
+These series also allow us to define sine and cosine for complex arguments, and this will be explored briefly in the exercises below.
+
+\begin{appendixexe} Find the values of $e^{\pi i}$, $e^{2\pi i}$ and $e^{\frac{1}{2} \ln(2)-\frac{\pi i}{4}}$.  Sketch these as points in the complex plane.
+\end{appendixexe}
+
+
+
+\begin{appendixexe} Prove that, if the solutions of the quadratic equation $ax^2+bx+c=0$ are complex numbers, and if the coefficients $a$, $b$ and $c$ are all real numbers, then the solutions are complex conjugates of one another.  {\it (Hint: Taking the complex conjugate of both sides of the equation gives us $\overline{ax^2+bx+c}=0$; now take advantage of the result in Exercise B.2.)}
+\end{appendixexe}
+
+\begin{appendixexe} Use power series to prove that $\sin(z)=\frac{e^{-iz}-e^{iz}}{2}$.  Use this formula to evaluate $\sin(i)$.
+\end{appendixexe}
+
+\begin{appendixexe} Find a representation formula for $\cos(z)$ (similar to the one for sine above) and use it to evaluate $\cos(2i)$.
+\end{appendixexe}
+
+

@@ -1,0 +1,1159 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2014.10.14)  29 MAY 2016 23:37
+entering extended mode
+**main.tex
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.tex"
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 68 languages loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amscls\amsbook.cls"
+Document Class: amsbook 2009/07/02 v2.20.1
+\linespacing=\dimen102
+\normalparindent=\dimen103
+\normaltopskip=\skip41
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip42
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks14
+\ex@=\dimen104
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen105
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count79
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count80
+\leftroot@=\count81
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count82
+\DOTSCASE@=\count83
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen106
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count84
+\c@MaxMatrixCols=\count85
+\dotsspace@=\muskip10
+\c@parentequation=\count86
+\dspbrk@lvl=\count87
+\tag@help=\toks15
+\row@=\count88
+\column@=\count89
+\maxfields@=\count90
+\andhelp@=\toks16
+\eqnshift@=\dimen107
+\alignsep@=\dimen108
+\tagshift@=\dimen109
+\tagwidth@=\dimen110
+\totwidth@=\dimen111
+\lineht@=\dimen112
+\@envbody=\toks17
+\multlinegap=\skip43
+\multlinetaggap=\skip44
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 367.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+\copyins=\insert233
+\abstractbox=\box28
+\listisep=\skip45
+\c@part=\count91
+\c@chapter=\count92
+\c@section=\count93
+\c@subsection=\count94
+\c@subsubsection=\count95
+\c@paragraph=\count96
+\c@subparagraph=\count97
+\c@figure=\count98
+\c@table=\count99
+\abovecaptionskip=\skip46
+\belowcaptionskip=\skip47
+\captionindent=\dimen113
+\thm@style=\toks19
+\thm@bodyfont=\toks20
+\thm@headfont=\toks21
+\thm@notefont=\toks22
+\thm@headpunct=\toks23
+\thm@preskip=\skip48
+\thm@postskip=\skip49
+\thm@headsep=\skip50
+\dth@everypar=\toks24
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2014/04/30 v1.2b Input encoding file
+\inpenc@prehook=\toks25
+\inpenc@posthook=\toks26
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\latin1.def"
+File: latin1.def 2014/04/30 v1.2b Input encoding file
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2014/04/25 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+\KV@toks@=\toks27
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvips.def"
+File: dvips.def 2014/04/23 v3.0j Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2014/08/24 v1.8g multicolumn formatting (FMi)
+\c@tracingmulticols=\count100
+\mult@box=\box29
+\multicol@leftmargin=\dimen116
+\c@unbalance=\count101
+\c@collectmore=\count102
+\doublecol@number=\count103
+\multicoltolerance=\count104
+\multicolpretolerance=\count105
+\full@width=\dimen117
+\page@free=\dimen118
+\premulticols=\dimen119
+\postmulticols=\dimen120
+\multicolsep=\skip51
+\multicolbaselineskip=\skip52
+\partial@page=\box30
+\last@line=\box31
+\maxbalancingoverflow=\dimen121
+\mult@rightbox=\box32
+\mult@grightbox=\box33
+\mult@gfirstbox=\box34
+\mult@firstbox=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\c@columnbadness=\count106
+\c@finalcolumnbadness=\count107
+\last@try=\dimen122
+\multicolovershoot=\dimen123
+\multicolundershoot=\dimen124
+\mult@nat@firstbox=\box53
+\colbreak@box=\box54
+\mc@col@check@num=\count108
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ulem\ulem.sty"
+\UL@box=\box55
+\UL@hyphenbox=\box56
+\UL@skip=\skip53
+\UL@hook=\toks28
+\UL@height=\dimen125
+\UL@pe=\count109
+\UL@pixel=\dimen126
+\ULC@box=\box57
+Package: ulem 2012/05/18
+\ULdepth=\dimen127
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\appendix\appendix.sty"
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count110
+\c@@ppsavesec=\count111
+\c@@ppsaveapp=\count112
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
+\wrapoverhang=\dimen128
+\WF@size=\dimen129
+\c@WF@wrappedlines=\count113
+\WF@box=\box58
+\WF@everypar=\toks29
+Package: wrapfig 2003/01/31  v 3.6
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def"
+File: dvipsnam.def 2014/04/23 v3.0j Driver-dependant file (DPC,SPQR)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks30
+)
+\c@example=\count114
+\c@exercise=\count115
+\c@problem=\count116
+\c@additionalpractice=\count117
+\c@theorem=\count118
+\c@lemma=\count119
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\newcent.sty"
+Package: newcent 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pstricks\pstricks.sty"
+Package: pstricks 2013/12/12 v0.60 LaTeX wrapper for `PSTricks' (RN,HV)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2014/05/25 v2.7 package option processing (HA)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+\XKV@toks=\toks31
+\XKV@tempa@toks=\toks32
+)
+\XKV@depth=\count120
+File: xkeyval.tex 2014/05/25 v2.7 key=value parser (HA)
+)))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex"
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count121
+\pstFP@xia=\count122
+\pstFP@xib=\count123
+\pstFP@xfa=\count124
+\pstFP@xfb=\count125
+\pstFP@rega=\count126
+\pstFP@regb=\count127
+\pstFP@regs=\count128
+\pstFP@times=\count129
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.te
+x"
+\pgfutil@everybye=\toks33
+\pgfutil@tempdima=\dimen130
+\pgfutil@tempdimb=\dimen131
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-li
+sts.tex"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks34
+\pgfkeys@temptoks=\toks35
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.c
+ode.tex"
+\pgfkeys@tmptoks=\toks36
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex"
+\pgf@x=\dimen132
+\pgf@xa=\dimen133
+\pgf@xb=\dimen134
+\pgf@xc=\dimen135
+\pgf@y=\dimen136
+\pgf@ya=\dimen137
+\pgf@yb=\dimen138
+\pgf@yc=\dimen139
+\c@pgf@counta=\count130
+\c@pgf@countb=\count131
+\c@pgf@countc=\count132
+\c@pgf@countd=\count133
+\pgfutil@tempcnta=\count134
+\pgfutil@tempcntb=\count135
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.t
+ex"
+\pgfmath@dimen=\dimen140
+\pgfmath@count=\count136
+\pgfmath@box=\box59
+\pgfmath@toks=\toks37
+\pgfmath@stack@operand=\toks38
+\pgfmath@stack@operation=\toks39
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.
+tex"
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic
+.code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.trigo
+nometric.code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.rando
+m.code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.compa
+rison.code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.base.
+code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.round
+.code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.misc.
+code.tex")
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integ
+erarithmetics.code.tex")))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count137
+))
+\pgffor@iter=\dimen141
+\pgffor@skip=\dimen142
+\pgffor@stack=\toks40
+\pgffor@toks=\toks41
+)
+\psLoopIndex=\count138
+
+`PSTricks' v2.57  <2014/08/27> (tvz)
+\pst@dima=\dimen143
+\pst@dimb=\dimen144
+\pst@dimc=\dimen145
+\pst@dimd=\dimen146
+\pst@dimg=\dimen147
+\pst@dimh=\dimen148
+\pst@dimm=\dimen149
+\pst@dimn=\dimen150
+\pst@dimo=\dimen151
+\pst@dimp=\dimen152
+\pst@hbox=\box60
+\pst@ibox=\box61
+\pst@boxg=\box62
+\pst@cnta=\count139
+\pst@cntb=\count140
+\pst@cntc=\count141
+\pst@cntd=\count142
+\pst@cntg=\count143
+\pst@cnth=\count144
+\pst@cntm=\count145
+\pst@cntn=\count146
+\pst@cnto=\count147
+\pst@cntp=\count148
+\@zero=\count149
+\pst@toks=\toks42
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.con")
+\psunit=\dimen153
+\psxunit=\dimen154
+\psyunit=\dimen155
+\pst@C@@rType=\count150
+\pslinewidth=\dimen156
+\psk@startLW=\dimen157
+\psk@endLW=\dimen158
+\pst@customdefs=\toks43
+\pslinearc=\dimen159
+\pst@symbolStep=\dimen160
+\pst@symbolWidth=\dimen161
+\pst@symbolLinewidth=\dimen162
+\everypsbox=\toks44
+\psframesep=\dimen163
+\pslabelsep=\dimen164
+\sh@wgridXunit=\dimen165
+\sh@wgridYunit=\dimen166
+\pst@shift=\dimen167
+)
+File: pstricks.tex 2014/08/27 v2.57 `PSTricks' (tvz,hv)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex")
+File: pst-fp.tex 2014/08/27 v2.57 `PST-fp' (hv)
+)
+\@indexfile=\write3
+
+Writing index file main.idx
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Try loading font information for OT1+pnc on input line 139.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pnc.fd"
+File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 139.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 139.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 144.
+ [1
+
+
+
+
+]
+LaTeX Font Info:    Try loading font information for OMS+pnc on input line 151.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\omspnc.fd"
+File: omspnc.fd 
+)
+LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
+ [2]
+Contents
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 157.
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.toc"
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 2.
+ [3
+
+
+])
+\tf@toc=\write4
+
+[4]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\preface/preface.cha
+pter"
+Preface
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 14.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [5
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6])
+[7] [8
+
+
+]
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 172.
+ [1
+
+
+]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\1-natureofde/nature
+ofde.chapter" [2
+
+
+]
+Chapter 1
+[3] [4]
+File: 1-natureofde/example1.eps Graphic file (type eps)
+ <1-natureofde/example1.eps>
+File: 1-natureofde/example1b.eps Graphic file (type eps)
+ <1-natureofde/example1b.eps> [5] [6]
+File: 1-natureofde/example1c.eps Graphic file (type eps)
+
+<1-natureofde/example1c.eps>
+Underfull \vbox (badness 1281) has occurred while \output is active []
+
+ [7]
+[8] [9] [10] [11] [12] [13] [14]
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 339.
+ [15] [16] [17] [18]
+File: 1-natureofde/torricellislaw.eps Graphic file (type eps)
+
+<1-natureofde/torricellislaw.eps>
+Underfull \hbox (badness 7649) in paragraph at lines 538--540
+[]\OT1/pnc/m/n/10.95 is pro-por-tional to
+ []
+
+
+Underfull \hbox (badness 6859) in paragraph at lines 538--540
+\OT1/pnc/m/n/10.95 the depth of the
+ []
+
+[19])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\FOM-fallingbodies/F
+OM-fallingbodies.tex" [20]
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 37--38
+ [][] 
+ []
+
+[21]
+Underfull \hbox (badness 1418) in paragraph at lines 71--71
+[]  \OT1/pnc/m/n/10.95 Like fric-tion, this vis-cous force is pro-por-tional to
+ the speed of the ob-ject:
+ []
+
+
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 71--72
+ [] 
+ []
+
+
+Overfull \vbox (48.3812pt too high) has occurred while \output is active []
+
+
+[22])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\2-graphicalmethods/
+graphicalmethods.chapter"
+Chapter 2
+File: 2-graphicalmethods/plotofsolutioncurves1.eps Graphic file (type eps)
+<2-graphicalmethods/plotofsolutioncurves1.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23
+
+
+]
+File: 2-graphicalmethods/plotofsolutioncurvesandtangents.eps Graphic file (type
+ eps)
+
+<2-graphicalmethods/plotofsolutioncurvesandtangents.eps>
+File: 2-graphicalmethods/plotoftangents.eps Graphic file (type eps)
+
+<2-graphicalmethods/plotoftangents.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24]
+File: 2-graphicalmethods/plotoftangentsandonecurve.eps Graphic file (type eps)
+
+<2-graphicalmethods/plotoftangentsandonecurve.eps> [25]
+File: 2-graphicalmethods/slopefield1-B.eps Graphic file (type eps)
+
+<2-graphicalmethods/slopefield1-B.eps>
+File: 2-graphicalmethods/slopefield2-B.eps Graphic file (type eps)
+ <2-graphicalmethods/slopefield2-B.eps>
+Underfull \vbox (badness 5847) has occurred while \output is active []
+
+ [26]
+File: 2-graphicalmethods/slopefield3-B.eps Graphic file (type eps)
+
+<2-graphicalmethods/slopefield3-B.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+File: 2-graphicalmethods/slopefield1-B.eps Graphic file (type eps)
+
+<2-graphicalmethods/slopefield1-B.eps> [28]
+File: 2-graphicalmethods/manualslopefield1.eps Graphic file (type eps)
+
+<2-graphicalmethods/manualslopefield1.eps>
+File: 2-graphicalmethods/manualslopefield2.eps Graphic file (type eps)
+
+<2-graphicalmethods/manualslopefield2.eps> [29]
+File: 2-graphicalmethods/manualslopefield+curve.eps Graphic file (type eps)
+
+<2-graphicalmethods/manualslopefield+curve.eps> [30]
+File: 2-graphicalmethods/transversalintersection.eps Graphic file (type eps)
+
+<2-graphicalmethods/transversalintersection.eps> [31]
+File: 2-graphicalmethods/nontransversalintersection.eps Graphic file (type eps)
+
+
+<2-graphicalmethods/nontransversalintersection.eps> [32]
+File: 2-graphicalmethods/phaseline1.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaseline1.eps>
+File: 2-graphicalmethods/phaseline2.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline2.eps>
+[33]
+File: 2-graphicalmethods/phaseline4.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline4.eps>
+File: 2-graphicalmethods/phaseline4b.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline4b.eps>
+[34]
+File: 2-graphicalmethods/phaseline4c.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline4c.eps>
+File: 2-graphicalmethods/phaseline4d.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline4d.eps>
+File: 2-graphicalmethods/phaseline4e.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaseline4e.eps> [35]
+File: 2-graphicalmethods/half-stable-right.eps Graphic file (type eps)
+
+<2-graphicalmethods/half-stable-right.eps>
+File: 2-graphicalmethods/half-stable-left.eps Graphic file (type eps)
+
+<2-graphicalmethods/half-stable-left.eps>
+File: 2-graphicalmethods/phaselineexercise2.7.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaselineexercise2.7.eps> [36]
+File: 2-graphicalmethods/phaseline6.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaseline6.eps>
+File: 2-graphicalmethods/phaseline6b.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline6b.eps>
+File: 2-graphicalmethods/phaseline6c.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaseline6c.eps> [37]
+File: 2-graphicalmethods/chapter2supplementalfigure1.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure1.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure2.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure2.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure5.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure5.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure6.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure6.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure7.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure7.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure3.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure3.eps>
+File: 2-graphicalmethods/chapter2supplementalfigure4.eps Graphic file (type eps
+)
+
+<2-graphicalmethods/chapter2supplementalfigure4.eps> [38]
+File: 2-graphicalmethods/phaseline3.eps Graphic file (type eps)
+
+<2-graphicalmethods/phaseline3.eps>
+File: 2-graphicalmethods/phaseline5.eps Graphic file (type eps)
+ <2-graphicalmethods/phaseline5.eps>
+[39]
+Overfull \hbox (1.6424pt too wide) in paragraph at lines 428--428
+[] \OT1/pcr/m/n/10.95 with(DEtools) 
+ []
+
+
+Overfull \hbox (68.23624pt too wide) in paragraph at lines 430--436
+ []$ 
+ []
+
+)
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\3-numericalmethods/
+numericalmethods.chapter" [40]
+Chapter 3
+[41
+
+
+]
+File: 3-numericalmethods/example1.eps Graphic file (type eps)
+ <3-numericalmethods/example1.eps> [42]
+File: 3-numericalmethods/example2.eps Graphic file (type eps)
+ <3-numericalmethods/example2.eps>
+File: 3-numericalmethods/example3.eps Graphic file (type eps)
+
+<3-numericalmethods/example3.eps> [43]
+File: 3-numericalmethods/example4.eps Graphic file (type eps)
+ <3-numericalmethods/example4.eps>
+[44]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+[46] [47] [48] [49]
+File: 3-numericalmethods/improvedEuler.eps Graphic file (type eps)
+ <3-numericalmethods/improvedEuler.eps> [50]
+Overfull \hbox (1.0122pt too wide) in paragraph at lines 301--301
+[] 
+ []
+
+File: 3-numericalmethods/modifiedEuler.eps Graphic file (type eps)
+<3-numericalmethods/modifiedEuler.eps> [51])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\4-firstorderlinear/
+firstorderlinear.chapter" [52]
+Chapter 4
+[53
+
+
+] [54] [55] [56] [57] [58] [59] [60]
+File: 4-firstorderlinear/RCschematic.eps Graphic file (type eps)
+ <4-firstorderlinear/RCschematic.eps>
+[61])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\5-seriessolutions/t
+aylorsolutions.chapter" [62]
+Chapter 5
+[63
+
+
+] [64] [65] [66] [67]
+Overfull \hbox (4.84007pt too wide) in paragraph at lines 153--154
+[][][][][][] \OT1/pnc/m/n/10.95 Let's find a $\OT1/cmr/m/n/10.95 2[]$ \OT1/pnc/
+m/n/10.95 de-gree Tay-lor ap-prox-i-ma-tion for the so-lu-tion of $\OML/cmm/m/i
+t/10.95 yy[] \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 x;  y\OT1/cmr/m/n/10.95 (
+0) =
+ []
+
+[68] [69]
+Overfull \hbox (104.37125pt too wide) in paragraph at lines 244--250
+ []$ 
+ []
+
+[70])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\FOM-pendulum/FOM-pe
+ndulum.tex" [71]
+File: FOM-pendulum/pendulum1.eps Graphic file (type eps)
+ <FOM-pendulum/pendulum1.eps>
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 29--30
+ [][] 
+ []
+
+[72]
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 51--52
+ [][] 
+ []
+
+)
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\6-existence-uniquen
+ess/existence-uniqueness.chapter" [73] [74
+
+
+]
+Chapter 6
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [75]
+[76] [77] [78] [79] [80] [81]
+LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 265.
+ [82] [83] [84] [85] [86]) [87] [88
+
+
+] [89]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\7-secondorderlinear
+/secondorderlinear.chapter" [90
+
+
+]
+Chapter 7
+File: 7-secondorderlinear/springmassdisplacement.eps Graphic file (type eps)
+<7-secondorderlinear/springmassdisplacement.eps> [91] [92]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [93]
+[94] [95] [96] [97] [98] [99] [100] [101] [102] [103])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\FOM-springmass/FOM-
+springmass.tex" [104]
+File: FOM-springmass/springmass2smallest.eps Graphic file (type eps)
+ <FOM-springmass/springmass2smallest.eps>
+File: FOM-springmass/springmassdisplacement.eps Graphic file (type eps)
+
+<FOM-springmass/springmassdisplacement.eps>
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 38--39
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [105]
+Overfull \vbox (102.99622pt too high) has occurred while \output is active []
+
+
+[106]
+Overfull \hbox (15.12923pt too wide) in paragraph at lines 76--77
+ [] 
+ []
+
+
+Overfull \vbox (31.44398pt too high) has occurred while \output is active []
+
+
+[107])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\8-secondordernonhom
+ogeneous/secondorderlinearnonhomogeneous.chapter" [108
+
+
+]
+Chapter 8
+[109] [110] [111] [112] [113] [114] [115]
+Overfull \hbox (1.21765pt too wide) in paragraph at lines 229--229
+ [] 
+ []
+
+
+Overfull \hbox (3.74812pt too wide) in paragraph at lines 229--230
+ [][] 
+ []
+
+[116] [117] [118])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\9-oscillators/oscil
+lators.chapter" [119] [120
+
+
+]
+Chapter 9
+
+Overfull \hbox (3.46642pt too wide) in paragraph at lines 27--29
+\OT1/pnc/m/n/10.95 The ob-vi-ous sim-i-lar-ity be-tween these math-e-mat-i-cal 
+mod-els be-comes even more pro-nounced
+ []
+
+[121]
+File: 9-oscillators/nodamping.eps Graphic file (type eps)
+ <9-oscillators/nodamping.eps>
+File: 9-oscillators/underdamping.eps Graphic file (type eps)
+ <9-oscillators/underdamping.eps>
+File: 9-oscillators/overdamping.eps Graphic file (type eps)
+
+<9-oscillators/overdamping.eps>
+File: 9-oscillators/criticaldamping.eps Graphic file (type eps)
+ <9-oscillators/criticaldamping.eps> [122]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [123]
+[124]
+File: 9-oscillators/springmass1smallest.eps Graphic file (type eps)
+ <9-oscillators/springmass1smallest.eps>
+Overfull \hbox (4.64276pt too wide) in paragraph at lines 139--147
+$[]$   $[]$ 
+ []
+
+[125]
+File: 9-oscillators/sinusoidaldriving.eps Graphic file (type eps)
+ <9-oscillators/sinusoidaldriving.eps> [126]
+File: 9-oscillators/steadystatecomparison.eps Graphic file (type eps)
+
+<9-oscillators/steadystatecomparison.eps>
+File: 9-oscillators/phase-amplitude0.eps Graphic file (type eps)
+ <9-oscillators/phase-amplitude0.eps>
+Overfull \hbox (4.64276pt too wide) in paragraph at lines 209--217
+$[]$   $[]$ 
+ []
+
+[127]
+File: 9-oscillators/phase-amplitude1.eps Graphic file (type eps)
+ <9-oscillators/phase-amplitude1.eps>
+File: 9-oscillators/phase-amplitude2.eps Graphic file (type eps)
+
+<9-oscillators/phase-amplitude2.eps>
+Underfull \vbox (badness 1132) has occurred while \output is active []
+
+ [128]
+[129] [130]
+Overfull \hbox (16.90233pt too wide) in paragraph at lines 308--310
+\OT1/pnc/m/n/10.95 We will need to be care-ful when we guess the form of a par-
+tic-u-lar so-lu-tion to non-homogeneous
+ []
+
+File: 9-oscillators/responseamplitude3.eps Graphic file (type eps)
+<9-oscillators/responseamplitude3.eps>
+File: 9-oscillators/responseamplitude4.eps Graphic file (type eps)
+ <9-oscillators/responseamplitude4.eps>
+File: 9-oscillators/responseamplitude5.eps Graphic file (type eps)
+
+<9-oscillators/responseamplitude5.eps> [131]
+File: 9-oscillators/responseamplitude6.eps Graphic file (type eps)
+
+<9-oscillators/responseamplitude6.eps> [132]
+File: 9-oscillators/responseamplitude1.eps Graphic file (type eps)
+
+<9-oscillators/responseamplitude1.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [133]
+File: 9-oscillators/responseamplitude2.eps Graphic file (type eps)
+
+<9-oscillators/responseamplitude2.eps> [134] [135] [136]) [137] [138
+
+
+] [139]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\10-laplacetransform
+s/laplacetransforms.chapter" [140
+
+
+]
+Chapter 10
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [141]
+[142] [143] [144]
+Underfull \vbox (badness 1824) has occurred while \output is active []
+
+ [145]
+Underfull \vbox (badness 3635) has occurred while \output is active []
+
+ [146]
+Underfull \vbox (badness 2134) has occurred while \output is active []
+
+ [147]
+[148] [149]
+Underfull \hbox (badness 10000) in paragraph at lines 358--360
+[]\OT1/pnc/m/n/10.95 Find the In-verse Laplace Trans-form
+ []
+
+[150])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\11-laplaceII/laplac
+eII.chapter.tex" [151] [152
+
+
+]
+Chapter 11
+[153]
+File: 11-laplaceII/stepfunction1.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction1.eps>
+File: 11-laplaceII/stepfunction2.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction2.eps>
+[154]
+File: 11-laplaceII/stepfunction6.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction6.eps>
+File: 11-laplaceII/stepfunction3.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction3.eps>
+[155]
+File: 11-laplaceII/stepfunction4.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction4.eps>
+File: 11-laplaceII/stepfunction7.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction7.eps>
+Overfull \hbox (4.64276pt too wide) in paragraph at lines 92--104
+$[]$   $[]$ 
+ []
+
+File: 11-laplaceII/stepfunction5.eps Graphic file (type eps)
+<11-laplaceII/stepfunction5.eps>
+File: 11-laplaceII/stepfunction5b.eps Graphic file (type eps)
+ <11-laplaceII/stepfunction5b.eps> [156]
+Underfull \vbox (badness 1629) has occurred while \output is active []
+
+ [157]
+[158]
+File: 11-laplaceII/figure1.eps Graphic file (type eps)
+ <11-laplaceII/figure1.eps> [159] [160] [161] [162] [163] [164] [165]
+[166]
+File: 11-laplaceII/sawtooth1.eps Graphic file (type eps)
+ <11-laplaceII/sawtooth1.eps> [167])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\12-representationfo
+rmulas/representationformulas.chapter.tex" [168]
+Chapter 12
+[169
+
+
+] [170] [171]
+File: 12-representationformulas/convolutionfubini.eps Graphic file (type eps)
+ <12-representationformulas/convolutionfubini.eps> [172]
+[173] [174] [175]) [176] [177
+
+
+]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\13-systems/systems.
+chapter" [178
+
+
+]
+Chapter 13
+[179]
+File: 13-systems/curveandtangent.eps Graphic file (type eps)
+ <13-systems/curveandtangent.eps> [180]
+File: 13-systems/systemsfield1.eps Graphic file (type eps)
+ <13-systems/systemsfield1.eps>
+File: 13-systems/systemsfield2.eps Graphic file (type eps)
+
+<13-systems/systemsfield2.eps> [181]
+File: 13-systems/rabbitsandfoxes.eps Graphic file (type eps)
+ <13-systems/rabbitsandfoxes.eps>
+Underfull \vbox (badness 3302) has occurred while \output is active []
+
+ [182]
+[183] [184]
+Overfull \hbox (10.03336pt too wide) in paragraph at lines 140--147
+[] 
+ []
+
+[185] [186] [187] [188]
+Overfull \hbox (5.25612pt too wide) in paragraph at lines 245--245
+[] \OT1/pcr/m/n/10.95 with(DEtools) 
+ []
+
+
+Overfull \hbox (68.23624pt too wide) in paragraph at lines 247--255
+ []$ 
+ []
+
+[189] [190]
+File: 13-systems/connectedtanks.eps Graphic file (type eps)
+ <13-systems/connectedtanks.eps>)
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\14-2x2systems/linea
+rsystems.chapter" [191] [192
+
+
+]
+Chapter 14
+File: 14-2x2systems/prototype.eps Graphic file (type eps)
+<14-2x2systems/prototype.eps>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [193]
+Underfull \vbox (badness 1571) has occurred while \output is active []
+
+ [194]
+[195] [196] [197] [198] [199] [200]
+File: 14-2x2systems/outwardspiral.eps Graphic file (type eps)
+ <14-2x2systems/outwardspiral.eps> [201]
+[202] [203] [204] [205])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\A1-separationofvari
+ables/separationofvariables.chapter" [206]
+Appendix A
+[207
+
+
+] [208] [209] [210] [211] [212] [213])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\A2-complexnumbers/c
+omplexnumbers.chapter" [214]
+Appendix B
+[215
+
+
+]
+File: A2-complexnumbers/complexplane.eps Graphic file (type eps)
+ <A2-complexnumbers/complexplane.eps>
+Underfull \vbox (badness 5274) has occurred while \output is active []
+
+ [216]
+Underfull \vbox (badness 1668) has occurred while \output is active []
+
+ [217]
+[218])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\A3-reductionoforder
+/reductionoforder.chapter" [219] [220
+
+
+]
+Appendix C
+[221] [222] [223])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\A4-matrixalgebra/ma
+trixalgebra.chapter" [224]
+Appendix D
+[225
+
+
+] [226] [227] [228] [229]
+File: A4-matrixalgebra/intersectionoftwolines.eps Graphic file (type eps)
+ <A4-matrixalgebra/intersectionoftwolines.eps>
+[230] [231] [232] [233])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\A5-linearoperators/
+A5-linearoperators.chapter" [234]
+Appendix E
+[235
+
+
+] [236] [237] [238]) [239] [240
+
+
+]
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.ind"
+Index
+[241
+
+
+
+] [242] [243])
+("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.bbl" [244
+
+
+
+]
+Bibliography
+) [245] ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.aux") 
+)
+(\end occurred inside a group at level 38)
+
+### simple group (level 38) entered at line 129 ({)
+### simple group (level 37) entered at line 84 ({)
+### simple group (level 36) entered at line 34 ({)
+### simple group (level 35) entered at line 79 ({)
+### simple group (level 34) entered at line 224 ({)
+### simple group (level 33) entered at line 103 ({)
+### simple group (level 32) entered at line 35 ({)
+### simple group (level 31) entered at line 8 ({)
+### simple group (level 30) entered at line 189 ({)
+### simple group (level 29) entered at line 8 ({)
+### simple group (level 28) entered at line 122 ({)
+### simple group (level 27) entered at line 32 ({)
+### simple group (level 26) entered at line 6 ({)
+### simple group (level 25) entered at line 360 ({)
+### simple group (level 24) entered at line 175 ({)
+### simple group (level 23) entered at line 147 ({)
+### simple group (level 22) entered at line 8 ({)
+### simple group (level 21) entered at line 276 ({)
+### simple group (level 20) entered at line 171 ({)
+### simple group (level 19) entered at line 102 ({)
+### simple group (level 18) entered at line 60 ({)
+### simple group (level 17) entered at line 8 ({)
+### simple group (level 16) entered at line 358 ({)
+### simple group (level 15) entered at line 87 ({)
+### simple group (level 14) entered at line 7 ({)
+### simple group (level 13) entered at line 47 ({)
+### simple group (level 12) entered at line 8 ({)
+### simple group (level 11) entered at line 9 ({)
+### simple group (level 10) entered at line 273 ({)
+### simple group (level 9) entered at line 152 ({)
+### simple group (level 8) entered at line 9 ({)
+### simple group (level 7) entered at line 236 ({)
+### simple group (level 6) entered at line 75 ({)
+### simple group (level 5) entered at line 8 ({)
+### simple group (level 4) entered at line 161 ({)
+### simple group (level 3) entered at line 10 ({)
+### simple group (level 2) entered at line 13 ({)
+### simple group (level 1) entered at line 11 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 9814 strings out of 493706
+ 172470 string characters out of 3142180
+ 235878 words of memory out of 3000000
+ 12637 multiletter control sequences out of 15000+200000
+ 20351 words of font info for 66 fonts, out of 3000000 for 9000
+ 1186 hyphenation exceptions out of 8191
+ 40i,14n,70p,1380b,1453s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on main.dvi (253 pages, 764828 bytes).

@@ -1,0 +1,531 @@
+%% 11-23-12 fixed typos, added example where uniqueness fails
+
+\chapter{Existence and Uniqueness}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+
+{\begin{center}
+\psframebox[style=profibox]{\begin{minipage}{4in}
+{\bf Prototype Question:} If we can't find an explicit formula for a solution to an initial value problem, how do we know there is a solution at all?
+\end{minipage}
+}
+\end{center}
+
+\medskip
+We investigated the behavior of solutions to various ODE using graphical methods in Chapter 2, and we found approximate values of solutions using numerical method in Chapter 3.  The whole time, we assumed that there {\it were} solutions to the given equations, even when we admitted that we wouldn't be able to produce formulas for said solutions.  But that assumption really requires proof if we are going to trust any of the conclusions we draw from graphical and numerical methods.  If the assumption is flawed, then those conclusions will be meaningless. 
+
+
+The next theorem is the main result of this chapter.
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence and Uniqueness Theorem (Autonomous) \normalcolor}}
+
+	\index{existence and uniqueness theorem}%
+	Suppose that $f(y)$ and $f'(y)$ are defined and continuous on an open interval containing $y_0$.  Then there is an open interval $I$ containing $x_0$ such that the initial value problem 
+\[ \frac{dy}{dx}=f(y), \ \ \ y(x_0)=y_0\]
+has a unique solution $y(x)$ defined on $I$.
+\end{minipage}
+}
+\end{center}
+
+
+When we say that a solution to an initial-value problem is 
+	\index{unique solution} %
+	{\bf unique} %
+	on an interval $I$, we mean that if $y$ and $z$ are both functions that satisfy the initial-value problem on $I$, then $y(t)=z(t)$ for all $t \in I$.  As the reader will find in the problems at the end of this chapter, uniqueness isn't always guaranteed.  But it is guaranteed (at least {\it near} $x_0$) when $f$ and $f'$ are both continuous.
+
+
+As we discuss the proof of this theorem, we will use a simple example to illustrate how the proof works. We will consider initial-value problem 
+\[ \begin{cases} \frac{dy}{dx} = 3y \\ y(0)=2 \end{cases} \ \ \ \ \ ( \dagger ) \]
+The problem in ($\dagger$) is easy to solve using techniques already discussed, but this will work well to illustrate the relevant ideas.
+
+%\bigskip
+%\noindent
+%{\sc Picard Iterates and Uniform Norms}
+%
+%\medskip
+
+\medskip
+\noindent
+{\sc Picard Iterates and Uniform Norms}
+
+
+A central idea in both the uniqueness and existence arguments is a procedure called Picard iteration.  Suppose that $y$ is a function defined on an interval $I$.  A 
+	\index{Picard iterate}%
+	{\bf Picard iterate} of $y$ is another function, $\tilde{y}$, defined according to the following formula:
+\[ \tilde{y}(x) = y_0 + \int_{x_0}^x f(y(s)) \ ds\]
+Here, $x_0$, $y_0$ and $f$ are given -- they correspond to the data for a given initial-value problem.
+
+\begin{exe}
+Suppose that $x_0=0$, $y_0=2$, $f(y)=y^2$ and $y(x)=x$.  Prove that $\tilde{y}(x)=2+\frac{x^3}{3}$.
+\end{exe}
+
+\begin{exe}
+Let $x_0=0$, $y_0=0$ and $f(y)=e^y$.  Find the Picard iterate of the function $y(x)=2x$.
+\end{exe}
+
+
+\begin{exe}
+Prove that $y(x)$ solves the initial value problem 
+\[ \frac{dy}{dx}=f(y), \ \ \ y(0)=y_0\]
+if and only if $y=\tilde{y}$.  {\it (Hint: Recall the Fundamental Theorem of Calculus.)}
+\end{exe}
+
+The last exercise reveals the relationship between Picard iteration and initial-value problems.  It allows us to recast the differential equation as an 
+	\index{integral equation}%
+	{\bf integral equation}: finding a solution $y(x)$ of the equation
+\[ y(x)=y_0+\int_{x_0}^x f(y(s)) \ ds \]
+is equivalent to finding a solution of the initial-value problem $\frac{dy}{dx}=f(y), \ y(x_0)=y_0$.  
+
+
+
+
+
+We need to define one more item of notation before we can proceed.  For a bounded function $f$ defined on an interval $I$, define
+\[ \parallel f \parallel_I = \min \left\{ a; |f(x)|\leq a \mbox{ for all } x \in I \right\}.\]
+This quantity is called the 
+	\index{uniform norm}%
+	{\bf uniform norm} of $f$ on $I$, or just the 
+	\index{norm}%
+	{\bf norm} of $f$ for short.  Notice that if $|f|$ attains a maximum value on $I$, then $\parallel f \parallel_I = \max_{x \in I} |f(x)|$.
+
+\begin{exe}
+Let $f(x)=x^2-x$ on the interval $I=[0,1]$.  Show that $\parallel f \parallel_I = \frac{1}{4}$.
+\end{exe}
+
+\begin{exe} Let $f(x)=e^{(-x^2)}$ and let $I = [-1,1]$.  Find $\parallel f \parallel_I$ and $\parallel f' \parallel_I$.
+\end{exe}
+
+
+\begin{exe}
+Prove that if $\parallel f-g \parallel_I=0$, then $f(x)=g(x)$ for all $x \in I$.
+\end{exe}
+
+The last exercise shows us how we can use the uniform norm to identify when two functions are equal on a domain $I$: they are equal if the uniform norm of their difference is zero.
+
+
+%\bigskip
+%\noindent
+%{\sc Uniqueness}
+%
+%
+%\medskip
+
+
+\medskip
+\noindent
+{\sc Uniqueness}
+
+
+Let's look at our example problem ($\dagger$).  Suppose that $y(x)$ and $z(x)$ are two bounded functions that both satisfy ($\dagger$) on some interval $I$ centered around $x_0=0$, say $I=(-k,k)$.  Then $y=\tilde{y}$, and $z=\tilde{z}$.  Consequently,
+\begin{align*}
+|\tilde{y}(x)-\tilde{z}(x)| & = \left| y_0 + \int_{x_0}^x f(y(s)) \ ds - y_0 - \int_{x_0}^x f(z(s)) \ ds \right| \\
+& = \left| \int_{x_0}^x f(y(s)) - f(z(s)) \ ds \right| .
+\end{align*}
+Using the fact that $f(y)=3y$, we can rewrite this as 
+\[ |\tilde{y}(x)-\tilde{z}(x) | = \left| \int_{x_0}^x 3y(s)-3z(s) \ ds \right|.\]
+We can also use the general fact about definite integrals that $\left| \int_a^b g(t) \ dt \right| \leq \int_a^b |g(t) | dt$ (provided $a \leq b$) to obtain for $x \geq x_0$
+\[ |\tilde{y}(x)-\tilde{z}(x)| \leq \int_{x_0}^x 3|y(s)-z(s)| \ ds \leq 3\int_{x_0}^x \parallel y-z \parallel_I \ ds = 3 \parallel y-z \parallel_I |x-x_0|.\]
+Similarly, if $x \leq x_0$, we get
+\[ |\tilde{y}(x)-\tilde{z}(x)| \leq \int_{x}^{x_0} 3|y(s)-z(s)| \ ds \leq 3\int_{x}^{x_0} \parallel y-z \parallel_I \ ds = 3 \parallel y-z \parallel_I |x-x_0|.\]
+Either way, we see that $|\tilde{y}(x)-\tilde{z}(x)| \leq 3 \parallel y-z \parallel_I |x-x_0|$.  Now let's focus our attention on intervals of the form $I=(-k,k)$, where $0 < k < 3$.  We then have
+\[ |\tilde{y}(x)-\tilde{z}(x)| \leq 3k \parallel y-z \parallel_I \ \ \ \mbox{for all } x \in I,\]
+and therefore
+\begin{equation}
+\parallel \tilde{y} - \tilde{z} \parallel_I \leq 3k \parallel y-z \parallel_I. \label{contraction}
+\end{equation}
+But since $y=\tilde{y}$ and $z=\tilde{z}$, that means
+\[ \parallel y - z \parallel_I \leq 3k \parallel y-z \parallel_I,\]
+and because $3k<1$, if $\parallel y-z \parallel_I \neq 0$, this is a contradiction!  To see why, just divide both sides by $\parallel y-z \parallel_I$ to get $1 \leq 3k$, which implies $1 <1$, which is utter nonsense.
+What does this contradiction tell us?  It says that $\parallel y - z \parallel_I = 0$ on $I=\left(-k,k \right)$ for any positive $k <\frac{1}{3}$.  That is to say, $y(x)=z(x)$ on $I$, and therefore there is only one solution of ($\dagger$) in $I$. This is exactly what we mean by `uniqueness' on $I$.  (Notice that we have said nothing about whether $y$ and $z$ are equal outside of $I$.)
+
+Incidentally, because $k$ can be {\it any} positive number less than $\frac{1}{3}$, we can really conclude that $y=z$ on the interval $\left( -\frac{1}{3},\frac{1}{3} \right)$, because these functions could only fail to be equal on this interval by failing to be equal on some smaller interval.
+
+
+The calculations above can be generalized to prove the following important result:
+
+
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Uniqueness Theorem with Lipschitz Condition \normalcolor}}
+\index{index statement}
+
+\index{uniqueness}%
+\index{Lipschitz condition}%
+	Suppose that $f$ and $f'$ are defined and continuous on $\mathbb{R}$.  Also suppose that  $|f'|\leq K$ on $\mathbb{R}$.  Then if $y_1$ and $y_2$ are both functions that satisfy the initial-value problem
+\[ \frac{dy}{dx}= f(y), \ \ \ y(x_0)=y_0 \]
+on the interval $I=(x_0-\frac{1}{K},x_0+\frac{1}{K})$, it must be true that $y_1(x)=y_2(x)$ for all $x \in I$.
+\end{minipage}
+}
+\end{center}
+
+The statement that $|f'| \leq K$ implies $|f(y_2)-f(y_1)| \leq K |y_2-y_1|$ (by the Mean Value Theorem), and this inequality is known as a {\bf Lipschitz condition} on $f$, which explains the name of the boxed result above.
+
+
+This result supposes that $f$ and $f'$ are continuous on all of $\mathbb{R}$.  In fact, that is not necessary.  It is enough to assume that $f$ and $f'$ are continuous on {\it some} open interval containing $y_0$.  However, under that weakened hypothesis, we can no longer guarantee the uniqueness on the entire interval $\left(x_0-\frac{1}{K},x_0+\frac{1}{K} \right)$.  Instead, we can just say that there is {\it some} open interval $I$ containing $x_0$ on which solutions must be unique.  To say how large such an interval is requires delicate analysis which is outside the scope of this text.
+
+\begin{exe} What is the largest interval on which the Uniqueness Theorem with Lipschitz Condition guarantees uniqueness of the solution to the initial value problem $y'=\sin(2y), \ y(0)=1$?
+\end{exe}
+
+
+
+The next example illustrates how uniqueness might fail if the condition that $f'$ exists and is continuous on an open interval containing $y_0$ is not met.
+
+\example Consider the initial value problem $y'=3 y^{\frac{2}{3}}$, $y(0)=0$.  The constant function $y(x)=0$ for all $x$ is a solution of this problem, but it is not the only one.  Consider, for example, the function defined by 
+\[ y_1 (x) = \begin{cases} 0 & \mbox{if } x \leq 1 \\ (x-1)^3 & \mbox{if } x > 1 \end{cases}.\]
+Observe that $y_1'(x)=0$ if $x <1$ and $y_1'(x)= 3(x-1)^2$ if $x>1$.  Because $y_1$ is stitched together from two elementary functions using a piecewise definition, we need to find $y_1'(1)$ using the limit definition of derivative:
+\[ \lim_{h \rightarrow 0^-} \frac{y_1(1+h)-y_1(1)}{h} = \lim_{h \rightarrow 0^-} \frac{0-0}{h} = 0,\]
+and
+\[ \lim_{h \rightarrow 0^+} \frac{y_1(1+h)-y_1(1)}{h} = \lim_{h \rightarrow 0^+} \frac{(1+h-1)^3-0}{h} = \lim_{h \rightarrow 0^+} \frac{h^3}{h} = \lim_{h \rightarrow 0^+} h^2 = 0.\]
+Since the one-sided limits are equal, we have $y_1'(1) = \lim_{h \rightarrow 0} \frac{y_1(1+h)-y_1(1)}{h} = 0.$  Combining these derivative facts gives us
+\[ y_1'(x) = \begin{cases} 0 & \mbox{if } x \leq 1 \\ 3(x-1)^2 & \mbox{if } x > 1 \end{cases}.\]
+Observe also that
+\[ 3 y_1^{\frac{2}{3}} (x) = \begin{cases} 3(0)^{\frac{2}{3}} & \mbox{if } x \leq 1 \\ 3 ((x-1)^3)^{\frac{2}{3}} & \mbox{if } x > 1 \end{cases} = \begin{cases} 0 & \mbox{if } x \leq 1 \\ 3 (x-1)^2 & \mbox{if } x > 1 \end{cases},\]
+so $y_1'(x) = 3y_1^{\frac{2}{3}}(x)$ for all $x$.  Since $y_1(0)=0$, we see that $y_1$ also satisfies this initial value problem.
+
+In fact. there are infinitely many solutions of this initial value problem: for any parameter $a \geq 0$, the function
+\[ y_a = \begin{cases} 0 & \mbox{if } x \leq a \\ (x-a)^3 & \mbox{if } x > a \end{cases}\]
+will satisfy the differential equation and the initial condition.  (If $a<0$, only the differential equation is satisfied.)
+
+Why does the uniqueness argument not apply to this problem?  If we think of the differential equation in the form $y'=f(y)$, then the right side is $f(y) = 3 y^{\frac{2}{3}}$.  This function $f(y)$ is defined for all $y \in \mathbb{R}$.  However, $f'(y)$ does not exist at the initial value $y_0=0$, and therefore there is no open interval containing $y_0=0$ on which we can say that $f$ and $f'$ are both defined and continuous throughout.
+\qed
+
+\begin{exe} 
+Use the limit definition of derivative to verify that, for $f(y)=3 y^{\frac{2}{3}}$, the derivative $f'(0)$ does not exist.
+\end{exe}
+
+
+Uniqueness results are of practical interest because many problems in industry are too complicated to admit analytic techniques for their solution, and numerical methods must be relied upon to find approximate solutions.  In such circumstances, it is important to know that the solution one has approximated is the {\it only} solution to the problem at hand.
+
+%\newpage
+%\noindent
+%{\sc Existence}
+%
+%\medskip
+
+
+\medskip
+\noindent
+{\sc Existence}
+
+
+How do we know that there is a solution to a given initial-value problem at all?  Let's again look at our model problem ($\dagger$).  Consider the initial-value $y_0$ as a {\it constant function}: in this case, $y_0(x)=2$ for all $x$.  Define a sequence of functions $y_j$ according to the recursion formula $y_j = \tilde{y}_{j-1}$ for all integers $j \geq 1$. 
+
+For example,
+\begin{align*} 
+y_1(x) & = y_0+\int_{x_0}^x f(y_0(s)) \ ds \\
+& = 2+\int_{0}^x 3(2) \ ds \\
+& = 2+6x
+\end{align*}
+and
+\begin{align*}
+y_2(x) & = y_0 + \int_{x_0}^x f(y_1(s)) \ ds \\
+& = 2 + \int_0^x 3(2+6s) \ ds \\
+& = 2 + 6x + 9x^2.
+\end{align*}
+
+\begin{exe} Verify that $y_3(x) = 2+6x+9x^2+9x^3$ and $y_4(x)= 2+6x+9x^2+ 9x^3+\frac{27}{4}x^4$.
+\end{exe}
+
+
+This sequence of functions is converging to a limit!  Observe that 
+\[ y_n(x) = 2 \sum_{j=0}^n \frac{(3x)^j}{j!},\]
+so that
+\[ \lim_{n \rightarrow \infty} y_n(x) = 2 \sum_{j=0}^\infty \frac{(3x)^j}{j!} = 2e^{3x}.\]
+Notice that this limit function, $y(x)=2e^{3x}$, is a solution of ($\dagger$)!  We have constructed a solution of the initial-value problem by generating a sequence of Picard iterates.  Each function in the sequence turns out to be a kind of approximate solution.  The limit of the sequence is an exact solution.
+
+
+We can verify that this will work for a more general initial value problem by looking at the differences between consecutive terms.  If we revisit our uniqueness argument leading to the inequality (\ref{contraction}) and replace $y$ with $y_{j-1}$ and $z$ with $y_{j-2}$, we get
+\[ \parallel y_{j} - y_{j-1} \parallel_I \leq 3k\parallel y_{j-1} - y_{j-2} \parallel_I,\]
+and iterating this inequality $j-1$ times leads to
+\[ \parallel y_{j} - y_{j-1} \parallel_I \leq (3k)^{j-1} \parallel y_1-y_0 \parallel_I.\]
+When we assume that $3k<1$, this tells us that the sequence of $y_j$'s is contracting -- the difference between consecutive terms decreases geometrically, and that's enough to guarantee that the sequence converges for every $x$ in $I$.  Here's why:
+
+\begin{align*}
+\lim_{n \rightarrow \infty} y_n(x) & = \lim_{n \rightarrow \infty} y_n(x)-y_{n-1}(x)+y_{n-1}(x)-y_{n-2}(x)+ \cdots -y_1(x)+y_1(x)-y_0(x)+y_0(x) \\
+& = \lim_{n \rightarrow \infty} y_0+\sum_{j=1}^n \left( y_{j}(x)-y_{j-1}(x) \right) \\
+& = y_0 + \sum_{j=1}^\infty \left( y_{j}(x)-y_{j-1}(x) \right),
+\end{align*}
+and the infinite series at the end converges absolutely because (using the Comparison Test twice)
+\begin{align*}
+\sum_{j=1}^\infty \left| y_{j}(x)-y_{j-1}(x) \right| & \leq \sum_{j=1}^\infty \parallel y_{j}-y_{j-1} \parallel_I \\
+& \leq \sum_{j=1}^\infty (3k)^{j-1} \parallel y_1 - y_0 \parallel_I,
+\end{align*}
+where the sum in the very last line is a convergent geometric series.
+
+That is to say, there is a function defined by the formula $y(x)=\lim_{n \rightarrow \infty} y_n(x)$ for all $x \in I$.  The definition of the sequence of functions gives us
+\[ y_{n}(x) = y_0+\int_{x_0}^x f(y_{n-1}(s)) \ ds,\]
+and taking limits on both sides as $n \rightarrow \infty$ gives us
+\[ y(x) = y_0+\lim_{n \rightarrow \infty} \int_{x_0}^x f(y_{n-1}(s)) \ ds.\]
+
+If it is permissible\footnote{It is not permissible!  However, a result from advanced calculus called the Arzela-Ascoli Theorem tells us that it is possible to exchange the order of the limit and the integral if we switch to an appropriate subsequence of the $y_j$'s; the subsequence has the same limit $y(x)$, so we end up with the same result.  See \cite{rudin:pma}.} to exchange the order of the limit and the integral, we get
+\begin{align*}
+y(x) & = y_0+\int_{x_0}^x \lim_{n \rightarrow \infty} f(y_{n-1}(s)) \ ds \\
+& = y_0 + \int_{x_0}^x f \left( \lim_{n \rightarrow \infty} y_{n-1}(s) \right) \ ds \\
+& = y_0 + \int_{x_0}^x f(y(s)) \ ds.
+\end{align*}
+That is to say, $y = \tilde{y}$, so $y$ is a solution of $y'=f(y), \ y(x_0)=y_0$ on $I$.  We have argued the following existence result:
+
+{\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence Theorem with Lipschitz Condition \normalcolor}}
+\index{Existence Theorem with Lipschitz Condition}
+\index{Lipschitz condition}
+\index{existence}
+
+	Suppose that $f$ and $f'$ are continuous on $\mathbb{R}$, and that $|f'| \leq K$ on $\mathbb{R}$.  Then there is a function $y(x)$ defined on $I=\left(x_0-\frac{1}{K},x_0+\frac{1}{K} \right)$ such that $y(x_0)=y_0$ and $\frac{dy}{dx} = f(y)$.
+\end{minipage}
+}
+\end{center}
+
+
+As with our earlier uniqueness result, it is possible to loosen the hypotheses.  As long as $f$ and $f'$ are continuous on some open interval containing $y_0$, then there is some open interval $I$ containing $x_0$ on which a solution of $y'=f(y), \ y(x_0)=y_0$ is guaranteed to exist.  Making these adjustments to the proofs in this chapter gives us the general Existence and Uniqueness Theorem stated at the beginning of this chapter.
+
+
+Exercise 24 explores an example of an initial value problem for which these conditions are not met and for which one can prove that solutions do not exist at all.
+
+%\bigskip
+%\noindent
+%{\sc Non-autonomous Equations}
+%
+%\medskip
+
+
+\medskip
+\noindent
+{\sc Non-Autonomous Equations}
+
+
+All of the arguments above can be modified to deal with initial-value problems of the form 
+\[ \begin{cases} y'=f(x,y) \\ y(x_0)=y_0 \end{cases}.\]
+In that setting, the appropriate version of the 
+	\index{Picard iterate}%
+	Picard iterate is
+\[ \tilde{y} = y_0+\int_{x_0}^x f(s,y(s)) \ ds.\]
+So, for example, given the initial-value problem 
+\[ \begin{cases} y'=yx \\ y(0)=4 \end{cases},\]
+the first Picard iterate would be
+\[ y_1(x) = 4 + \int_0^x 4s \ ds = 4 + 2x^2.\]
+
+\begin{exe} Find the Picard iterates $y_2$ and $y_3$ for $y'=yx, \ y(0)=4$.
+\end{exe}
+
+The determining factors for existence and uniqueness are how the function $f(x,y)$ depends on $y$.  The reader will see this by comparing the Existence and Uniqueness Theorem with the following.  Note that an 
+	\index{open rectangle}%
+	{\bf open rectangle} in $\mathbb{R}^2$ is a Cartesian product of open intervals in $\mathbb{R}$: 
+\[R=(a,b) \times (c,d) \mbox{ means } R = \left\{ (x,y) \in \mathbb{R}^2; a < x < b \mbox{ and } c < y < d \right\}.\]
+
+
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence and Uniqueness for Non-autonomous ODE \normalcolor}}
+
+	\index{existence and uniqueness, non-autonomous}%
+	Suppose that $f(x,y)$ and $f_y(x,y)$ are defined and continuous on an open rectangle $R$ containing $(x_0,y_0)$.  Then there is an open interval $I$ containing $x_0$ such that the initial-value problem 
+\[ \frac{dy}{dx}=f(x,y), \ \ \ y(x_0)=y_0\]
+has a unique solution $y(x)$ defined on $I$.
+\end{minipage}
+}
+\end{center} 
+
+%\bigskip
+%\noindent
+%{\sc Vector-valued Functions}
+%
+%\medskip
+
+\medskip
+\noindent
+{\sc Vector-Valued Functions}
+
+The arguments presented in this chapter can further be modified to prove existence and uniqueness for differential equations involving vector-valued functions.  Vectors turn out to be a very useful language for working with systems of differential equations, as we'll see in Chapter 13.
+
+Let us denote vectors in $\mathbb{R}^n$ by capital letters, such as $X$ and $Y$.  It will be most convenient later if we think of these as column vectors and denote the components of these vectors by the corresponding lower-case letters with subscripts.  For example, $Y = \left[ \begin{matrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{matrix} \right]$.
+
+If $f:\mathbb{R}^n \rightarrow \mathbb{R}^n$ is a vector-valued function, then the 
+	\index{derivative of a vector-valued function}%
+	derivative of $f$ is a matrix $Df$ whose components represent all the partial derivatives of all the components of $f$:
+\[ \mbox{for } f(Y)=\left[ \begin{matrix} f_1(Y) \\ f_2(Y) \\ \vdots \\ f_n(Y) \end{matrix} \right], \mbox{ the derivative is } Df = \left[ \begin{matrix} \frac{\partial f_1}{\partial y_1} & \frac{\partial f_1}{\partial y_2} & \cdots & \frac{\partial f_1}{\partial y_n} \\ \frac{\partial f_2}{\partial y_1} & \frac{\partial f_2}{\partial y_2} & \cdots & \frac{\partial f_2}{\partial y_n} \\ \vdots & \vdots & \vdots & \vdots \\ \frac{\partial f_n}{\partial y_1} & \frac{\partial f_n}{\partial y_2} & \cdots & \frac{\partial f_n}{\partial y_n} \end{matrix} \right] .\]
+
+For example, consider the function $f$ defined on $\mathbb{R}^2$ by 
+\[ f\left( \begin{matrix} y_1 \\ y_2 \end{matrix} \right) = \left[ \begin{matrix} 3y_1+2y_2 \\ 4y_1-y_2^2 \end{matrix} \right].\]
+The derivative is
+\[ Df \left( \begin{matrix} y_1 \\ y_2 \end{matrix} \right) = \left[ \begin{matrix} 3 & 2 \\ 4 & -2y_2 \end{matrix} \right].\]
+Such functions are said to be continuous if all their component functions are continuous.
+
+
+\begin{exe} Find the derivative of the function $f:\mathbb{R}^3 \rightarrow \mathbb{R}^3$ defined by
+\[ f \left( \begin{matrix} y_1 \\ y_2 \\ y_3 \end{matrix} \right) = \left[ \begin{matrix} y_1+y_3^2 \\ y_2-y_3 \\ y_1y_2y_3 \end{matrix} \right].\]
+\end{exe}
+
+We will use vector-valued functions to represent systems of ordinary differential equations in Chapter 13, and here is the statement of these ideas which we will need in that context.
+
+
+\begin{center}
+\psframebox[style=formulabox]{\begin{minipage}{4.5in}
+{\bf {\color{OliveGreen} Existence and Uniqueness for Systems \normalcolor}}
+
+	\index{existence and uniqueness, systems}%
+	Suppose that $f$ and $Df$ are defined and continuous on an open set $R \subset \mathbb{R}^n$ containing $Y_0$.  Then there is an open interval $I$ containing $x_0$ such that the initial-value problem 
+\[ \frac{dY}{dx}=f(Y), \ \ \ Y(x_0)=Y_0\]
+has a unique solution on the interval $I$.
+\end{minipage}
+}
+\end{center} 
+
+Here's a sample application of this theorem.  
+
+\example Consider the following initial-value problem for a vector-valued function $Y(x)= \left[ \begin{matrix} y_1(x) \\ y_2(x) \end{matrix} \right]$:
+\[ \left[ \begin{matrix} \frac{dy_1}{dx} \\ \frac{dy_2}{dx} \end{matrix} \right] = \left[ \begin{matrix} -4y_2(x) \\ y_1(x) \end{matrix} \right], \ \ \ \ \ \left[ \begin{matrix} y_1(0) \\ y_2(0) \end{matrix} \right] = \left[ \begin{matrix} 1 \\ 0 \end{matrix} \right]. \]
+The function $f$ in this case is 
+\[ f \left( \begin{matrix} y_1 \\ y_2 \end{matrix} \right) = \left[ \begin{matrix} -4y_2 \\ y_1 \end{matrix} \right],\]
+and the derivative of this function is
+\[ Df = \left[ \begin{matrix} 0 & -4 \\ 1 & 0 \end{matrix} \right].\]
+The matrix function $Df$ is constant, so it is clearly continuous, as is $f$.  Therefore, according to this Existence and Uniqueness Theorem for systems, there must be an interval in $\mathbb{R}$ containing $0$ on which there is a unique solution of this differential equation.  (Indeed, the solution turns out to be $Y(x) = \left[ \begin{matrix} \cos(2x) \\ \frac{1}{2}\sin(2x) \end{matrix} \right].$  We will explore methods for finding such explicit solutions in Chapter 13.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%It is possible to do this with Picard iteration -- in fact, for non-autonomous equations, that is exactly what we would need to do.  The idea is to define a sequence of functions $\{ y_i \}$, where each $y_i$ is the Picard iterate of $y_{i-1}$.  Then one proves that the sequence of functions $y_i$ converges to a function $y$ as $i \rightarrow \infty$, and then that this function $y$ is a solution.  This process is outlined in the problem set.
+%%
+%%If we restrict our attention to autonomous equations here, we can use an alternative approach to proving existence which is somewhat easier.  The motivation for this proof is as follows.  If we were to try to solve the problem $\frac{dy}{dx}=f(y)$ using separation of variables, we'd end up with $\int \frac{1}{f(y)}\ dy = \int \ dx$, which is equivalent to the equation
+%%\[ \int_{y_0}^y \frac{1}{f(s)} \ ds = x+C,\]
+%%because, according to the Fundamental Theorem of Calculus, the left side is an anti-derivative of $\frac{1}{f(y)}$. 
+%%Inserting the initial condition $x=x_0$ and $y=y_0$ yields $C=-x_0$, so we would have
+%%\[ \int_{y_0}^y \frac{1}{f(s)} \ ds = x-x_0.\]
+%%Finally, we would need to try to solve for $y$ in terms of $x$.  The following proof essentially verifies that the function $y(x)$ obtained in this way is indeed a solution of the IVP.
+%%
+%%
+%%\begin{theorem} If $f$ is continuous on an open interval containing $y_0$, then there is a solution of the IVP
+%%\[ \frac{dy}{dx}=f(y), \ \ \ y(x_0)=y_0\]
+%%defined on an open interval containing $x_0$.
+%%\end{theorem}
+%%
+%%If $f(y_0)=0$, then the constant function $y(x)=y_0$ defined on $\mathbb{R}$ is a solution.  Now assume $f(y_0)>0$.  Because $f$ is continuous, there exists $\delta>0$ such that $f(s)>0$ for all $s \in [y_0-\delta, y_0+\delta]$.  Define
+%%\[ G(t) = \int_{y_0}^t \frac{1}{f(s)} \ ds \ \ \ \mbox{for} t \in [y_0-\delta,y_0+\delta].\]
+%%Notice that $G$ is continuous and because the integrand $\frac{1}{f(s)}>0$, $G$ is a strictly increasing function of $t$.  Therefore $G$ has a continuous inverse function $G^{-1}$ defined on the interval $[(G(y_0-\delta),G(y_0+\delta)]$.  Notice that this interval contains $0$ because $G(y_0)=0$. 
+%%
+%%Let $I= (x_0+G(y_0-\delta),x_0+G(y_0+\delta)]$, and define 
+%%\[ y = G^{-1} (x-x_0) \ \ \ \mbox{for} \ x \in I.\]
+%%We claim that this formula defines a solution of the IVP.  First of all, 
+%%\[ y(x_0)=G^{-1}(x_0-x_0)=G^{-1}(0)=y_0,\]
+%%so the initial condition is satisfied.  Also, we can prove that the differential equation is satisfied by using implicit differentiation:
+%%\begin{align*}
+%%y&=G^{-1}(x-x_0)\\
+%%G(y)&=x-x_0 \\
+%%\frac{d}{dx}G(y)&=\frac{d}{dx}[x-x_0] \\
+%%G'(y) \frac{dy}{dx}&= 1 \\
+%%\frac{1}{f(y)}\frac{dy}{dx}&=1 \\
+%%\frac{dy}{dx}&=f(y).
+%%\end{align*}
+%%The proof for the case when $f(y_0)<0$ is similar.
+%%\qed
+%%
+%%The following figures illustrate the domain and range we chose for the function $G$ in the proof above.  Here is a graph of $v=G(u)$:
+%%
+%%\begin{center}
+%%\includegraphics[width=3in]{6-existence-uniqueness/existence1.eps}
+%%\end{center}
+%%
+%%And here is a graph of $u=G^{-1}(v)$:
+%%
+%%\begin{center}
+%%\includegraphics[width=3in]{6-existence-uniqueness/existence2.eps}
+%%\end{center}
+
+
+%% Cut below here for the book form.
+
+%\newpage
+%\begin{center} {\LARGE Problems} \end{center}
+%\setcounter{problem}{1}
+
+\newpage
+\begin{center} {\LARGE Additional Exercises} \end{center}
+
+\bigskip
+\begin{multicols}{2}
+\begin{instructions}
+Find the Picard iterates $y_1=\tilde{y}_0$ and $y_2 = \tilde{y}_1$ for each of the following initial value problems.
+\end{instructions}
+
+\ap $y'=2y+x, \ y(0)=-2, \ y_0=-2$
+
+\ap $y' = y^2-x, \ y(0)=1, \ y_0=1$
+
+\begin{instructions} Calculate $\parallel f \parallel_I$ for the function $f$ on the given interval $I$.
+\end{instructions}
+
+\ap $f(x)=x^3-x, \ I=[0,1]$
+
+\ap $f(x) = x^4-x, \ I=[0,2]$
+
+\begin{instructions}
+For each of the initial value problems below, find the interval on which solutions are guaranteed to be unique according to the Uniqueness Theorem with Lipschitz Condition.
+\end{instructions}
+
+\ap $y'=\cos(3y), y(0)=2$
+
+\ap $y'=\tan^{-1} (y), \ y(1)=0$
+
+\ap $y' = \frac{1}{1+y^2}, \ y(0)=0$
+
+\ap $y'=y \tan^{-1}(y) - \frac{1}{2} \ln \left(1+y^2 \right), y(0)=1$
+
+
+
+\smallskip
+\hrule
+
+\smallskip
+\ap Find the solution of the initial value problem $y'=y+x, \ y(0)=1$ using the method of integrating factors.  Then verify directly that the solution satisfies $\tilde{y}=y$ by calculating $\tilde{y}$.
+
+
+\ap The constant function $y=0$ is a solution of the initial value problem 
+\[  y' = \sqrt{y}, \ \ \ y(0)=0 \]
+for $x \geq 0$.  However, it is not the only solution.  Use separation of variables to find another solution of this initial value problem, $y_0=\frac{1}{4}x^2$.  This will show that solutions of this initial value problem are not unique.  Why does this example not contradict the Existence and Uniqueness Theorem? 
+
+\ap Verify that the functions
+\[ y_a(x) = \begin{cases} 0 & \mbox{for } x \leq a \\ \frac{1}{4}(x-a)^2 & \mbox{for } x > a \end{cases} . \]
+for $a>0$ each satisfy the initial value problem
+\[ y'=\sqrt{y}, \ \ \ y(0)=0\]
+for all $x\in \mathbb{R}$.  {\it (Hint: When you calculate the derivative of $y$ to verify that it satisfies the differential equation, you can use derivative shortcuts to find $y'(x)$ when $x<a$ and when $x>a$, but you need to use the limit definition of derivative at $x=a$, similar to the calculation in Example 1.)}
+
+
+\ap Using the same differential equation and initial condition as in Exercise 22 above, what solution does the sequence of Picard iterates converge to, starting with $y_0=0$?
+
+\ap Suppose $p(x)$ and $q(x)$ are continuous functions on the interval $I$ containing $x_0$.  Use the method of integrating factors to prove that any initial value problem of the form 
+\[\frac{dy}{dx}+p(x)y=q(x), \ y(x_0)=y_0\] 
+has a solution on $I$.  Then explain how the calculations in that method also guarantee that this solution is unique.
+
+\ap Prove that the initial value problem 
+\[ xy'+y=1, \ \ \  y(0)=4 \]
+does not have a solution on any open interval containing $x_0=0$.  Why does this example not contradict the Existence and Uniqueness Theorem?  For what initial conditions $(x_0,y_0)$ do solutions exist?
+
+\end{multicols}

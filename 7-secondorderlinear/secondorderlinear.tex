@@ -1,0 +1,197 @@
+\documentclass[12pt,letterpaper,twoside]{amsart}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{ulem}
+\newcounter{example}
+\newcounter{exercise}
+\newcounter{problem}
+\newtheorem{theorem}{Theorem}
+\newcommand{\example}{\bigskip \noindent {\large {\sc Example \arabic{example}:}} \addtocounter{example}{1}}
+\newcommand{\exercise}{\bigskip \noindent {\large {\sc Exercise \arabic{exercise}:}} \addtocounter{exercise}{1}}
+\newcommand{\problem}{\bigskip \noindent {\large {\sc Problem \arabic{problem}:}} \addtocounter{problem}{1}}
+\newcommand{\tech}{\marginpar{\vskip 10mm \begin{center}\includegraphics[width=0.25in]{calculatorimagesmall.eps} \end{center}}}
+\newcommand{\solution}{\medskip \noindent {\bf Solution: }}
+\newcommand{\R}{\mathbb{R}}
+
+
+
+
+
+\begin{document}
+
+\sffamily
+
+%%%%  switch the commenting on this line and the next \chapter{Introduction}
+\begin{center} {\LARGE Second Order Constant Coefficient ODE} \end{center}
+
+\setcounter{example}{1}
+\setcounter{exercise}{1}
+
+We would next like to write down solutions for second-order constant coefficient linear ODE.  These have the form:
+\[ a y''+by'+cy=f(x).\]
+Here, the coefficients $a$, $b$ and $c$ are constant, and we assume that $a\neq 0$ so that the equation will indeed be second order.  We will first focus on homogeneous equations:
+\[ ay''+by'+cy=0.\]
+Let us seek some inspiration by studying the similar problem for first-order equations.
+
+The general solution of the first order homogeneous constant-coefficient linear equation
+\[ ay'+by=0, \ \ \ a \neq 0.\]
+is
+\[ y = Ce^{-bt/a},\]
+which can be verified by the method of integrating factors.  If $b=0$, then the solution is just a constant function $y=C$.  Notice that if $y=Ae^{rt}$ satisfies the ODE $ay'+by=0$, then the constant $r$ satisfies the algebraic equation $ar+b=0$.  This will serve as our starting point for trying to understand second order equations.
+
+\exercise Prove that if $y=Ae^{rx}$ satisfies the differential equation $ay''+by'+cy=0$, then $r$ is a solution of the algebraic equation $ar^2+br+c=0$.  
+
+\medskip
+The algebraic equation $ar^2+br+c=0$ is called the {\bf characteristic equation} for the ODE $ay''+by'+cy=0$.  The previous exercise indicates that there is a connection between the solutions of the ODE and the solutions of the corresponding characteristic equation.  The following exercise completes the description of that connection.
+
+\exercise Prove that if $r$ is a root of $ar^2+br+c=0$, then for any constant coefficient $A$, the function $y=Ae^{rt}$ satisfies the differential equation $ay''+by'+cy=0$. {\it (Note that $r$ might equal zero.)}
+
+\medskip
+Also, because the ODE $ay''+by'+cy=0$ is linear in $(y,y',y'')$, we know that if $y_1$ and $y_2$ are both functions that satisfy the differential equation, then so does the sum $y=y_1+y_2$.  This and the results of the previous exercises demonstrate that the following is true:  If $r_1$ and $r_2$ are roots of the characteristic equation $ar^2+br+c=0$, then functions of the form $y=Ae^{r_1t}+Be^{r_2t}$ satisfy the ODE $ay''+by'+c=0$.
+
+In fact:
+\begin{center}
+\fbox{
+\begin{minipage}{3in}
+If the characteristic equation for 
+\[ ay''+by'+cy=0\]
+has two distinct roots $r_1$ and $r_2$, then the formula 
+\[ y=Ae^{r_1t}+Be^{r_2t}\] 
+provides us with the {\bf general solution} on $\mathbb{R}$ of this differential equation.
+\end{minipage}
+}
+\end{center}
+By distinct, we mean that $r_1 \neq r_2$.  (The fact that it is indeed the {\it general solution} is explored in the problem set at the end of this chapter.)  We still need to investigate what to do if the characteristic equation has a repeated root (that is to say, if it is equivalent to the equation $a(r-r_1)^2=0$).  But first let us explore a few examples involving non-repeated roots.
+
+\example Find the solution of the initial value problem $y''+5y'+6=0$, $y(0)=0$, $y'(0)=2$.
+
+First we identify the characteristic equation for this ODE: $r^2+5r+6=0$.  Solving this algebraic equation gives us the solutions $r_1=-2$ and $r_2=-3$.  Therefore, the general solution of the ODE is
+\[ y=Ae^{-2x}+Be^{-3x}.\]
+If we substitute in the given initial conditions, we obtain the system of equations:
+\[ 0=A+B, \ \ \ 2 = -2A-3B\]
+Solving this system of equations lead to the values $A=2, B=-2$.  Consequently, the solution of this initial value problem is
+\[ y = 2e^{-2t}-2e^{-3t}.\]
+\qed
+
+
+
+
+\exercise Solve the following initial value problems:
+\begin{itemize}
+\item $y''-y'+6=0, \ \ \ y(0)=2, \ \ \ y'(0)=0$
+\item $2y''-5y'+2y=0, \ \ \ y(0)=1, \ \ \ y'(0)=2$
+\end{itemize}
+
+The process identified above even works when the solutions of the characteristic equation are complex numbers, though in that case it is often more convenient to write the solutions in a different form.
+
+Recall that if a complex number is written in the form $\alpha + i \beta$, where $\alpha$ and $\beta$ are real, then $e^{\alpha+i\beta}=e^\alpha(\cos(\beta)+i\sin(\beta))$.  Also, if the characteristic equation has real coefficients but complex roots, the the roots must be complex conjugates of one another.  Therefore the general solution has the form:
+
+\begin{align*} 
+y & = A e^{(\alpha+i\beta)x}+Be^{(\alpha-i\beta)x} \\
+& = Ae^{\alpha x}(\cos(\beta x)_i\sin(\beta x)) + Be^{\alpha x}(\cos(-\beta x)+i\sin(-\beta x) \\
+& = Ae^{\alpha x}(\cos(\beta x)_i\sin(\beta x)) + Be^{\alpha x}(\cos(-\beta x)-i\sin(-\beta x) \\
+& = (A+B)e^{\alpha x}\cos(\beta x)+(A-B)ie^{\alpha x}\sin(\beta x)
+\end{align*}
+
+If we introduce new coefficients $C$ and $D$ satisfying $C=A+B$ and $D=(A-B)i$, then we obtain the form
+\[ y = Ce^{\alpha x}\cos(\beta x)+De^{\alpha x}\sin(\beta x).\]
+
+This gives us:
+
+\begin{center}
+\fbox{
+\begin{minipage}{3in}
+If the characteristic equation $ar^2+br+c=0$ has complex roots of the form $r_1=\alpha+i\beta$ and $r_2=\alpha-i\beta$, then the general solution on $\mathbb{R}$ of the ODE $ay''+by'+cy=0$ can be written in the form
+\[ y=Ce^{\alpha x}\cos(\beta x)+De^{\alpha x}\sin(\beta x).\]
+\end{minipage}
+}
+\end{center}
+
+
+\exercise Solve the following initial value problems.
+\begin{itemize}
+\item $y''+2y'+2y=0, \ \ \ y(0)=1, \ \ \ y'(0)=0$
+\item $3\ddot{y}+5\dot{y} +2y=0, \ \ \ y(0)=2, \ \ \ y'(0)=0$.
+\end{itemize}
+
+
+Finally, we need to determine how to find a general solution to $ay''+by'+cy=0$ when the characteristic equation yields only one root, $r_1$.  In this case, we know that the expression $e^{r_1x}$ gives one solution of the ODE which is never zero.  We will use reduction or order to find the general solution.  Let $y$ be any solution of the ODE, and write $y=ue^{r_1x}$.
+
+The product rule gives us $y'(x)=u'e^{r_1x}+r_1ue^{r_1x}$ and $y''(x)=u''e^{r_1x} + 2r_1u'e^{r_1x}+r_1^2ue^{r_1x}$.  Now we can substitute $ue^{r_1x}$ for $y(x)$ in the differential equation:
+
+\begin{align*}
+0 & = ay''+by'+cy \\
+& = a(u''e^{r_1x} + 2r_1u'e^{r_1x}+r_1^2ue^{r_1x}) \\
+& \ \ \ \ \ + b(u'e^{r_1x}+r_1ue^{r_1x}) + c(ue^{r_1x}) \\
+& = au''e^{r_1x} + (2ar_1+b)u'e^{r_1x} +(ar_1^2+br_1+c)ue^{r_1x} \\
+& = au''e^{r_1x}.
+\end{align*}
+
+In the last line we used the facts that $ar_1^2+br_1+c=0$, which is true since $r_1$ is a root of the characteristic equation, and $2ar_1+b=0$, which follows because $r_1$ is a {\it double root} of the characteristic equation:
+\[ ar^2+br+c=a(r-r_1)^2,\]
+and expanding the right side yields
+\[ ar^2+br+c=ar^2-2ar_1r+ar_1^2;\]
+equating coefficients gives us
+\[ b=2ar_1 \ \ \ \mbox{and} \ \ \ c=ar_1^2.\]
+
+
+Now we have the differential equation $au''e^{r_1x}=0$, or just $u''=0$, and therefore $u(x) =Ax+B$ for some constants $A$ and $B$.  Consequently, $y=(Ax+B)e^{r_1x}$, and this is the general solution when the characteristic equation has a double root.
+
+\begin{center}
+\fbox{
+\begin{minipage}{3in}
+If the characteristic equation $ar^2+br+c=0$ has a double root $r_1$, then the general solution on $\mathbb{R}$ of the ODE $ay''+by'+cy=0$ can be written in the form
+\[ y=Axe^{r_1x}+Be^{r_1x}.\]
+\end{minipage}
+}
+\end{center}
+
+\exercise Solve the following initial value problems.
+\begin{itemize}
+\item $y''-2y'+y=0, \ \ \ y(0)=1, \ \ \ y'(0)=4$
+\item $3\ddot{y}+18\dot{y} +27y=0, \ \ \ y(0)=2, \ \ \ y'(0)=3$.
+\end{itemize}
+
+
+\exercise Solve the following initial value problems.
+\begin{itemize}
+\item $y''+9y=0, \ y(0)=2, \ y'(0)=-2$
+\item $\frac{d^2y}{dv^2}+y=0, \ y(0)=0, \ y'(0)=3$
+\item $\ddot{w}-3\dot{w}-4w = 0, \ w(1)=0, \ w'(1)=2$
+\item $4y''-4y'+y=0, \ y(0)=0, \ y'(0)=0$
+\item $\ddot{v}-4\dot{v}+4v=0, \ v(0)=1, \ \dot{v}(0)=2$
+\item $y''+4y'+5y=0, \ y(0)=0, \ y'(0)=3$
+\end{itemize}
+
+
+
+\newpage
+
+%% Cut below here for the book form.
+
+\begin{center} {\LARGE Problems} \end{center}
+
+\setcounter{problem}{1}
+
+
+\problem Let $y(t)$ be the solution of the initial value problem $\ddot{y}+2\dot{y}+\gamma y=0$, where $\gamma$ is a real constant.  Find $\lim_{t \rightarrow \infty} y(t)$.  Does the answer depend on the value of $\gamma$?
+
+
+\problem {\it In this problem, you will verify that our formula for the case when the characteristic equation has two distinct coefficients is in fact the general solution -- that is to say , that any solution of the ODE can be written in this form.}
+
+Suppose that $ay''+by'+cy=0$ has a characteristic equation $ar^2+br+c$ with two distinct roots, $r_1$ and $r_2$.  {\bf (a)} Verify directly that $y_1=e^{r_1 x}$ is a solution of the ODE.  {\bf (b)} Let $y$ be an arbitrary solution of the ODE, and write $y(x)=u(x)e^{r_1 x}$.  Use reduction-of-order to prove that $u''+\left(2r_1+\frac{b}{a}\right)u'=0$.  {\bf (c)} Use the substitution $v=u'$ and the method of integrating factors to deduce that the general solution for $u$ is $u(x)=Ce^{-(2r_1+b/a)x}+D$.  {\bf (d)} Conclude that $y=Ce^{-(r_1+b/a)x}+De^{-r_1x}$.  {\bf (e)} Because $r_1$ and $r_2$ are both solutions of the characteristic equation, it must be true that $ar^2+br+c=a(r-r_1)(r-r_2)$.  Equate coefficients here to prove that $r_2=-(r_1+b/a)$.  {\bf (f)} Conclude that $y(x)=Ce^{r_2x}+De^{r_1x}$.
+
+
+
+\problem Find a general solution for the differential equation $y'''+3y''+3y'+y=0$.
+
+\problem Solve the initial value problem $y^{(4)}-5y^{(2)}+4y=0, \ y(0)=4, y'(0)=4, y''(0)=10, y'''(0)=16$.
+
+
+
+
+\end{document}
