@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2014.10.14)  30 MAY 2016 13:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2014.10.14)  30 MAY 2016 15:05
 entering extended mode
 **main.tex
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.tex"
@@ -469,23 +469,19 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10.95> not available
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\preface/preface.cha
 pter"
 Preface
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 14.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) [5
 
-
-]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6])
-[7] [8
+ [5
 
 
-]
+])
+[6]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/pnc/b/n' tried instead on input line 172.
  [1
+
+
 
 
 ]
@@ -671,6 +667,11 @@ File: 2-graphicalmethods/phaseline3.eps Graphic file (type eps)
 File: 2-graphicalmethods/phaseline5.eps Graphic file (type eps)
  <2-graphicalmethods/phaseline5.eps>
 [39]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 426.
+
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
 Overfull \hbox (1.6424pt too wide) in paragraph at lines 426--426
 [] \OT1/pcr/m/n/10.95 with(DEtools) 
  []
@@ -1156,4 +1157,4 @@ Here is how much of TeX's memory you used:
  1186 hyphenation exceptions out of 8191
  40i,14n,70p,1380b,1453s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on main.dvi (253 pages, 766572 bytes).
+Output written on main.dvi (251 pages, 764548 bytes).

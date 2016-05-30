@@ -3,31 +3,10 @@
 
 This text is intended for a first course in ordinary differential equations, typically taken at the sophomore or junior level by science and engineering majors.  Many calculus students are introduced to differential equations and separation of variables, so Chapter 1 begins assuming that material has been seen before.  (If it has not, or if students need a review, they should work through Chapter 1 and Appendix A pretty much simultaneously.)
 
-Paging through the book will reveal that some of the Exercises are embedded within the reading, and others are at the end of each chapter.  Don't skip any Exercise that is embedded in the reading!  They form an integral part of the text, and the insights gained from working these Exercises is often necessary to completely appreciate what follows them.  Instructors may choose to cover some of the Exercises in lecture, but students should make sure they can recreate the solutions on their own.  The last several Exercises at the end of the chapters tend to be more challenging, and it is up to an instructor to decide which problems are appropriate for his or her students.  
+Paging through the book will reveal that some of the Exercises are embedded within the reading, and others are at the end of each chapter.  Don't skip any Exercise that is embedded in the reading!  They form an integral part of the text, and the insights gained from working these Exercises is often necessary to completely appreciate what follows them.  Instructors may choose to cover some of the Exercises in lecture, but students should make sure they can recreate the solutions on their own.  The last several Additional Exercises at the ends of the chapters tend to be more challenging, and it is up to an instructor to decide which problems are appropriate for his or her students.  
 
 I intend for students to {\it actually read} this text.  With the internet providing nearly limitless access to information, it no longer seems necessary to me for a textbook to be a complete reference source.  Therefore, I have tried to emphasize clarity rather than completeness. There are only a few footnotes and no marginal notes to break up the flow of reading.
 
-
-Readers who find errors or wish to suggest improvements are invited to send comments to 
-\begin{center}
-\begin{minipage}{3in}
-\begin{verbatim} kkissel@greenriver.edu \end{verbatim}
-\end{minipage}
-\end{center}
-with the phrase ``CODE textbook'' in the subject line.
-
-The current version of this text is being labeled as "Version 0.8".  My plans for later editions include:
-\begin{itemize}
-\item more application problems
-\item a section on variation of parameters
-\item improved figures, and more of them
-\item prettier headings for chapters and examples
-\item more problems which take advantage of a CAS like Mathematica, Maple and Matlab
-\item a Focus on Modeling section for electrical circuits
-\item a section on exact equations, provided I can find some good application problems to justify it
-\item an accompanying Instructor Resource Manual with collections of projects and in-depth explanations of topics too advanced for an introductory textbook but about which an instructor might be curious (and about which students sometimes ask); e.g., ``Is there an inversion formula for the Laplace Transform?"  (Yes, but it's too cumbersome to be practical.)
-\item phase planes
-\end{itemize}
 
 Chapters 1-4 and 7-9 are pretty much fundamental for this kind of course.  Chapter 5 on Taylor methods can be done at any time after Chapter 4, and nothing else in the text assumes it.  Chapters 10-11-12 can also be covered immediately after Chapter 4 if the instructor wants to get to Laplace transforms early.   Great practical utility of Laplace transforms is found with discontinuous driving functions, which are discussed in Chapter 11.  I therefore believe that, if you're going to do Chapter 10, you really should do Chapter 11, also.  Chapter 12 assumes Chapter 10.  Chapters 13-14 can be covered any time after Chapter 4, and doing so before covering Chapter 7 would provide an alternative route to deriving the general solutions to second order constant coefficient equations (instead of using reduction of order).  
 
@@ -36,4 +15,4 @@ Chapter 6, on existence and uniqueness, it very much subject to an instructor's 
 The appendices contain important information, but some of it is likely already known by students (in particular, the material on matrices and separation of variables might be review).  It is probably a good idea to spend a day on Appendix B (complex numbers) before starting either Chapter 7, 10 or 13, (whichever is done first).  If you cover reduction of order in Appendix C, you have choices:  you can do it before Chapter 7, so that it is an available tool which can be used to find a general solution when the characteristic equation has a repeated root; alternatively, you can introduce the necessary idea in the process of finding general solutions in Chapter 7 and then, at a later time, generalize that trick into a larger technique.
 
 
-My sincere thanks go to my students who have taken this course as I piloted these materials.  Many students contributed suggestions and improvements.  In particular, I would like to thank a few who have given me substantial feedback: Brianna Kuypers, Gail Scott, Chris Nason, Ryan Smoots.  
+My sincere thanks go to my students who have taken this course as I piloted these materials.  Many students contributed suggestions and improvements.  In particular, I would like to thank a few who have given me substantial feedback: Brianna Kuypers, Gail Scott, Chris Nason, Ryan Smoots, and Kelly Sindelar.  I am also indebted to my colleagues Adrienne Palmer and Sarah Massengill.  
