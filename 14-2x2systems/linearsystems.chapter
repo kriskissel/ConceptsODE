@@ -30,7 +30,7 @@ Let's look at a slope field for the system in our prototype question:
 \end{center}
 This graph was drawn with all vectors having the same length, so that it would be easier to see their directions.  Notice how there appear to be some straight-line trajectories -- two pointing directly toward the origin, and two pointing directly away.  
 
-Let's assume for the moment that this interpretation of the graph is correct and see if we can use that to discover what explicit solutions of the ODE system might look like.  If a trajectory of (\ref{2x2linear}) follows a straight line through the origin, then the $x$ and $y$ coordinates must satisfy an equation for such a line: $\alpha x + \beta y =0$ for some constants $\alpha, \beta \in \R$, not both equal to zero.  If $\beta \neq 0$, then we can write $y = -\frac{\alpha}{\beta} x$ and insert this into the first equation of the prototype question to get $\dot{x} = \left(a-\frac{b\alpha}{\beta} \right)x$, any solution of which is some exponential function, $x(t) = C_1 e^{\lambda t}$, and plugging this into the identity $y=-\frac{\alpha}{\beta} x$ gives us another exponential function, $y(t)=C_2 e^{\lambda t}$.  (If instead we assumed that $\alpha \neq 0$, we would end up with the same result.)  This reasoning leads us to the following important conclusion:
+Let's assume for the moment that this interpretation of the graph is correct and see if we can use that to discover what explicit solutions of the ODE system might look like.  If a trajectory of (\ref{2x2linear}) follows a straight line through the origin, then the $x$ and $y$ coordinates must satisfy an equation for such a line: $\alpha x + \beta y =0$ for some constants $\alpha, \beta \in \R$, not both equal to zero.  If $\beta \neq 0$, then we can write $y = -\frac{\alpha}{\beta} x$ and insert this into the first equation of (\ref{2x2linear}) to get $\dot{x} = \left(a-\frac{b\alpha}{\beta} \right)x$, any solution of which is some exponential function, $x(t) = C_1 e^{\lambda t}$, and inserting this into the relationship $y=-\frac{\alpha}{\beta} x$ gives us another exponential function, $y(t)=C_2 e^{\lambda t}$.  (If instead we assumed that $\alpha \neq 0$, we would end up with the same result.)  This reasoning leads us to the following important conclusion:
 
 {\begin{center}
 \psframebox[style=formulabox]{\begin{minipage}{4.5in}
@@ -73,7 +73,7 @@ This is precisely the statement that $\lambda$ is an eigenvalue of $\startmatrix
 and in the second case,
 \[ X(t) = C e^{-6t} \startmatrix 1 \\ -1 \finishmatrix.\]
 That is to say, straight-line solutions of this system of ordinary differential equations have one of two possible forms:
-\[ \begin{cases} x(t) = C e^{4t} \\ y(t) = Ce^{4t} \end{cases} \ \ \ \ \ \ \ \ \ \ \mbox{or} \ \ \ \ \ \ \ \ \ \ \begin{cases} x(t) = C e^{4t} \\ y(t) = -Ce^{4t} \end{cases}.\]
+\[ \begin{cases} x(t) = C e^{4t} \\ y(t) = Ce^{-6t} \end{cases} \ \ \ \ \ \ \ \ \ \ \mbox{or} \ \ \ \ \ \ \ \ \ \ \begin{cases} x(t) = C e^{4t} \\ y(t) = -Ce^{-6t} \end{cases}.\]
 (In each case, the value of $C$ is the same in both lines.)
 \qed
 
@@ -96,7 +96,7 @@ Suppose that $X_1(t)$ and $X_2(t)$ both satisfy the system of differential equat
 \end{exe}
 
 It is proven in linear algebra that if a $2 \times 2$ matrix $A$ has two distinct eigenvalues $\lambda_1$ and $\lambda_2$ (the word `distinct' meaning that $\lambda_1 \neq \lambda_2$), then any eigenvectors $\xi_1$ and $\xi_2$ associated to $\lambda_1$ and $\lambda_2$ must be linearly independent.  According to the two previous exercises, the function 
-\[ X(t) = c_2 e^{\lambda_1 t} \xi_1 + c_2 e^{\lambda_2 t} \xi_2 \]
+\[ X(t) = c_1 e^{\lambda_1 t} \xi_1 + c_2 e^{\lambda_2 t} \xi_2 \]
 is a solution of $\dot{X}=AX$.  Notice that $X(0)= c_1\xi_1+c_2\xi_2$, and because the eigenvectors are linearly independent, it follows that any initial value of $X(0)$ can be satisfied by an appropriate choice of $c_1$ and $c_2$.  The existence and uniqueness theorem tells us that solutions of a linear system are unique for $t$ close to $t_0$ (actually, it turns out that they are unique {\it for all $t \in \R$}).  We can now state the following formula for finding general solutions of matrix differential equations.
 
 
@@ -119,8 +119,8 @@ We will also give a complete description of the general solution when the coeffi
 or
 \[ \begin{cases} x(t) = c_1 e^{4t}+c_2e^{-6t} \\ y(t) = c_1 e^{4t} - c_2 e^{-6t} \end{cases}.\]
 Inserting $t=0$ and the initial conditions for $x$ and $y$ gives us
-\[  2 = c+1+c_2 \ \ \ \mbox{and} \ \ \ 4 = c_1-c_2.\]
-Thus solution of this algebraic system of equations is $c_1=3, \ c_2=-1$.  Therefore
+\[  2 = c_1+c_2 \ \ \ \mbox{and} \ \ \ 4 = c_1-c_2.\]
+Thus the solution of this algebraic system of equations is $c_1=3, \ c_2=-1$.  Therefore
 \[ \begin{cases} x(t) = 3e^{4t}-e^{-6t} \\ y(t) = 3e^{4t}+e^{6t} \end{cases}.\]
 \qed
 
@@ -158,7 +158,7 @@ where $\xi_1 = \startmatrix a \\ b \finishmatrix$.  Hence
 \[ \startmatrix 1-i & -2 \\ 1 & -1-i \finishmatrix \startmatrix a \\ b \finishmatrix = \startmatrix 0 \\ 0 \finishmatrix.\]
 The first row of this matrix equation is equivalent to the scalar equation
 \[ (1-i)a-2b=0,\]
-from which we can conclude $b=\frac{(i-1)a}{2}$.  A simple choice for the eigenvector would be $\xi_1= \startmatrix 1 \\ \frac{i-1}{2} \finishmatrix$.  A similar analysis wil lead us to the eigenvector $\xi_2 = \startmatrix 1 \\ \frac{-i-1}{2} \finishmatrix$ corresponding to $\lambda_2=1-i$.  Now we can write the general solution as
+from which we can conclude $b=\frac{(1-i)a}{2}$.  A simple choice for the eigenvector would be $\xi_1= \startmatrix 1 \\ \frac{1+i}{2} \finishmatrix$.  A similar analysis will lead us to the eigenvector $\xi_2 = \startmatrix 1 \\ \frac{-i-1}{2} \finishmatrix$ corresponding to $\lambda_2=1-i$.  Now we can write the general solution as
 \[ X(t) = c_1 e^{(1+i)t} \startmatrix 1 \\ \frac{i-1}{2} \finishmatrix + c_2 e^{(1-i)t} \startmatrix 1 \\ \frac{-i-1}{2} \finishmatrix.\]
 We write the matrix in component form to obtain
 \begin{align*}
@@ -184,7 +184,7 @@ y(t) & = -i \frac{i-1}{2}e^{(1+i)t} + i \frac{-i-1}{2} e^{(1-i)t} \\
 \end{align*}
 \qed
 
-The solution in the the previous example seems to `spiral outward' from the origin as $t$ increases.  A direction field for this system will help us to visualize why:
+The solution in the previous example seems to `spiral outward' from the origin as $t$ increases.  A direction field for this system will help us to visualize why:
 
 \begin{center}
 \includegraphics[width=2.5in]{14-2x2systems/outwardspiral.eps}
@@ -203,9 +203,9 @@ and this system is
 	\index{uncoupled}%
 	{\bf uncoupled}, meaning that the equations for $x$ and $y$ can each be solved separately.  Nothing besides separation of variables or the method of integrating factors is necessary for each equation.  Thus we will focus our attention on the case when all the eigenvectors for $A$ are scalar multiples of a single eigenvector $\xi$.
 
-To this end, we introduce another idea from linear algebra.  If $\lambda$ is an eigenvector for $A$ and $\xi$ is an associated eigenvector, then a 
+To this end, we introduce another idea from linear algebra.  If $\lambda$ is an eigenvalue for $A$ and $\xi$ is an associated eigenvector, then a 
 	\index{generalized eigenvector}%
-	{\bf generalized eigenvector} $\eta$ is a vector that solves the matrix equation
+	{\bf generalized eigenvector} $\eta$ is a vector that satisfies the matrix equation
 \[ (A-\lambda I) \eta = \xi.\]
 (Note the similarity of this with the matrix equation that defines an eigenvector, $(A-\lambda I)\xi = 0$.)  
 

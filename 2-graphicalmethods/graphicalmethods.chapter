@@ -1,5 +1,3 @@
-%% EDITED August 11, 2012 to fix layout, wording, grammar
-
 \chapter{Graphical Methods}
 
 
@@ -214,7 +212,7 @@ In this context of a falling object, the constant solution is called the
 \[ \lim_{t \rightarrow \infty} v(t) = \frac{9.8}{K} \ \frac{m}{s}.\]
 \qed
 
-To draw a phase line for an autonomous ODE $y'=f(y)$, we usually start by graphing the relationship described by this equation on $y-y'$ coordinate plane.  For example, if the ODE is $y'=y^3-y$, the graph would look like this:
+To draw a phase line for an autonomous ODE $y'=f(y)$, we usually start by graphing the relationship described by this equation on a y-y'-coordinate plane.  For example, if the ODE is $y'=y^3-y$, the graph would look like this:
 
 \begin{center}
 \includegraphics[width=4in]{2-graphicalmethods/phaseline4.eps}
@@ -395,7 +393,7 @@ Sketch a phase line that is consistent with the following slope fields.
 \ap 
 	\index{air resistance}%
 	\index{inertial drag}%
-	Consider a falling body that experiences inertial drag and whose velocity (in meters per second) is modeled by the ODE $\dot{v} = 9.8-Kv^2$.  Draw a phase line for $v \geq 0$.  Use the phase line analysis to determine the equilibrium solution of the ODE.  If the object's terminal velocity is measured as $v = 94. \frac{m}{s}$, what is the value of the parameter $K$?  Round your answer to two significant figures, and include units.
+	Consider a falling body that experiences inertial drag and whose velocity (in meters per second) is modeled by the ODE $\dot{v} = 9.8-Kv^2$.  Draw a phase line for $v \geq 0$.  Use the phase line analysis to determine the equilibrium solution of the ODE.  If the object's terminal velocity is measured as $v = 9.4 \times 10^1 \frac{m}{s}$, what is the value of the parameter $K$?  Round your answer to two significant figures, and include units.
 
 
 \ap Use a phase-line analysis to determine the long-term behavior of solutions to the differential equation 

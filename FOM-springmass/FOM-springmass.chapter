@@ -20,7 +20,7 @@ Second-order ODE arise when we model the behavior of a mass attached to a freely
 Let us begin with a figure illustrating our physical system:
 
 \begin{center}
-\includegraphics[width=2.5in]{FOM-springmass/springmass2smallest.eps}
+\includegraphics[width=1.75in]{FOM-springmass/springmass2smallest.eps}
 \end{center}
 
 The free end of the spring is allowed to move, and we need to impose coordinates on the figure to measure this motion.  There are many ways we could choose to do this.  The natural point to choose as an origin is the 
@@ -28,11 +28,11 @@ The free end of the spring is allowed to move, and we need to impose coordinates
 	{\bf rest position} of the free end of the spring -- that is to say, the point where the free end sits when the spring is not in a state of internal tension.  From this point, we can measure the displacement of the free end of the spring, and we shall adopt the convention that a stretched spring corresponds to a positive displacement, while a compressed spring corresponds to a negative displacement.
 
 \begin{center}
-\includegraphics[width=3in]{FOM-springmass/springmassdisplacement.eps}
+\includegraphics[width=2in]{FOM-springmass/springmassdisplacement.eps}
 \end{center}
 
 \hspace{0.125in}
-To model the physical behavior of this system, our starting point is Newton's second law, $F=ma$ (force equals mass times acceleration).  If we let $y(t)$ denote the displacement of the free end of the spring from it's rest position as a function of time, then the acceleration is given by $\ddot{y}$.  There will also be at least two forces acting on the mass.  One is the spring's restoring force, which Hooke's Law tells us we can model by assuming it is proportional to the displacement from rest position: $F_s = -ky$.  (Here, the spring constant $k$ is positive, and the direction of the spring's restoring force is in the direction opposite the displacement.  Also, we will model the damping force by assuming it is proportional to the velocity of the mass (like viscous drag) and in the opposite direction: $F_d = -C\dot{y}$.  Let us denote any other external driving force by $F_e$, and suppose this driving force is described by a function of time, $F_e=f(t)$.  
+To model the physical behavior of this system, our starting point is Newton's second law, $F=ma$ (force equals mass times acceleration).  If we let $y(t)$ denote the displacement of the free end of the spring from its rest position as a function of time, then the acceleration is given by $\ddot{y}$.  There will also be at least two forces acting on the mass.  One is the spring's restoring force, which Hooke's Law tells us we can model by assuming it is proportional to the displacement from rest position: $F_s = -ky$.  (Here, the spring constant $k$ is positive, and the direction of the spring's restoring force is in the direction opposite the displacement.)  We will model the damping force by assuming it is proportional to the velocity of the mass (like viscous drag) and in the opposite direction: $F_d = -C\dot{y}$.  Let us denote any other external driving force by $F_e$, and suppose this driving force is described by a (possibly constant) function of time, $F_e=f(t)$.  
 
 \end{minipage}
 }

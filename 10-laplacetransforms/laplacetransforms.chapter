@@ -93,7 +93,7 @@ This proves that the integral defining $L[f]$ converges absolutely for all $s > 
 \bigskip
 Next, we introduce the key fact which allows us to use Laplace Transforms for solving initial value problems.  There is a close relationship between the Laplace transform of a function and that of its derivative:
 {\it 
-If $L[f]$ exists for $s>a$, where $f$ is a differentiable function, and if $\lim_{t \rightarrow \infty} f(t)e^{-st}=0$ for $s > a$, then $L[f']$ also exists for $s>a$, and $L[f']=sL[f]-f(0)$.
+If $L[f]$ exists on some s-interval $(a,\infty)$, where $f$ is a differentiable function, and if $\lim_{t \rightarrow \infty} f(t)e^{-st}=0$ for $s > a$, then $L[f']$ also exists for $s>a$, and $L[f']=sL[f]-f(0)$.
 }
 
 Notice that any function of exponential order satisfies both hypotheses of this theorem. 
@@ -236,20 +236,22 @@ y & = L^{-1} \left[ \frac{(7/9)s}{s^2+9}+\frac{(2/9)}{s} \right] \\
 L[y''+4y'+13y] & = L[0]  \\
 sL[y']-y'(0)+4(sL[y]-y(0))+13L[y] & = 0 \\
 s(sL[y]-y(0))-y'(0)+4(sL[y]-y(0))+13L[y] & = 0 \\
-(s^2+43+13)L[y] -sy(0)-y'(0)-y(0)=0 \\
-(s^2+4s+13)L[y] - s-2 & = 0 \\
-L[y] & = \frac{s+2}{s^2+4s+13}
+(s^2+4s+13)L[y] -sy(0)-y'(0)-4y(0)=0 \\
+(s^2+4s+13)L[y] - s-5 & = 0 \\
+L[y] & = \frac{s+5}{s^2+4s+13}
 \end{align*}
 
-Notice that the denominator does not factor over the real numbers, so we don't want to try to use a partial fraction decomposition.  Instead, will will use the algebraic technique of
+The denominator does not factor over the real numbers, so we don't want to try to use a partial fraction decomposition.  Instead, will will use the algebraic technique of
 	\index{completing the square}
 	{\bf completing the square}
 to rewrite the expression.  Completing the square on a quadratic expression such as $x^2+bx+d$ means rewriting it in the form $(x+h)^2+d$.  In this case, that would be
 \[ s^2+4s+13=s^2+4s+4+9=(s+2)^2+9.\]
 So now we have
-\[ L[y] = \frac{s+2}{(s+2)^2+9},\]
-which we can now identify from our table:
-\[ y = e^{(-2t)} \cos(3t).\]
+\[ L[y] = \frac{s+5}{(s+2)^2+9},\]
+which doesn't exactly match any of the forms in our table; however, we can split up the numerator to obtain two fractions whose forms do match entries in our table:
+\[ L[y] = \frac{s+2}{(s+2)^2+9} + \frac{3}{(s+2)^2 + 9}.\]
+Consequently,
+\[ y = e^{(-2t)} \cos(3t) + e^{(-2t)} \sin(3t).\]
 \qed 
 
 
@@ -290,7 +292,7 @@ F'(s) & = \frac{d}{ds} \left[ \int_0^\infty f(t) e^{-st} \ dt \right] \\
 & = - \int_0^\infty (tf(t))e^{-st} \ dt \\
 & = -L[tf(t)].
 \end{align*}
-To call this a proof, we would need to justify the act of ``differentiating under the integral sign'', for {\it it is not always true} that $\frac{d}{dy} \int_a^b f(x,y) \ dx = \int_a^b f_y(x,y) \ dy$.  However, if $f$ is of exponential order, then it is possible to justify this step by using a powerful theorem from the subject of Real Analysis called the Lebesgue Dominated Convergence Theorem (see \cite{royden:realanalysis}).  However, the details of this are outside the scope of this course.
+To call this a proof, we would need to justify the act of ``differentiating under the integral sign'', for {\it it is not always true} that $\frac{d}{dy} \int_a^b f(x,y) \ dx = \int_a^b f_y(x,y) \ dy$.  However, if $f$ is of exponential order, then it is possible to justify this step by using a powerful theorem from the subject of Real Analysis called the Lebesgue Dominated Convergence Theorem (see reference \cite{royden:realanalysis} in the bibliography).  However, the details of this are outside the scope of this course.
 
 Let's use this result to calculate some Laplace Transforms of functions.
 
@@ -409,7 +411,7 @@ Use the brief table of Laplace Transforms to find the following.
 
 \ap The Gamma function $\Gamma(x)$ is defined for $x>0$ by
 \[ \Gamma(x) = \int_0^\infty e^{-t} t^{x-1} \ dt.\]
-Verify that $\Gamma(1)=1$.  Use integration by parts to verify that $\Gamma(x+1)=(x+1)\Gamma(x)$.  What other mathematical operation do these two properties remind you of?
+Verify that $\Gamma(1)=1$.  Use integration by parts to verify that $\Gamma(x+1)=x\Gamma(x)$.  What other mathematical operation do these two properties remind you of?\footnote{These properties should remind you of the factorial.  In fact, it turns out that if $n$ is a non-negative integer then $n! = \Gamma(n+1)$.}
 
 \ap Use the definition of the Laplace Transform and integrate by substitution to prove 
 \[ L\left[ t^a \right] = \frac{\Gamma(a+1)}{s^{a+1}} \]

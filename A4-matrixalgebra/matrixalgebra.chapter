@@ -44,7 +44,7 @@ Horizontal subsets of (\ref{matrix}) are called
 	\index{dimension}%
 	{\bf dimensions} of the matrix; we can also say the the {\bf dimension} of the matrix is $m \times n$.  (This is read aloud as `` m by n''.)  If the entries of the matrix $A$ are real numbers, we abbreviate all this by writing $A \in \mathbb{R}^{m \times n}$ {\it (`A is in the set of $m \times n$ real matrices')}.  But we can also consider matrices with complex-valued entries, in which case we would write $A \in \mathbb{C}^{m \times n}$ {\it (`A is in the set of $m \times n$ complex matrices')}.  We say that two matrices are 
 	\index{equal matrices}%
-	{\bf equal} if their corresponding coefficients are equal: $A=B$ if and only if $a_{ij}=b_{ij}$ for all indices $i,j$.  Two matrices can only be equal if they have they have the same dimension.
+	{\bf equal} if their corresponding coefficients are equal: $A=B$ if and only if $a_{ij}=b_{ij}$ for all indices $i,j$.  Two matrices can only be equal if they have the same dimension.
 
 \appendixexample Consider the matrix
 \[ C = \startmatrix 2 & -1 & 3 \\ 4 & -1 & 3 \finishmatrix.\]
@@ -182,10 +182,10 @@ The determinant function can also be defined for larger square matrices (see any
 The solution of the previous exercise proves the following important theorem when $n=2$.
 
 \begin{theorem}
-Suppose $A$ is a square $n \times n$ matrix and $X, \ B$ are $n\times 1$ vectors.  Then:
+Suppose $A$ is a square $n \times n$ matrix and $X, \ B$ are $n\times 1$ vectors.
 \begin{enumerate}
-\item if $det(A)\neq0$, the $AX=B$ has a unique solution $X$ for every given $B$;
-\item if $det(A)=0$, then $AX=B$ has either infinitely many solutions $X$ or no solutions, depending on $B$.
+\item If $det(A)\neq0$, then $AX=B$ has a unique solution $X$ for every given $B$;
+\item If $det(A)=0$, then $AX=B$ has either infinitely many solutions $X$ or no solutions, depending on $B$.
 \end{enumerate}
 \end{theorem}
 
@@ -199,7 +199,7 @@ then there must be infinitely many solutions because the determinant of the coef
 \[ det \startmatrix 44 & -99 \\ -12 & 27 \finishmatrix = (44)(27)-(-99)(-12) = 0.\]
 \qed
 
-When $det(A)=0$, it can still be hard to determine whether there are infinitely many solutions or no solutions at all, because that usually depends on what the right-side vector is.  However, there is one situation for which we can always give a complete description.
+When $det(A)=0$, it can still be hard to determine whether there are infinitely many solutions of $AX=B$ or no solutions at all, because that usually depends on what $B$ is.  However, there is one situation for which we can always give a complete description.
 
 \begin{theorem} If $det(A)\neq 0$, then the only solution of $AX=0$ is $X=0$.  If $det(A)=0$, then the matrix equation $AX=0$ has infinitely many solution vectors $X$. \label{AX=0theorem}
 \end{theorem}

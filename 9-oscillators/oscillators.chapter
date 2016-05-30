@@ -76,7 +76,7 @@ This stands in stark contrast to the third situation, which is described as
 
 The last graph looks very similar to the naked eye, but we have given it a different name: 
 	\index{critical damping}%
-	{\bf critical damping}.  That is because this is the borderline case -- if the damping coefficient is reduced by any positive amount whatsoever, no matter how small, the situation will switch to underdamping.  Also, the form of the general solution is slightly different, as the double root of the characteristic equation produces $y(t)=Ae^{-t}+Bte^{-t}$.  For this kind of function, the equation $y(t)=0$ definitely has a solution -- when $t=\frac{-A}{B}$ -- though this may still be a negative value and thus irrelevant to the model.
+	{\bf critical damping}.  That is because this is the borderline case -- if the damping coefficient is reduced by any positive amount whatsoever, no matter how small, the situation will switch to underdamping, while if the damping coefficient is increased by any small amount whatsoever, the system will experience overdamping.  Also, the form of the general solution is slightly different, as the double root of the characteristic equation produces $y(t)=Ae^{-t}+Bte^{-t}$.  For this kind of function, the equation $y(t)=0$ definitely has a solution -- when $t=\frac{-A}{B}$ -- though this may still be a negative value and thus irrelevant to the model.
 
 These differences in behavior depend on the general solution of the equation $m\ddot{y}+\gamma \dot{y} + ky =0$, which in turn is determined by the characteristic equation.  We can therefore use the characteristic equation to classify the type of damping in any setup.  To obtain infinitely many oscillations, our general solution must contain sinusoidal functions, and those occur when the characteristic equation has complex roots with non-zero imaginary parts; there will be no sinusoidal behavior if the roots are real.  The borderline situation of critical damping is precisely the case of a double root.  If we solve the characteristic equation using the quadratic formula, 
 \[ r = \frac{-\gamma \pm \sqrt{\gamma^2-4mk}}{2m},\]
@@ -157,7 +157,7 @@ From this, we see that
 That is to say, in the long term the mass settles toward a position that is $\frac{49}{85}\approx 0.58 \ m$ below the spring's natural rest position.
 \qed
 
-The position that the the mass (i.e. the free end of the spring) tends toward in the previous example is called the 
+The position that the mass (i.e. the free end of the spring) tends toward in the previous example is called the 
 	\index{equilibrium position}%
 	{\bf equilibrium position} because that is the position where the force due to gravity and the internal restoring force of the spring are in equilibrium with one another -- the downward force due to gravity is equal in magnitude to the upward force of the spring.  The reader should verify that the constant function $y(t)=\frac{49}{85}$ is an equilibrium solution of the differential equation in that example.
 
@@ -220,9 +220,9 @@ In fact, we can do exactly that.  Recall the difference-of-angles formula for th
 \[ \cos(\alpha-\beta) = \cos(\alpha)\cos(\beta)+\sin(\alpha)\sin(\beta).\]
 If we apply this identity with $\alpha=\omega t$ and $\beta=\delta$, we obtain
 \[ \cos(\omega t - \delta) = \cos(\omega t) \cos(\delta) + \sin(\omega t) \sin(\delta).\]
-Thus trying to obtain values of $A$ and $\delta$ such that $A\cos(\omega t - \delta) = a \cos(\omega t) + b \sin (\omega t)$ amounts to finding values such that
+Trying to obtain values of $A$ and $\delta$ such that $A\cos(\omega t - \delta) = a \cos(\omega t) + b \sin (\omega t)$ amounts to finding values such that
 \[ A \left(\cos(\omega t) \cos(\delta) + \sin(\omega t) \sin(\delta) \right) = a \cos(\omega t) + b \sin (\omega t).\]
-Equation coefficients of $\cos(\omega t)$ and $\sin(\omega t)$ gives us
+Equating coefficients of $\cos(\omega t)$ and $\sin(\omega t)$ gives us
 \begin{equation} 
 A\cos(\delta) =a \ \ \ \mbox{and} \ \ \ A \sin(\delta) = b. \label{phase-amplitude1} 
 \end{equation}
@@ -233,7 +233,7 @@ and therefore $A^2 = a^2+b^2$.  Let's take $A=\sqrt{a^2+b^2}$. Now if $a=0$, the
 and we now see that we can satisfy the system (\ref{phase-amplitude1}) by taking either $\delta = \arctan \left(\frac{b}{a} \right)$ (if $a>0$) or $\delta = \pi + \arctan \left( \frac{b}{a} \right)$ (if $a<0$).
 If we wish to ensure that $\delta$ is positive, then we can use $\delta = 2\pi + \arctan \left( \frac{b}{a} \right)$ when $a>0$ and $b<0$.
 
-The algebraic manipulations we've been performing here have really just been an effort to find a polar-coordinate representation of the point with Cartesian coordinates $(a,b)$.  The apparent complexity occurs only because the range of the inverse tangent function is $\left(-\frac{\pi}{2},\frac{\pi}{2} \right)$, so that it always wants to produce an angle pointing into the first or fourth quadrant, and the addition of $\pi$ in certain instances in necessary to correct for this, as illustrated in the following figures.
+The algebraic manipulations we've been performing here have really just been an effort to find a polar-coordinate representation of the point with Cartesian coordinates $(a,b)$.  The apparent complexity occurs only because the range of the inverse tangent function is $\left(-\frac{\pi}{2},\frac{\pi}{2} \right)$, so that it always wants to produce an angle pointing into the first or fourth quadrant, and the addition of $\pi$ in certain instances is necessary to correct for this, as illustrated in the following figures.
 
 \begin{center}
 \includegraphics[width=2.75in]{9-oscillators/phase-amplitude1.eps}
@@ -254,7 +254,7 @@ We can also use these observations to write solutions $y=ae^{\alpha t} \cos(\ome
 	\index{amplitude}%
 	{\bf amplitude} of the oscillations. 
 	
-\example Suppose a mass of $0.01 kg$ is attached to the free end of a spring whose spring constant is $2 \frac{N}{m}$, and there is viscous damping described by the coefficient $\gamma = 0.2 \frac{N\cdot s}{m}$.  The mas is stretched $0.01 m$ from the natural position and released.  Write a formula for the displacement of the mass from the natural position in the phase-amplitude form.
+\example Suppose a mass of $0.01 kg$ is attached to the free end of a spring whose spring constant is $2 \frac{N}{m}$, and there is viscous damping described by the coefficient $\gamma = 0.2 \frac{N\cdot s}{m}$.  The mass is stretched $0.01 m$ from the natural position and released.  Write a formula for the displacement of the mass from the natural position in the phase-amplitude form.
 
 The initial value problem we need to solve here is 
 \[ 0.01 \ddot{y} + 0.2 \dot{y} + 2 y = 0, \ y(0)=0.01, \ \dot{y}(0) = 0.\]
@@ -272,7 +272,7 @@ Rework Example 9.3 assuming that the spring is initially compressed (instead of 
 \end{exe}
 
 \begin{exe}
-Rework Example 9.3 assuming that, in addition to being stretched $0.01m$, the mass is also given in initial velocity of $1 \frac{m}{s}$ in the direction of further stretching the spring.
+Rework Example 9.3 assuming that, in addition to being stretched $0.01m$, the mass is also given an initial velocity of $1 \frac{m}{s}$ in the direction of further stretching the spring.
 \end{exe}
 
 \example A simple electrical circuit contains a 0.2 henry inductor and a 0.05 farad capacitor connected in series.  The charge on the capacitor at time $t=0$ is 2.5 coulombs, and the initial current in the circuit is $I(0)=\dot{Q}(0) = 0.2$ amperes.  Determine the first time $t$ when the charge $Q(t)$ will reach 1.5 coulombs.
@@ -301,7 +301,7 @@ Plugging in a few consecutive values for $k$, we can see that the smallest posit
 It may seem obvious to some that modifying the amplitude $F_0$ of a driving function $F_0 \cos(\omega t)$ can have a direct effect on the amplitude of the steady-state response.  What is likely less obvious is that modifying the {\it frequency} $\omega$ of the driving function can also affect the amplitude of the response, often in very dramatic ways.  We will explore this phenomenon through two examples before stating the general results.  We will begin with the simplified example of an undamped oscillator.
 
 \example Suppose a spring-mass system is modeled by the initial value problem
-\[ \ddot{y} + y = \cos(\omega t), \ y(0)=0, y'(0)=0.\]
+\[ \ddot{y} + y = \cos(\omega t), \ y(0)=0, \dot{y}(0)=0.\]
 Explore the consequences of various values of the driving frequency $\omega>0$ on the solutions of this initial value problem.
 
 The characteristic equation is $r^2+1=0$, which has roots $r=\pm i$.  Therefore the solution of the related homogeneous equation is 
@@ -316,7 +316,7 @@ and the initial conditions $y(0)=\dot{y}(0)=0$ imply $A=0$ and $B=-\frac{1}{1-\o
 \[ y(t) = \frac{1}{1-\omega^2} \cos \left( \omega t \right) + - \frac{1}{1-\omega^2} \cos(t).\]
 
 
-Notice that the amplitude coefficients here all become larger as $\omega$ gets closer to $1$.  The following three graphs show the solutions corresponding to the driving frequencies $\omega=0.5, \ 0.9$ and $0.99$:
+Notice that the amplitude coefficients here all become larger as $\omega$ gets closer to $1$.  The following three graphs show the solutions corresponding to the driving frequencies $\omega=0.5, \ 0.9$ and $0.98$:
 
 \begin{center}
 \includegraphics[width=1.75in]{9-oscillators/responseamplitude3.eps}
@@ -345,7 +345,7 @@ The phenomenon explored in the last example is called
 	\index{natural frequency}%
 	{\bf natural frequency} (or 
 	\index{resonant frequency}%
-	{\bf resonant frequency}) at which it wants to oscillate, namely, the frequency\footnote{Here, we are calling $\omega$ the `frequency', but a more precise name would be `angular frequency'.  Calling it that would distinguish it from the so-called `temporal frequency' $f$ that is a measurement of oscillations per second.  The relationship between angular frequency and temporal frequency is $\omega = 2 \pi f$.} of the solutions to the corresponding homogeneous differential equation.  If the driving force oscillates at close to this frequency, the resulting oscillations in the system will be larger in amplitude than they would be if the frequencies were not close (assuming the amplitude of the driving force is not changed).  If the driving force is applied to an undamped oscillator at exactly the resonant frequency, then the oscillations will grow in magnitude instead of tending to a steady-state (i.e. periodic) behavior.  In Example 9.4, we observed resonance when the frequency was $\omega =1$, which corresponded to a driving function of $\sin(t)$.  When there is no damping in a spring-mass system, the resonant frequency is $\omega_0$ defined by $\omega_0^2 = \frac{k}{m}$.
+	{\bf resonant frequency}) at which it wants to oscillate, namely, the frequency\footnote{Here, we are calling $\omega$ the `frequency', but a more precise name would be `angular frequency'.  Calling it that would distinguish it from the so-called `temporal frequency' $f$ that is a measurement of oscillations per second.  The relationship between angular frequency and temporal frequency is $\omega = 2 \pi f$.} of the solutions to the corresponding homogeneous differential equation.  If the driving force oscillates at close to this frequency, the resulting oscillations in the system will be larger in amplitude than they would be if the frequencies were not close (assuming the amplitude of the driving force is not changed).  If the driving force is applied to an undamped oscillator at exactly the resonant frequency, then the oscillations will grow in magnitude instead of tending to a steady-state (i.e. periodic) behavior.  In Example 9.4, we observed resonance when the frequency was $\omega =1$, which corresponded to a driving function of $\cos(t)$.  When there is no damping in a spring-mass system, the resonant frequency is $\omega_0$ defined by $\omega_0^2 = \frac{k}{m}$.
 	
 \begin{exe} Find the resonant frequency of a spring-mass system with mass $2 \ kg$, a spring constant of $\frac{1}{2} \frac{N}{m}$ and no damping.
 \end{exe}

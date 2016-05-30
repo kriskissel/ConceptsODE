@@ -1,6 +1,3 @@
-%% fixed inconsitency between problem statement and solution in Example 2 on 10-28-12
-%% fixed critical typo (minus sign error) in problem 7.2d
-
 \chapter{Constant-Coefficient Equations}
 
 \setcounter{example}{1}
@@ -324,7 +321,7 @@ y & = A e^{ax}+Be^{-ax} \\
 & = (A+B)\left(\frac{e^{ax}+e^{-ax}}{2}\right) + (A-B) \left( \frac{e^{ax}-e^{-ax}}{2} \right) \\
 & = C \cosh(ax) + D \sinh(ax) \ \ \ \mbox{(with } C=A+B \mbox{ and } D = A-B \mbox{)}.
 \end{align*}
-That is, we can write the general solution as $y = C \cosh(ax)+D\sinh(ax)$.  Furthermore, accoring to the content of the next exercise, this form of writing the solution makes it particularly easy to write down the solution of initial value problems when the initial conditions are given at $x=0$.
+That is, we can write the general solution as $y = C \cosh(ax)+D\sinh(ax)$.  Furthermore, according to the content of the next exercise, this form of writing the solution makes it particularly easy to write down the solution of initial value problems when the initial conditions are given at $x=0$.
 
 \begin{exe}
 For the function $y=C \cosh(ax)+D \sinh(ax)$, verify that $y(0)=C$ and $y'(0)=aD$.

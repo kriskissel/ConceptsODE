@@ -118,7 +118,7 @@ particularly when the differential equation is describing physical behavior, suc
 \example Find the general solution of $y''+2y'+y=e^{2x}$.
 
 The characteristic equation is $r^2+2r+1=0$, which has a repeated root $r=-1$.  Thus the general solution of the related homogeneous equation is $y_h=Ae^{-x}+Bxe^{-x}$.  Next we guess that a particular solution of the non-homogeneous equation will have the form $y_p=Ce^{2x}$:
-\[ e^{2x}=(4e^{2x})+2(2e^{2x})+(e^{2x}) = 9e^{2x},\]
+\[ e^{2x}=(4Ce^{2x})+2(2Ce^{2x})+(Ce^{2x}) = 9Ce^{2x},\]
 so that $C=\frac{1}{9}$.  Therefore the general solution of the non-homogeneous equation is
 \[ y=\frac{1}{9}e^{2x}+Ae^{-x}+Bxe^{-x}.\]
 \qed
@@ -244,8 +244,10 @@ Use the method of undetermined coefficients to find one solution for each of the
 \item $v''+v' = x^2$
 \item $\ddot{w}-\dot{w}-3w=e^{t}$
 \item $y''-5y'+6y=e^{2x}$
-\item $\ddot{y}-4\dot{y}+4y = 2e^{2x}$
-\item $\ddot{y}-4\dot{y}+4y = 2x e^{2x}$
+\item $\ddot{y}-4\dot{y}+4y = 2e^{2t}$
+\item $\ddot{y}-4\dot{y}+4y = 2x e^{2t}$
+\item $\ddot{y} - 2\dot{y} + y = t^2 + e^t$
+\item $\ddot{x} + 9 x = \sin(t) + \sin(2t) + \sin(3t)$
 \end{enumerate}
 \end{minipage}
 \end{exe}
@@ -263,6 +265,7 @@ Solve the following initial value problems.
 \item $\ddot{u}-3\dot{u}+2u=2e^t, \ u(0)=0, \ \dot{u}(0)=0$
 \item $v''+4v=\cos(x), \ v(0)=0, \ v'(0)=0$
 \item $v''+4v=\cos(2x), \ v(0)=0, \ v'(0)=0$
+\item $\ddot{x} + x = e^t + \cos(t), \ x(0) = 0, \ \dot{x}(0) = 0$
 \end{enumerate}
 \end{minipage}
 \end{exe}

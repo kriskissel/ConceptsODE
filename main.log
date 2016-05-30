@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2014.10.14)  29 MAY 2016 23:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=latex 2014.10.14)  30 MAY 2016 13:51
 entering extended mode
 **main.tex
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\main.tex"
@@ -671,12 +671,12 @@ File: 2-graphicalmethods/phaseline3.eps Graphic file (type eps)
 File: 2-graphicalmethods/phaseline5.eps Graphic file (type eps)
  <2-graphicalmethods/phaseline5.eps>
 [39]
-Overfull \hbox (1.6424pt too wide) in paragraph at lines 428--428
+Overfull \hbox (1.6424pt too wide) in paragraph at lines 426--426
 [] \OT1/pcr/m/n/10.95 with(DEtools) 
  []
 
 
-Overfull \hbox (68.23624pt too wide) in paragraph at lines 430--436
+Overfull \hbox (68.23624pt too wide) in paragraph at lines 428--434
  []$ 
  []
 
@@ -784,7 +784,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [93]
 [94] [95] [96] [97] [98] [99] [100] [101] [102] [103])
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\FOM-springmass/FOM-
-springmass.tex" [104]
+springmass.chapter" [104]
 File: FOM-springmass/springmass2smallest.eps Graphic file (type eps)
  <FOM-springmass/springmass2smallest.eps>
 File: FOM-springmass/springmassdisplacement.eps Graphic file (type eps)
@@ -798,7 +798,7 @@ Overfull \hbox (15.12923pt too wide) in paragraph at lines 38--39
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [105]
-Overfull \vbox (102.99622pt too high) has occurred while \output is active []
+Overfull \vbox (34.0369pt too high) has occurred while \output is active []
 
 
 [106]
@@ -930,13 +930,13 @@ Underfull \vbox (badness 2134) has occurred while \output is active []
 
  [147]
 [148] [149]
-Underfull \hbox (badness 10000) in paragraph at lines 358--360
+Underfull \hbox (badness 10000) in paragraph at lines 360--362
 []\OT1/pnc/m/n/10.95 Find the In-verse Laplace Trans-form
  []
 
 [150])
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\11-laplaceII/laplac
-eII.chapter.tex" [151] [152
+eII.chapter" [151] [152
 
 
 ]
@@ -974,7 +974,7 @@ File: 11-laplaceII/figure1.eps Graphic file (type eps)
 File: 11-laplaceII/sawtooth1.eps Graphic file (type eps)
  <11-laplaceII/sawtooth1.eps> [167])
 ("C:\Users\Kris\Documents\Textbook Construction\ConceptsODE\12-representationfo
-rmulas/representationformulas.chapter.tex" [168]
+rmulas/representationformulas.chapter" [168]
 Chapter 12
 [169
 
@@ -1125,7 +1125,7 @@ Bibliography
 ### simple group (level 24) entered at line 175 ({)
 ### simple group (level 23) entered at line 147 ({)
 ### simple group (level 22) entered at line 8 ({)
-### simple group (level 21) entered at line 276 ({)
+### simple group (level 21) entered at line 278 ({)
 ### simple group (level 20) entered at line 171 ({)
 ### simple group (level 19) entered at line 102 ({)
 ### simple group (level 18) entered at line 60 ({)
@@ -1135,25 +1135,25 @@ Bibliography
 ### simple group (level 14) entered at line 7 ({)
 ### simple group (level 13) entered at line 47 ({)
 ### simple group (level 12) entered at line 8 ({)
-### simple group (level 11) entered at line 9 ({)
+### simple group (level 11) entered at line 6 ({)
 ### simple group (level 10) entered at line 273 ({)
 ### simple group (level 9) entered at line 152 ({)
 ### simple group (level 8) entered at line 9 ({)
-### simple group (level 7) entered at line 236 ({)
-### simple group (level 6) entered at line 75 ({)
-### simple group (level 5) entered at line 8 ({)
+### simple group (level 7) entered at line 234 ({)
+### simple group (level 6) entered at line 73 ({)
+### simple group (level 5) entered at line 6 ({)
 ### simple group (level 4) entered at line 161 ({)
 ### simple group (level 3) entered at line 10 ({)
-### simple group (level 2) entered at line 13 ({)
+### simple group (level 2) entered at line 11 ({)
 ### simple group (level 1) entered at line 11 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 9814 strings out of 493706
- 172470 string characters out of 3142180
- 235878 words of memory out of 3000000
+ 9812 strings out of 493706
+ 172415 string characters out of 3142180
+ 235885 words of memory out of 3000000
  12637 multiletter control sequences out of 15000+200000
  20351 words of font info for 66 fonts, out of 3000000 for 9000
  1186 hyphenation exceptions out of 8191
  40i,14n,70p,1380b,1453s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on main.dvi (253 pages, 764828 bytes).
+Output written on main.dvi (253 pages, 766572 bytes).

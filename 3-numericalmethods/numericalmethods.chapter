@@ -110,9 +110,9 @@ The approach described here is known as
 	\index{Euler's method}%
 	{\bf Euler's method}.  It is not a highly efficient algorithm, but it is the basic foundation upon which methods in the numerical analysis of differential equations are built.
 
-Our final estimate in the last example was an underestimate.  We could have improved it by reapplying the algorithm with a smaller step size $\Delta x$.  For example, using $\Delta x = 0.01$ leads to the approximation $y(1)\approx 7.8$.  Using $\Delta x = 0.001$ gives us $y(1) \approx 9.16$. Using $\Delta x = 0.0001$ gives us $y(1) \approx 9.35$, which is the same value (to two decimal places) which we get when we use $\Delta x = 0.000001$. The spreadsheet used to obtain this last result had 1 million lines of calculations. Clearly there is a trade-off between accuracy and how computationally-intensive the method will be to implement as one considers various choices of $\Delta x$.  There are variations on this method which will converge faster, meaning they give similar accuracy with a larger increment $\Delta x$, and they can therefore be calculated more quickly.  The computational cost of a numerical method is an important area of study in applied mathematics.  Many other algorithms have been discovered which are more efficient than Euler's method, even if they are just refinements of the same idea.  Several refinements are discussed in the problem set for this chapter.  Learning Euler's method is preparation to begin study of the more advanced techniques.
+Our final estimate in the last example was an underestimate.  We could have improved it by reapplying the algorithm with a smaller step size $\Delta x$.  For example, using $\Delta x = 0.01$ leads to the approximation $y(1)\approx 7.8$.  Using $\Delta x = 0.001$ gives us $y(1) \approx 9.16$. Using $\Delta x = 0.0001$ gives us $y(1) \approx 9.35$, which is the same value (to two decimal places) which we get when we use $\Delta x = 0.000001$. The spreadsheet used to obtain this last result had 1 million lines of calculations. Clearly there is a trade-off between accuracy and how computationally-intensive the method will be to implement as one considers various choices of $\Delta x$.  There are variations on this method which will converge faster, meaning they give similar accuracy with a larger increment $\Delta x$, and they can therefore be calculated more quickly.  The computational cost of a numerical method is an important area of study in applied mathematics.  Many other algorithms have been discovered which are more efficient than Euler's method, even if they are just refinements of the same idea.  Several refinements are discussed in the problem set for this chapter.  Learning Euler's method is preparation to begin our study of the more advanced techniques.
 
-Before proceeding to another example, we should take a moment to notice that there is another, more symbolic way of understanding of Euler's method.  If $y$ satisfies the IVP $y'=f(x,y)$ and $y(x_0)=y_0$, then integrating both sides of the differential equation from $x_0$ to $x_1=x_0+\Delta x$ gives us
+Before proceeding to another example, we should take a moment to notice that there is another, more symbolic way of understanding Euler's method.  If $y$ satisfies the IVP $y'=f(x,y)$ and $y(x_0)=y_0$, then integrating both sides of the differential equation from $x_0$ to $x_1=x_0+\Delta x$ gives us
 \[ y(x_1)-y(x_0)=\int_{x_0}^{x_1} f(x,y(x)) \ dx,\]
 or
 \[ y(x_1) = y_0 + \int_{x_0}^{x_1} f(x,y(x)) \ dx.\]
@@ -182,7 +182,7 @@ This formula can be thought of as an attempt to improve on estimating the value 
 that attempts to use a Trapezoid Rule approximation to estimate the integral; but since we don't know the value of $f(x,y(x))$ at the right endpoint, we approximate it first using Euler's Method, then plug that approximation back in to estimate the integral. Recall then the the trapezoid rule basically averages the values at the left and right endpoints of the interval (and multiplies this average by the length of the interval) to approximate the integral.  So the improved Euler formula gives us 
 \[y_{n+1} = y_n + \Delta x \left( \frac{f(x_n,y_n)+f(x_n+\Delta x,y_n+\Delta x f(x_n,y_n)}{2} \right).\]
 The Runge-Kutta method is in turn a refinement of this idea.  It uses a weighted average of the value of $f(x,y)$ approximated at several points throughout the interval.  Notice that if $f(x,y)$ didn't depend on $y$, then the weighted average in the Runge-Kutta formula would simplify to
-\[ \frac{\Delta x}{6} \left( f(x_n) + 4 f \left(x_n + \frac{1}{2} \Delta X \right) + f(x_n + \Delta x) \right),\]
+\[ \frac{\Delta x}{6} \left( f(x_n) + 4 f \left(x_n + \frac{1}{2} \Delta x \right) + f(x_n + \Delta x) \right),\]
 which is precisely Simpson's Rule for approximating the integral.
 
 \example Use the Runge-Kutta method to find an approximate value of $y(0.4)$ for the solution of $y'=2y-x, \ y(0)=0$ using two subintervals.  Carry 5 decimal places throughout the calculations.  Round the final answer to three decimal places.
@@ -222,7 +222,7 @@ This kind of computational efficiency is especially important in applications th
 \bigskip
 \begin{multicols}{2}
 \begin{instructions}
-Use Euler's method to find an approximate value of $y(0.2)$ using a step size of {\bf (a)} $\Delta x=0.1$, and {\bf (b)} $\Delta x=0.05$.  {\bf (c)} Then solve the initial value problem using separation of variables and find the exact value of $y(0.2)$.  Compare your results.
+Use Euler's method to find an approximate value of $y(0.2)$ using a step size of {\bf (a)} $\Delta x=0.1$, and {\bf (b)} $\Delta x=0.05$ (or $\Delta t$ when appropriate).  {\bf (c)} Then solve the initial value problem using separation of variables and find the exact value of $y(0.2)$.  Compare your results.
 \end{instructions}
 
 \smallskip

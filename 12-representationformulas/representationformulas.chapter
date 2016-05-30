@@ -23,7 +23,7 @@ Suppose we seek a solution that satisfies the initial condition $y(x_0)=y_0$.  O
 \[ \frac{d}{dx}\left[ \exp \left(\int_{x_0}^x p(s) ds \right) y \right] = q(x)\exp \left(\int_{x_0}^x p(s) ds \right).\]
 And again, when we anti-differentiate both sides of this equation, we will use a particular anti-derivative on the right side:
 \[ \exp \left( \int_{x_0}^x p(s) ds \right) y = C+\int_{x_0}^x q(t) \exp \left(\int_{x_0}^t p(s) ds \right)  dt. \]
-(Note the presence of the constant of integration $C$ on the right side.)  
+(Note the presence of the constant of integration $C$ on the right side; also, we changed the variable from $x$ to $t$ on the right side before integrating to avoid conflict with the $x$ that appears in the upper limit of integration.)  
 If we insert the initial condition at this point, notice that both definite integrals will be zero (since the upper and lower limits of integration will be identical), and we can see that $y_0=C$, so now we have
 \[ \exp \left( \int_{x_0}^x p(s) ds \right) y = y_0+\int_{x_0}^x q(t) \exp \left(\int_{x_0}^t p(s) ds \right)  dt. \]
 Isolating $y$ yields
@@ -41,11 +41,11 @@ If $p(x)$ and $q(x)$ are continuous on an open interval $I$ containing $x_0$, th
 
 
 
-This is a representation formula that can be used for any first-order linear IVP in standard form.  The integrals are guaranteed to be defined on any domain where $p$ and $q$ are both continuous.  Even when we cannot write down an anti-derivative for the functions $p$ and $q$, we can often still write down approximate values of $y(x)$ by using a numerical method to approximate the integrals (such as the Trapezoid Rule, Simpson's Rule or another algorithm run by a calculator or computer.
+This is a representation formula that can be used for any first-order linear IVP in standard form.  The integrals are guaranteed to be defined on any domain where $p$ and $q$ are both continuous.  Even when we cannot write down an anti-derivative for the functions $p$ and $q$, we can often still write down approximate values of $y(x)$ by using a numerical method to approximate the integrals (such as the Trapezoid Rule, Simpson's Rule or another algorithm run by a calculator or computer).
 
 \example Suppose $y$ satisfies the initial value problem $y'+2xy=1, \ y(0)=2$.  Find the approximate value of $y(1)$.
 
-In theory the method of integrating factors will apply here, but we will run into some difficulty if we try actually calculate the exact solution because we will end up trying to anti-differentiate $e^{(x^2)}$, and there is no closed-form anti-derivative for this function.  However, we can apply the representation formula above (which is really just the method of integrating factors anyway) with $p(x)=2x$ and $q(x)=1$ to get
+In theory the method of integrating factors will apply here, but we will run into some difficulty if we try to actually calculate the exact solution because we will end up trying to anti-differentiate $e^{(x^2)}$, and there is no closed-form anti-derivative for this function.  However, we can apply the representation formula above (which is really just the method of integrating factors anyway) with $p(x)=2x$ and $q(x)=1$ to get
 \begin{align*}
 y(x) & = \exp \left( -\int_0^x 2s \ ds \right) \left( 2 + \int_0^x 1 \exp \left(\int_0^t 2s \ ds \right) dt \right) \\
 & = e^{-(x^2)} \left( 2 + \int_0^x e^{(t^2)} \ dt \right)
@@ -76,8 +76,8 @@ The
 f*g(t) & = \int_0^t f(\tau) g(t-\tau) \ d\tau \\
 & = \int_0^t \tau e^{t-\tau} \ d\tau \\
 & = e^t \int_0^t \tau e^{-\tau} \ d\tau \\
-& = e^t \left( -\tau e^{-\tau} + \int e^{-\tau} \ d\tau \right)_0^t \\
-& = e^t \left( -\tau e^{-\tau} -e^{-\tau} \right)_0^t \\
+& = \left. e^t \left( -\tau e^{-\tau} + \int e^{-\tau} \ d\tau \right) \right|_0^t \\
+& = \left. e^t \left( -\tau e^{-\tau} -e^{-\tau} \right) \right|_0^t \\
 & = e^t(-t e^{-t} - e^{-t}+0+1) \\
 & = -t-1+e^t.
 \end{align*}
@@ -180,7 +180,7 @@ Use Laplace Transforms and convolution to find an integral representation formul
 \end{exe}
 
 \begin{exe}
-Use Laplace Transforms and convolution to find an integral representation formula for $y(t)$ where $y$  satisfies the initial value problem $\ddot{y}+4y = \cot(t)$, $y(0)=0$, $\dot{y}(0)=0$, and use it to find an approximate value of $y(0.3)$.
+Use Laplace Transforms and convolution to find an integral representation formula for $y(t)$ where $y$  satisfies the initial value problem $\ddot{y}+4y = \tan(t)$, $y(0)=0$, $\dot{y}(0)=0$, and use it to find an approximate value of $y(0.3)$.
 \end{exe}
 
 
@@ -270,7 +270,7 @@ Calculate the given convolution of functions.
 \[ \dot{y}+by=f(t), \ y(0)=y_0.\]
 
 \ap Use Laplace Transforms to find an integral representation formula for the solution of the following initial value problem with $b \neq 0$:
-\[ \ddot{y}+2b\dot{y}+b^2=f(t), \ y(0)=y_0, \dot{y}(0)=v_0.\]
+\[ \ddot{y}+2b\dot{y}+b^2 y=f(t), \ y(0)=y_0, \dot{y}(0)=v_0.\]
 
 \ap Use an integral representation formula to solve $\ddot{y}-y=f(t)$ with the initial conditions $y(0)=0$ and $\dot{y}(0)=0$.  Then let $f(t)=\ln(t-1)$, and estimate the value of $y(1)$ by evaluating the necessary definite integrals using Simpson's Rule.  Give an answer with an error less than $10^{-5}$.
 

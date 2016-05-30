@@ -1,5 +1,3 @@
-%% EDITED August 12, 2012
-
 \chapter{First Order Linear Equations}
 
 \setcounter{example}{1}
@@ -15,7 +13,7 @@
 \end{center}
 
 \medskip
-At first glance, this problem seems quite similar to a mixing problem we were able to solve earlier using separation of variables.  Indeed, the appropriate differential equation can be obtained using the same rate-in-minus-rate-out approach that we have already studied.  But the key difference here is that the volume of liquid in the tank is not constant. Because it is draining slower than liquid is being pumped into the tank, the volume after $t$ minutes will be $100+2t \ L$.  Letting $y(t)$ denote the number of grams of salt in the tank after $t$ minutes have passed, we can write the concentration of salt in the tank at time $t$ as $\frac{y}{100+2t}$ grams per liter.  Thus we get
+At first glance, this problem seems quite similar to a mixing problem we were able to solve earlier using separation of variables.  Indeed, the appropriate differential equation can be obtained using the same rate-in-minus-rate-out approach that we have already studied.  But the key difference here is that the volume of liquid in the tank is not constant. Because it is draining slower than liquid is being pumped into the tank, the volume after $t$ minutes will be $100+2t \ L$.  Letting $y(t)$ denote the number of grams of salt in the tank after $t$ minutes have passed, we can write the concentration of salt in the tank at time $t$ as $\frac{y}{100+2t}$ grams per liter.  This gives us
 \begin{align*}
 \frac{dy}{dt} & = \mbox{(rate in) - (rate out)} \\
 & = \left( \frac{30}{1}\frac{\mbox{g}}{\mbox{L}} \right) \left( \frac{3}{1} \frac{\mbox{L}}{\mbox{min}} \right) - \left(\frac{y}{100+2t} \frac{\mbox{g}}{\mbox{L}} \right) \left( \frac{1}{1} \frac{\mbox{L}}{\mbox{min}} \right) \\
@@ -55,7 +53,7 @@ The initial condition $y(0)=1$ implies that $C = \frac{1}{4}$.  Therefore the so
 
 Multiplying by the expression $e^{4x}$ is what allowed us to recognize the left side of the equation as a derivative (which would have come from using the product rule), and that was what allowed us to simplify when we integrated both sides of the equation.  For that reason, an expression fulfilling this purpose is referred to as an 
 	\index{integrating factor}%
-	{\bf integrating factor}.  The basic idea behind our approach to solving first-order linear equations is to multiply both sides of the equation by an integrating factor that will allow use to ``reverse the product rule'' on the left side.
+	{\bf integrating factor}.  The basic idea behind our approach to solving first-order linear equations is to multiply both sides of the equation by an integrating factor that will allow us to ``reverse the product rule'' on the left side.
 
 Any first-order linear differential equation written in standard form, 
 \begin{equation} \frac{dy}{dx}+p(x)y=q(x),\label{standardfirstorderlinear} \end{equation}
