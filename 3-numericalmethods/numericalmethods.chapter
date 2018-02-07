@@ -1,4 +1,4 @@
-%% EDITED August 11, 2012 for wording, typos
+%% EDITED February 07, 2018 for typo
 
 \chapter{Numerical Methods}
 
@@ -170,7 +170,7 @@ where
 k_{n1} & = f(x_n,y_n) \\ 
 k_{n2} & = f \left( x_n + \frac{1}{2} \Delta x, y_n + \frac{1}{2} \Delta x k_{n1} \right) \\ 
 k_{n3} & = f \left( x_n + \frac{1}{2} \Delta x, y_n + \frac{1}{2} \Delta x k_{n2} \right) \\
-k_{n4} & = f \left( x_n + \Delta x, y_n + \frac{1}{2} \Delta x k_{n3} \right)
+k_{n4} & = f \left( x_n + \Delta x, y_n + \Delta x k_{n3} \right)
 \end{align*}
 \end{minipage}
 }
